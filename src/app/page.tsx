@@ -112,8 +112,11 @@ export default function Home() {
         <div className="container mx-auto px-4 h-20 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <img src="/images/fukusuke_icon.png" alt="福助ロゴ" className="w-12 h-12 object-contain" />
-            <div className="font-bold text-xl tracking-wider text-foreground">
-              足屋「福助」
+            <div className="flex flex-col">
+              <span className="text-[10px] text-primary font-bold tracking-widest -mb-1">足揉み専門店</span>
+              <div className="font-bold text-xl tracking-wider text-foreground">
+                足屋「福助」
+              </div>
             </div>
           </div>
           
@@ -147,7 +150,10 @@ export default function Home() {
         )}
       </header>
 
-      <main className="flex-grow pt-20">
+      <main className="flex-grow pt-20 relative">
+        {/* Global scattered logo pattern */}
+        <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: "url('/images/fukusuke_icon.png')", backgroundSize: "150px" }} />
+        
         {/* 1. Hero Section */}
         <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-[#FDFBF7]">
           {/* Warm background texture/gradient */}
@@ -279,7 +285,7 @@ export default function Home() {
               <span className="text-sm opacity-80 mt-2 block">昔からの足つぼの考え方を参考にしていますが、あくまで感覚的なリセットのヒントです。科学的に証明されたものではありません。</span></p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-6 pb-8 px-4 -mx-4 md:px-0 md:mx-0">
               {[
                 { title: "頭が重い", bad: "ズーンと重い、頭が回らない", good: "ズーンとした重さがふっと抜け、意識が溶けるようなスッキリ感が広がります。頭が空っぽになる感覚を。", img: "symptom_headache_final_1773412875105.png" },
                 { title: "目が疲れる", bad: "ショボショボする、視界がかすむ", good: "視界がパッと明るく拓け、目元の重みがふっと溶けていきます。", img: "symptom_eye_final_1773412901886.png" },
@@ -294,7 +300,7 @@ export default function Home() {
                 { title: "心がざわつく", bad: "不安・ソワソワ、眠りが浅い", good: "胸のざわつきがふっと溶け、頭の奥から安らぎに包まれます。", img: "symptom_heart_final_1773413024814.png" },
                 { title: "呼吸が浅い", bad: "ため息が多い、胸が詰まる感じ", good: "詰まりがふっと抜け、肺の奥底まで空気が美味しく届きます。", img: "symptom_lung_final_1773413038892.png" }
               ].map((item, idx) => (
-                <div key={idx} className="group bg-white border border-[#EAE4D9] p-6 rounded-2xl hover:border-primary/50 transition-all hover:shadow-[0_4px_20px_rgba(166,60,68,0.08)] relative overflow-hidden flex flex-col items-center text-center">
+                <div key={idx} className="flex-shrink-0 w-[85vw] md:w-[320px] snap-center group bg-white border border-[#EAE4D9] p-6 rounded-2xl hover:border-primary/50 transition-all hover:shadow-[0_4px_20px_rgba(166,60,68,0.08)] relative overflow-hidden flex flex-col items-center text-center">
                   <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="w-24 h-24 mb-4 flex items-center justify-center relative z-10">
                     <img src={`/assets/img/${item.img}`} alt={item.title} className="max-w-full max-h-full object-contain drop-shadow-sm group-hover:scale-110 transition-transform duration-300" />
@@ -303,9 +309,15 @@ export default function Home() {
                   <div className="text-sm text-[#7A736E] mb-4 relative z-10 w-full bg-[#F4F0E6] py-2 rounded-lg">
                     <p className="line-through opacity-80">{item.bad}</p>
                   </div>
-                  <p className="text-sm font-medium leading-relaxed text-[#5C5550] relative z-10">{item.good}</p>
+                  <p className="text-sm font-medium leading-relaxed text-[#5C5550] relative z-10 whitespace-normal">{item.good}</p>
                 </div>
               ))}
+            </div>
+            {/* Scroll hint indicator */}
+            <div className="flex justify-center mt-4">
+              <div className="flex gap-2 text-primary/50 text-sm animate-pulse items-center">
+                <span className="text-lg">←</span> 横にスクロールできます <span className="text-lg">→</span>
+              </div>
             </div>
           </motion.div>
         </section>
@@ -321,24 +333,30 @@ export default function Home() {
               お客様の声
               <span className="w-8 h-px bg-primary/30 hidden sm:block"></span>
             </h2>
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-8 pb-8 px-4 -mx-4 md:px-0 md:mx-0">
               {[
                 { quote: "「頭がスッキリして、いつの間にか寝落ちしちゃいました（笑）」", author: "30代 IT企業勤務", reply: "ありがとうございます！頭が空っぽになった瞬間、最高に幸せですよね。また深い眠りをお届けします♪" },
                 { quote: "「足だけじゃなくて、目や肩までパッと明るくなった気がします。」", author: "40代 デザイナー", reply: "目がお疲れでしたね。足指から繋がる感覚を実感いただけて嬉しいです。視界のリセット、お任せください。" },
                 { quote: "「枠単位制が分かりやすくて、遅刻の不安なく通えるのがありがたいです。」", author: "30代 事務職", reply: "誠実な方にこそ、ゆったり通っていただきたい…その想いが伝わって嬉しいです。お待ちしております！" }
               ].map((voice, idx) => (
-                <div key={idx} className="bg-[#FDFBF7] p-8 rounded-[2rem] border border-[#EAE4D9] flex flex-col h-full shadow-sm hover:shadow-md transition-shadow relative">
+                <div key={idx} className="flex-shrink-0 w-[85vw] md:w-[350px] snap-center bg-[#FDFBF7] p-8 rounded-[2rem] border border-[#EAE4D9] flex flex-col h-full shadow-sm hover:shadow-md transition-shadow relative">
                   <div className="absolute top-4 left-4 text-4xl text-[#E5D3B3] opacity-50 font-serif">"</div>
-                  <div className="flex-grow relative z-10 mt-4">
+                  <div className="flex-grow relative z-10 mt-4 whitespace-normal">
                     <p className="text-lg mb-4 leading-relaxed font-medium text-[#3A3532]">"{voice.quote}"</p>
                     <p className="text-sm text-[#7A736E] mb-8 text-right">— {voice.author}</p>
                   </div>
                   <div className="bg-white p-5 rounded-xl border border-[#EAE4D9] mt-auto relative">
                     <div className="absolute -top-3 left-4 bg-primary text-white text-[10px] px-2 py-0.5 rounded-full font-bold">福助より</div>
-                    <p className="text-sm text-[#5C5550] leading-relaxed pt-2">{voice.reply}</p>
+                    <p className="text-sm text-[#5C5550] leading-relaxed pt-2 whitespace-normal">{voice.reply}</p>
                   </div>
                 </div>
               ))}
+            </div>
+            {/* Scroll hint indicator */}
+            <div className="flex justify-center mt-2 md:hidden">
+              <div className="flex gap-2 text-primary/50 text-sm animate-pulse items-center">
+                <span className="text-lg">←</span> 横にスクロールできます <span className="text-lg">→</span>
+              </div>
             </div>
           </motion.div>
         </section>
