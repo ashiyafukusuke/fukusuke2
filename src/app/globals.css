@@ -225,3 +225,7 @@ html {
 .css-footprint-container[data-target="liver"] .spot-liver { display: block; width: 12px; height: 12px; top: 45px; left: 10px; }
 .css-footprint-container[data-target="heart"] .spot-heart { display: block; width: 12px; height: 12px; top: 30px; left: 18px; }
 .css-footprint-container[data-target="lung"] .spot-lung { display: block; width: 25px; height: 12px; top: 20px; left: 15px; border-radius: 40%; }
+
+.custom-scrollbar::-webkit-scrollbar { height: 8px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: #f0f0f0; border-radius: 8px; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #a63c44; border-radius: 8px; }

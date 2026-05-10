@@ -380,7 +380,7 @@ export default function Home() {
               お客様の声
               <span className="w-8 h-px bg-primary/30 hidden sm:block"></span>
             </h2>
-            <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar md:show-scrollbar custom-scrollbar gap-8 pb-8 px-4 -mx-4 md:px-0 md:mx-0">
+            <div className="flex overflow-x-auto snap-x snap-mandatory custom-scrollbar gap-8 pb-8 px-4 -mx-4 md:px-0 md:mx-0">
               {[
                 { quote: "「頭がスッキリして、いつの間にか寝落ちしちゃいました（笑）」", author: "30代 IT企業勤務", reply: "ありがとうございます！頭が空っぽになった瞬間、最高に幸せですよね。また深い眠りをお届けします♪" },
                 { quote: "「足だけじゃなくて、目や肩までパッと明るくなった気がします。」", author: "40代 デザイナー", reply: "目がお疲れでしたね。足指から繋がる感覚を実感いただけて嬉しいです。視界のリセット、お任せください。" },
