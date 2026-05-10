@@ -101,6 +101,130 @@ const MessageContent = () => (
   </div>
 );
 
+const MAP_ITEMS = [
+  { 
+    title: "頭が重い", bad: "ズーンと重い、頭が回らない", good: "ズーンとした重さがふっと抜け、意識が溶けるようなスッキリ感が広がります。頭が空っぽになる感覚を。", 
+    img: "symptom_headache_final_1773412875105.png",
+    backTitle: "大脳", backImg: "dex_brain_sumie.png", backDesc: "思考の霧が晴れ、深い眠りへと誘われる実感が得やすいポイントです。"
+  },
+  { 
+    title: "目が疲れる", bad: "ショボショボする、視界がかすむ", good: "視界がパッと明るく拓け、目元の重みがふっと溶けていきます。", 
+    img: "symptom_eye_final_1773412901886.png",
+    backTitle: "目", backImg: "dex_eye_sumie.png", backDesc: "スクリーン疲れをリセット。視界がパッと明るく拓けるような感覚に。"
+  },
+  { 
+    title: "首が回らない", bad: "首筋が張る、スマホ首がつらい", good: "首から肩にまとわりつく緊張がふっと抜け、本来の軽やかさを取り戻します。", 
+    img: "symptom_neck_final_1773412942162.png",
+    backTitle: "頸椎", backImg: "dex_cervical_spine_sumie.png", backDesc: "スマホ首の淀みを流し、呼吸が深く入る通り道を作ります。"
+  },
+  { 
+    title: "肩こり", bad: "肩が重石のよう、腕が上がりにくい", good: "背負い込んだ重荷がふっと溶け落ち、羽が生えたような軽やかさに。", 
+    img: "symptom_shoulder_final_1773412956258.png",
+    backTitle: "肩", backImg: "dex_shoulder_sumie.png", backDesc: "背負いすぎた重荷をそっと下ろし、羽が生えたような解放感を。"
+  },
+  { 
+    title: "背中が張る", bad: "背中がガチガチ、息苦しさを感じる", good: "ガチガチの背中がふっと緩み、胸の奥底から息が抜けるように。", 
+    img: "symptom_back_final_1773412971434.png",
+    backTitle: "僧帽筋", backImg: "dex_trapezius_sumie.png", backDesc: "背中の張りをほどくことで、全身の緊張がふっと和らぎます。"
+  },
+  { 
+    title: "ストレス・緊張", bad: "イライラする、気が休まらない", good: "張り詰めた緊張がふっと溶け、全身が空っぽになるような安らぎを。", 
+    img: "symptom_stress_final_1773412986605.png",
+    backTitle: "副腎", backImg: "dex_adrenal_sumie.png", backDesc: "ストレス蓄積をリセットし、静かな活力と安心感を取り戻します。"
+  },
+  { 
+    title: "だるさ・むくみ", bad: "足がパンパン、体が重だるい", good: "溜め込んだ余分な重みがふっと抜け、靴がゆるく感じるほどの軽やかな足元へ。", 
+    img: "symptom_swelling_final_1773412887544.png",
+    backTitle: "腎臓", backImg: "dex_kidney_sumie.png", backDesc: "めぐりを整え、芯から軽やかに身体へリセット。"
+  },
+  { 
+    title: "胃もたれ", bad: "食欲がわかない、お腹が重い", good: "胃のあたりの重苦しさがふっと溶け、じんわりと温まります。", 
+    img: "symptom_stomach_final_1773412917766.png",
+    backTitle: "胃", backImg: "dex_stomach_sumie.png", backDesc: "胃の働きを促し、消化の滞りをスッキリさせます。"
+  },
+  { 
+    title: "お腹がスッキリ", bad: "便秘ぎみ・張る、ガスがたまる", good: "お腹の張りがふっと抜け、内側から滞りが溶け出す感覚が。", 
+    img: "symptom_intestine_final_1773412999623.png",
+    backTitle: "大腸・小腸", backImg: "dex_large_intestine_sumie.png", backDesc: "お腹の張りを和らげ、内側からのデトックスをサポートします。"
+  },
+  { 
+    title: "お酒の抜けが悪い", bad: "翌朝がつらい、体がダル重い", good: "どんよりとしたダルさがふっと抜け、意識がシャキッと澄み渡ります。", 
+    img: "symptom_liver_final_1773413012199.png",
+    backTitle: "肝臓", backImg: "dex_liver_sumie.png", backDesc: "疲れた肝臓を労わり、翌朝のスッキリ感を取り戻します。"
+  },
+  { 
+    title: "心がざわつく", bad: "不安・ソワソワ、眠りが浅い", good: "胸のざわつきがふっと溶け、頭の奥から安らぎに包まれます。", 
+    img: "symptom_heart_final_1773413024814.png",
+    backTitle: "心臓", backImg: "dex_heart_sumie.png", backDesc: "胸のざわつきを鎮め、深い安心感とリラックスをもたらします。"
+  },
+  { 
+    title: "呼吸が浅い", bad: "ため息が多い、胸が詰まる感じ", good: "詰まりがふっと抜け、肺の奥底まで空気が美味しく届きます。", 
+    img: "symptom_lung_final_1773413038892.png",
+    backTitle: "横隔膜", backImg: "dex_diaphragm_sumie.png", backDesc: "横隔膜を緩めることで、肺の奥深くまで空気が届くように。"
+  }
+];
+
+const FlipCard = ({ item }: { item: any }) => {
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  return (
+    <div 
+      className="flex-shrink-0 w-[85vw] md:w-[320px] h-[400px] snap-center relative cursor-pointer group"
+      style={{ perspective: "1000px" }}
+      onClick={() => setIsFlipped(!isFlipped)}
+    >
+      <div 
+        className="w-full h-full transition-transform duration-700"
+        style={{ 
+          transformStyle: "preserve-3d", 
+          transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)" 
+        }}
+      >
+        {/* Front */}
+        <div 
+          className="absolute inset-0 w-full h-full bg-white border border-[#EAE4D9] p-6 rounded-2xl flex flex-col items-center text-center shadow-sm group-hover:shadow-[0_4px_20px_rgba(166,60,68,0.08)] group-hover:border-primary/50 transition-all"
+          style={{ backfaceVisibility: "hidden" }}
+        >
+          <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" />
+          <div className="w-24 h-24 mb-4 flex items-center justify-center relative z-10">
+            <img src={`/assets/img/${item.img}`} alt={item.title} className="max-w-full max-h-full object-contain drop-shadow-sm group-hover:scale-110 transition-transform duration-300" />
+          </div>
+          <h3 className="text-xl font-bold mb-3 text-[#3A3532] group-hover:text-primary transition-colors relative z-10">{item.title}</h3>
+          <div className="text-sm text-[#7A736E] mb-4 relative z-10 w-full bg-[#F4F0E6] py-2 rounded-lg shrink-0">
+            <p className="line-through opacity-80">{item.bad}</p>
+          </div>
+          <p className="text-sm font-medium leading-relaxed text-[#5C5550] relative z-10 whitespace-normal line-clamp-3">{item.good}</p>
+          <div className="mt-auto pt-2 relative z-10">
+            <span className="inline-block text-[10px] bg-primary/5 text-primary border border-primary/20 rounded-full px-3 py-1 shadow-sm font-bold">
+              タップで裏返す ↺
+            </span>
+          </div>
+        </div>
+
+        {/* Back */}
+        <div 
+          className="absolute inset-0 w-full h-full bg-[#FDFBF7] border-2 border-primary p-6 rounded-2xl flex flex-col items-center text-center shadow-md"
+          style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+        >
+          <div className="w-28 h-28 mb-6 mt-2 flex items-center justify-center relative z-10 bg-white rounded-full shadow-inner border border-[#EAE4D9] p-4">
+            <img src={`/assets/img/${item.backImg}`} alt={item.backTitle} className="max-w-full max-h-full object-contain" />
+          </div>
+          <div className="text-[10px] text-primary font-bold tracking-widest mb-1">対応する反射区</div>
+          <h3 className="text-2xl font-bold mb-4 text-[#3A3532] border-b border-primary/20 pb-3 w-full">{item.backTitle}</h3>
+          <p className="text-sm font-medium leading-relaxed text-[#5C5550] flex-grow flex items-center text-center px-2">
+            {item.backDesc}
+          </p>
+          <div className="mt-auto pt-2 relative z-10">
+            <span className="inline-block text-[10px] text-[#7A736E] px-3 py-1 font-bold">
+              戻る ↺
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default function Home() {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
@@ -179,19 +303,6 @@ export default function Home() {
               <Button asChild size="lg" className="w-full sm:w-auto text-base bg-primary hover:bg-primary/90 text-white rounded-full shadow-md hover:shadow-lg transition-all h-14 px-8">
                 <a href={LINE_URL} target="_blank" rel="noopener noreferrer">今すぐ予約する</a>
               </Button>
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button variant="outline" size="lg" className="w-full sm:w-auto text-base border-[#D8C3A5] text-[#3A3532] hover:bg-[#F4F0E6] rounded-full h-14 px-8">
-                    福助の想いをもっと知る
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="max-w-3xl max-h-[90vh] bg-[#FDFBF7] text-[#3A3532] border-[#EAE4D9]">
-                  <DialogHeader>
-                    <DialogTitle className="text-2xl font-bold mb-4 text-primary">福助からのメッセージ</DialogTitle>
-                  </DialogHeader>
-                  <MessageContent />
-                </DialogContent>
-              </Dialog>
             </div>
           </motion.div>
         </section>
@@ -208,10 +319,10 @@ export default function Home() {
               福助の想い
               <span className="w-8 h-px bg-primary/30 hidden sm:block"></span>
             </h2>
-            <p className="text-lg leading-relaxed text-[#5C5550] mb-10 text-left md:text-center">
+            <p className="text-lg leading-relaxed text-[#5C5550] mb-10 text-left inline-block max-w-2xl mx-auto">
               現代の私たちは、常にONのスイッチを押し続け、無意識に「見えない鎧」を着込んでしまっています。<br className="hidden md:block" />
               福助では、身体の中で一番遠い場所である「足」から優しく、時に深く刺激を入れることで、
-              その見えない鎧をほどいていきます。奥底から緊張が連鎖的に解け、
+              その見えない鎧をほどいていきます。<br className="hidden md:block" />奥底から緊張が連鎖的に解け、
               「ふっと」意識が溶けるような解放感を味わってください。
             </p>
             <Dialog>
@@ -285,32 +396,9 @@ export default function Home() {
               <span className="text-sm opacity-80 mt-2 block">昔からの足つぼの考え方を参考にしていますが、あくまで感覚的なリセットのヒントです。科学的に証明されたものではありません。</span></p>
             </div>
 
-            <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-6 pb-8 px-4 -mx-4 md:px-0 md:mx-0">
-              {[
-                { title: "頭が重い", bad: "ズーンと重い、頭が回らない", good: "ズーンとした重さがふっと抜け、意識が溶けるようなスッキリ感が広がります。頭が空っぽになる感覚を。", img: "symptom_headache_final_1773412875105.png" },
-                { title: "目が疲れる", bad: "ショボショボする、視界がかすむ", good: "視界がパッと明るく拓け、目元の重みがふっと溶けていきます。", img: "symptom_eye_final_1773412901886.png" },
-                { title: "首が回らない", bad: "首筋が張る、スマホ首がつらい", good: "首から肩にまとわりつく緊張がふっと抜け、本来の軽やかさを取り戻します。", img: "symptom_neck_final_1773412942162.png" },
-                { title: "肩こり", bad: "肩が重石のよう、腕が上がりにくい", good: "背負い込んだ重荷がふっと溶け落ち、羽が生えたような軽やかさに。", img: "symptom_shoulder_final_1773412956258.png" },
-                { title: "背中が張る", bad: "背中がガチガチ、息苦しさを感じる", good: "ガチガチの背中がふっと緩み、胸の奥底から息が抜けるように。", img: "symptom_back_final_1773412971434.png" },
-                { title: "ストレス・緊張", bad: "イライラする、気が休まらない", good: "張り詰めた緊張がふっと溶け、全身が空っぽになるような安らぎを。", img: "symptom_stress_final_1773412986605.png" },
-                { title: "だるさ・むくみ", bad: "足がパンパン、体が重だるい", good: "溜め込んだ余分な重みがふっと抜け、靴がゆるく感じるほどの軽やかな足元へ。", img: "symptom_swelling_final_1773412887544.png" },
-                { title: "胃もたれ", bad: "食欲がわかない、お腹が重い", good: "胃のあたりの重苦しさがふっと溶け、じんわりと温まります。", img: "symptom_stomach_final_1773412917766.png" },
-                { title: "お腹がスッキリしない", bad: "便秘ぎみ・張る、ガスがたまる", good: "お腹の張りがふっと抜け、内側から滞りが溶け出す感覚が。", img: "symptom_intestine_final_1773412999623.png" },
-                { title: "お酒の抜けが悪い", bad: "翌朝がつらい、体がダル重い", good: "どんよりとしたダルさがふっと抜け、意識がシャキッと澄み渡ります。", img: "symptom_liver_final_1773413012199.png" },
-                { title: "心がざわつく", bad: "不安・ソワソワ、眠りが浅い", good: "胸のざわつきがふっと溶け、頭の奥から安らぎに包まれます。", img: "symptom_heart_final_1773413024814.png" },
-                { title: "呼吸が浅い", bad: "ため息が多い、胸が詰まる感じ", good: "詰まりがふっと抜け、肺の奥底まで空気が美味しく届きます。", img: "symptom_lung_final_1773413038892.png" }
-              ].map((item, idx) => (
-                <div key={idx} className="flex-shrink-0 w-[85vw] md:w-[320px] snap-center group bg-white border border-[#EAE4D9] p-6 rounded-2xl hover:border-primary/50 transition-all hover:shadow-[0_4px_20px_rgba(166,60,68,0.08)] relative overflow-hidden flex flex-col items-center text-center">
-                  <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="w-24 h-24 mb-4 flex items-center justify-center relative z-10">
-                    <img src={`/assets/img/${item.img}`} alt={item.title} className="max-w-full max-h-full object-contain drop-shadow-sm group-hover:scale-110 transition-transform duration-300" />
-                  </div>
-                  <h3 className="text-xl font-bold mb-3 text-[#3A3532] group-hover:text-primary transition-colors relative z-10">{item.title}</h3>
-                  <div className="text-sm text-[#7A736E] mb-4 relative z-10 w-full bg-[#F4F0E6] py-2 rounded-lg">
-                    <p className="line-through opacity-80">{item.bad}</p>
-                  </div>
-                  <p className="text-sm font-medium leading-relaxed text-[#5C5550] relative z-10 whitespace-normal">{item.good}</p>
-                </div>
+            <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar md:show-scrollbar custom-scrollbar gap-6 pb-8 px-4 -mx-4 md:px-0 md:mx-0">
+              {MAP_ITEMS.map((item, idx) => (
+                <FlipCard key={idx} item={item} />
               ))}
             </div>
             {/* Scroll hint indicator */}
@@ -333,7 +421,7 @@ export default function Home() {
               お客様の声
               <span className="w-8 h-px bg-primary/30 hidden sm:block"></span>
             </h2>
-            <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-8 pb-8 px-4 -mx-4 md:px-0 md:mx-0">
+            <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar md:show-scrollbar custom-scrollbar gap-8 pb-8 px-4 -mx-4 md:px-0 md:mx-0">
               {[
                 { quote: "「頭がスッキリして、いつの間にか寝落ちしちゃいました（笑）」", author: "30代 IT企業勤務", reply: "ありがとうございます！頭が空っぽになった瞬間、最高に幸せですよね。また深い眠りをお届けします♪" },
                 { quote: "「足だけじゃなくて、目や肩までパッと明るくなった気がします。」", author: "40代 デザイナー", reply: "目がお疲れでしたね。足指から繋がる感覚を実感いただけて嬉しいです。視界のリセット、お任せください。" },

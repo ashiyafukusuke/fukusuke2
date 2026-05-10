@@ -63,4 +63,14 @@ html {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
   }
+
+  @media (min-width: 768px) {
+    .md\:show-scrollbar::-webkit-scrollbar {
+      display: block;
+    }
+    .md\:show-scrollbar {
+      -ms-overflow-style: auto;
+      scrollbar-width: auto;
+    }
+  }
 }
