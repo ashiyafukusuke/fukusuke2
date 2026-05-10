@@ -101,129 +101,56 @@ const MessageContent = () => (
   </div>
 );
 
-const MAP_ITEMS = [
+const OLD_MAP_ITEMS = [
   { 
-    title: "頭が重い", bad: "ズーンと重い、頭が回らない", good: "ズーンとした重さがふっと抜け、意識が溶けるようなスッキリ感が広がります。頭が空っぽになる感覚を。", 
-    img: "symptom_headache_final_1773412875105.png",
-    backTitle: "大脳", backImg: "dex_brain_sumie.png", backDesc: "思考の霧が晴れ、深い眠りへと誘われる実感が得やすいポイントです。"
+    title: "頭が重い", bad1: "ズーンと重い", bad2: "頭が回らない", good: "ズーンとした重さがふっと抜け、意識が溶けるようなスッキリ感が広がります。頭が空っぽになる感覚を。", 
+    img: "card_ill_head.png", target: "head"
   },
   { 
-    title: "目が疲れる", bad: "ショボショボする、視界がかすむ", good: "視界がパッと明るく拓け、目元の重みがふっと溶けていきます。", 
-    img: "symptom_eye_final_1773412901886.png",
-    backTitle: "目", backImg: "dex_eye_sumie.png", backDesc: "スクリーン疲れをリセット。視界がパッと明るく拓けるような感覚に。"
+    title: "目が疲れる", bad1: "ショボショボする", bad2: "視界がかすむ", good: "視界がパッと明るく拓け、目元の重みがふっと溶けていきます。", 
+    img: "card_ill_eye.png", target: "eye"
   },
   { 
-    title: "首が回らない", bad: "首筋が張る、スマホ首がつらい", good: "首から肩にまとわりつく緊張がふっと抜け、本来の軽やかさを取り戻します。", 
-    img: "symptom_neck_final_1773412942162.png",
-    backTitle: "頸椎", backImg: "dex_cervical_spine_sumie.png", backDesc: "スマホ首の淀みを流し、呼吸が深く入る通り道を作ります。"
+    title: "首が回らない", bad1: "首筋が張る", bad2: "スマホ首がつらい", good: "首から肩にまとわりつく緊張がふっと抜け、本来の軽やかさを取り戻します。", 
+    img: "card_ill_neck.png", target: "neck"
   },
   { 
-    title: "肩こり", bad: "肩が重石のよう、腕が上がりにくい", good: "背負い込んだ重荷がふっと溶け落ち、羽が生えたような軽やかさに。", 
-    img: "symptom_shoulder_final_1773412956258.png",
-    backTitle: "肩", backImg: "dex_shoulder_sumie.png", backDesc: "背負いすぎた重荷をそっと下ろし、羽が生えたような解放感を。"
+    title: "肩こり", bad1: "肩が重石のよう", bad2: "腕が上がりにくい", good: "背負い込んだ重荷がふっと溶け落ち、羽が生えたような軽やかさに。", 
+    img: "card_ill_shoulder.png", target: "shoulder"
   },
   { 
-    title: "背中が張る", bad: "背中がガチガチ、息苦しさを感じる", good: "ガチガチの背中がふっと緩み、胸の奥底から息が抜けるように。", 
-    img: "symptom_back_final_1773412971434.png",
-    backTitle: "僧帽筋", backImg: "dex_trapezius_sumie.png", backDesc: "背中の張りをほどくことで、全身の緊張がふっと和らぎます。"
+    title: "背中が張る", bad1: "背中がガチガチ", bad2: "息苦しさを感じる", good: "ガチガチの背中がふっと緩み、胸の奥底から息が抜けるように。", 
+    img: "card_ill_back.png", target: "back"
   },
   { 
-    title: "ストレス・緊張", bad: "イライラする、気が休まらない", good: "張り詰めた緊張がふっと溶け、全身が空っぽになるような安らぎを。", 
-    img: "symptom_stress_final_1773412986605.png",
-    backTitle: "副腎", backImg: "dex_adrenal_sumie.png", backDesc: "ストレス蓄積をリセットし、静かな活力と安心感を取り戻します。"
+    title: "ストレス・緊張", bad1: "イライラする", bad2: "気が休まらない", good: "張り詰めた緊張がふっと溶け、全身が空っぽになるような安らぎを。", 
+    img: "card_ill_stress.png", target: "stress"
   },
   { 
-    title: "だるさ・むくみ", bad: "足がパンパン、体が重だるい", good: "溜め込んだ余分な重みがふっと抜け、靴がゆるく感じるほどの軽やかな足元へ。", 
-    img: "symptom_swelling_final_1773412887544.png",
-    backTitle: "腎臓", backImg: "dex_kidney_sumie.png", backDesc: "めぐりを整え、芯から軽やかに身体へリセット。"
+    title: "だるさ・むくみ", bad1: "足がパンパン", bad2: "体が重だるい", good: "溜め込んだ余分な重みがふっと抜け、靴がゆるく感じるほどの軽やかな足元へ。", 
+    img: "card_ill_swelling.png", target: "swelling"
   },
   { 
-    title: "胃もたれ", bad: "食欲がわかない、お腹が重い", good: "胃のあたりの重苦しさがふっと溶け、じんわりと温まります。", 
-    img: "symptom_stomach_final_1773412917766.png",
-    backTitle: "胃", backImg: "dex_stomach_sumie.png", backDesc: "胃の働きを促し、消化の滞りをスッキリさせます。"
+    title: "胃もたれ", bad1: "食欲がわかない", bad2: "お腹が重い", good: "胃のあたりの重苦しさがふっと溶け、じんわりと温まります。", 
+    img: "card_ill_stomach.png", target: "stomach"
   },
   { 
-    title: "お腹がスッキリ", bad: "便秘ぎみ・張る、ガスがたまる", good: "お腹の張りがふっと抜け、内側から滞りが溶け出す感覚が。", 
-    img: "symptom_intestine_final_1773412999623.png",
-    backTitle: "大腸・小腸", backImg: "dex_large_intestine_sumie.png", backDesc: "お腹の張りを和らげ、内側からのデトックスをサポートします。"
+    title: "お腹がスッキリしない", bad1: "便秘ぎみ・張る", bad2: "ガスがたまる", good: "お腹の張りがふっと抜け、内側から滞りが溶け出す感覚が。", 
+    img: "card_ill_intestine.png", target: "intestine"
   },
   { 
-    title: "お酒の抜けが悪い", bad: "翌朝がつらい、体がダル重い", good: "どんよりとしたダルさがふっと抜け、意識がシャキッと澄み渡ります。", 
-    img: "symptom_liver_final_1773413012199.png",
-    backTitle: "肝臓", backImg: "dex_liver_sumie.png", backDesc: "疲れた肝臓を労わり、翌朝のスッキリ感を取り戻します。"
+    title: "お酒の抜けが悪い", bad1: "翌朝がつらい", bad2: "体がダル重い", good: "どんよりとしたダルさがふっと抜け、意識がシャキッと澄み渡ります。", 
+    img: "card_ill_liver.png", target: "liver"
   },
   { 
-    title: "心がざわつく", bad: "不安・ソワソワ、眠りが浅い", good: "胸のざわつきがふっと溶け、頭の奥から安らぎに包まれます。", 
-    img: "symptom_heart_final_1773413024814.png",
-    backTitle: "心臓", backImg: "dex_heart_sumie.png", backDesc: "胸のざわつきを鎮め、深い安心感とリラックスをもたらします。"
+    title: "心がざわつく", bad1: "不安・ソワソワ", bad2: "眠りが浅い", good: "胸のざわつきがふっと溶け、頭の奥から安らぎに包まれます。", 
+    img: "card_ill_heart.png", target: "heart"
   },
   { 
-    title: "呼吸が浅い", bad: "ため息が多い、胸が詰まる感じ", good: "詰まりがふっと抜け、肺の奥底まで空気が美味しく届きます。", 
-    img: "symptom_lung_final_1773413038892.png",
-    backTitle: "横隔膜", backImg: "dex_diaphragm_sumie.png", backDesc: "横隔膜を緩めることで、肺の奥深くまで空気が届くように。"
+    title: "呼吸が浅い", bad1: "ため息が多い", bad2: "胸が詰まる感じ", good: "詰まりがふっと抜け、肺の奥底まで空気が美味しく届きます。", 
+    img: "card_ill_lung.png", target: "lung"
   }
 ];
-
-const FlipCard = ({ item }: { item: any }) => {
-  const [isFlipped, setIsFlipped] = useState(false);
-
-  return (
-    <div 
-      className="flex-shrink-0 w-[85vw] md:w-[320px] h-[400px] snap-center relative cursor-pointer group"
-      style={{ perspective: "1000px" }}
-      onClick={() => setIsFlipped(!isFlipped)}
-    >
-      <div 
-        className="w-full h-full transition-transform duration-700"
-        style={{ 
-          transformStyle: "preserve-3d", 
-          transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)" 
-        }}
-      >
-        {/* Front */}
-        <div 
-          className="absolute inset-0 w-full h-full bg-white border border-[#EAE4D9] p-6 rounded-2xl flex flex-col items-center text-center shadow-sm group-hover:shadow-[0_4px_20px_rgba(166,60,68,0.08)] group-hover:border-primary/50 transition-all"
-          style={{ backfaceVisibility: "hidden" }}
-        >
-          <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" />
-          <div className="w-24 h-24 mb-4 flex items-center justify-center relative z-10">
-            <img src={`/assets/img/${item.img}`} alt={item.title} className="max-w-full max-h-full object-contain drop-shadow-sm group-hover:scale-110 transition-transform duration-300" />
-          </div>
-          <h3 className="text-xl font-bold mb-3 text-[#3A3532] group-hover:text-primary transition-colors relative z-10">{item.title}</h3>
-          <div className="text-sm text-[#7A736E] mb-4 relative z-10 w-full bg-[#F4F0E6] py-2 rounded-lg shrink-0">
-            <p className="line-through opacity-80">{item.bad}</p>
-          </div>
-          <p className="text-sm font-medium leading-relaxed text-[#5C5550] relative z-10 whitespace-normal line-clamp-3">{item.good}</p>
-          <div className="mt-auto pt-2 relative z-10">
-            <span className="inline-block text-[10px] bg-primary/5 text-primary border border-primary/20 rounded-full px-3 py-1 shadow-sm font-bold">
-              タップで裏返す ↺
-            </span>
-          </div>
-        </div>
-
-        {/* Back */}
-        <div 
-          className="absolute inset-0 w-full h-full bg-[#FDFBF7] border-2 border-primary p-6 rounded-2xl flex flex-col items-center text-center shadow-md"
-          style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
-        >
-          <div className="w-28 h-28 mb-6 mt-2 flex items-center justify-center relative z-10 bg-white rounded-full shadow-inner border border-[#EAE4D9] p-4">
-            <img src={`/assets/img/${item.backImg}`} alt={item.backTitle} className="max-w-full max-h-full object-contain" />
-          </div>
-          <div className="text-[10px] text-primary font-bold tracking-widest mb-1">対応する反射区</div>
-          <h3 className="text-2xl font-bold mb-4 text-[#3A3532] border-b border-primary/20 pb-3 w-full">{item.backTitle}</h3>
-          <p className="text-sm font-medium leading-relaxed text-[#5C5550] flex-grow flex items-center text-center px-2">
-            {item.backDesc}
-          </p>
-          <div className="mt-auto pt-2 relative z-10">
-            <span className="inline-block text-[10px] text-[#7A736E] px-3 py-1 font-bold">
-              戻る ↺
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
 
 export default function Home() {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -291,11 +218,11 @@ export default function Home() {
             <div className="flex justify-center mb-6">
               <img src="/images/fukusuke_icon.png" alt="福助" className="w-32 h-32 md:w-40 md:h-40 object-contain animate-[bounce_3s_ease-in-out_infinite]" style={{ animationDuration: '4s' }} />
             </div>
-            <h1 className="text-3xl md:text-5xl font-bold leading-tight md:leading-snug tracking-tight mb-8 text-[#3A3532]">
-              足から意識をふっと溶かす、<br className="md:hidden"/>痛気持ちいい刺激。<br />
+            <h1 className="text-3xl md:text-5xl font-bold leading-tight md:leading-snug tracking-tight mb-8 text-[#3A3532] break-keep">
+              足から意識をふっと溶かす、痛気持ちいい刺激。<br />
               それが、足屋「福助」です。
             </h1>
-            <p className="text-lg md:text-xl text-[#7A736E] mb-12 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-[#7A736E] mb-12 max-w-2xl mx-auto leading-relaxed break-keep">
               足屋「福助」で過ごす時間は、現代社会で知らず知らずのうちに着込んでしまった見えない鎧を剥がして本来の身軽さを取り戻す時間です。
             </p>
             
@@ -396,9 +323,41 @@ export default function Home() {
               <span className="text-sm opacity-80 mt-2 block">昔からの足つぼの考え方を参考にしていますが、あくまで感覚的なリセットのヒントです。科学的に証明されたものではありません。</span></p>
             </div>
 
-            <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar md:show-scrollbar custom-scrollbar gap-6 pb-8 px-4 -mx-4 md:px-0 md:mx-0">
-              {MAP_ITEMS.map((item, idx) => (
-                <FlipCard key={idx} item={item} />
+            <div className="card-grid">
+              {OLD_MAP_ITEMS.map((item, idx) => (
+                <div key={idx} className="flip-card" onClick={(e) => e.currentTarget.classList.toggle('is-flipped')}>
+                  <div className="flip-card-inner">
+                    <div className="card-front">
+                      <div className="card-illustration"><img src={`/assets/img/${item.img}`} alt={item.title} /></div>
+                      <h3>{item.title}</h3>
+                      <div className="card-desc">
+                        <ul>
+                          <li>{item.bad1}</li>
+                          <li>{item.bad2}</li>
+                        </ul>
+                      </div>
+                      <div style={{ marginTop: 'auto', paddingTop: '1rem', width: '100%', textAlign: 'center' }}>
+                        <span className="inline-block text-[10px] text-[#a63c44] border border-[#a63c44] rounded-full px-3 py-1 font-bold">
+                          タップで裏返す ↺
+                        </span>
+                      </div>
+                    </div>
+                    <div className="card-back">
+                      <div className="css-footprint-container" data-target={item.target}>
+                        <div className="css-foot-body"></div>
+                        <div className="css-toe css-toe-1"></div><div className="css-toe css-toe-2"></div><div className="css-toe css-toe-3"></div><div className="css-toe css-toe-4"></div><div className="css-toe css-toe-5"></div>
+                        <div className={`reflex-spot spot-${item.target}`}></div>
+                      </div>
+                      <h4>改善後の体感</h4>
+                      <p>{item.good}</p>
+                      <div style={{ marginTop: 'auto', paddingTop: '1rem', width: '100%', textAlign: 'center' }}>
+                        <span className="inline-block text-[10px] text-[#111111] opacity-60 px-3 py-1 font-bold">
+                          戻る ↺
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               ))}
             </div>
             {/* Scroll hint indicator */}
