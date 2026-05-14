@@ -14,88 +14,36 @@ const fadeUp = {
 
 const MessageContent = () => (
   <div className="space-y-6 text-foreground leading-relaxed max-h-[70vh] overflow-y-auto pr-4 custom-scrollbar">
-    <p>はじめまして、足屋の福助です。<br />
-    毎日のように頭が重たくて、思考がぐちゃぐちゃになる人たちや、足の疲れを取ってスッキリしたい。<br />
-    そんな人たちの足をほぐすのが大好きなのでこの場所を作りました。<br />
-    施術後のスッキリ顔を見ることが生きがいです。</p>
+    <p>はじめまして、足屋の福助です。</p>
+
+    <p>毎日のように頭が重たくて、思考がぐちゃぐちゃになる人たちや、足の疲れを取ってスッキリしたい。<br />
+    そんな人たちの足をほぐすのが大好きなので、この場所を作りました。</p>
 
     <p>現代の私たちは、まだ身体が最適化されていない社会で生きています。<br />
     スマホ、PC、通知、締め切り、人間関係……常にONのスイッチを押しっぱなしにしている。<br />
     その結果、無意識のうちに「見えない鎧」を着込んでしまっているのです。</p>
 
-    <p>この鎧は、肩をすくめ、首を縮め、頭をフル回転させ続けることで、<br />
-    知らず知らずに重くなっていきます。<br />
-    そして、気づいたときには「疲れた」「集中できない」「何もしたくない」<br />
-    という状態に陥っている。</p>
+    <p>足屋「福助」では、そんな鎧を足からそっとほどくことをしています。</p>
 
-    <p>足屋「福助」では、そんな鎧を足からほどくことをしています。</p>
+    <p>昔からの足つぼの考え方を参考にはしていますが、私は特定の反射区をピンポイントで押すことにはこだわりません。</p>
 
-    <h3 className="text-xl text-primary font-bold mt-8 mb-4 border-b-2 border-dashed border-primary/50 inline-block pb-2">なぜ「枠単位制」なのか？</h3>
-    <p>従来の「60分いくら」という料金形態では、</p>
-    <ul className="list-disc pl-6 space-y-2">
-        <li>遅刻したら施術を受けられなくなる</li>
-        <li>前の人が遅刻したせいで時間が押してしまって、時間通りに来てくださったお客様の施術開始時間が遅くなる</li>
-    </ul>
-    <p>ということが起きがちでした。<br />
-    私は時間やルールを守ってくださるお客様が、守らない方のせいで損をする状況が施術者として不満でした。</p>
+    <p>反射区理論は、現代科学において明確なエビデンスがまだ十分ではないとされていますし、私自身もそう感じます。一方で、体性自律神経反射という観点では、足裏が全身に影響を与えやすい特別な部位であることは、多くの足揉みの経験からも強く実感しています。</p>
 
-    <p>「ゆったりと、心地よく、頭を空っぽに」してほしい。<br />
-    だからこそ、<strong>「足揉み60分」をご予約いただくのではなく「60分という時間を固定」</strong>し、<br />
-    ご予約頂けるようにしました。</p>
+    <p>私は「ここを押せばこの内臓が良くなる」という直接的な因果関係を目的とした施術は行いません。<br />
+    足全体を深く丁寧に刺激することで、自然と副交感神経が優位になり、意識が「ふっと」緩んでいく無意識状態へと導かれる感覚を大切にしています。</p>
 
-    <p>これで、ルールを守ってくださる方は損をしません。<br />
-    また、普段ルールをお守りいただいている方でも、突発的に守れなくなる状況が生まれることもあるでしょう。<br />
-    そういった際にも、遅刻しても後ろの方に影響も出ないし、遅刻して申し訳ないと思う必要もありません。</p>
+    <p>実際に施術を受けていただくと、足裏が気持ちよくほぐれるにつれて身体がポカポカと温まり、血が巡るような心地よさを感じ、気づいたときには頭の中が空っぽになり、足裏だけではなく、首や肩や腰、つまり全身が軽くなったようなスッキリ感を感じて頂ける方も多くいらっしゃいます。そして心まで明るくなる——それが、私が足揉みを通して最も価値があると感じている体験です。</p>
 
-    <p>例えば、15時～16時、の60分をご予約いただいた場合。15時にご来店されると15時55分前後まで施術できます。<br />
-    15時半に来ていただいた場合でも同じように15時55分頃まで施術ができます。<br />
-    極端な状況ですが、15時45分に来たとしても10分は施術できます。</p>
-
-    <h3 className="text-xl text-primary font-bold mt-8 mb-4 border-b-2 border-dashed border-primary/50 inline-block pb-2">なぜ反射区にこだわらないのか？</h3>
-    <p>昔ながらの足つぼの考え方は尊重していますが、私は特定の反射区をピンポイントで押すことにはこだわりません。<br />
-    足つぼを始めた頃から、反射区理論に科学的な裏付けが少ないことは知っていました。</p>
-
-    <p>一方で、足の刺激が内臓の働きに影響を及ぼす可能性を示す「体性内臓反射」という生理現象もあることを学びました。<br />
-    特に足裏は、他の部位よりも消化器系への影響が期待しやすい場所だと感じています。</p>
-
-    <p>実際に施術を重ね、お客様の反応を一つひとつ見てきた結果、<br />
-    「特定のツボを強く押す」ことよりも、足全体を深く、丁寧に揉み解すことにこそ意味があると気づきました。</p>
-
-    <p>足は身体の中で一番遠い場所です。<br />
-    そこからしっかり、でも優しく刺激を入れることで、<br />
-    肩や首、頭の奥底まで緊張が連鎖的に解けていきます。</p>
-
-    <p>痛いと感じる瞬間もあるけれど、その先には「ふっと」全身が軽くなり、<br />
-    頭の中が空っぽになるような、意識が溶けるような心地よい解放感が待っています。</p>
-
-    <p>これが、私が足つぼを続けてきてたどり着いた、一番大切な答えです。<br />
-    だからこそ、今は「足つぼ」ではなく「足揉み」と呼んでいます。</p>
-
-    <p>足全体を深く丁寧に揉み解すことで、自然と体が整っていく——<br />
-    それが、私が信じている本当の癒しのかたちです。</p>
-
-    <h3 className="text-xl text-primary font-bold mt-8 mb-4 border-b-2 border-dashed border-primary/50 inline-block pb-2">そして、なぜ「奥底」なのか？</h3>
-    <p>お客様の声で一番多いのは、</p>
-    <div className="bg-primary/10 p-6 rounded-lg my-6">
-        <p className="mb-2">「痛いんだけど…効いてる感じがする」</p>
-        <p className="mb-2">「けっこう痛いですね。ギリギリです。でも気持ち良いです。」</p>
-        <p>「終わって大きく息を吐いて、スッキリしました！」</p>
-    </div>
-
-    <p>この「痛いけど効いてる」「ギリギリで気持ち良い」という境界線で、<br />
-    身体の奥底に溜まった緊張が一気に解放される瞬間がある。<br />
-    この刺激が、まさに『意識をふっと溶かす』きっかけです。<br />
-    それが、私の施術の核心です。</p>
-
-    <p>足屋「福助」は、<br />
-    「痛気持ちいい」から「ふっと抜ける」への本物のリセットをお届けします。</p>
+    <p>この「意識が溶けるような深い休息」を、足から丁寧に呼び起こすことが、足屋「福助」の本質だと考えています。</p>
 
     <p>このページを読んでくださっているあなたは、<br />
-    きっと「ルールを理解して、気持ち良く過ごして下さる素敵な方」だと思います。<br />
-    私も人間なので、誰の足でも揉みたいわけではありません。<br />
-    私が最高のリセットをお届けしたいのはあなたのようなお客様です。</p>
-    
-    <p>生意気な店主が開いた足揉み専門店ではございますが、足屋「福助」を、どうぞよろしくお願いいたします。</p>
+    きっとルールを理解して、気持ち良く過ごしてくださる素敵な方だと思います。</p>
+
+    <p>私も人間なので、誰の足でも揉みたいわけではありません。<br />
+    私が最高のリセットをお届けしたいのは、あなたのようなお客様です。</p>
+
+    <p>生意気な店主が開いた足揉み専門店ではございますが、<br />
+    足屋「福助」を、どうぞよろしくお願いいたします。</p>
 
     <p className="text-primary font-bold text-xl text-right mt-8">福助</p>
   </div>
@@ -316,11 +264,18 @@ export default function Home() {
             <div className="text-center mb-16">
               <h2 className="text-3xl font-bold mb-4 text-primary flex items-center justify-center gap-3">
                 <span className="w-8 h-px bg-primary/30 hidden sm:block"></span>
-                福助の奥底リセットマップ
+                福助の改善ヒント
                 <span className="w-8 h-px bg-primary/30 hidden sm:block"></span>
               </h2>
-              <p className="text-[#7A736E]">あなたの気になる奥底はどこ？<br className="md:hidden"/>
-              <span className="text-sm opacity-80 mt-2 block">昔からの足つぼの考え方を参考にしていますが、あくまで感覚的なリセットのヒントです。科学的に証明されたものではありません。</span></p>
+              <div className="text-[#7A736E] text-left max-w-2xl mx-auto space-y-4">
+                <p>足を丁寧にほぐしたときに、多くの方が「ここが緩んだ」と感じやすいポイントを、感覚ベースでまとめたものです。</p>
+                <p>私たちは反射区理論を盲信しているわけではありません。<br />
+                星座や占いを楽しむように、「自分を知るためのひとつの物差し」として参考にするのは、とても有意義で面白いことだと考えています。</p>
+                <p>たとえば、僧帽筋の反射区（指の付け根付近）が硬い方は、デスクワークによる前傾姿勢などで足の重心バランスが崩れ、結果としてその部位にコリや張りが現れやすい傾向があります。</p>
+                <p>このマップは、特定の反射区をピンポイントで狙うものではなく、足全体を深くほぐすことで身体の奥底から「ふっと」リセットされる感覚を味わうためのヒントです。</p>
+                <p className="text-sm opacity-80">あくまで「こんな体感があるかも」という目安としてお読みください。<br />
+                科学的に証明されたものではありません。</p>
+              </div>
             </div>
 
             <div className="card-grid">
@@ -465,6 +420,44 @@ export default function Home() {
                   代わりに、<strong className="text-primary border-b border-primary pb-0.5">片足の施術が終わるまでに</strong>「合わない」と感じられた場合は、全額返金にて対応させていただきます。<br className="hidden md:block" />
                   まずは片足をしっかりご体験いただき、ご自身に合うかどうかをご判断くださいね。
                 </p>
+              </div>
+
+              {/* 継続特典 */}
+              <div className="bg-white p-8 md:p-10 rounded-[2rem] border border-[#EAE4D9] shadow-sm relative overflow-hidden">
+                <h3 className="text-2xl font-bold mb-6 text-center text-[#3A3532]">継続特典</h3>
+                <div className="space-y-4 text-[#5C5550] leading-relaxed relative z-10 mb-8">
+                  <p>当店は、リラクゼーション業界でよく見られる「ご新規様だけが極端に安い」仕組みに疑問を感じています。</p>
+                  <p>日々足を運んでくださる皆さまを、一番大切にしたいと考えています。</p>
+                  <p>そのため、新規価格は設けていません。<br />
+                  「初めてだと自分に合うかどうか試すのが不安」というお気持ちはよくわかりますので、その解決策として「合わなければ初回全額返金制度」を設けています。</p>
+                </div>
+
+                <div className="bg-[#FDFBF7] p-6 md:p-8 rounded-xl border border-[#EAE4D9] text-center mb-8">
+                  <span className="inline-block bg-primary text-white text-sm font-bold px-4 py-1.5 rounded-full mb-5 shadow-sm tracking-wider">60分枠限定・継続特典</span>
+                  
+                  <div className="space-y-4 max-w-md mx-auto text-left">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#EAE4D9] border-dashed pb-4">
+                      <span className="font-bold text-[#5C5550] text-lg mb-1 sm:mb-0">2回目〜5回目</span>
+                      <div className="text-right flex-grow sm:text-right">
+                        <span className="text-2xl font-bold text-primary mr-1">5,500<span className="text-lg">円</span></span>
+                        <span className="text-xs text-[#7A736E] block sm:inline-block sm:ml-2">（通常6,500円 → <strong className="text-primary/80">1,000円OFF</strong>）</span>
+                      </div>
+                    </div>
+                    
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-1">
+                      <span className="font-bold text-[#5C5550] text-lg mb-1 sm:mb-0">6回目以降</span>
+                      <div className="text-right flex-grow sm:text-right">
+                        <span className="text-2xl font-bold text-primary mr-1">5,000<span className="text-lg">円</span></span>
+                        <span className="text-xs text-[#7A736E] block sm:inline-block sm:ml-2">（さらに<strong className="text-primary/80">500円OFF</strong>）</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-3 text-[#5C5550] leading-relaxed relative z-10">
+                  <p>将来的には、30分枠や90分枠のご利用状況を見ながら、それぞれの枠にも継続特典を広げていく予定です。</p>
+                  <p className="text-sm text-[#7A736E] opacity-80">（現在は60分枠のみが継続特典の対象となります）</p>
+                </div>
               </div>
 
               {/* ご予約の変更・キャンセル */}
