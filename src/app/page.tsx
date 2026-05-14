@@ -13,39 +13,70 @@ const fadeUp = {
 };
 
 const MessageContent = () => (
-  <div className="space-y-6 text-foreground leading-relaxed max-h-[70vh] overflow-y-auto pr-4 custom-scrollbar">
-    <p>はじめまして、足屋の福助です。</p>
+  <div className="space-y-8 text-foreground leading-relaxed max-h-[70vh] overflow-y-auto pr-4 custom-scrollbar">
 
-    <p>毎日のように頭が重たくて、思考がぐちゃぐちゃになる人たちや、足の疲れを取ってスッキリしたい。<br />
-    そんな人たちの足をほぐすのが大好きなので、この場所を作りました。</p>
+    {/* イントロ */}
+    <div>
+      <h3 className="text-lg font-bold text-primary mb-3 border-b border-primary/20 pb-2">足屋「福助」の哲学</h3>
+      <p className="mb-4">はじめまして、足屋「福助」の店主です。</p>
+      <p className="mb-4">
+        毎日のように頭が重たく、思考がぐちゃぐちゃになってしまう方。溜まった疲れをリセットして、心身ともにスッキリしたい方。そんな方々の足を深く丁寧に解きほぐすことが、私の何よりの喜びです。
+      </p>
+      <p className="mb-4">
+        現代の私たちは、まだ身体が最適化されていない過剰な情報社会の中で生きています。<br />
+        スマホ、PC、絶え間ない通知、締め切り、複雑な人間関係……。常に「ON」のスイッチを押しっぱなしにしている私たちは、無意識のうちに「見えない鎧」を着込んでしまっています。
+      </p>
+      <p>足屋「福助」は、その鎧を「足」からそっとほどいていく場所です。</p>
+    </div>
 
-    <p>現代の私たちは、まだ身体が最適化されていない社会で生きています。<br />
-    スマホ、PC、通知、締め切り、人間関係……常にONのスイッチを押しっぱなしにしている。<br />
-    その結果、無意識のうちに「見えない鎧」を着込んでしまっているのです。</p>
+    {/* 反射区へのスタンス */}
+    <div>
+      <h3 className="text-lg font-bold text-primary mb-3 border-b border-primary/20 pb-2">反射区とメカニズムへのスタンス</h3>
+      <p className="mb-4">私は、特定の反射区をピンポイントで押して「特定の不調を治す」ことにはこだわりません。</p>
 
-    <p>足屋「福助」では、そんな鎧を足からそっとほどくことをしています。</p>
+      <div className="bg-[#FDFBF7] border border-[#EAE4D9] rounded-xl p-5 mb-4 space-y-4">
+        <div>
+          <p className="text-xs font-bold text-[#a63c44] mb-1 tracking-wider">慣習的な表現（伝統的視点）</p>
+          <p>古くから、足裏は全身を映し出す鏡（反射区）であると伝えられてきました。この教えは、自分の身体のどこに負担がかかっているかを知るための、優れた「感性の地図」として機能しています。</p>
+        </div>
+        <div>
+          <p className="text-xs font-bold text-[#a63c44] mb-1 tracking-wider">事実に基づく表現（科学的・解剖学的視点）</p>
+          <p>現代科学において、特定の部位への刺激が直接的に内臓を治療するというエビデンスは十分ではありません。しかし、体性自律神経反射という観点では、足裏への物理的刺激が脊髄を通じて脳や自律神経系に伝わり、全身に影響を与えることは解剖学的にも説明が可能です。</p>
+        </div>
+      </div>
 
-    <p>昔からの足つぼの考え方を参考にはしていますが、私は特定の反射区をピンポイントで押すことにはこだわりません。</p>
+      <p>
+        私は「ここを押せばこの内臓が良くなる」という直接的な因果関係を目的とはしません。それよりも、足全体を深く丁寧に刺激することで、自然と副交感神経を優位にし、意識が「ふっと」溶けていくような無意識のリセット状態へ導くことを大切にしています。
+      </p>
+    </div>
 
-    <p>反射区理論は、現代科学において明確なエビデンスがまだ十分ではないとされていますし、私自身もそう感じます。一方で、体性自律神経反射という観点では、足裏が全身に影響を与えやすい特別な部位であることは、多くの足揉みの経験からも強く実感しています。</p>
+    {/* 体感できる価値 */}
+    <div>
+      <h3 className="text-lg font-bold text-primary mb-3 border-b border-primary/20 pb-2">体感できる「リセット」の価値</h3>
+      <p className="mb-4">
+        実際に施術を受けていただくと、足裏が気持ちよくほぐれるにつれて、身体がポカポカと温まるのを感じるはずです。
+      </p>
+      <p className="mb-4">
+        それは、血流が促され、強張っていた筋肉が緩み始めた証拠です。気づいたときには頭の中のノイズが消え、足裏だけでなく、首や肩、腰までもが軽くなったような感覚——。
+      </p>
+      <p>
+        この「意識が溶けるような深い休息」を呼び起こすことこそが、足屋「福助」の本質です。
+      </p>
+    </div>
 
-    <p>私は「ここを押せばこの内臓が良くなる」という直接的な因果関係を目的とした施術は行いません。<br />
-    足全体を深く丁寧に刺激することで、自然と副交感神経が優位になり、意識が「ふっと」緩んでいく無意識状態へと導かれる感覚を大切にしています。</p>
+    {/* 最後に */}
+    <div>
+      <h3 className="text-lg font-bold text-primary mb-3 border-b border-primary/20 pb-2">最後に</h3>
+      <p className="mb-4">
+        このページを最後まで読んでくださったあなたは、きっとルールを尊重し、互いに気持ちの良い時間を過ごせる素敵な方なのだと思います。
+      </p>
+      <p className="mb-4">
+        私もひとりの人間です。誰の足でもいいわけではなく、あなたのように、自らの身体を整える価値を理解してくださる方にこそ、最高のリセットをお届けしたいと考えています。
+      </p>
+      <p>少し生意気な店主ではございますが、足屋「福助」にて、あなたにお会いできるのを楽しみにしております。</p>
+    </div>
 
-    <p>実際に施術を受けていただくと、足裏が気持ちよくほぐれるにつれて身体がポカポカと温まり、血が巡るような心地よさを感じ、気づいたときには頭の中が空っぽになり、足裏だけではなく、首や肩や腰、つまり全身が軽くなったようなスッキリ感を感じて頂ける方も多くいらっしゃいます。そして心まで明るくなる——それが、私が足揉みを通して最も価値があると感じている体験です。</p>
-
-    <p>この「意識が溶けるような深い休息」を、足から丁寧に呼び起こすことが、足屋「福助」の本質だと考えています。</p>
-
-    <p>このページを読んでくださっているあなたは、<br />
-    きっとルールを理解して、気持ち良く過ごしてくださる素敵な方だと思います。</p>
-
-    <p>私も人間なので、誰の足でも揉みたいわけではありません。<br />
-    私が最高のリセットをお届けしたいのは、あなたのようなお客様です。</p>
-
-    <p>生意気な店主が開いた足揉み専門店ではございますが、<br />
-    足屋「福助」を、どうぞよろしくお願いいたします。</p>
-
-    <p className="text-primary font-bold text-xl text-right mt-8">福助</p>
+    <p className="text-primary font-bold text-xl text-right mt-4">足屋「福助」店主</p>
   </div>
 );
 
@@ -203,12 +234,12 @@ export default function Home() {
             <Dialog>
               <DialogTrigger asChild>
                 <Button variant="secondary" size="lg" className="bg-[#E5D3B3] hover:bg-[#D8C3A5] text-[#3A3532] rounded-full h-14 px-10 shadow-sm transition-all">
-                  福助の想いをもっと知る
+                  福助の哲学
                 </Button>
               </DialogTrigger>
               <DialogContent className="max-w-3xl max-h-[90vh] bg-[#FDFBF7] text-[#3A3532] border-[#EAE4D9]">
                 <DialogHeader>
-                  <DialogTitle className="text-2xl font-bold mb-4 text-primary">福助からのメッセージ</DialogTitle>
+                  <DialogTitle className="text-2xl font-bold mb-4 text-primary">足屋「福助」の哲学</DialogTitle>
                 </DialogHeader>
                 <MessageContent />
               </DialogContent>
