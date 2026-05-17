@@ -427,7 +427,7 @@ export default function Home() {
                         </ul>
                       </div>
                       <div style={{ marginTop: 'auto', paddingTop: '1rem', width: '100%', textAlign: 'center' }}>
-                        <span className="inline-block text-[10px] text-[#a63c44] border border-[#a63c44] rounded-full px-3 py-1 font-bold">
+                        <span className="inline-block text-xs text-[#a63c44] border border-[#a63c44] rounded-full px-3 py-1 font-bold">
                           タップで裏返す ↺
                         </span>
                       </div>
@@ -441,7 +441,7 @@ export default function Home() {
                       <h4>改善後の体感</h4>
                       <p>{item.good}</p>
                       <div style={{ marginTop: 'auto', paddingTop: '1rem', width: '100%', textAlign: 'center' }}>
-                        <span className="inline-block text-[10px] text-[#111111] opacity-60 px-3 py-1 font-bold">
+                        <span className="inline-block text-xs text-[#111111] opacity-80 px-3 py-1 font-bold">
                           戻る ↺
                         </span>
                       </div>
@@ -451,9 +451,9 @@ export default function Home() {
               ))}
             </div>
             {/* Scroll hint indicator */}
-            <div className="flex justify-center mt-4">
-              <div className="flex gap-2 text-primary/50 text-sm animate-pulse items-center">
-                <span className="text-lg">←</span> 横にスクロールできます <span className="text-lg">→</span>
+            <div className="flex justify-center mt-6">
+              <div className="flex gap-2 text-primary/70 text-base font-bold animate-pulse items-center">
+                <span className="text-xl">←</span> 横にスクロールできます <span className="text-xl">→</span>
               </div>
             </div>
           </motion.div>
@@ -474,32 +474,32 @@ export default function Home() {
               {/* Access info */}
               <div className="bg-white p-8 rounded-[2rem] border border-[#EAE4D9] shadow-sm space-y-6">
                 <div>
-                  <p className="text-xs font-bold text-primary tracking-widest mb-2">所在地</p>
+                  <p className="text-sm font-bold text-primary tracking-widest mb-2">所在地</p>
                   <p className="text-lg font-bold text-[#3A3532]">西東京市ひばりが丘</p>
                   <p className="text-sm text-[#7A736E] mt-1">（詳細住所は近日公開予定）</p>
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-primary tracking-widest mb-2">営業時間</p>
-                  <p className="text-[#5C5550]">近日公開予定</p>
+                  <p className="text-sm font-bold text-primary tracking-widest mb-2">営業時間</p>
+                  <p className="text-[#5C5550] font-medium">近日公開予定</p>
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-primary tracking-widest mb-2">ご予約方法</p>
-                  <p className="text-[#5C5550]">LINEにて24時間受付</p>
+                  <p className="text-sm font-bold text-primary tracking-widest mb-2">ご予約方法</p>
+                  <p className="text-[#5C5550] font-medium">LINEにて24時間受付</p>
                 </div>
               </div>
               {/* Google review */}
               <div className="bg-white p-8 rounded-[2rem] border border-[#EAE4D9] shadow-sm flex flex-col items-center md:items-start justify-center gap-6 text-center md:text-left">
                 <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-2xl">⭐</div>
                 <div>
-                  <p className="font-bold text-[#3A3532] mb-2">お客様の声</p>
-                  <p className="text-sm text-[#7A736E] leading-relaxed">
+                  <p className="font-bold text-[#3A3532] mb-2 text-lg">お客様の声</p>
+                  <p className="text-base text-[#7A736E] leading-relaxed">
                     実際にご来店されたお客様の生のご感想は、<br />Googleレビューでご確認いただけます。
                   </p>
                 </div>
-                <Button asChild variant="secondary" size="lg" className="bg-[#E5D3B3] hover:bg-[#D8C3A5] text-[#3A3532] rounded-full h-12 px-8 shadow-sm transition-all">
+                <Button asChild variant="secondary" size="lg" className="bg-[#E5D3B3] hover:bg-[#D8C3A5] text-[#3A3532] rounded-full h-12 px-8 shadow-sm transition-all font-bold">
                   <a href="https://maps.google.com/" target="_blank" rel="noopener noreferrer">Googleで口コミを見る</a>
                 </Button>
-                <p className="text-xs text-[#7A736E] opacity-60">※ Googleビジネスプロフィール登録後にリンクを更新します</p>
+                <p className="text-sm text-[#7A736E] opacity-80 font-medium">※ Googleビジネスプロフィール登録後にリンクを更新します</p>
               </div>
             </div>
           </motion.div>
