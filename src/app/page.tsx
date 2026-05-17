@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
@@ -254,11 +254,11 @@ export default function Home() {
             className="container px-4 max-w-5xl"
           >
             <div className="bg-white border-2 border-[#EAE4D9] rounded-[2.5rem] shadow-sm p-8 md:p-16">
-              <div className="text-center mb-12">
-                <div className="flex items-center justify-center gap-4 mb-6">
-                  <span className="w-12 h-px bg-primary/30"></span>
+              <div className="text-center md:text-left mb-12">
+                <div className="flex items-center justify-center md:justify-start gap-4 mb-6">
+                  <span className="w-12 h-px bg-primary/30 hidden md:block"></span>
                   <h2 className="text-4xl font-bold text-primary tracking-wider">料金のご案内</h2>
-                  <span className="w-12 h-px bg-primary/30"></span>
+                  <span className="w-12 h-px bg-primary/30 hidden md:block"></span>
                 </div>
                 <p className="text-[#000000] text-lg md:text-xl font-bold leading-loose">
                   当店は「枠単位」の予約制です。<br className="hidden md:block"/>
@@ -268,12 +268,12 @@ export default function Home() {
 
               {/* 初回全額返金保証 (Moved to top of pricing section) */}
               <div className="max-w-3xl mx-auto mb-14">
-                <div className="bg-[#FDFBF7] p-6 md:p-8 rounded-[1.5rem] border-2 border-primary/20 shadow-sm relative overflow-hidden text-center">
-                  <div className="absolute -bottom-6 -right-6 opacity-10">
+                <div className="bg-[#FDFBF7] p-8 md:p-10 rounded-[1.5rem] border-2 border-primary/20 shadow-sm relative overflow-hidden text-center md:text-left">
+                  <div className="absolute -bottom-6 -right-6 opacity-10 hidden md:block">
                     <img src="/images/fukusuke_icon.png" alt="" className="w-32 h-32" />
                   </div>
                   <h3 className="text-2xl font-bold mb-4 text-primary">初回全額返金保証（全コース対象）</h3>
-                  <p className="text-lg text-[#000000] relative z-10 font-bold leading-relaxed">
+                  <p className="text-lg text-[#000000] relative z-10 font-bold leading-loose">
                     施術を受けて「自分には合わない」と感じられた場合は、初回の料金を全額お返しいたします。
                   </p>
                 </div>
@@ -284,15 +284,15 @@ export default function Home() {
                   { title: "30分枠　試しほどき", price: "3,500円", desc: "「福助」の技術と空気感に触れていただくための入り口。まずは重い鎧のボタンを外すところから。" },
                   { title: "60分枠　福助の足揉み", price: "6,500円", desc: "全身をリセットし、意識を溶かすための黄金比。迷ったら、こちらをお選びください。", popular: true }
                 ].map((plan, idx) => (
-                  <div key={idx} className={`bg-[#FDFBF7] p-10 md:p-12 rounded-[2rem] flex flex-col text-center ${plan.popular ? 'border-[3px] border-primary relative shadow-md transform md:-translate-y-2' : 'border-2 border-[#EAE4D9] shadow-sm'}`}>
+                  <div key={idx} className={`bg-[#FDFBF7] p-10 md:p-12 rounded-[2rem] flex flex-col text-center md:text-left ${plan.popular ? 'border-[3px] border-primary relative shadow-md transform md:-translate-y-2' : 'border-2 border-[#EAE4D9] shadow-sm'}`}>
                     {plan.popular && (
-                      <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-white px-8 py-2 rounded-full text-base font-bold shadow-md tracking-wider whitespace-nowrap">
+                      <div className="absolute -top-4 left-1/2 -translate-x-1/2 md:left-12 md:translate-x-0 bg-primary text-white px-8 py-2 rounded-full text-base font-bold shadow-md tracking-wider whitespace-nowrap">
                         おすすめ・メイン
                       </div>
                     )}
-                    <h3 className="text-2xl md:text-3xl font-bold mb-6 text-[#000000] mt-2">{plan.title}</h3>
+                    <h3 className="text-2xl md:text-3xl font-bold mb-6 text-[#000000] mt-4 md:mt-2">{plan.title}</h3>
                     <div className="mb-8">
-                      <span className="text-[2.5rem] md:text-[3rem] font-black text-primary font-sans tracking-wider">{plan.price.replace('円', '')}<span className="text-xl md:text-2xl font-bold ml-1">円</span></span>
+                      <span className="text-[2.5rem] md:text-[3.5rem] font-black text-primary font-sans tracking-wider leading-none">{plan.price.replace('円', '')}<span className="text-xl md:text-2xl font-bold ml-1">円</span></span>
                     </div>
                     <p className="text-lg text-[#000000] leading-loose flex-grow font-bold text-left">{plan.desc}</p>
                   </div>
@@ -300,12 +300,12 @@ export default function Home() {
               </div>
 
               {/* 継続ご利用特典 */}
-              <div className="max-w-2xl mx-auto mb-16 text-center">
-                <h3 className="text-xl font-bold mb-6 text-[#000000]">継続ご利用特典（60分枠限定）</h3>
-                <div className="bg-[#FDFBF7] p-6 md:p-8 rounded-xl border-2 border-[#EAE4D9] mb-6 inline-block text-left">
-                  <ul className="space-y-4 font-bold text-lg text-[#000000]">
-                    <li>・2回目〜5回目　5,500円<span className="text-base text-[#000000] ml-2">（通常6,500円 → <strong className="text-primary">1,000円OFF</strong>）</span></li>
-                    <li>・6回目以降　5,000円<span className="text-base text-[#000000] ml-2">（さらに<strong className="text-primary">500円OFF</strong>）</span></li>
+              <div className="max-w-2xl mx-auto mb-16 text-center md:text-left">
+                <h3 className="text-2xl md:text-3xl font-black mb-8 text-[#000000]">継続ご利用特典<span className="text-lg md:text-xl ml-2">（60分枠限定）</span></h3>
+                <div className="bg-[#FDFBF7] p-8 md:p-10 rounded-[1.5rem] border-2 border-[#EAE4D9] mb-8 inline-block w-full text-left">
+                  <ul className="space-y-5 font-bold text-lg md:text-xl text-[#000000]">
+                    <li className="flex flex-col sm:flex-row sm:items-center gap-2"><span>・2回目〜5回目</span> <span className="text-2xl font-black text-primary">5,500円</span><span className="text-base text-[#000000] mt-1 sm:mt-0">（通常6,500円 → 1,000円OFF）</span></li>
+                    <li className="flex flex-col sm:flex-row sm:items-center gap-2"><span>・6回目以降</span> <span className="text-2xl font-black text-primary">5,000円</span><span className="text-base text-[#000000] mt-1 sm:mt-0">（さらに500円OFF）</span></li>
                   </ul>
                 </div>
                 <div className="space-y-3 text-[#000000] font-bold text-lg leading-relaxed">
@@ -519,7 +519,7 @@ export default function Home() {
               <img src="/images/fukusuke_icon.png" alt="福助" className="w-24 h-24 object-contain opacity-90" />
             </div>
             <h2 className="text-3xl font-bold mb-6 text-[#000000] font-bold">さあ、見えない鎧を脱ぎ捨てましょう</h2>
-            <p className="text-[#000000] font-bold mb-10 leading-relaxed text-lg">
+            <p className="text-[#000000] font-bold mb-12 pb-4 leading-loose text-lg whitespace-pre-wrap break-keep">
               ご予約はLINEより24時間受け付けております。<br />
               あなたの足をお揉みできる日を、楽しみにお待ちしております。
             </p>
