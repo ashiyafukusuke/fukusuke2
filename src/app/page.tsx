@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
@@ -192,20 +192,20 @@ export default function Home() {
           
           <motion.div 
             initial="hidden" animate="visible" variants={fadeUp}
-            className="container relative z-10 px-4 text-center max-w-4xl pt-10"
+            className="container relative z-10 px-4 text-center md:text-left max-w-4xl pt-10"
           >
-            <div className="flex justify-center mb-6">
+            <div className="flex justify-center md:justify-start mb-6">
               <img src="/images/fukusuke_icon.png" alt="福助" className="w-32 h-32 md:w-40 md:h-40 object-contain animate-[bounce_3s_ease-in-out_infinite]" style={{ animationDuration: '4s' }} />
             </div>
             <h1 className="text-3xl md:text-5xl font-bold leading-tight md:leading-snug tracking-tight mb-8 text-[#3A3532] break-keep">
               足から意識をふっと溶かす、痛気持ちいい刺激。<br />
               それが、足屋「福助」です。
             </h1>
-            <p className="text-lg md:text-xl text-[#7A736E] mb-12 max-w-2xl mx-auto leading-relaxed break-keep">
+            <p className="text-lg md:text-xl text-[#7A736E] mb-12 max-w-2xl mx-auto md:mx-0 leading-relaxed break-keep">
               足屋「福助」で過ごす時間は、現代社会で知らず知らずのうちに着込んでしまった見えない鎧を剥がして本来の身軽さを取り戻す時間です。
             </p>
             
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
               <Button asChild size="lg" className="w-full sm:w-auto text-base bg-primary hover:bg-primary/90 text-white rounded-full shadow-md hover:shadow-lg transition-all h-14 px-8">
                 <a href={LINE_URL} target="_blank" rel="noopener noreferrer">今すぐ予約する</a>
               </Button>
@@ -218,14 +218,14 @@ export default function Home() {
           <div className="absolute inset-0 bg-[url('/assets/img/motifs_nature.png')] bg-repeat opacity-[0.03]" />
           <motion.div 
             initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}
-            className="container relative z-10 px-4 max-w-3xl text-center"
+            className="container relative z-10 px-4 max-w-3xl text-center md:text-left"
           >
-            <h2 className="text-3xl font-bold mb-8 text-primary flex items-center justify-center gap-3">
-              <span className="w-8 h-px bg-primary/30 hidden sm:block"></span>
+            <h2 className="text-3xl font-bold mb-8 text-primary flex items-center justify-center md:justify-start gap-3">
+              <span className="w-8 h-px bg-primary/30 hidden sm:block md:hidden"></span>
               福助の想い
-              <span className="w-8 h-px bg-primary/30 hidden sm:block"></span>
+              <span className="w-8 h-px bg-primary/30 hidden sm:block md:hidden"></span>
             </h2>
-            <p className="text-lg leading-relaxed text-[#5C5550] mb-10 text-left inline-block max-w-2xl mx-auto">
+            <p className="text-lg leading-relaxed text-[#5C5550] mb-10 text-left inline-block max-w-2xl mx-auto md:mx-0">
               現代の私たちは、常にONのスイッチを押し続け、無意識に「見えない鎧」を着込んでしまっています。<br className="hidden md:block" />
               福助では、身体の中で一番遠い場所である「足」から優しく、時に深く刺激を入れることで、
               その見えない鎧をほどいていきます。<br className="hidden md:block" />奥底から緊張が連鎖的に解け、
@@ -253,42 +253,41 @@ export default function Home() {
             initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}
             className="container px-4 max-w-5xl"
           >
-            <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold mb-4 text-primary flex items-center justify-center gap-3">
-                <span className="w-8 h-px bg-primary/30 hidden sm:block"></span>
+            <div className="text-center md:text-left mb-16">
+              <h2 className="text-3xl font-bold mb-4 text-primary flex items-center justify-center md:justify-start gap-3">
+                <span className="w-8 h-px bg-primary/30 hidden sm:block md:hidden"></span>
                 料金のご案内
-                <span className="w-8 h-px bg-primary/30 hidden sm:block"></span>
+                <span className="w-8 h-px bg-primary/30 hidden sm:block md:hidden"></span>
               </h2>
               <p className="text-[#7A736E]">
-                当店のメニューは「枠単位制」です。表示時間にはお着替えや準備の時間も含まれます。<br className="hidden md:block"/>
-                万が一遅刻された場合でも、その枠内での施術となりますのでご安心ください。
+                当店は「枠単位」の予約制です。<br className="hidden md:block"/>
+                ご予約いただいた時間は、お客様のためだけに確保された専有時間です。
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto md:mx-0">
               {[
-                { title: "お試し福助", time: "30分枠", price: "3,500円", desc: "足首より下を中心に。初めての方でも気軽に当店の足揉みを体感できるクイックコース" },
-                { title: "福助の足揉み", time: "60分枠", price: "6,500円", desc: "当店一番人気・至高のリセット。足首から膝上・膝裏まで丁寧に。全身の緊張をほどき、意識が溶けるような心地よさを十分に味わえる標準コース", popular: true },
-                { title: "福助ロング", time: "90分枠", price: "9,000円", desc: "60分でも十分に満足いただけますが、もっと深く、長く味わいたい方へ。足全体をじっくり巡らせ、深いリラックスとリセットを堪能できるコース" }
+                { title: "30分枠　試しほどき", time: "30分枠", price: "3,500円", desc: "「福助」の技術と空気感に触れていただくための入り口。まずは重い鎧のボタンを外すところから。" },
+                { title: "60分枠　福助の足揉み", time: "60分枠", price: "6,500円", desc: "全身をリセットし、意識を溶かすための黄金比。迷ったら、こちらをお選びください。", popular: true }
               ].map((plan, idx) => (
                 <div key={idx} className={`bg-white p-8 rounded-[2rem] flex flex-col ${plan.popular ? 'border-2 border-primary relative shadow-lg transform md:-translate-y-2' : 'border border-[#EAE4D9] shadow-sm'}`}>
                   {plan.popular && (
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary text-white px-6 py-1.5 rounded-full text-sm font-bold shadow-md tracking-wider">
-                      おすすめ
+                      おすすめ・メイン
                     </div>
                   )}
-                  <h3 className="text-2xl font-bold mb-3 text-center text-[#3A3532] mt-2">{plan.title}</h3>
-                  <div className="text-center mb-6 pb-6 border-b border-[#EAE4D9] border-dashed">
+                  <h3 className="text-2xl font-bold mb-3 text-center md:text-left text-[#3A3532] mt-2">{plan.title.split('　')[1]}</h3>
+                  <div className="text-center md:text-left mb-6 pb-6 border-b border-[#EAE4D9] border-dashed">
                     <span className="text-lg text-[#7A736E] mr-2">{plan.time}</span>
                     <span className="text-4xl font-bold text-primary">{plan.price}</span>
                   </div>
-                  <p className="text-sm text-[#5C5550] leading-relaxed flex-grow text-center">{plan.desc}</p>
+                  <p className="text-sm text-[#5C5550] leading-relaxed flex-grow text-center md:text-left">{plan.desc}</p>
                 </div>
               ))}
             </div>
 
             {/* CTA below pricing */}
-            <div className="mt-12 text-center">
+            <div className="mt-12 text-center md:text-left">
               <p className="text-[#7A736E] mb-6 text-base">
                 ご不明な点はLINEでお気軽にご相談ください。<br className="hidden md:block" />
                 ご予約も24時間LINEにて受け付けております。
@@ -309,52 +308,43 @@ export default function Home() {
                 <div className="absolute -bottom-6 -right-6 opacity-10">
                   <img src="/images/fukusuke_icon.png" alt="" className="w-32 h-32" />
                 </div>
-                <h3 className="text-2xl font-bold mb-6 text-center text-primary">初回の方へ（初回全額返金保証付き）</h3>
-                <p className="text-lg leading-relaxed text-[#5C5550] relative z-10">
-                  初回限定のお試し割引は設けておりません。<br className="hidden md:block" />
-                  代わりに、<strong className="text-primary border-b border-primary pb-0.5">片足の施術が終わるまでに</strong>「合わない」と感じられた場合は、全額返金にて対応させていただきます。<br className="hidden md:block" />
-                  まずは片足をしっかりご体験いただき、ご自身に合うかどうかをご判断くださいね。
+                <h3 className="text-2xl font-bold mb-6 text-center md:text-left text-primary">初回全額返金保証（全コース対象）</h3>
+                <p className="text-lg leading-relaxed text-[#5C5550] relative z-10 md:text-left text-center">
+                  施術を受けて「自分には合わない」と感じられた場合は、初回の料金を全額お返しいたします。
                 </p>
               </div>
 
               {/* 継続特典 */}
               <div className="bg-white p-8 md:p-10 rounded-[2rem] border border-[#EAE4D9] shadow-sm relative overflow-hidden">
-                <h3 className="text-2xl font-bold mb-6 text-center text-[#3A3532]">継続特典</h3>
-                <div className="space-y-4 text-[#5C5550] leading-relaxed relative z-10 mb-8">
-                  <p>当店は、リラクゼーション業界でよく見られる「ご新規様だけが極端に安い」仕組みに疑問を感じています。</p>
-                  <p>日々足を運んでくださる皆さまを、一番大切にしたいと考えています。</p>
-                  <p>そのため、新規価格は設けていません。<br />
-                  「初めてだと自分に合うかどうか試すのが不安」というお気持ちはよくわかりますので、その解決策として「合わなければ初回全額返金制度」を設けています。</p>
-                </div>
-                <div className="bg-[#FDFBF7] p-6 md:p-8 rounded-xl border border-[#EAE4D9] text-center mb-8">
-                  <span className="inline-block bg-primary text-white text-sm font-bold px-4 py-1.5 rounded-full mb-5 shadow-sm tracking-wider">60分枠限定・継続特典</span>
-                  <div className="space-y-4 max-w-md mx-auto text-left">
+                <h3 className="text-2xl font-bold mb-6 text-center md:text-left text-[#3A3532]">継続特典（60分枠限定）</h3>
+                <div className="bg-[#FDFBF7] p-6 md:p-8 rounded-xl border border-[#EAE4D9] text-center md:text-left mb-8">
+                  <div className="space-y-4 max-w-md mx-auto md:mx-0 text-left">
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#EAE4D9] border-dashed pb-4">
                       <span className="font-bold text-[#5C5550] text-lg mb-1 sm:mb-0">2回目〜5回目</span>
-                      <div className="text-right flex-grow sm:text-right">
+                      <div className="text-right md:text-left flex-grow sm:text-right md:ml-4">
                         <span className="text-2xl font-bold text-primary mr-1">5,500<span className="text-lg">円</span></span>
                         <span className="text-xs text-[#7A736E] block sm:inline-block sm:ml-2">（通常6,500円 → <strong className="text-primary/80">1,000円OFF</strong>）</span>
                       </div>
                     </div>
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-1">
                       <span className="font-bold text-[#5C5550] text-lg mb-1 sm:mb-0">6回目以降</span>
-                      <div className="text-right flex-grow sm:text-right">
+                      <div className="text-right md:text-left flex-grow sm:text-right md:ml-4">
                         <span className="text-2xl font-bold text-primary mr-1">5,000<span className="text-lg">円</span></span>
                         <span className="text-xs text-[#7A736E] block sm:inline-block sm:ml-2">（さらに<strong className="text-primary/80">500円OFF</strong>）</span>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="space-y-3 text-[#5C5550] leading-relaxed relative z-10">
-                  <p>将来的には、30分枠や90分枠のご利用状況を見ながら、それぞれの枠にも継続特典を広げていく予定です。</p>
+                <div className="space-y-3 text-[#5C5550] leading-relaxed relative z-10 text-center md:text-left">
+                  <p>将来的には、30分枠のご利用状況を見ながら、継続特典を広げていく予定です。</p>
                   <p className="text-sm text-[#7A736E] opacity-80">（現在は60分枠のみが継続特典の対象となります）</p>
                 </div>
               </div>
 
               {/* ご予約の変更・キャンセル */}
               <div className="bg-[#FDFBF7] p-8 md:p-10 rounded-[2rem] border border-[#EAE4D9]">
-                <h3 className="text-xl font-bold mb-6 text-center text-[#3A3532]">ご予約の変更・キャンセル</h3>
-                <p className="text-[#7A736E] mb-6 leading-relaxed">
+                <h3 className="text-xl font-bold mb-6 text-center md:text-left text-[#3A3532]">ご予約の変更・キャンセル</h3>
+                <p className="text-[#7A736E] mb-6 leading-relaxed text-center md:text-left">
                   ご予定の変更はできる限り柔軟に対応させていただきますが、他のお客様のご案内枠確保のため、以下のルールをご了承くださいませ。
                 </p>
                 <ul className="space-y-3 text-[#5C5550]">
@@ -378,16 +368,16 @@ export default function Home() {
             initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}
             className="container px-4 max-w-4xl"
           >
-            <h2 className="text-3xl font-bold mb-12 text-center text-primary flex items-center justify-center gap-3">
-              <span className="w-8 h-px bg-primary/30 hidden sm:block"></span>
+            <h2 className="text-3xl font-bold mb-12 text-center md:text-left text-primary flex items-center justify-center md:justify-start gap-3">
+              <span className="w-8 h-px bg-primary/30 hidden sm:block md:hidden"></span>
               施術の流れ
-              <span className="w-8 h-px bg-primary/30 hidden sm:block"></span>
+              <span className="w-8 h-px bg-primary/30 hidden sm:block md:hidden"></span>
             </h2>
             <div className="bg-card p-8 md:p-12 rounded-[2rem] border border-[#EAE4D9] shadow-sm relative overflow-hidden">
               <div className="absolute -top-10 -right-10 opacity-5">
                 <img src="/images/fukusuke_icon.png" alt="" className="w-40 h-40" />
               </div>
-              <p className="text-[#7A736E] mb-10 text-center relative z-10">
+              <p className="text-[#7A736E] mb-10 text-center md:text-left relative z-10">
                 当店の施術は「枠単位制」。入室から退室までを余裕を持ってお過ごしいただけるお時間です。<br className="hidden md:block"/>
                 見えない鎧を脱ぎ捨てて、ゆったりと頭を空っぽにしてください。
               </p>
@@ -417,13 +407,13 @@ export default function Home() {
             initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}
             className="container relative z-10 px-4"
           >
-            <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold mb-4 text-primary flex items-center justify-center gap-3">
-                <span className="w-8 h-px bg-primary/30 hidden sm:block"></span>
+            <div className="text-center md:text-left mb-16">
+              <h2 className="text-3xl font-bold mb-4 text-primary flex items-center justify-center md:justify-start gap-3">
+                <span className="w-8 h-px bg-primary/30 hidden sm:block md:hidden"></span>
                 福助の改善ヒント
-                <span className="w-8 h-px bg-primary/30 hidden sm:block"></span>
+                <span className="w-8 h-px bg-primary/30 hidden sm:block md:hidden"></span>
               </h2>
-              <div className="text-[#7A736E] text-left max-w-2xl mx-auto space-y-4">
+              <div className="text-[#7A736E] text-left max-w-2xl mx-auto md:mx-0 space-y-4">
                 <p>足を丁寧にほぐしたときに、多くの方が「ここが緩んだ」と感じやすいポイントを、感覚ベースでまとめたものです。</p>
                 <p>私たちは反射区理論を盲信しているわけではありません。<br />
                 星座や占いを楽しむように、「自分を知るためのひとつの物差し」として参考にするのは、とても有意義で面白いことだと考えています。</p>
@@ -486,10 +476,10 @@ export default function Home() {
             initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}
             className="container relative z-10 px-4 max-w-4xl"
           >
-            <h2 className="text-3xl font-bold mb-12 text-center text-primary flex items-center justify-center gap-3">
-              <span className="w-8 h-px bg-primary/30 hidden sm:block"></span>
+            <h2 className="text-3xl font-bold mb-12 text-center md:text-left text-primary flex items-center justify-center md:justify-start gap-3">
+              <span className="w-8 h-px bg-primary/30 hidden sm:block md:hidden"></span>
               アクセス・営業時間
-              <span className="w-8 h-px bg-primary/30 hidden sm:block"></span>
+              <span className="w-8 h-px bg-primary/30 hidden sm:block md:hidden"></span>
             </h2>
             <div className="grid md:grid-cols-2 gap-8">
               {/* Access info */}
@@ -509,7 +499,7 @@ export default function Home() {
                 </div>
               </div>
               {/* Google review */}
-              <div className="bg-white p-8 rounded-[2rem] border border-[#EAE4D9] shadow-sm flex flex-col items-center justify-center gap-6 text-center">
+              <div className="bg-white p-8 rounded-[2rem] border border-[#EAE4D9] shadow-sm flex flex-col items-center md:items-start justify-center gap-6 text-center md:text-left">
                 <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-2xl">⭐</div>
                 <div>
                   <p className="font-bold text-[#3A3532] mb-2">お客様の声</p>
@@ -530,9 +520,9 @@ export default function Home() {
         <section className="py-24 bg-[#FDFBF7] border-t border-[#EAE4D9]">
           <motion.div
             initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}
-            className="container px-4 text-center max-w-2xl"
+            className="container px-4 text-center md:text-left max-w-2xl"
           >
-            <div className="flex justify-center mb-8">
+            <div className="flex justify-center md:justify-start mb-8">
               <img src="/images/fukusuke_icon.png" alt="福助" className="w-24 h-24 object-contain opacity-90" />
             </div>
             <h2 className="text-3xl font-bold mb-6 text-[#3A3532]">さあ、見えない鎧を脱ぎ捨てましょう</h2>
