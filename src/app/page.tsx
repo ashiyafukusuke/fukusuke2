@@ -253,36 +253,64 @@ export default function Home() {
             initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}
             className="container px-4 max-w-5xl"
           >
-            <div className="text-left mb-16">
-              <h2 className="text-3xl font-bold mb-4 text-primary flex items-center justify-center gap-3">
-                <span className="w-8 h-px bg-primary/30 hidden sm:block"></span>
-                料金のご案内
-                <span className="w-8 h-px bg-primary/30 hidden sm:block"></span>
-              </h2>
-              <p className="text-[#7A736E] text-left text-lg leading-relaxed">
+            <div className="text-center mb-12">
+              <div className="flex items-center justify-center gap-4 mb-6">
+                <span className="w-12 h-px bg-primary/30"></span>
+                <h2 className="text-3xl font-bold text-primary">料金のご案内</h2>
+                <span className="w-12 h-px bg-primary/30"></span>
+              </div>
+              <p className="text-[#7A736E] text-lg leading-relaxed">
                 当店は「枠単位」の予約制です。<br className="hidden md:block"/>
                 ご予約いただいた時間は、お客様のためだけに確保された専有時間です。
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* 初回全額返金保証 (Moved to top of pricing section) */}
+            <div className="max-w-3xl mx-auto mb-10">
+              <div className="bg-white p-6 md:p-8 rounded-[1.5rem] border border-[#EAE4D9] shadow-sm relative overflow-hidden text-center">
+                <div className="absolute -bottom-6 -right-6 opacity-10">
+                  <img src="/images/fukusuke_icon.png" alt="" className="w-32 h-32" />
+                </div>
+                <h3 className="text-xl font-bold mb-3 text-primary">初回全額返金保証（全コース対象）</h3>
+                <p className="text-base text-[#5C5550] relative z-10 font-medium">
+                  施術を受けて「自分には合わない」と感じられた場合は、初回の料金を全額お返しいたします。
+                </p>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
               {[
-                { title: "30分枠　試しほどき", time: "30分枠", price: "3,500円", desc: "「福助」の技術と空気感に触れていただくための入り口。まずは重い鎧のボタンを外すところから。" },
-                { title: "60分枠　福助の足揉み", time: "60分枠", price: "6,500円", desc: "全身をリセットし、意識を溶かすための黄金比。迷ったら、こちらをお選びください。", popular: true }
+                { title: "30分枠　試しほどき", price: "3,500円", desc: "「福助」の技術と空気感に触れていただくための入り口。まずは重い鎧のボタンを外すところから。" },
+                { title: "60分枠　福助の足揉み", price: "6,500円", desc: "全身をリセットし、意識を溶かすための黄金比。迷ったら、こちらをお選びください。", popular: true }
               ].map((plan, idx) => (
-                <div key={idx} className={`bg-white p-8 rounded-[2rem] flex flex-col ${plan.popular ? 'border-2 border-primary relative shadow-lg transform md:-translate-y-2' : 'border border-[#EAE4D9] shadow-sm'}`}>
+                <div key={idx} className={`bg-white p-10 md:p-12 rounded-[2rem] flex flex-col text-center ${plan.popular ? 'border-[3px] border-primary relative shadow-[0_8px_30px_rgba(196,30,59,0.08)] transform md:-translate-y-2' : 'border border-[#EAE4D9] shadow-sm'}`}>
                   {plan.popular && (
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary text-white px-6 py-1.5 rounded-full text-sm font-bold shadow-md tracking-wider">
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-white px-8 py-2 rounded-full text-sm font-bold shadow-md tracking-wider whitespace-nowrap">
                       おすすめ・メイン
                     </div>
                   )}
-                  <h3 className="text-2xl font-bold mb-3 text-center text-[#3A3532] mt-2">{plan.title}</h3>
-                  <div className="text-center mb-6 pb-6 border-b border-[#EAE4D9] border-dashed">
-                    <span className="text-4xl font-bold text-primary">{plan.price}</span>
+                  <h3 className="text-2xl font-bold mb-6 text-[#3A3532] mt-2">{plan.title}</h3>
+                  <div className="mb-8">
+                    <span className="text-[2.5rem] font-black text-primary font-sans tracking-wider">{plan.price.replace('円', '')}<span className="text-xl font-bold ml-1">円</span></span>
                   </div>
-                  <p className="text-base text-[#5C5550] leading-relaxed flex-grow text-left font-medium">{plan.desc}</p>
+                  <p className="text-base text-[#5C5550] leading-relaxed flex-grow font-medium">{plan.desc}</p>
                 </div>
               ))}
+            </div>
+
+            {/* 継続ご利用特典 */}
+            <div className="max-w-2xl mx-auto mb-12 text-center">
+              <h3 className="text-lg font-bold mb-6 text-[#3A3532]">継続ご利用特典（60分枠限定）</h3>
+              <div className="bg-[#FDFBF7] p-6 md:p-8 rounded-xl border border-[#EAE4D9] mb-6 inline-block text-left">
+                <ul className="space-y-4 font-medium text-base text-[#5C5550]">
+                  <li>・2回目〜5回目　5,500円<span className="text-sm text-[#7A736E] ml-2">（通常6,500円 → <strong className="text-primary/80">1,000円OFF</strong>）</span></li>
+                  <li>・6回目以降　5,000円<span className="text-sm text-[#7A736E] ml-2">（さらに<strong className="text-primary/80">500円OFF</strong>）</span></li>
+                </ul>
+              </div>
+              <div className="space-y-2 text-[#5C5550] font-medium text-base">
+                <p>将来的には、30分枠のご利用状況を見ながら、継続特典を広げていく予定です。</p>
+                <p className="text-sm text-[#7A736E]">（現在は60分枠のみが継続特典の対象となります）</p>
+              </div>
             </div>
 
             {/* CTA below pricing */}
@@ -302,34 +330,8 @@ export default function Home() {
         <section className="py-24 bg-card border-t border-[#EAE4D9]">
           <div className="container px-4 max-w-4xl">
             <div className="space-y-8">
-              {/* 初回の方へ */}
-              <div className="bg-white p-8 md:p-10 rounded-[2rem] border-2 border-[#E5D3B3] shadow-sm relative overflow-hidden">
-                <div className="absolute -bottom-6 -right-6 opacity-10">
-                  <img src="/images/fukusuke_icon.png" alt="" className="w-32 h-32" />
-                </div>
-                <h3 className="text-2xl font-bold mb-6 text-center text-primary">初回全額返金保証（全コース対象）</h3>
-                <p className="text-lg leading-relaxed text-[#5C5550] relative z-10 text-left font-medium">
-                  施術を受けて「自分には合わない」と感じられた場合は、初回の料金を全額お返しいたします。
-                </p>
-              </div>
-
-              {/* 継続特典 */}
-              <div className="bg-white p-8 md:p-10 rounded-[2rem] border border-[#EAE4D9] shadow-sm relative overflow-hidden">
-                <h3 className="text-2xl font-bold mb-6 text-center text-[#3A3532]">継続ご利用特典（60分枠限定）</h3>
-                <div className="bg-[#FDFBF7] p-6 md:p-8 rounded-xl border-l-4 border-l-primary border-t border-r border-b border-[#EAE4D9] mb-8 text-left">
-                  <ul className="space-y-4 font-medium text-lg text-[#5C5550]">
-                    <li>・2回目〜5回目　5,500円（通常6,500円 → <strong className="text-primary/80">1,000円OFF</strong>）</li>
-                    <li>・6回目以降　5,000円（さらに<strong className="text-primary/80">500円OFF</strong>）</li>
-                  </ul>
-                </div>
-                <div className="space-y-3 text-[#5C5550] leading-relaxed relative z-10 text-left font-medium text-lg">
-                  <p>将来的には、30分枠のご利用状況を見ながら、継続特典を広げていく予定です。</p>
-                  <p className="text-base text-[#7A736E] opacity-80">（現在は60分枠のみが継続特典の対象となります）</p>
-                </div>
-              </div>
-
               {/* ご予約の変更・キャンセル */}
-              <div className="bg-[#FDFBF7] p-8 md:p-10 rounded-[2rem] border border-[#EAE4D9]">
+              <div className="bg-[#FDFBF7] p-8 md:p-10 rounded-[2rem] border border-[#EAE4D9] max-w-3xl mx-auto">
                 <h3 className="text-xl font-bold mb-6 text-center md:text-left text-[#3A3532]">ご予約の変更・キャンセル</h3>
                 <p className="text-[#7A736E] mb-6 leading-relaxed text-center md:text-left">
                   ご予定の変更はできる限り柔軟に対応させていただきますが、他のお客様のご案内枠確保のため、以下のルールをご了承くださいませ。
