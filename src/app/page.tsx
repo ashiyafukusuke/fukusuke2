@@ -394,13 +394,13 @@ export default function Home() {
             initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}
             className="container relative z-10 px-4"
           >
-            <div className="mb-16 text-center">
-              <h2 className="text-3xl font-bold mb-8 text-primary flex items-center justify-center gap-4 text-center">
+            <div className="mb-16 flex flex-col items-center">
+              <h2 className="text-3xl font-bold mb-8 text-primary flex items-center justify-center gap-4 w-full">
                 <span className="w-8 md:w-12 h-px bg-primary/30"></span>
                 福助の改善ヒント
                 <span className="w-8 md:w-12 h-px bg-primary/30"></span>
               </h2>
-              <div className="inline-block text-left max-w-2xl space-y-4 text-[#000000] font-bold">
+              <div className="text-left max-w-2xl space-y-4 text-[#000000] font-bold w-full md:w-fit">
                 <p>足を丁寧にほぐしたときに、多くの方が「ここが緩んだ」と感じやすいポイントを、感覚ベースでまとめたものです。</p>
                 <p>私たちは反射区理論を盲信しているわけではありません。<br />
                 星座や占いを楽しむように、「自分を知るためのひとつの物差し」として参考にするのは、とても有意義で面白いことだと考えています。</p>
