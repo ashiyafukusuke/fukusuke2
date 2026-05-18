@@ -180,29 +180,29 @@ export default function Home() {
         )}
       </header>
 
-      <main className="flex-grow pt-20 relative">
+      <main className="flex-grow pt-20 relative overflow-x-hidden">
         {/* Global scattered logo pattern */}
         <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: "url('/images/fukusuke_icon.png')", backgroundSize: "150px" }} />
         
         {/* 1. Hero Section */}
-        <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-[#FDFBF7]">
+        <section className="relative min-h-[90vh] flex items-center justify-center bg-[#FDFBF7] py-16">
           {/* Warm background texture/gradient */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_#FFFFFF,_#FDFBF7)] opacity-80" />
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')] opacity-30" />
           
           <motion.div 
             initial="hidden" animate="visible" variants={fadeUp}
-            className="container relative z-10 px-4 text-center md:text-left max-w-4xl pt-10"
+            className="container relative z-10 px-6 text-center md:text-left max-w-4xl"
           >
             <div className="flex justify-center md:justify-start mb-6">
-              <img src="/images/fukusuke_icon.png" alt="福助" className="w-32 h-32 md:w-40 md:h-40 object-contain animate-[bounce_3s_ease-in-out_infinite]" style={{ animationDuration: '4s' }} />
+              <img src="/images/fukusuke_icon.png" alt="福助" className="w-28 h-28 md:w-40 md:h-40 object-contain animate-[bounce_3s_ease-in-out_infinite]" style={{ animationDuration: '4s' }} />
             </div>
-            <h1 className="text-3xl md:text-5xl font-bold leading-tight md:leading-snug tracking-tight mb-8 text-[#000000] font-bold break-keep">
-              足から意識をふっと溶かす、痛気持ちいい刺激。<br />
+            <h1 className="text-3xl md:text-5xl font-bold leading-snug tracking-tight mb-6 text-[#000000]">
+              足から意識をふっと溶かす、<br />痛気持ちいい刺激。<br />
               それが、足屋「福助」です。
             </h1>
-            <p className="text-lg md:text-xl text-[#000000] font-bold mb-12 max-w-2xl mx-auto md:mx-0 leading-relaxed break-keep">
-              足屋「福助」で過ごす時間は、現代社会で知らず知らずのうちに着込んでしまった見えない鎧を剥がして本来の身軽さを取り戻す時間です。
+            <p className="text-sm md:text-xl text-[#000000] font-bold mb-10 max-w-xs md:max-w-xl mx-auto md:mx-0 leading-loose">
+              足屋「福助」で過ごす時間は、<br />現代社会で知らず知らずのうちに<br />着込んでしまった見えない鎧を剥がして、<br />本来の身軽さを取り戻す時間です。
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
@@ -218,18 +218,14 @@ export default function Home() {
           <div className="absolute inset-0 bg-[url('/assets/img/motifs_nature.png')] bg-repeat opacity-[0.03]" />
           <motion.div 
             initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}
-            className="container relative z-10 px-4 max-w-3xl text-center md:text-left"
+            className="container relative z-10 px-6 max-w-4xl"
           >
-            <h2 className="text-3xl font-bold mb-8 text-primary flex items-center justify-center md:justify-start gap-3">
-              <span className="w-8 h-px bg-primary/30 hidden sm:block md:hidden"></span>
+            <h2 className="text-3xl font-bold mb-8 text-primary flex items-center justify-center md:justify-start gap-3 text-center md:text-left">
               福助の想い
-              <span className="w-8 h-px bg-primary/30 hidden sm:block md:hidden"></span>
             </h2>
-            <p className="text-lg leading-relaxed text-[#000000] font-bold mb-10 text-left inline-block max-w-2xl mx-auto md:mx-0">
-              現代の私たちは、常にONのスイッチを押し続け、無意識に「見えない鎧」を着込んでしまっています。<br className="hidden md:block" />
-              福助では、身体の中で一番遠い場所である「足」から優しく、時に深く刺激を入れることで、
-              その見えない鎧をほどいていきます。<br className="hidden md:block" />奥底から緊張が連鎖的に解け、
-              「ふっと」意識が溶けるような解放感を味わってください。
+            <p className="text-lg leading-loose text-[#000000] font-bold mb-10 max-w-2xl text-left">
+              現代の私たちは、常にONのスイッチを押し続け、無意識に「見えない鎧」を着込んでしまっています。<br />
+              福助では、身体の中で一番遠い場所である「足」から優しく、時に深く刺激を入れることで、その見えない鎧をほどいていきます。<br />奥底から緊張が連鎖的に解け、「ふっと」意識が溶けるような解放感を味わってください。
             </p>
             <Dialog>
               <DialogTrigger asChild>
@@ -272,8 +268,8 @@ export default function Home() {
                   <div className="absolute -bottom-6 -right-6 opacity-10 hidden md:block">
                     <img src="/images/fukusuke_icon.png" alt="" className="w-32 h-32" />
                   </div>
-                  <h3 className="text-2xl font-bold mb-4 text-primary">初回全額返金保証（全コース対象）</h3>
-                  <p className="text-lg text-[#000000] relative z-10 font-bold leading-loose">
+                  <h3 className="text-lg md:text-2xl font-bold mb-4 text-primary leading-normal">初回全額返金保証（全コース対象）</h3>
+                  <p className="text-base md:text-lg text-[#000000] relative z-10 font-bold leading-loose">
                     施術を受けて「自分には合わない」と感じられた場合は、初回の料金を全額お返しいたします。
                   </p>
                 </div>
@@ -359,22 +355,20 @@ export default function Home() {
         <section id="flow" className="py-24 bg-background">
           <motion.div 
             initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}
-            className="container px-4 max-w-4xl"
+            className="container px-6 max-w-4xl"
           >
-            <h2 className="text-3xl font-bold mb-12 text-center md:text-left text-primary flex items-center justify-center md:justify-start gap-3">
-              <span className="w-8 h-px bg-primary/30 hidden sm:block md:hidden"></span>
+            <h2 className="text-3xl font-bold mb-10 text-center md:text-left text-primary">
               施術の流れ
-              <span className="w-8 h-px bg-primary/30 hidden sm:block md:hidden"></span>
             </h2>
-            <div className="bg-card p-8 md:p-12 rounded-[2rem] border border-[#EAE4D9] shadow-sm relative overflow-hidden">
-              <div className="absolute -top-10 -right-10 opacity-5">
+            <div className="bg-card p-8 md:p-12 rounded-[2rem] border border-[#EAE4D9] shadow-sm relative">
+              <div className="absolute -top-10 -right-10 opacity-5 hidden md:block">
                 <img src="/images/fukusuke_icon.png" alt="" className="w-40 h-40" />
               </div>
-              <p className="text-[#000000] font-bold mb-10 text-center md:text-left relative z-10">
-                当店の施術は「枠単位制」。入室から退室までを余裕を持ってお過ごしいただけるお時間です。<br className="hidden md:block"/>
+              <p className="text-[#000000] font-bold mb-8 text-center md:text-left relative z-10 leading-loose">
+                当店の施術は「枠単位制」。入室から退室までを余裕を持ってお過ごしいただけるお時間です。<br />
                 見えない鎧を脱ぎ捨てて、ゆったりと頭を空っぽにしてください。
               </p>
-              <ul className="space-y-6 relative z-10">
+              <ul className="space-y-4 relative z-10">
                 {[
                   "LINEで枠を予約",
                   "時間に合わせて来店（着替え・準備）",
@@ -382,11 +376,11 @@ export default function Home() {
                   "途中から体がふっと緩んで頭が空っぽに…",
                   "枠内でスッキリ終了"
                 ].map((step, idx) => (
-                  <li key={idx} className="flex items-center gap-5 bg-background p-4 rounded-2xl border border-[#EAE4D9]">
+                  <li key={idx} className="flex items-center gap-4 bg-background p-4 rounded-2xl border border-[#EAE4D9]">
                     <span className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-lg">
                       {idx + 1}
                     </span>
-                    <span className="text-lg text-[#000000] font-bold font-medium">{step}</span>
+                    <span className="text-base md:text-lg text-[#000000] font-bold">{step}</span>
                   </li>
                 ))}
               </ul>
@@ -400,13 +394,13 @@ export default function Home() {
             initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}
             className="container relative z-10 px-4"
           >
-            <div className="text-center md:text-left mb-16">
-              <h2 className="text-3xl font-bold mb-4 text-primary flex items-center justify-center md:justify-start gap-3">
-                <span className="w-8 h-px bg-primary/30 hidden sm:block md:hidden"></span>
+            <div className="mb-16 text-center">
+              <h2 className="text-3xl font-bold mb-8 text-primary flex items-center justify-center gap-4 text-center">
+                <span className="w-8 md:w-12 h-px bg-primary/30"></span>
                 福助の改善ヒント
-                <span className="w-8 h-px bg-primary/30 hidden sm:block md:hidden"></span>
+                <span className="w-8 md:w-12 h-px bg-primary/30"></span>
               </h2>
-              <div className="text-[#000000] font-bold text-left max-w-2xl mx-auto md:mx-0 space-y-4">
+              <div className="inline-block text-left max-w-2xl space-y-4 text-[#000000] font-bold">
                 <p>足を丁寧にほぐしたときに、多くの方が「ここが緩んだ」と感じやすいポイントを、感覚ベースでまとめたものです。</p>
                 <p>私たちは反射区理論を盲信しているわけではありません。<br />
                 星座や占いを楽しむように、「自分を知るためのひとつの物差し」として参考にするのは、とても有意義で面白いことだと考えています。</p>
