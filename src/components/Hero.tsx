@@ -4,7 +4,7 @@ export default function Hero() {
     <section id="hero" className="relative min-h-screen flex flex-col justify-center px-8 md:px-20 overflow-hidden bg-white text-black">
       <div className="absolute top-0 left-0 right-0 prism-line" />
       <div className="relative z-10 max-w-5xl">
-        <p className="rv font-accent text-[0.65rem] tracking-[0.3em] uppercase text-neutral-400 mb-8">
+        <p className="rv font-accent text-[0.65rem] tracking-[0.3em] uppercase text-neutral-500 mb-8">
           Neural Reset &amp; Foot Reflexology
         </p>
         <h1 className="rv rv-d1 font-accent font-black tracking-[-0.05em] leading-[0.85] mb-10 text-black"

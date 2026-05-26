@@ -1,7 +1,8 @@
 "use client";
 export default function Introduction() {
   return (
-    <section className="py-32 md:py-48 px-8 md:px-20 bg-white text-black">
+    <section className="relative py-32 md:py-48 px-8 md:px-20 bg-white text-black">
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#00f0ff] via-[#ff007f] to-[#10b981]" />
       <div className="max-w-4xl mx-auto">
         <p className="rv font-accent text-[0.65rem] tracking-[0.3em] uppercase mb-4 font-bold prism-text text-left">
           心と身体が、ふっと凪ぐ場所。

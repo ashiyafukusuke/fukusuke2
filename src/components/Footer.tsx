@@ -9,9 +9,9 @@ export default function Footer() {
           凪いだ海のような、心身の平安。それは、あなた自身が本来持っている力を引き出すための儀式。日常のノイズを遮断し、自分自身を再起動する場所。
         </p>
         {/* URL Box */}
-        <div className="rv rv-d3 border border-black p-4 inline-block mb-16 hover:bg-neutral-50 transition-colors duration-300 text-center">
+        <div className="rv rv-d3 border border-black p-4 inline-block mb-16 hover:bg-neutral-50 transition-colors duration-300 text-center w-full md:w-auto">
           <a href="https://fukusuke2.vercel.app/" target="_blank" rel="noopener noreferrer"
-             className="font-accent text-sm md:text-base tracking-wider text-black hover:opacity-70 transition-opacity">
+             className="font-accent text-sm md:text-base tracking-wider text-black hover:opacity-70 transition-opacity block">
             https://fukusuke2.vercel.app/
           </a>
         </div>
@@ -25,7 +25,7 @@ export default function Footer() {
               Neural Reset &amp; Foot Reflexology
             </p>
           </div>
-          <p className="text-sm md:text-base text-neutral-800 font-light">足揉み職人 ： 福助 (Fukusuke) ｜ ひばりヶ丘</p>
+          <p className="text-sm md:text-base text-neutral-800 font-light">ひばりヶ丘 ｜ 足揉み職人 福助 (Fukusuke)</p>
         </div>
       </div>
     </footer>

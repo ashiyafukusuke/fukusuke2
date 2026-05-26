@@ -1,6 +1,6 @@
 import Hero from "@/components/Hero";
-import Introduction from "@/components/Introduction";
 import Concept from "@/components/Concept";
+import Introduction from "@/components/Introduction";
 import Approach from "@/components/Approach";
 import Practitioner from "@/components/Practitioner";
 import Logic from "@/components/Logic";
@@ -15,8 +15,8 @@ export default function Page() {
     <ScrollReveal>
       <main className="bg-white min-h-screen">
         <Hero />
-        <Introduction />
         <Concept />
+        <Introduction />
         <Approach />
         <Practitioner />
         <Logic />
