@@ -1,13 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+import os
 
-body {
-  background-color: #FAF7F0;
-  color: #2C2C2C;
-  font-family: "Noto Serif JP", serif;
-}
+css_path = r"C:\Users\mobile note\.gemini\antigravity\scratch\ashiya-fukusuke-next\src\app\globals.css"
 
+css_to_append = ""
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
@@ -99,7 +94,7 @@ html {
 .card-desc { font-size: 0.85rem; margin-top: 0.5rem; width: 100%; text-align: left !important; }
 .card-desc ul { list-style: none; padding: 0; margin: 0; text-align: left !important; display: block; }
 .card-desc li { position: relative; padding-left: 1.2rem; margin-bottom: 0.3rem; line-height: 1.4; font-weight: bold; color: #2C2C2C; opacity: 0.8; text-align: left !important; }
-.card-desc li::before { content: "„Éª"; position: absolute; left: 0; color: #8B4513; font-weight: bold; }
+.card-desc li::before { content: "ÅE"; position: absolute; left: 0; color: #8B4513; font-weight: bold; }
 
 .card-back h4 { margin-bottom: 1rem; border-bottom: 2px solid rgba(44,44,44,0.1); padding-bottom: 0.5rem; width: 100%; text-align: left !important; color: #2C2C2C !important; font-weight: bold; font-size: 1.1rem; }
 .card-back p { font-size: 0.85rem; line-height: 1.8; text-align: left !important; color: #2C2C2C !important; }
@@ -181,3 +176,14 @@ html {
 .custom-scrollbar::-webkit-scrollbar { height: 8px; }
 .custom-scrollbar::-webkit-scrollbar-track { background: #EAE4D9; border-radius: 8px; }
 .custom-scrollbar::-webkit-scrollbar-thumb { background: #8B4513; border-radius: 8px; }
+""
+
+with open(css_path, "r", encoding="utf-8") as f:
+    content = f.read()
+
+if "OLD RESET MAP REPLICA" not in content:
+    with open(css_path, "a", encoding="utf-8") as f:
+        f.write("\n" + css_to_append)
+    print("Appended CSS successfully.")
+else:
+    print("CSS already appended.")

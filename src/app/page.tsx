@@ -1,14 +1,33 @@
+"use client";
 import Image from "next/image";
+
+const OLD_MAP_ITEMS = [
+  { title: "頭が重い", bad1: "ズーンと重い", bad2: "頭が回らない", good: "ズーンとした重さがふっと抜け、意識が溶けるようなスッキリ感が広がります。頭が空っぽになる感覚を。", img: "card_ill_head.png", target: "head" },
+  { title: "目が疲れる", bad1: "奥が痛い", bad2: "ショボショボする", good: "目の奥の力みがほどけ、視界がぱあっと明るくなるような感覚。首周りまで軽くなります。", img: "card_ill_eye.png", target: "eye" },
+  { title: "首が回らない", bad1: "筋が張っている", bad2: "上を向けない", good: "首の付け根の詰まりが取れ、スッと首が長くなったような、楽な姿勢を取り戻せます。", img: "card_ill_neck.png", target: "neck" },
+  { title: "肩こり", bad1: "岩のように硬い", bad2: "腕が挙がらない", good: "肩甲骨の周りがじんわりと温かくなり、肩の荷がふっと下りるような深いリラックスへ。", img: "card_ill_shoulder.png", target: "shoulder" },
+  { title: "背中が張る", bad1: "息が浅い", bad2: "鉄板が入っている", good: "背中全体のこわばりが溶け出し、呼吸がすーっと深くなる感覚を味わえます。", img: "card_ill_back.png", target: "back" },
+  { title: "ストレス", bad1: "イライラする", bad2: "眠りが浅い", good: "交感神経の緊張が解け、全身がぽかぽかと温まり、深い安心感に包まれます。", img: "card_ill_stress.png", target: "stress" },
+  { title: "足がだるい", bad1: "むくみでパンパン", bad2: "鉛のように重い", good: "足裏から老廃物が流れるような感覚で、施術後は靴が緩く感じるほどの軽さに。", img: "card_ill_swelling.png", target: "swelling" },
+  { title: "胃が重い", bad1: "キリキリする", bad2: "食欲が出ない", good: "みぞおちのあたりがスーッと通り、お腹の底からリラックスできる心地よさ。", img: "card_ill_stomach.png", target: "stomach" },
+  { title: "お腹の張り", bad1: "ガスが溜まる", bad2: "便秘気味", good: "お腹の緊張がほぐれ、内側からじんわりと温まり、自然なスッキリ感を促します。", img: "card_ill_intestine.png", target: "intestine" },
+  { title: "お酒が残る", bad1: "だるさが抜けない", bad2: "二日酔い気味", good: "全身の巡りが良くなる感覚があり、重だるさが抜けていくような爽快感があります。", img: "card_ill_liver.png", target: "liver" },
+  { title: "動悸・息切れ", bad1: "疲れやすい", bad2: "胸が苦しい", good: "胸のつかえが取れ、深くゆったりとした呼吸ができるようになる安心感。", img: "card_ill_heart.png", target: "heart" },
+  { title: "呼吸が浅い", bad1: "ため息が多い", bad2: "リラックスできない", good: "胸郭が広がるように呼吸が深くなり、全身の細胞に酸素が行き渡るようなリフレッシュ感。", img: "card_ill_lung.png", target: "lung" }
+];
 
 export default function Page() {
   return (
     <main className="min-h-screen bg-[#FAF7F0] text-[#2C2C2C]">
       {/* Hero Section */}
-      <section className="relative h-screen flex flex-col items-center justify-center border-b border-[#EAE4D9]">
+      <section className="relative min-h-[90vh] md:h-[95vh] flex flex-col items-center justify-center border-b border-[#EAE4D9] px-4 pb-12 pt-20">
         <div className="absolute inset-0 z-0 bg-[#EAE4D9]"></div>
-        <div className="relative z-10 text-center bg-white/90 p-10 rounded-2xl shadow-sm">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-[#3A3532]">足屋『福助』</h1>
-          <p className="text-xl md:text-2xl text-[#5C5550]">心身を解きほぐす、極上の足揉み</p>
+        <div className="relative z-10 text-center bg-white/95 p-8 md:p-12 rounded-2xl shadow-sm max-w-3xl w-full">
+          <p className="text-lg md:text-xl font-bold mb-4 text-[#8B4513] leading-relaxed">足から意識をふっと溶かす、痛気持ちいい刺激。</p>
+          <h1 className="text-3xl md:text-5xl font-bold mb-8 text-[#3A3532] leading-tight">それが、足屋『福助』です。</h1>
+          <a href="https://line.me/R/ti/p/@055thsak" className="inline-block bg-[#8B4513] text-white font-bold text-lg md:text-xl px-10 py-4 rounded-full shadow-lg hover:bg-[#A0522D] transition-transform hover:-translate-y-1">
+            今すぐLINEで予約する
+          </a>
         </div>
       </section>
 
@@ -88,18 +107,62 @@ export default function Page() {
       </section>
 
       {/* Improvement Hints */}
-      <section className="py-24 px-6 bg-white border-t border-[#EAE4D9]">
-        <div className="max-w-4xl mx-auto flex flex-col items-center">
+      <section className="py-24 px-6 bg-[#FDFBF7] border-t border-[#EAE4D9] overflow-hidden">
+        <div className="max-w-6xl mx-auto flex flex-col items-center">
           <div className="mb-16 flex flex-col items-center w-full">
             <h2 className="text-3xl font-bold mb-10 text-[#8B4513] flex items-center justify-center gap-4 w-full text-center">
               福助の改善ヒント
             </h2>
-            <div className="w-full md:w-fit text-left bg-[#FDFBF7] p-8 rounded-xl border border-[#EAE4D9]">
-              <p className="text-[#5C5550] leading-loose">
-                足裏の硬さや冷えは、全身のサインです。<br />
-                日々の少しの意識で、身体は確実に応えてくれます。<br />
-                痛みの奥にある声に耳を澄ませてみましょう。
+            <div className="w-full md:w-fit text-left p-8">
+              <p className="text-[#5C5550] leading-loose font-bold text-center md:text-left">
+                足を丁寧にほぐしたときに、多くの方が「ここが緩んだ」と感じやすいポイントを、感覚ベースでまとめたものです。<br />
+                星座や占いを楽しむように、「自分を知るためのひとつの物差し」として参考にするのは、とても有意義で面白いことだと考えています。<br />
+                あくまで「こんな体感があるかも」という目安としてお読みください。科学的に証明されたものではありません。
               </p>
+            </div>
+          </div>
+          
+          <div className="w-full relative">
+            <div className="text-right mb-2 pr-4 md:hidden text-sm font-bold text-[#8B4513] animate-pulse flex justify-end items-center gap-1">
+              <span>スワイプして見る</span>
+              <span>→</span>
+            </div>
+            <div className="card-grid">
+              {OLD_MAP_ITEMS.map((item, idx) => (
+                <div key={idx} className="flip-card" onClick={(e) => e.currentTarget.classList.toggle('is-flipped')}>
+                  <div className="flip-card-inner">
+                    <div className="card-front">
+                      <div className="card-illustration"><img src={`/images/${item.img}`} alt={item.title} /></div>
+                      <h3>{item.title}</h3>
+                      <div className="card-desc">
+                        <ul>
+                          <li>{item.bad1}</li>
+                          <li>{item.bad2}</li>
+                        </ul>
+                      </div>
+                      <div style={{ marginTop: 'auto', paddingTop: '1rem', width: '100%', textAlign: 'center' }}>
+                        <span className="inline-block text-xs text-[#8B4513] border border-[#8B4513] rounded-full px-3 py-1 font-bold">
+                          タップで裏返す ↺
+                        </span>
+                      </div>
+                    </div>
+                    <div className="card-back">
+                      <div className="css-footprint-container" data-target={item.target}>
+                        <div className="css-foot-body"></div>
+                        <div className="css-toe css-toe-1"></div><div className="css-toe css-toe-2"></div><div className="css-toe css-toe-3"></div><div className="css-toe css-toe-4"></div><div className="css-toe css-toe-5"></div>
+                        <div className={`reflex-spot spot-${item.target}`}></div>
+                      </div>
+                      <h4>改善後の体感</h4>
+                      <p>{item.good}</p>
+                      <div style={{ marginTop: 'auto', paddingTop: '1rem', width: '100%', textAlign: 'center' }}>
+                        <span className="inline-block text-xs text-[#8B4513] px-3 py-1 font-bold border border-[#8B4513] rounded-full bg-white">
+                          戻る ↺
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
