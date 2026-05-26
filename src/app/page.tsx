@@ -1,539 +1,610 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import Image from "next/image";
+import { useEffect, useRef } from "react";
 
-const LINE_URL = "https://line.me/R/ti/p/@055thsak";
+/* ─── Scroll Reveal Hook ─── */
+function useScrollReveal() {
+  useEffect(() => {
+    const els = document.querySelectorAll(".reveal");
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("visible");
+            obs.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+    els.forEach((el) => obs.observe(el));
+    return () => obs.disconnect();
+  }, []);
+}
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-};
+/* ─── Nav ─── */
+function Nav() {
+  return (
+    <nav
+      id="nav"
+      className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 md:px-16 py-5"
+      style={{ backdropFilter: "blur(20px)", backgroundColor: "rgba(28,28,26,0.7)", borderBottom: "1px solid rgba(245,245,244,0.06)" }}
+    >
+      <a href="#hero" className="font-accent font-bold text-xl tracking-tight">
+        Re<span style={{ color: "#a7f3d0" }}>:</span>boot
+      </a>
+      <div className="hidden md:flex items-center gap-8 text-sm" style={{ color: "#a1a1aa" }}>
+        <a href="#intro" className="hover:text-white transition-colors duration-200">Introduction</a>
+        <a href="#approach" className="hover:text-white transition-colors duration-200">Approach</a>
+        <a href="#artisan" className="hover:text-white transition-colors duration-200">Artisan</a>
+        <a href="#menu" className="hover:text-white transition-colors duration-200">Menu</a>
+        <a
+          href="#menu"
+          className="font-accent px-5 py-2 rounded-full text-sm font-medium transition-all duration-300"
+          style={{ border: "1px solid rgba(167,243,208,0.4)", color: "#a7f3d0" }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(167,243,208,0.1)";
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLElement).style.backgroundColor = "transparent";
+          }}
+        >
+          予約する
+        </a>
+      </div>
+    </nav>
+  );
+}
 
-const MessageContent = () => (
-  <div className="space-y-8 text-foreground leading-relaxed max-h-[70vh] overflow-y-auto pr-4 custom-scrollbar">
-
-    {/* イントロ */}
-    <div>
-      <h3 className="text-lg font-bold text-primary mb-3 border-b border-primary/20 pb-2">足屋「福助」の哲学</h3>
-      <p className="mb-4">はじめまして、足屋「福助」の店主です。</p>
-      <p className="mb-4">
-        毎日のように頭が重たく、思考がぐちゃぐちゃになってしまう方。溜まった疲れをリセットして、心身ともにスッキリしたい方。そんな方々の足を深く丁寧に解きほぐすことが、私の何よりの喜びです。
-      </p>
-      <p className="mb-4">
-        現代の私たちは、まだ身体が最適化されていない過剰な情報社会の中で生きています。<br />
-        スマホ、PC、絶え間ない通知、締め切り、複雑な人間関係……。常に「ON」のスイッチを押しっぱなしにしている私たちは、無意識のうちに「見えない鎧」を着込んでしまっています。
-      </p>
-      <p>足屋「福助」は、その鎧を「足」からそっとほどいていく場所です。</p>
-    </div>
-
-    {/* 反射区へのスタンス */}
-    <div>
-      <h3 className="text-lg font-bold text-primary mb-3 border-b border-primary/20 pb-2">反射区とメカニズムへのスタンス</h3>
-      <p className="mb-4">私は、特定の反射区をピンポイントで押して「特定の不調を治す」ことにはこだわりません。</p>
-
-      <div className="bg-[#FDFBF7] border border-[#EAE4D9] rounded-xl p-5 mb-4 space-y-4">
-        <div>
-          <p className="text-xs font-bold text-[#a63c44] mb-1 tracking-wider">慣習的な表現（伝統的視点）</p>
-          <p>古くから、足裏は全身を映し出す鏡（反射区）であると伝えられてきました。この教えは、自分の身体のどこに負担がかかっているかを知るための、優れた「感性の地図」として機能しています。</p>
-        </div>
-        <div>
-          <p className="text-xs font-bold text-[#a63c44] mb-1 tracking-wider">事実に基づく表現（科学的・解剖学的視点）</p>
-          <p>現代科学において、特定の部位への刺激が直接的に内臓を治療するというエビデンスは十分ではありません。しかし、体性自律神経反射という観点では、足裏への物理的刺激が脊髄を通じて脳や自律神経系に伝わり、全身に影響を与えることは解剖学的にも説明が可能です。</p>
-        </div>
+/* ─── Hero ─── */
+function Hero() {
+  return (
+    <section
+      id="hero"
+      className="relative h-screen flex flex-col justify-end pb-20 md:pb-28 px-8 md:px-16 overflow-hidden"
+    >
+      {/* Background image */}
+      <div className="absolute inset-0 img-placeholder">
+        <Image
+          src="/images/hero-placeholder.png"
+          alt="Re:boot 施術空間"
+          fill
+          priority
+          className="object-cover"
+          style={{ opacity: 0.55 }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(to top, #1c1c1a 0%, rgba(28,28,26,0.4) 50%, rgba(28,28,26,0.1) 100%)",
+          }}
+        />
       </div>
 
-      <p>
-        私は「ここを押せばこの内臓が良くなる」という直接的な因果関係を目的とはしません。それよりも、足全体を深く丁寧に刺激することで、自然と副交感神経を優位にし、意識が「ふっと」溶けていくような無意識のリセット状態へ導くことを大切にしています。
-      </p>
-    </div>
+      {/* Content */}
+      <div className="relative z-10">
+        <p className="section-label mb-5 reveal">Neural Reset &amp; Foot Reflexology · Hibarigaoka</p>
+        <h1
+          className="font-accent font-bold leading-none mb-7 reveal reveal-delay-1"
+          style={{ fontSize: "clamp(4rem, 14vw, 11rem)", letterSpacing: "-0.04em" }}
+        >
+          Re<span style={{ color: "#a7f3d0" }}>:</span>boot
+        </h1>
+        <p
+          className="font-light leading-relaxed reveal reveal-delay-2"
+          style={{ fontSize: "clamp(1rem, 2.2vw, 1.35rem)", maxWidth: "36rem", color: "rgba(245,245,244,0.8)" }}
+        >
+          足裏から脳をスイッチ。<br />
+          心地よいまどろみののち、本来のニュートラルな状態へ。
+        </p>
+      </div>
 
-    {/* 体感できる価値 */}
-    <div>
-      <h3 className="text-lg font-bold text-primary mb-3 border-b border-primary/20 pb-2">体感できる「リセット」の価値</h3>
-      <p className="mb-4">
-        実際に施術を受けていただくと、足裏が気持ちよくほぐれるにつれて、身体がポカポカと温まるのを感じるはずです。
-      </p>
-      <p className="mb-4">
-        それは、血流が促され、強張っていた筋肉が緩み始めた証拠です。気づいたときには頭の中のノイズが消え、足裏だけでなく、首や肩、腰までもが軽くなったような感覚——。
-      </p>
-      <p>
-        この「意識が溶けるような深い休息」を呼び起こすことこそが、足屋「福助」の本質です。
-      </p>
-    </div>
+      {/* Scroll hint */}
+      <div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 reveal reveal-delay-3"
+        style={{ color: "#a1a1aa" }}
+      >
+        <span className="font-accent text-xs tracking-widest uppercase">Scroll</span>
+        <span style={{ width: 1, height: 40, background: "linear-gradient(to bottom, #a1a1aa, transparent)", display: "block" }} />
+      </div>
+    </section>
+  );
+}
 
-    {/* 最後に */}
-    <div>
-      <h3 className="text-lg font-bold text-primary mb-3 border-b border-primary/20 pb-2">最後に</h3>
-      <p className="mb-4">
-        このページを最後まで読んでくださったあなたは、きっとルールを尊重し、互いに気持ちの良い時間を過ごせる素敵な方なのだと思います。
-      </p>
-      <p className="mb-4">
-        私もひとりの人間です。誰の足でもいいわけではなく、あなたのように、自らの身体を整える価値を理解してくださる方にこそ、最高のリセットをお届けしたいと考えています。
-      </p>
-      <p>少し生意気な店主ではございますが、足屋「福助」にて、あなたにお会いできるのを楽しみにしております。</p>
-    </div>
+/* ─── Introduction ─── */
+function Introduction() {
+  return (
+    <section id="intro" className="py-32 md:py-48 px-8 md:px-16">
+      <div className="max-w-4xl mx-auto">
+        <p className="section-label mb-8 reveal">Introduction</p>
+        <h2
+          className="font-light leading-tight mb-12 reveal reveal-delay-1"
+          style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)" }}
+        >
+          心と身体が、<br />
+          <span style={{ color: "#a7f3d0" }}>ふっと凪ぐ場所。</span>
+        </h2>
+        <div
+          className="reveal reveal-delay-2 font-light leading-loose"
+          style={{ fontSize: "clamp(1rem, 1.6vw, 1.15rem)", color: "rgba(245,245,244,0.75)", maxWidth: "42rem" }}
+        >
+          <p>
+            細胞が身構えない、絶妙な痛気持ちよさ。<br />
+            張り詰めていたスイッチをそっとオフにして、心と身体をまっさらに。
+          </p>
+        </div>
 
-    <p className="text-primary font-bold text-xl text-right mt-4">足屋「福助」店主</p>
-  </div>
-);
+        {/* Decorative line */}
+        <div className="mt-16 reveal reveal-delay-3" style={{ width: "100%", height: 1, background: "linear-gradient(to right, rgba(167,243,208,0.4), transparent)" }} />
+      </div>
+    </section>
+  );
+}
 
-const OLD_MAP_ITEMS = [
-  { 
-    title: "頭が重い", bad1: "ズーンと重い", bad2: "頭が回らない", good: "ズーンとした重さがふっと抜け、意識が溶けるようなスッキリ感が広がります。頭が空っぽになる感覚を。", 
-    img: "card_ill_head.png", target: "head"
+/* ─── Approach ─── */
+const pillars = [
+  {
+    num: "01",
+    title: "閾値のコントロール",
+    sub: "痛さレベルの精密な調整",
+    body: "痛みがストレスに変わる一歩手前。脳が「安全」と認識する極限の刺激を、施術者が精密にコントロールします。その境界線上にこそ、身体が本当に脱力するゾーンがあります。",
   },
-  { 
-    title: "目が疲れる", bad1: "ショボショボする", bad2: "視界がかすむ", good: "視界がパッと明るく拓け、目元の重みがふっと溶けていきます。", 
-    img: "card_ill_eye.png", target: "eye"
+  {
+    num: "02",
+    title: "呼吸の変容",
+    sub: "無意識から意識へ、そして再び無意識へ",
+    body: "施術に合わせ、呼吸のリズムが自然と深まっていきます。浅く速かった呼吸が、ゆっくりと、腹の底から湧き上がるように変わるとき、自律神経のスイッチが切り替わります。",
   },
-  { 
-    title: "首が回らない", bad1: "首筋が張る", bad2: "スマホ首がつらい", good: "首から肩にまとわりつく緊張がふっと抜け、本来の軽やかさを取り戻します。", 
-    img: "card_ill_neck.png", target: "neck"
+  {
+    num: "03",
+    title: "まどろみによる再起動",
+    sub: "心身のシステムリセット",
+    body: "眠っているのか起きているのかわからない「あわい」の時間。完全な眠りとも覚醒とも異なるその状態でこそ、フリーズしていた心身のシステムが静かに、完全に、再起動します。",
   },
-  { 
-    title: "肩こり", bad1: "肩が重石のよう", bad2: "腕が上がりにくい", good: "背負い込んだ重荷がふっと溶け落ち、羽が生えたような軽やかさに。", 
-    img: "card_ill_shoulder.png", target: "shoulder"
-  },
-  { 
-    title: "背中が張る", bad1: "背中がガチガチ", bad2: "息苦しさを感じる", good: "ガチガチの背中がふっと緩み、胸の奥底から息が抜けるように。", 
-    img: "card_ill_back.png", target: "back"
-  },
-  { 
-    title: "ストレス・緊張", bad1: "イライラする", bad2: "気が休まらない", good: "張り詰めた緊張がふっと溶け、全身が空っぽになるような安らぎを。", 
-    img: "card_ill_stress.png", target: "stress"
-  },
-  { 
-    title: "だるさ・むくみ", bad1: "足がパンパン", bad2: "体が重だるい", good: "溜め込んだ余分な重みがふっと抜け、靴がゆるく感じるほどの軽やかな足元へ。", 
-    img: "card_ill_swelling.png", target: "swelling"
-  },
-  { 
-    title: "胃もたれ", bad1: "食欲がわかない", bad2: "お腹が重い", good: "胃のあたりの重苦しさがふっと溶け、じんわりと温まります。", 
-    img: "card_ill_stomach.png", target: "stomach"
-  },
-  { 
-    title: "お腹がスッキリしない", bad1: "便秘ぎみ・張る", bad2: "ガスがたまる", good: "お腹の張りがふっと抜け、内側から滞りが溶け出す感覚が。", 
-    img: "card_ill_intestine.png", target: "intestine"
-  },
-  { 
-    title: "お酒の抜けが悪い", bad1: "翌朝がつらい", bad2: "体がダル重い", good: "どんよりとしたダルさがふっと抜け、意識がシャキッと澄み渡ります。", 
-    img: "card_ill_liver.png", target: "liver"
-  },
-  { 
-    title: "心がざわつく", bad1: "不安・ソワソワ", bad2: "眠りが浅い", good: "胸のざわつきがふっと溶け、頭の奥から安らぎに包まれます。", 
-    img: "card_ill_heart.png", target: "heart"
-  },
-  { 
-    title: "呼吸が浅い", bad1: "ため息が多い", bad2: "胸が詰まる感じ", good: "詰まりがふっと抜け、肺の奥底まで空気が美味しく届きます。", 
-    img: "card_ill_lung.png", target: "lung"
-  }
 ];
 
-export default function Home() {
-  const [isNavOpen, setIsNavOpen] = useState(false);
+function Approach() {
+  return (
+    <section id="approach" className="py-32 md:py-48 px-8 md:px-16" style={{ backgroundColor: "#1e1e1c" }}>
+      <div className="max-w-5xl mx-auto">
+        <p className="section-label mb-8 reveal">Our Approach</p>
+        <h2
+          className="font-light leading-tight mb-20 reveal reveal-delay-1"
+          style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}
+        >
+          3つの柱が生む、<span style={{ color: "#a7f3d0" }}>深い解放。</span>
+        </h2>
+        <div className="grid md:grid-cols-3 gap-6">
+          {pillars.map((p, i) => (
+            <div
+              key={p.num}
+              className={`pillar-card rounded-2xl p-8 reveal reveal-delay-${i + 1}`}
+            >
+              <span
+                className="font-accent font-bold block mb-5"
+                style={{ fontSize: "2.5rem", color: "rgba(167,243,208,0.2)", lineHeight: 1 }}
+              >
+                {p.num}
+              </span>
+              <h3 className="font-medium mb-1" style={{ fontSize: "1.1rem" }}>{p.title}</h3>
+              <p className="mb-5" style={{ fontSize: "0.75rem", color: "#a7f3d0", letterSpacing: "0.05em" }}>{p.sub}</p>
+              <p className="font-light leading-relaxed" style={{ fontSize: "0.9rem", color: "rgba(245,245,244,0.65)" }}>{p.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── Artisan Profile ─── */
+function Artisan() {
+  return (
+    <section id="artisan" className="py-32 md:py-48 px-8 md:px-16">
+      <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+        {/* Image */}
+        <div
+          className="relative rounded-2xl overflow-hidden img-placeholder reveal"
+          style={{ aspectRatio: "4/5" }}
+        >
+          <Image
+            src="/images/artisan-placeholder.png"
+            alt="福助 (ふくすけ) — Re:boot 施術者"
+            fill
+            className="object-cover"
+            style={{ opacity: 0.8 }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{ background: "linear-gradient(to top, rgba(28,28,26,0.6) 0%, transparent 50%)" }}
+          />
+        </div>
+
+        {/* Text */}
+        <div>
+          <p className="section-label mb-8 reveal">Artisan</p>
+          <h2
+            className="font-accent font-bold leading-none mb-3 reveal reveal-delay-1"
+            style={{ fontSize: "clamp(3rem, 7vw, 5rem)" }}
+          >
+            福助
+          </h2>
+          <p
+            className="font-accent mb-10 reveal reveal-delay-1"
+            style={{ fontSize: "1rem", color: "#a1a1aa", letterSpacing: "0.1em" }}
+          >
+            ふくすけ
+          </p>
+          <blockquote
+            className="font-light leading-relaxed mb-10 reveal reveal-delay-2"
+            style={{
+              fontSize: "clamp(1.2rem, 2.5vw, 1.6rem)",
+              borderLeft: "2px solid #a7f3d0",
+              paddingLeft: "1.25rem",
+              color: "rgba(245,245,244,0.9)",
+            }}
+          >
+            「人を幸せにしたい」
+          </blockquote>
+          <p
+            className="font-light leading-loose reveal reveal-delay-3"
+            style={{ fontSize: "0.95rem", color: "rgba(245,245,244,0.65)" }}
+          >
+            それだけを羅針盤に、足裏と向き合い続けてきました。<br />
+            テクニックは手段に過ぎない。<br />
+            目の前の方が、ここを出るときに少しでも軽くなっていること。<br />
+            そのシンプルな願いが、Re:bootのすべてです。
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── Technique Logic ─── */
+function TechniqueLogic() {
+  return (
+    <section
+      id="technique"
+      className="py-32 md:py-48 px-8 md:px-16"
+      style={{ backgroundColor: "#1e1e1c" }}
+    >
+      <div className="max-w-4xl mx-auto">
+        <p className="section-label mb-8 reveal">Technique Logic</p>
+        <h2
+          className="font-light leading-tight mb-16 reveal reveal-delay-1"
+          style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}
+        >
+          なぜ、<span style={{ color: "#a7f3d0" }}>「芯まで届く」</span>のか。
+        </h2>
+        <div className="grid md:grid-cols-2 gap-12">
+          <div className="reveal reveal-delay-2">
+            <h3
+              className="font-medium mb-4"
+              style={{ fontSize: "1.1rem", color: "#a7f3d0" }}
+            >
+              閾値と脱力の関係
+            </h3>
+            <p
+              className="font-light leading-loose"
+              style={{ fontSize: "0.95rem", color: "rgba(245,245,244,0.7)" }}
+            >
+              人の身体は、痛みを感じると反射的に力が入ります。しかし「痛気持ちいい」という絶妙な閾値の範囲内にとどまり続けると、脳は防御反応をやめます。それが深い脱力の始まりです。
+            </p>
+          </div>
+          <div className="reveal reveal-delay-3">
+            <h3
+              className="font-medium mb-4"
+              style={{ fontSize: "1.1rem", color: "#a7f3d0" }}
+            >
+              芯まで届く刺激
+            </h3>
+            <p
+              className="font-light leading-loose"
+              style={{ fontSize: "0.95rem", color: "rgba(245,245,244,0.7)" }}
+            >
+              筋肉が緩んだとき、はじめて圧は真の深部に届きます。表面だけでなく、骨の際まで刺激が行き渡る感覚。それは単なる「強いマッサージ」ではなく、身体が自ら受け入れた深さです。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── Experience ─── */
+function Experience() {
+  return (
+    <section id="experience" className="py-32 md:py-48 px-8 md:px-16">
+      <div className="max-w-4xl mx-auto">
+        <p className="section-label mb-8 reveal">Experience</p>
+        <h2
+          className="font-light leading-tight mb-16 reveal reveal-delay-1"
+          style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}
+        >
+          意識が溶け出す、<br />
+          <span style={{ color: "#a7f3d0" }}>最高のまどろみ。</span>
+        </h2>
+
+        {/* Full-width image */}
+        <div
+          className="relative rounded-2xl overflow-hidden img-placeholder mb-16 reveal reveal-delay-2"
+          style={{ aspectRatio: "16/7" }}
+        >
+          <Image
+            src="/images/technique-placeholder.png"
+            alt="施術イメージ"
+            fill
+            className="object-cover"
+            style={{ opacity: 0.7 }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{ background: "radial-gradient(ellipse at center, transparent 40%, rgba(28,28,26,0.5))" }}
+          />
+        </div>
+
+        <div
+          className="space-y-7 font-light leading-loose reveal reveal-delay-3"
+          style={{ fontSize: "clamp(0.95rem, 1.5vw, 1.1rem)", color: "rgba(245,245,244,0.75)" }}
+        >
+          <p>
+            それは、ただぐっすりと眠るのとは違います。完全に横たわらないリクライニングチェアだからこそ訪れる、眠っているのか起きているのかわからない、絶妙な「あわい」の時間。
+          </p>
+          <p>
+            痛みがストレスに変わる一歩手前。脳が「安全」と認識する、極限の痛気持ちよさ。
+          </p>
+          <p>
+            日常のプレッシャーで凝り固まった頭の中のノイズが、静かに、まっさらに塗り替えられていく――。
+          </p>
+          <p style={{ color: "#a7f3d0", fontWeight: 400 }}>
+            フリーズしていた自律神経のスイッチを切り替え、心身を劇的にリセットする、これがRe:bootの真髄です。
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── Environment ─── */
+function Environment() {
+  return (
+    <section
+      id="environment"
+      className="py-32 md:py-48 px-8 md:px-16 relative overflow-hidden"
+      style={{ backgroundColor: "#1e1e1c" }}
+    >
+      <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+        {/* Text */}
+        <div>
+          <p className="section-label mb-8 reveal">Environment</p>
+          <h2
+            className="font-light leading-tight mb-10 reveal reveal-delay-1"
+            style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}
+          >
+            リクライニングチェアの、<br />
+            <span style={{ color: "#a7f3d0" }}>必然性。</span>
+          </h2>
+          <div
+            className="font-light leading-loose reveal reveal-delay-2"
+            style={{ fontSize: "0.95rem", color: "rgba(245,245,244,0.7)" }}
+          >
+            <p className="mb-5">
+              完全に横たわると脳は「睡眠モード」に入ろうとします。しかし、完全に座った状態では緊張が抜けきれない。
+            </p>
+            <p className="mb-5">
+              Re:bootが採用するリクライニング角度は、脳が「覚醒でも睡眠でもない」状態になる絶妙なポジション。
+            </p>
+            <p style={{ color: "#a7f3d0" }}>
+              それが、施術の効果を最大限に引き出すための、環境設計です。
+            </p>
+          </div>
+        </div>
+
+        {/* Image */}
+        <div
+          className="relative rounded-2xl overflow-hidden img-placeholder reveal reveal-delay-2"
+          style={{ aspectRatio: "4/3" }}
+        >
+          <Image
+            src="/images/chair-placeholder.png"
+            alt="Re:boot リクライニングチェア"
+            fill
+            className="object-cover"
+            style={{ opacity: 0.8 }}
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── Menu ─── */
+const menus = [
+  {
+    id: "quick",
+    duration: "30",
+    name: "Quick / Trial",
+    nameJa: "クイック・お試し",
+    price: "—",
+    desc: "お忙しい日常の合間に。重さを感じる受容器を的確に捉え、即座に足を軽く整えます。はじめての方のお試しとしても最適。",
+    featured: false,
+  },
+  {
+    id: "reboot",
+    duration: "60",
+    name: "Re:boot",
+    nameJa: "再起動コース",
+    price: "—",
+    desc: "Re:bootの真髄を体感するシグネチャーコース。深い休息状態を強制誘導し、システムレベルで心身を再起動させます。",
+    featured: true,
+  },
+];
+
+function Menu() {
+  return (
+    <section id="menu" className="py-32 md:py-48 px-8 md:px-16">
+      <div className="max-w-4xl mx-auto">
+        <p className="section-label mb-8 reveal">Menu</p>
+        <h2
+          className="font-light leading-tight mb-16 reveal reveal-delay-1"
+          style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}
+        >
+          メニュー
+        </h2>
+        <div className="flex flex-col gap-5">
+          {menus.map((m, i) => (
+            <div
+              key={m.id}
+              id={`menu-${m.id}`}
+              className={`menu-card ${m.featured ? "featured" : ""} rounded-2xl p-8 md:p-10 reveal reveal-delay-${i + 1}`}
+            >
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+                <div className="flex-1">
+                  <div className="flex items-baseline gap-3 mb-2">
+                    <span
+                      className="font-accent font-bold"
+                      style={{ fontSize: "clamp(1.5rem, 3vw, 2rem)", color: m.featured ? "#a7f3d0" : "#f5f5f4" }}
+                    >
+                      {m.name}
+                    </span>
+                    <span
+                      className="font-light"
+                      style={{ fontSize: "0.85rem", color: "#a1a1aa" }}
+                    >
+                      {m.nameJa}
+                    </span>
+                  </div>
+                  <p
+                    className="font-light leading-relaxed"
+                    style={{ fontSize: "0.9rem", color: "rgba(245,245,244,0.6)", maxWidth: "36rem" }}
+                  >
+                    {m.desc}
+                  </p>
+                </div>
+                <div className="flex flex-col items-end gap-1 flex-shrink-0">
+                  <span
+                    className="font-accent font-semibold"
+                    style={{ fontSize: "2.5rem", color: m.featured ? "#a7f3d0" : "#f5f5f4", lineHeight: 1 }}
+                  >
+                    {m.duration}
+                    <span className="text-sm font-normal ml-1" style={{ color: "#a1a1aa" }}>min</span>
+                  </span>
+                </div>
+              </div>
+              {m.featured && (
+                <div
+                  className="mt-6 pt-6"
+                  style={{ borderTop: "1px solid rgba(167,243,208,0.15)" }}
+                >
+                  <a
+                    href="#footer"
+                    className="inline-flex items-center gap-2 font-accent font-medium text-sm transition-all duration-300"
+                    style={{ color: "#a7f3d0" }}
+                  >
+                    予約・お問い合わせ
+                    <span>→</span>
+                  </a>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        <p
+          className="mt-8 font-light reveal reveal-delay-4"
+          style={{ fontSize: "0.8rem", color: "#a1a1aa" }}
+        >
+          ※ 料金は別途ご案内いたします。初回ご来店の方はお試しコースがおすすめです。
+        </p>
+      </div>
+    </section>
+  );
+}
+
+/* ─── Footer ─── */
+function Footer() {
+  return (
+    <footer
+      id="footer"
+      className="py-20 px-8 md:px-16"
+      style={{ borderTop: "1px solid rgba(245,245,244,0.06)" }}
+    >
+      <div className="max-w-5xl mx-auto">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-10 mb-12">
+          {/* Brand */}
+          <div>
+            <p className="font-accent font-bold text-3xl mb-2">
+              Re<span style={{ color: "#a7f3d0" }}>:</span>boot
+            </p>
+            <p style={{ fontSize: "0.8rem", color: "#a1a1aa", letterSpacing: "0.08em" }}>
+              Neural Reset &amp; Foot Reflexology
+            </p>
+          </div>
+
+          {/* Info */}
+          <div className="flex flex-col md:items-end gap-2">
+            <p style={{ fontSize: "0.9rem", color: "rgba(245,245,244,0.75)" }}>
+              📍 東京都 ひばりヶ丘
+            </p>
+            <div className="flex gap-5 mt-2">
+              <a
+                href="#"
+                aria-label="Instagram"
+                className="transition-colors duration-200"
+                style={{ color: "#a1a1aa" }}
+                onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#a7f3d0")}
+                onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#a1a1aa")}
+              >
+                Instagram
+              </a>
+              <a
+                href="#"
+                aria-label="X (Twitter)"
+                className="transition-colors duration-200"
+                style={{ color: "#a1a1aa" }}
+                onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#a7f3d0")}
+                onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#a1a1aa")}
+              >
+                X / Twitter
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div
+          style={{
+            height: 1,
+            background: "linear-gradient(to right, rgba(167,243,208,0.3), transparent)",
+            marginBottom: "1.5rem",
+          }}
+        />
+        <p style={{ fontSize: "0.75rem", color: "#a1a1aa" }}>
+          © 2025 Re:boot. All rights reserved.
+        </p>
+      </div>
+    </footer>
+  );
+}
+
+/* ─── Page ─── */
+export default function Page() {
+  useScrollReveal();
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col">
-      {/* Navigation */}
-      {/* Navigation */}
-      <header className="fixed top-0 w-full bg-background/95 backdrop-blur-md z-40 border-b border-border shadow-sm">
-        <div className="container mx-auto px-4 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <img src="/images/fukusuke_icon.png" alt="福助ロゴ" className="w-12 h-12 object-contain" />
-            <div className="flex flex-col">
-              <span className="text-[10px] text-primary font-bold tracking-widest -mb-1">足揉み専門店</span>
-              <div className="font-bold text-xl tracking-wider text-foreground">
-                足屋「福助」
-              </div>
-            </div>
-          </div>
-          
-          <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
-            <a href="#concept" className="hover:text-primary transition-colors">コンセプト</a>
-            <a href="#pricing" className="hover:text-primary transition-colors">料金</a>
-            <a href="#flow" className="hover:text-primary transition-colors">施術の流れ</a>
-            <a href="#map" className="hover:text-primary transition-colors">改善ヒント</a>
-            <a href="#access" className="hover:text-primary transition-colors">アクセス</a>
-            <Button asChild size="sm" className="ml-2 bg-primary hover:bg-primary/90 text-white rounded-full">
-              <a href={LINE_URL} target="_blank" rel="noopener noreferrer">LINE予約</a>
-            </Button>
-          </nav>
-
-          <Button variant="outline" size="sm" className="md:hidden border-primary/20 text-foreground" onClick={() => setIsNavOpen(!isNavOpen)}>
-            {isNavOpen ? '閉じる' : 'メニュー'}
-          </Button>
-        </div>
-        {/* Mobile Nav */}
-        {isNavOpen && (
-          <nav className="md:hidden border-t border-border bg-background p-4 flex flex-col gap-4 text-sm font-medium shadow-md">
-            <a href="#concept" onClick={() => setIsNavOpen(false)}>コンセプト</a>
-            <a href="#pricing" onClick={() => setIsNavOpen(false)}>料金</a>
-            <a href="#flow" onClick={() => setIsNavOpen(false)}>施術の流れ</a>
-            <a href="#map" onClick={() => setIsNavOpen(false)}>改善ヒント</a>
-            <a href="#access" onClick={() => setIsNavOpen(false)}>アクセス</a>
-            <Button asChild className="w-full mt-2 bg-primary hover:bg-primary/90 text-white rounded-full">
-              <a href={LINE_URL} target="_blank" rel="noopener noreferrer">LINE予約</a>
-            </Button>
-          </nav>
-        )}
-      </header>
-
-      <main className="flex-grow pt-20 relative overflow-x-hidden">
-        {/* Global scattered logo pattern */}
-        <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: "url('/images/fukusuke_icon.png')", backgroundSize: "150px" }} />
-        
-        {/* 1. Hero Section */}
-        <section className="relative min-h-[90vh] flex items-center justify-center bg-[#FDFBF7] py-16">
-          {/* Warm background texture/gradient */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_#FFFFFF,_#FDFBF7)] opacity-80" />
-          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')] opacity-30" />
-          
-          <motion.div 
-            initial="hidden" animate="visible" variants={fadeUp}
-            className="container relative z-10 px-6 text-center md:text-left max-w-4xl"
-          >
-            <div className="flex justify-center md:justify-start mb-6">
-              <img src="/images/fukusuke_icon.png" alt="福助" className="w-28 h-28 md:w-40 md:h-40 object-contain animate-[bounce_3s_ease-in-out_infinite]" style={{ animationDuration: '4s' }} />
-            </div>
-            <h1 className="text-3xl md:text-5xl font-bold leading-snug tracking-tight mb-6 text-[#000000]">
-              足から意識をふっと溶かす、<br />痛気持ちいい刺激。<br />
-              それが、足屋「福助」です。
-            </h1>
-            <p className="text-sm md:text-xl text-[#000000] font-bold mb-10 max-w-xs md:max-w-xl mx-auto md:mx-0 leading-loose">
-              足屋「福助」で過ごす時間は、<br />現代社会で知らず知らずのうちに<br />着込んでしまった見えない鎧を剥がして、<br />本来の身軽さを取り戻す時間です。
-            </p>
-            
-            <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
-              <Button asChild size="lg" className="w-full sm:w-auto text-base bg-primary hover:bg-primary/90 text-white rounded-full shadow-md hover:shadow-lg transition-all h-14 px-8">
-                <a href={LINE_URL} target="_blank" rel="noopener noreferrer">今すぐ予約する</a>
-              </Button>
-            </div>
-          </motion.div>
-        </section>
-
-        {/* 2. Concept Section */}
-        <section id="concept" className="py-24 bg-card relative">
-          <div className="absolute inset-0 bg-[url('/assets/img/motifs_nature.png')] bg-repeat opacity-[0.03]" />
-          <motion.div 
-            initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}
-            className="container relative z-10 px-6 max-w-4xl"
-          >
-            <h2 className="text-3xl font-bold mb-8 text-primary flex items-center justify-center md:justify-start gap-3 text-center md:text-left">
-              福助の想い
-            </h2>
-            <p className="text-lg leading-loose text-[#000000] font-bold mb-10 max-w-2xl text-left">
-              現代の私たちは、常にONのスイッチを押し続け、無意識に「見えない鎧」を着込んでしまっています。<br />
-              福助では、身体の中で一番遠い場所である「足」から優しく、時に深く刺激を入れることで、その見えない鎧をほどいていきます。<br />奥底から緊張が連鎖的に解け、「ふっと」意識が溶けるような解放感を味わってください。
-            </p>
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button variant="secondary" size="lg" className="bg-[#E5D3B3] hover:bg-[#D8C3A5] text-[#000000] font-bold rounded-full h-14 px-10 shadow-sm transition-all">
-                  福助の哲学
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="max-w-3xl max-h-[90vh] bg-[#FDFBF7] text-[#000000] font-bold border-[#EAE4D9]">
-                <DialogHeader>
-                  <DialogTitle className="text-2xl font-bold mb-4 text-primary">足屋「福助」の哲学</DialogTitle>
-                </DialogHeader>
-                <MessageContent />
-              </DialogContent>
-            </Dialog>
-          </motion.div>
-        </section>
-
-        {/* 3. Pricing Section */}
-        <section id="pricing" className="py-24 bg-[#FDFBF7]">
-          <motion.div
-            initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}
-            className="container px-4 max-w-5xl"
-          >
-            <div className="bg-white border-2 border-[#EAE4D9] rounded-[2.5rem] shadow-sm p-8 md:p-16">
-              <div className="text-center md:text-left mb-12">
-                <div className="flex items-center justify-center md:justify-start gap-4 mb-6">
-                  <span className="w-12 h-px bg-primary/30 hidden md:block"></span>
-                  <h2 className="text-4xl font-bold text-primary tracking-wider">料金のご案内</h2>
-                  <span className="w-12 h-px bg-primary/30 hidden md:block"></span>
-                </div>
-                <p className="text-[#000000] text-lg md:text-xl font-bold leading-loose">
-                  当店は「枠単位」の予約制です。<br className="hidden md:block"/>
-                  ご予約いただいた時間は、お客様のためだけに確保された専有時間です。
-                </p>
-              </div>
-
-              {/* 初回全額返金保証 (Moved to top of pricing section) */}
-              <div className="max-w-3xl mx-auto mb-14">
-                <div className="bg-[#FDFBF7] p-8 md:p-10 rounded-[1.5rem] border-2 border-primary/20 shadow-sm relative overflow-hidden text-center md:text-left">
-                  <div className="absolute -bottom-6 -right-6 opacity-10 hidden md:block">
-                    <img src="/images/fukusuke_icon.png" alt="" className="w-32 h-32" />
-                  </div>
-                  <h3 className="text-lg md:text-2xl font-bold mb-4 text-primary leading-normal">初回全額返金保証（全コース対象）</h3>
-                  <p className="text-base md:text-lg text-[#000000] relative z-10 font-bold leading-loose">
-                    施術を受けて「自分には合わない」と感じられた場合は、初回の料金を全額お返しいたします。
-                  </p>
-                </div>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-14">
-                {[
-                  { title: "30分枠　試しほどき", price: "3,500円", desc: "「福助」の技術と空気感に触れていただくための入り口。まずは重い鎧のボタンを外すところから。" },
-                  { title: "60分枠　福助の足揉み", price: "6,500円", desc: "全身をリセットし、意識を溶かすための黄金比。迷ったら、こちらをお選びください。", popular: true }
-                ].map((plan, idx) => (
-                  <div key={idx} className={`bg-[#FDFBF7] p-10 md:p-12 rounded-[2rem] flex flex-col text-center md:text-left ${plan.popular ? 'border-[3px] border-primary relative shadow-md transform md:-translate-y-2' : 'border-2 border-[#EAE4D9] shadow-sm'}`}>
-                    {plan.popular && (
-                      <div className="absolute -top-4 left-1/2 -translate-x-1/2 md:left-12 md:translate-x-0 bg-primary text-white px-8 py-2 rounded-full text-base font-bold shadow-md tracking-wider whitespace-nowrap">
-                        おすすめ・メイン
-                      </div>
-                    )}
-                    <h3 className="text-2xl md:text-3xl font-bold mb-6 text-[#000000] mt-4 md:mt-2">{plan.title}</h3>
-                    <div className="mb-8">
-                      <span className="text-[2.5rem] md:text-[3.5rem] font-black text-primary font-sans tracking-wider leading-none">{plan.price.replace('円', '')}<span className="text-xl md:text-2xl font-bold ml-1">円</span></span>
-                    </div>
-                    <p className="text-lg text-[#000000] leading-loose flex-grow font-bold text-left">{plan.desc}</p>
-                  </div>
-                ))}
-              </div>
-
-              {/* 継続ご利用特典 */}
-              <div className="max-w-2xl mx-auto mb-16 text-center md:text-left">
-                <h3 className="text-2xl md:text-3xl font-black mb-8 text-[#000000]">継続ご利用特典<span className="text-lg md:text-xl ml-2">（60分枠限定）</span></h3>
-                <div className="bg-[#FDFBF7] p-8 md:p-10 rounded-[1.5rem] border-2 border-[#EAE4D9] mb-8 inline-block w-full text-left">
-                  <ul className="space-y-5 font-bold text-lg md:text-xl text-[#000000]">
-                    <li className="flex flex-col sm:flex-row sm:items-center gap-2"><span>・2回目〜5回目</span> <span className="text-2xl font-black text-primary">5,500円</span><span className="text-base text-[#000000] mt-1 sm:mt-0">（通常6,500円 → 1,000円OFF）</span></li>
-                    <li className="flex flex-col sm:flex-row sm:items-center gap-2"><span>・6回目以降</span> <span className="text-2xl font-black text-primary">5,000円</span><span className="text-base text-[#000000] mt-1 sm:mt-0">（さらに500円OFF）</span></li>
-                  </ul>
-                </div>
-                <div className="space-y-3 text-[#000000] font-bold text-lg leading-relaxed">
-                  <p>将来的には、30分枠のご利用状況を見ながら、継続特典を広げていく予定です。</p>
-                  <p className="text-base opacity-90">（現在は60分枠のみが継続特典の対象となります）</p>
-                </div>
-              </div>
-
-              {/* CTA below pricing */}
-              <div className="mt-12 text-center">
-                <p className="text-[#000000] mb-8 text-xl font-bold leading-loose">
-                  ご不明な点はLINEでお気軽にご相談ください。<br className="hidden md:block" />
-                  ご予約も24時間LINEにて受け付けております。
-                </p>
-                <div className="flex justify-center">
-                  <Button asChild size="lg" className="w-full sm:w-auto text-lg h-16 px-12 font-bold bg-primary hover:bg-primary/90 text-white rounded-full shadow-[0_4px_15px_rgba(166,60,68,0.25)] hover:shadow-[0_6px_25px_rgba(166,60,68,0.35)] transition-all">
-                    <a href={LINE_URL} target="_blank" rel="noopener noreferrer">LINEで予約・お問い合わせ</a>
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </section>
-
-        {/* 4. Rules Section */}
-        <section className="py-24 bg-card border-t border-[#EAE4D9]">
-          <div className="container px-4 max-w-4xl">
-            <div className="space-y-8">
-              {/* ご予約の変更・キャンセル */}
-              <div className="bg-[#FDFBF7] p-8 md:p-10 rounded-[2rem] border border-[#EAE4D9] max-w-3xl mx-auto">
-                <h3 className="text-xl font-bold mb-6 text-center md:text-left text-[#000000] font-bold">ご予約の変更・キャンセル</h3>
-                <p className="text-[#000000] font-bold mb-6 leading-relaxed text-center md:text-left">
-                  ご予定の変更はできる限り柔軟に対応させていただきますが、他のお客様のご案内枠確保のため、以下のルールをご了承くださいませ。
-                </p>
-                <ul className="space-y-3 text-[#000000] font-bold">
-                  <li className="flex items-start gap-2 bg-white p-3 rounded-lg border border-[#EAE4D9]">
-                    <span className="text-primary font-bold">・</span>
-                    <span>当日キャンセル：料金の50％<br/><span className="text-xs text-[#000000] font-bold">（※当日の時間変更は空きがあれば無料で可能です）</span></span>
-                  </li>
-                  <li className="flex items-start gap-2 bg-white p-3 rounded-lg border border-[#EAE4D9]">
-                    <span className="text-primary font-bold">・</span>
-                    <span>ご連絡のない無断キャンセル：料金の100％</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 5. Flow Section */}
-        <section id="flow" className="py-24 bg-background">
-          <motion.div 
-            initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}
-            className="container px-6 max-w-4xl"
-          >
-            <h2 className="text-3xl font-bold mb-10 text-center md:text-left text-primary">
-              施術の流れ
-            </h2>
-            <div className="bg-card p-8 md:p-12 rounded-[2rem] border border-[#EAE4D9] shadow-sm relative">
-              <div className="absolute -top-10 -right-10 opacity-5 hidden md:block">
-                <img src="/images/fukusuke_icon.png" alt="" className="w-40 h-40" />
-              </div>
-              <p className="text-[#000000] font-bold mb-8 text-center md:text-left relative z-10 leading-loose">
-                当店の施術は「枠単位制」。入室から退室までを余裕を持ってお過ごしいただけるお時間です。<br />
-                見えない鎧を脱ぎ捨てて、ゆったりと頭を空っぽにしてください。
-              </p>
-              <ul className="space-y-4 relative z-10">
-                {[
-                  "LINEで枠を予約",
-                  "時間に合わせて来店（着替え・準備）",
-                  "足全体を優しくほぐし開始（強さ調整します）",
-                  "途中から体がふっと緩んで頭が空っぽに…",
-                  "枠内でスッキリ終了"
-                ].map((step, idx) => (
-                  <li key={idx} className="flex items-center gap-4 bg-background p-4 rounded-2xl border border-[#EAE4D9]">
-                    <span className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-lg">
-                      {idx + 1}
-                    </span>
-                    <span className="text-base md:text-lg text-[#000000] font-bold">{step}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </motion.div>
-        </section>
-
-        {/* 4. Map Section */}
-        <section id="map" className="py-24 bg-[#FDFBF7] relative">
-          <motion.div 
-            initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}
-            className="container relative z-10 px-4"
-          >
-            <div className="mb-16 flex flex-col items-center">
-              <h2 className="text-3xl font-bold mb-8 text-primary flex items-center justify-center gap-4 w-full">
-                <span className="w-8 md:w-12 h-px bg-primary/30"></span>
-                福助の改善ヒント
-                <span className="w-8 md:w-12 h-px bg-primary/30"></span>
-              </h2>
-              <div className="text-left max-w-2xl space-y-4 text-[#000000] font-bold w-full md:w-fit">
-                <p>足を丁寧にほぐしたときに、多くの方が「ここが緩んだ」と感じやすいポイントを、感覚ベースでまとめたものです。</p>
-                <p>私たちは反射区理論を盲信しているわけではありません。<br />
-                星座や占いを楽しむように、「自分を知るためのひとつの物差し」として参考にするのは、とても有意義で面白いことだと考えています。</p>
-                <p>たとえば、僧帽筋の反射区（指の付け根付近）が硬い方は、デスクワークによる前傾姿勢などで足の重心バランスが崩れ、結果としてその部位にコリや張りが現れやすい傾向があります。</p>
-                <p>このマップは、特定の反射区をピンポイントで狙うものではなく、足全体を深くほぐすことで身体の奥底から「ふっと」リセットされる感覚を味わうためのヒントです。</p>
-                <p className="text-sm opacity-80">あくまで「こんな体感があるかも」という目安としてお読みください。<br />
-                科学的に証明されたものではありません。</p>
-              </div>
-            </div>
-
-            <div className="card-grid">
-              {OLD_MAP_ITEMS.map((item, idx) => (
-                <div key={idx} className="flip-card" onClick={(e) => e.currentTarget.classList.toggle('is-flipped')}>
-                  <div className="flip-card-inner">
-                    <div className="card-front">
-                      <div className="card-illustration"><img src={`/assets/img/${item.img}`} alt={item.title} /></div>
-                      <h3>{item.title}</h3>
-                      <div className="card-desc">
-                        <ul>
-                          <li>{item.bad1}</li>
-                          <li>{item.bad2}</li>
-                        </ul>
-                      </div>
-                      <div style={{ marginTop: 'auto', paddingTop: '1rem', width: '100%', textAlign: 'center' }}>
-                        <span className="inline-block text-xs text-[#a63c44] border border-[#a63c44] rounded-full px-3 py-1 font-bold">
-                          タップで裏返す ↺
-                        </span>
-                      </div>
-                    </div>
-                    <div className="card-back">
-                      <div className="css-footprint-container" data-target={item.target}>
-                        <div className="css-foot-body"></div>
-                        <div className="css-toe css-toe-1"></div><div className="css-toe css-toe-2"></div><div className="css-toe css-toe-3"></div><div className="css-toe css-toe-4"></div><div className="css-toe css-toe-5"></div>
-                        <div className={`reflex-spot spot-${item.target}`}></div>
-                      </div>
-                      <h4>改善後の体感</h4>
-                      <p>{item.good}</p>
-                      <div style={{ marginTop: 'auto', paddingTop: '1rem', width: '100%', textAlign: 'center' }}>
-                        <span className="inline-block text-xs text-[#111111] opacity-80 px-3 py-1 font-bold">
-                          戻る ↺
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            {/* Scroll hint indicator */}
-            <div className="flex justify-center mt-6">
-              <div className="flex gap-2 text-primary/70 text-base font-bold animate-pulse items-center">
-                <span className="text-xl">←</span> 横にスクロールできます <span className="text-xl">→</span>
-              </div>
-            </div>
-          </motion.div>
-        </section>
-
-        {/* 7. Access Section */}
-        <section id="access" className="py-24 bg-card relative">
-          <motion.div
-            initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}
-            className="container relative z-10 px-4 max-w-4xl"
-          >
-            <h2 className="text-3xl font-bold mb-12 text-center md:text-left text-primary flex items-center justify-center md:justify-start gap-3">
-              <span className="w-8 h-px bg-primary/30 hidden sm:block md:hidden"></span>
-              アクセス・営業時間
-              <span className="w-8 h-px bg-primary/30 hidden sm:block md:hidden"></span>
-            </h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              {/* Access info */}
-              <div className="bg-white p-8 rounded-[2rem] border border-[#EAE4D9] shadow-sm space-y-6">
-                <div>
-                  <p className="text-sm font-bold text-primary tracking-widest mb-2">所在地</p>
-                  <p className="text-lg font-bold text-[#000000] font-bold">西東京市ひばりが丘</p>
-                  <p className="text-sm text-[#000000] font-bold mt-1">（詳細住所は近日公開予定）</p>
-                </div>
-                <div>
-                  <p className="text-sm font-bold text-primary tracking-widest mb-2">営業時間</p>
-                  <p className="text-[#000000] font-bold font-medium">近日公開予定</p>
-                </div>
-                <div>
-                  <p className="text-sm font-bold text-primary tracking-widest mb-2">ご予約方法</p>
-                  <p className="text-[#000000] font-bold font-medium">LINEにて24時間受付</p>
-                </div>
-              </div>
-              {/* Google review */}
-              <div className="bg-white p-8 rounded-[2rem] border border-[#EAE4D9] shadow-sm flex flex-col items-center md:items-start justify-center gap-6 text-center md:text-left">
-                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-2xl">⭐</div>
-                <div>
-                  <p className="font-bold text-[#000000] font-bold mb-2 text-lg">お客様の声</p>
-                  <p className="text-base text-[#000000] font-bold leading-relaxed">
-                    実際にご来店されたお客様の生のご感想は、<br />Googleレビューでご確認いただけます。
-                  </p>
-                </div>
-                <Button asChild variant="secondary" size="lg" className="bg-[#E5D3B3] hover:bg-[#D8C3A5] text-[#000000] font-bold rounded-full h-12 px-8 shadow-sm transition-all font-bold">
-                  <a href="https://maps.google.com/" target="_blank" rel="noopener noreferrer">Googleで口コミを見る</a>
-                </Button>
-                <p className="text-sm text-[#000000] font-bold opacity-80 font-medium">※ Googleビジネスプロフィール登録後にリンクを更新します</p>
-              </div>
-            </div>
-          </motion.div>
-        </section>
-
-        {/* 8. Final CTA Section */}
-        <section className="py-24 bg-[#FDFBF7] border-t border-[#EAE4D9]">
-          <motion.div
-            initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}
-            className="container px-4 text-center md:text-left max-w-2xl"
-          >
-            <div className="flex justify-center md:justify-start mb-8">
-              <img src="/images/fukusuke_icon.png" alt="福助" className="w-24 h-24 object-contain opacity-90" />
-            </div>
-            <h2 className="text-3xl font-bold mb-6 text-[#000000] font-bold">さあ、見えない鎧を脱ぎ捨てましょう</h2>
-            <p className="text-[#000000] font-bold mb-12 pb-4 leading-loose text-lg whitespace-pre-wrap break-keep">
-              ご予約はLINEより24時間受け付けております。<br />
-              あなたの足をお揉みできる日を、楽しみにお待ちしております。
-            </p>
-            <Button asChild size="lg" className="w-full sm:w-auto text-lg h-16 px-10 bg-primary hover:bg-primary/90 text-white rounded-full shadow-[0_4px_15px_rgba(166,60,68,0.3)] hover:shadow-[0_6px_25px_rgba(166,60,68,0.4)] transition-all">
-              <a href={LINE_URL} target="_blank" rel="noopener noreferrer">今すぐLINEで予約する</a>
-            </Button>
-          </motion.div>
-        </section>
-      </main>
-
-      {/* Footer */}
-      <footer className="bg-card py-12 border-t border-[#EAE4D9]">
-        <div className="container px-4 text-center">
-          <div className="flex justify-center mb-6">
-            <img src="/images/fukusuke_icon.png" alt="福助ロゴ" className="w-12 h-12 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500" />
-          </div>
-          <div className="font-bold text-lg mb-4 text-[#000000] font-bold tracking-widest">足屋「福助」</div>
-          <p className="text-xs text-[#000000] font-bold opacity-60">&copy; 2026 足屋 福助. All rights reserved.</p>
-        </div>
-      </footer>
-    </div>
+    <main style={{ backgroundColor: "#1c1c1a", color: "#f5f5f4" }}>
+      <Nav />
+      <Hero />
+      <Introduction />
+      <Approach />
+      <Artisan />
+      <TechniqueLogic />
+      <Experience />
+      <Environment />
+      <Menu />
+      <Footer />
+    </main>
   );
 }
