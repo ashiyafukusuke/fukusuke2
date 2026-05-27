@@ -7,12 +7,18 @@ export default function StickyNav() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // ヒーロー（約500px）を過ぎたら表示
       setVisible(window.scrollY > 480);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handlePhilosophyClick = () => {
+    // Profile内のボタンをプログラム的にクリック
+    const btn = document.getElementById("open-philosophy-modal");
+    if (btn) btn.click();
+    // プロフィールセクションが画面外のときはスクロールせず直接開く
+  };
 
   return (
     <AnimatePresence>
@@ -32,6 +38,13 @@ export default function StickyNav() {
 
             {/* ナビリンク */}
             <div className="flex items-center gap-1 sm:gap-3 overflow-x-auto scrollbar-none">
+              <button
+                onClick={handlePhilosophyClick}
+                className="text-xs sm:text-sm text-gray-500 hover:text-terracotta transition-colors whitespace-nowrap px-2 py-1 rounded hover:bg-terracotta/5"
+              >
+                哲学を読む
+              </button>
+              <span className="text-gray-200 hidden sm:inline">|</span>
               <a
                 href="#menu"
                 className="text-xs sm:text-sm text-gray-500 hover:text-terracotta transition-colors whitespace-nowrap px-2 py-1 rounded hover:bg-terracotta/5"
