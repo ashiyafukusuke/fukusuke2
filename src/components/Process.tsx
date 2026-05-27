@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export default function Process() {
   const steps = [
-    { title: "1. 枠のご予約", desc: "LINEにて、ご希望の時間を確保いたします。" },
+    { title: "1. 枠のご予約", desc: "RESERVAにて、ご希望の時間をオンラインで確保いただきます。" },
     { title: "2. ご来店・準備", desc: "お着替えを済ませ、まずは日常のノイズを遮断。スイッチを完全にオフにします。" },
     { title: "3. ほぐし・整え", desc: "足全体を優しく捉え、お身体の状態に合わせて深くまで響く圧で丁寧にほどき始めます。" },
     { title: "4. まどろみの「あわい」へ", desc: "途中から身体がふっと緩み、頭の中の余白が静かに広がっていく不思議な感覚へ…。" },

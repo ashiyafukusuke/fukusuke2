@@ -25,6 +25,15 @@ export default function Footer() {
           HIBARIDOUの決して大きくはない一室ではありますが、全身全霊を込めて足揉みさせて頂きます。
         </motion.p>
         
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+          className="text-xs text-gray-400 tracking-widest mb-4 uppercase"
+        >
+          Powered by RESERVA
+        </motion.p>
         <motion.a 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -33,9 +42,9 @@ export default function Footer() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           href="#" 
-          className="inline-flex items-center justify-center bg-gradient-to-r from-vitality to-terracotta hover:from-[#FF7A50] hover:to-[#C6674B] text-white font-bold py-4 px-16 rounded-full transition-all duration-300 shadow-xl shadow-vitality/30 hover:shadow-vitality/50 text-lg tracking-wider"
+          className="inline-flex items-center justify-center bg-gradient-to-r from-vitality to-terracotta hover:from-[#FF7A50] hover:to-[#C6674B] text-white font-bold py-4 px-16 rounded-full transition-all duration-300 shadow-xl shadow-vitality/30 hover:shadow-vitality/50 text-lg tracking-widest"
         >
-          LINEで予約する
+          足揉みを予約する
         </motion.a>
         
         <motion.p 
