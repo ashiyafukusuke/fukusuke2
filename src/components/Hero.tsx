@@ -44,6 +44,26 @@ export default function Hero() {
           覚醒と睡眠の『あわい』をたゆたうような心地よさで、<br/>
           あなたを、まっさらな身体へと還します。
         </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 1.2 }}
+          className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-12"
+        >
+          <a
+            href="#"
+            className="inline-flex items-center justify-center bg-gradient-to-r from-vitality to-terracotta text-white font-bold py-4 px-10 rounded-full shadow-lg shadow-vitality/25 hover:shadow-vitality/40 hover:scale-105 transition-all duration-300 text-base tracking-wider"
+          >
+            足揉みを予約する
+          </a>
+          <a
+            href="#menu"
+            className="text-sm text-gray-500 hover:text-terracotta underline underline-offset-4 decoration-dotted transition-colors duration-200 tracking-wider"
+          >
+            まずはお品書きを見る →
+          </a>
+        </motion.div>
       </div>
     </header>
   );
