@@ -1,31 +1,79 @@
 "use client";
-const courses = [
-  { name: "Quick / Trial", ja: "30分",
-    desc: "足首より下を中心に。初めての方でも気軽に当店の足揉みを体感できるコース。" },
-  { name: "Re:boot (Signature)", ja: "60分",
-    desc: "当店一番人気・至高のリセット。足首から膝上・膝裏まで丁寧に。深い休息状態を強制誘導し、心身をシステムレベルで再起動させます。" },
-];
+import { motion } from "framer-motion";
 
 export default function Menu() {
+  const menus = [
+    {
+      title: "【 守破離 -SHUHARI- 】",
+      time: "60分枠",
+      badge: "看板メニュー",
+      badgeColor: "bg-terracotta",
+      border: "border-terracotta",
+      desc: "当店の看板メニュー。足裏から膝下まで丁寧にほどき深い休息へ誘導。身構えを解く絶妙な痛気持ちよさが、心と身体の緊張をほどき、本来の身軽さへと導きます。",
+      price: "6,500",
+      note: "※継続特典 対象コース"
+    },
+    {
+      title: "【 沼 - NUMA - 】",
+      time: "90分枠",
+      badge: "2回目以降ご利用の方対象",
+      badgeColor: "bg-gray-500",
+      border: "border-gray-500",
+      desc: "『品定め』を終え、当店の足揉みにハマってしまった方のためのコース。もう「品定め」は終わりましたよね？見えない鎧も警戒心も入り口に置いて、ズブズブと底なし沼に沈んでください。",
+      price: "9,500",
+      note: null
+    },
+    {
+      title: "【 お手並み拝見 】",
+      time: "40分枠",
+      badge: "※品定め制度対象",
+      badgeColor: "bg-olive",
+      border: "border-olive",
+      desc: "いわゆる「お試しコース」です。まずは当店の手技があなたのお身体に合うかどうか、どうぞお気軽に品定めしてください。",
+      price: "4,500",
+      note: null
+    }
+  ];
+
   return (
-    <section className="py-32 md:py-48 px-8 md:px-20 bg-[#FAFAFA] text-[#1A1A1A]">
-      <div className="w-full max-w-5xl text-left">
-        <h2 className="rv rv-d1 font-accent font-black text-4xl md:text-6xl tracking-tight mb-16 text-[#1A1A1A] border-l-[3px] border-[#3C4A3E] pl-4">Course</h2>
-        <div className="rv rv-d2 border border-[#1A1A1A] rounded-none overflow-hidden text-left">
-          <div className="bg-[#1A1A1A] text-white flex justify-between px-8 py-5">
-            <span className="font-accent text-xs tracking-[0.2em] uppercase">Course</span>
-            <span className="font-accent text-xs tracking-[0.2em] uppercase">Time</span>
-          </div>
-          {courses.map((c, i) => (
-            <div key={i} className={`flex flex-col md:flex-row justify-between items-start px-8 py-10 ${i > 0 ? "border-t border-[#1A1A1A]" : ""} transition-colors duration-200 bg-[#FAFAFA] gap-4 md:gap-16`}>
-              <div className="flex-1 text-left">
-                <h3 className="font-accent font-black text-2xl md:text-3xl mb-1 text-[#1A1A1A]">
-                  {c.name}
-                </h3>
-                <p className="font-accent text-sm tracking-[0.15em] text-[#3C4A3E] mb-5 font-bold">{c.ja}</p>
-                <p className="text-sm md:text-base font-light leading-loose text-neutral-800">{c.desc}</p>
+    <section className="py-24 px-6 md:px-12 bg-ink text-white">
+      <div className="max-w-4xl mx-auto">
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="font-serif text-3xl md:text-4xl font-bold mb-16 border-l-4 border-olive pl-6"
+        >
+          お品書き
+        </motion.h2>
+        
+        <div className="space-y-8">
+          {menus.map((item, idx) => (
+            <motion.div 
+              key={idx}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: idx * 0.2 }}
+              className={`bg-[#363636] p-8 rounded-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-l-4 ${item.border} relative overflow-hidden group hover:bg-[#3D3D3D] transition-colors duration-300 shadow-xl`}
+            >
+              <div className="flex-1 z-10">
+                <div className="flex flex-wrap items-center gap-2 md:gap-3 mb-3">
+                  <h3 className="text-2xl font-serif font-bold text-white tracking-wide">{item.title}</h3>
+                  <span className="text-lg font-sans text-gray-300">{item.time}</span>
+                  <span className={`${item.badgeColor} text-xs text-white px-2 py-1 rounded shadow-sm`}>{item.badge}</span>
+                </div>
+                <p className="text-gray-300 leading-relaxed text-sm md:text-base">
+                  {item.desc}
+                </p>
               </div>
-            </div>
+              <div className="text-left md:text-right flex-shrink-0 z-10 w-full md:w-auto mt-4 md:mt-0 border-t md:border-t-0 border-gray-600 pt-4 md:pt-0">
+                <p className="text-3xl font-bold text-paper md:text-right tracking-tight">{item.price}<span className="text-base font-normal ml-1">円</span></p>
+                {item.note && (
+                  <p className="text-xs text-terracotta mt-2 md:mt-1 font-bold">{item.note}</p>
+                )}
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>

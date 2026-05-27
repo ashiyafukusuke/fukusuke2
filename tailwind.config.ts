@@ -9,10 +9,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#8B4513",
-        background: "#FAF7F0",
-        foreground: "#2C2C2C",
+        offwhite: '#FAF7F0',
+        ink: '#2C2C2C',
+        terracotta: '#B35E44',
+        olive: '#8A9A86',
+        paper: '#FFFFFF',
       },
+      fontFamily: {
+        sans: ['var(--font-noto-sans)', 'sans-serif'],
+        serif: ['var(--font-noto-serif)', 'serif'],
+      }
     },
   },
   plugins: [],

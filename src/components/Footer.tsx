@@ -1,32 +1,52 @@
 "use client";
+import { motion } from "framer-motion";
+
 export default function Footer() {
   return (
-    <footer className="py-32 md:py-48 px-8 md:px-20 bg-[#FAFAFA] text-[#1A1A1A] border-t border-[#1A1A1A]">
-      <div className="w-full max-w-5xl text-left">
-        <div className="wa-line w-20 mb-12 rv" />
-        <h2 className="rv rv-d1 font-accent font-black text-5xl md:text-8xl tracking-tight mb-8 text-[#1A1A1A]">Re<span className="wa-text">:</span>boot</h2>
-        <p className="rv rv-d2 text-base md:text-lg font-light leading-[2.2] text-neutral-800 max-w-2xl mb-12 text-left">
-          日常のノイズを遮断し、自分自身を再起動する場所。
-        </p>
+    <footer className="bg-paper py-24 px-6 border-t border-gray-200 relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-olive to-terracotta"></div>
+      <div className="max-w-4xl mx-auto flex flex-col items-center text-center relative z-10">
+        <motion.h2 
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          className="font-serif text-3xl md:text-4xl font-bold text-ink mb-8 tracking-wide"
+        >
+          【守破離 -SHUHARI- 】
+        </motion.h2>
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="text-gray-600 mb-12 leading-loose max-w-xl text-sm md:text-base"
+        >
+          日常のノイズを遮断し、本来の自分へと還る場所。<br/>
+          HIBARIDOUの決して大きくはない一室ではありますが、全身全霊を込めて足揉みさせて頂きます。
+        </motion.p>
         
-        <div className="rv rv-d3 border border-[#1A1A1A] p-4 inline-block mb-24 hover:bg-neutral-200 transition-colors duration-300 w-full md:w-auto text-left">
-          <a href="https://fukusuke2.vercel.app/" target="_blank" rel="noopener noreferrer"
-             className="font-accent text-sm md:text-base tracking-wider text-[#1A1A1A] hover:opacity-70 transition-opacity block">
-            https://fukusuke2.vercel.app/
-          </a>
-        </div>
+        <motion.a 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          href="#" 
+          className="inline-flex items-center justify-center bg-terracotta hover:bg-[#9E523A] text-white font-bold py-4 px-16 rounded-full transition-colors duration-300 shadow-xl shadow-terracotta/30 text-lg tracking-wider"
+        >
+          LINEで予約する
+        </motion.a>
         
-        <div className="border-t border-[#1A1A1A] pt-8 flex flex-col md:flex-row justify-between items-start gap-8">
-          <div className="text-left">
-            <p className="font-accent font-black text-2xl md:text-3xl mb-1 text-[#1A1A1A]">
-              Re:boot
-            </p>
-            <p className="font-accent text-[0.6rem] md:text-xs tracking-[0.25em] uppercase text-neutral-500">
-              Neural Reset &amp; Foot Reflexology
-            </p>
-          </div>
-          <p className="text-sm md:text-base text-neutral-800 font-light">足揉み職人 ： 福助 (Fukusuke) ｜ ひばりヶ丘</p>
-        </div>
+        <motion.p 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.6 }}
+          className="mt-16 text-xs text-gray-400 tracking-widest"
+        >
+          西東京市 ひばりヶ丘 HIBARIDO 内 ｜ 足揉み職人 福助
+        </motion.p>
       </div>
     </footer>
   );
