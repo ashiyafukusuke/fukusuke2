@@ -2,7 +2,11 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function StickyNav() {
+interface StickyNavProps {
+  onOpenPhilosophy: () => void;
+}
+
+export default function StickyNav({ onOpenPhilosophy }: StickyNavProps) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -12,13 +16,6 @@ export default function StickyNav() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const handlePhilosophyClick = () => {
-    // Profile内のボタンをプログラム的にクリック
-    const btn = document.getElementById("open-philosophy-modal");
-    if (btn) btn.click();
-    // プロフィールセクションが画面外のときはスクロールせず直接開く
-  };
 
   return (
     <AnimatePresence>
@@ -39,7 +36,7 @@ export default function StickyNav() {
             {/* ナビリンク */}
             <div className="flex items-center gap-1 sm:gap-3 overflow-x-auto scrollbar-none">
               <button
-                onClick={handlePhilosophyClick}
+                onClick={onOpenPhilosophy}
                 className="text-xs sm:text-sm text-gray-500 hover:text-terracotta transition-colors whitespace-nowrap px-2 py-1 rounded hover:bg-terracotta/5"
               >
                 哲学を読む
