@@ -20,8 +20,8 @@ export default function Home() {
       <StickyNav onOpenPhilosophy={() => setModalOpen(true)} />
       <Hero />
       <Experience />
-      <Philosophy />
       <Profile onOpenPhilosophy={() => setModalOpen(true)} />
+      <Philosophy />
       <Process />
       <Menu />
       <System />
