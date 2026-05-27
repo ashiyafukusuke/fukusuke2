@@ -14,6 +14,7 @@ const config: Config = {
         terracotta: '#B35E44',
         olive: '#8A9A86',
         paper: '#FFFFFF',
+        vitality: '#F2613F', // 再起動（リブート）と活力を象徴するアクセントカラー
       },
       fontFamily: {
         sans: ['var(--font-noto-sans)', 'sans-serif'],

@@ -33,7 +33,7 @@ export default function Footer() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           href="#" 
-          className="inline-flex items-center justify-center bg-terracotta hover:bg-[#9E523A] text-white font-bold py-4 px-16 rounded-full transition-colors duration-300 shadow-xl shadow-terracotta/30 text-lg tracking-wider"
+          className="inline-flex items-center justify-center bg-gradient-to-r from-vitality to-terracotta hover:from-[#FF7A50] hover:to-[#C6674B] text-white font-bold py-4 px-16 rounded-full transition-all duration-300 shadow-xl shadow-vitality/30 hover:shadow-vitality/50 text-lg tracking-wider"
         >
           LINEで予約する
         </motion.a>
