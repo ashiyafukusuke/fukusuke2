@@ -17,8 +17,8 @@ const notoSerif = Noto_Serif_JP({
 });
 
 export const metadata: Metadata = {
-  title: "【守破離 -SHUHARI- 】足つぼ・足揉み専門店",
-  description: "現代社会で着込んでしまった「見えない鎧」を優しく剥がし、自覚すらなかった緊張や疲れをまるごと鎮める。",
+  title: "【足つぼ専門店 イタキモ】",
+  description: "痛いのに、なぜか眠くなる。西東京市ひばりヶ丘の足つぼ・足揉み専門店「イタキモ」。ガチガチの疲れを底から引き剥がします。",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

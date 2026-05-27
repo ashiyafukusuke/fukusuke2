@@ -14,11 +14,11 @@ const sections = [
     body: (
       <>
         <p className="text-sm text-olive font-serif tracking-widest mb-3">
-          足揉み職人 福助 について
+          足つぼ専門店 イタキモ について
         </p>
         <p className="leading-loose text-gray-700">
           はじめまして。西東京市ひばりヶ丘の足つぼ・足揉み専門店
-          <span className="text-ink font-semibold">【守破離 -SHUHARI-】</span>
+          <span className="text-ink font-semibold">【イタキモ】</span>
           店主の福助です。
         </p>
         <p className="mt-3 leading-loose text-gray-700">
@@ -31,13 +31,13 @@ const sections = [
   },
   {
     icon: "⊶",
-    heading: "見えない鎧を、足元から脱がせる",
+    heading: "ガチガチの疲れを、足元から引き剥がす",
     body: (
       <>
         <p className="leading-loose text-gray-700">
           スマホ、PC、絶え間ない通知、締め切り……。常に「ON」を強制される日々の中で、私たちは
-          無意識に分厚い「見えない鎧」を着込んでいます。その疲労を足元から解きほぐし、
-          まっさらな身体へと再起動させること——それが、私の使命です。
+          無意識に疲れを溜め込んでいます。その疲れを足元から解きほぐし、
+          全身スッキリとした状態へリセットさせること——それが、私の使命です。
         </p>
         <p className="mt-3 text-sm italic text-gray-400">
           （大げさに聞こえたかもしれませんが、本気です。）
@@ -60,10 +60,8 @@ const sections = [
         </p>
         <p className="mt-3 leading-loose text-gray-700">
           私が大切にしているのは——足全体を深く丁寧に刺激することで副交感神経を優位にし、
-          意識が「ふっと」溶けていく「あわい」へ導くこと。伝統を尊重しながら、
-          身体のファクトに正直であること。これが
-          <span className="font-semibold text-ink">「守破離」</span>
-          という屋号に込めた、私のスタンスです。
+          意識が「ふっと」溶けていくような状態へ導くこと。伝統を尊重しながら、
+          身体のファクトに正直であること。これが私のスタンスです。
         </p>
       </>
     ),
@@ -76,7 +74,7 @@ const sections = [
         <p className="leading-loose text-gray-700">
           肩こり、腰痛、慢性的な疲労感、自律神経の乱れ。足裏がほぐれるにつれ、身体の奥底から
           じんわりと温まり、気づけば頭の中のノイズが消え去り、首・肩・腰までも軽くなっている——
-          これが<span className="font-semibold text-terracotta">「痛気持ちいいのに意識が溶ける」</span>という体験です。
+          これが<span className="font-semibold text-terracotta">「痛いのに、なぜか眠くなる」</span>という体験です。
         </p>
         <p className="mt-3 text-sm italic text-gray-400">
           （「そんなに変わる？」と半信半疑のあなた。だから「品定め制度」があります。）
@@ -161,10 +159,10 @@ export default function PhilosophyModal({ isOpen, onClose }: PhilosophyModalProp
               <div className="flex-shrink-0 flex items-center justify-between px-6 pt-6 pb-4 border-b border-gray-100">
                 <div>
                   <p className="text-xs text-olive tracking-widest font-serif mb-0.5">
-                    PHILOSOPHY
+                    STANCE
                   </p>
                   <h2 className="font-serif text-lg font-bold text-ink tracking-wide">
-                    福助の哲学
+                    福助のスタンス
                   </h2>
                 </div>
                 <button

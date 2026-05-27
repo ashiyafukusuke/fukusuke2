@@ -6,8 +6,8 @@ export default function Process() {
     { title: "1. 枠のご予約", desc: "RESERVAにて、ご希望の時間をオンラインで確保いただきます。" },
     { title: "2. ご来店・準備", desc: "お着替えを済ませ、まずは日常のノイズを遮断。スイッチを完全にオフにします。" },
     { title: "3. ほぐし・整え", desc: "足全体を優しく捉え、お身体の状態に合わせて深くまで響く圧で丁寧にほどき始めます。" },
-    { title: "4. まどろみの「あわい」へ", desc: "途中から身体がふっと緩み、頭の中の余白が静かに広がっていく不思議な感覚へ…。" },
-    { title: "5. 心身の再起動", desc: "見えない鎧を脱ぎ捨て、まっさらな身体へ。見違えるように軽やかな足取りでお帰りいただきます。" }
+    { title: "4. うとうと夢見心地へ", desc: "途中から身体がふっと緩み、イタ気持ちよさの中でいつの間にか意識が溶けていく不思議な感覚へ…。" },
+    { title: "5. 全身スッキリ", desc: "ガチガチの疲れを脱ぎ捨て、本来の身軽な状態へ。見違えるように軽やかな足取りでお帰りいただきます。" }
   ];
 
   return (
@@ -64,7 +64,7 @@ export default function Process() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="md:w-1/2 flex flex-col justify-center bg-offwhite/80 p-8 rounded-xl z-10"
           >
-            <h4 className="text-xl font-serif font-bold text-terracotta mb-6">独自の「あわい」体験</h4>
+            <h4 className="text-xl font-serif font-bold text-terracotta mb-6">イタキモならではの体験</h4>
             <ul className="space-y-4 text-gray-700">
               <li className="flex items-start">
                 <span className="text-terracotta mr-3 mt-1">・</span>
@@ -76,11 +76,11 @@ export default function Process() {
               </li>
               <li className="flex items-start">
                 <span className="text-terracotta mr-3 mt-1">・</span>
-                <span>眠っているのか起きているのかわからない、不思議なまどろみの時間。</span>
+                <span>眠っているのか起きているのかわからない、不思議なうとうとの時間。</span>
               </li>
             </ul>
             <p className="mt-8 text-gray-600 text-sm leading-loose">
-              現代社会で知らず知らずのうちに着込んでしまった「見えない鎧」を剥がし、自覚すらなかった緊張をまるごと鎮める。奥底からイタ気持ち良くふっと抜ける、当店特有の深いリセット感をお届けします。
+              無意識に溜め込んでしまった「ガチガチの疲れ」を剥がし、自覚すらなかった緊張をまるごと鎮める。奥底からイタ気持ち良くふっと抜ける、当店特有の深いリセット感をお届けします。
             </p>
           </motion.div>
 

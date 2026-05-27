@@ -30,7 +30,7 @@ export default function StickyNav({ onOpenPhilosophy }: StickyNavProps) {
           <div className="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between gap-2">
             {/* ブランド名 */}
             <span className="font-serif text-sm font-bold text-ink tracking-wide whitespace-nowrap">
-              【守破離】
+              【イタキモ】
             </span>
 
             {/* ナビリンク */}
@@ -39,7 +39,7 @@ export default function StickyNav({ onOpenPhilosophy }: StickyNavProps) {
                 onClick={onOpenPhilosophy}
                 className="text-xs sm:text-sm text-gray-500 hover:text-terracotta transition-colors whitespace-nowrap px-2 py-1 rounded hover:bg-terracotta/5"
               >
-                哲学を読む
+                店主のスタンス
               </button>
               <span className="text-gray-200 hidden sm:inline">|</span>
               <a

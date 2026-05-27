@@ -29,7 +29,7 @@ export default function Profile({ onOpenPhilosophy }: ProfileProps) {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <p className="text-olive font-serif mb-2 tracking-widest text-sm">足揉み職人</p>
+          <p className="text-olive font-serif mb-2 tracking-widest text-sm">足揉みバカ</p>
           <h2 className="font-serif text-3xl font-bold text-ink mb-6 flex items-baseline">
             福助 
             <span className="text-lg font-sans font-normal text-gray-400 ml-3 tracking-widest">Fukusuke</span>
@@ -38,7 +38,7 @@ export default function Profile({ onOpenPhilosophy }: ProfileProps) {
             古くから愛される福助人形のように、訪れる人に安心と福を届けたい。確かな技術と、包み隠さない誠実さを、一揉みごとに込めています。
           </p>
           <p className="text-gray-700 leading-loose mt-4">
-            反射区理論と科学的根拠。その間で葛藤した時期もありましたが、今では両方の良い面を素直に認め、ただの「足つぼ」ではない独自の足揉みスタイルへと進化しました。
+            反射区理論と科学的根拠。その間で葛藤した時期もありましたが、今では両方の良い面を素直に認め、ただの「足つぼ」ではないイタキモスタイルへと進化しました。
           </p>
           <p className="text-gray-700 leading-loose mt-4">
             足揉みという仕事には、ゴールがありません。面白さは、毎日確実に上達できること。一日中揉んでいても身体は疲れず、むしろ施術中に「あ、今上手くなった！」と感じる瞬間がたまらなく楽しいのです。
@@ -55,7 +55,7 @@ export default function Profile({ onOpenPhilosophy }: ProfileProps) {
             className="mt-7 inline-flex items-center gap-2 text-sm text-terracotta hover:text-terracotta/70 font-serif tracking-wide transition-colors group"
           >
             <span className="border-b border-terracotta/40 group-hover:border-terracotta/70 transition-colors pb-0.5">
-              店主の哲学を読む
+              店主のスタンスを読む
             </span>
             <span className="text-xs opacity-60 group-hover:opacity-100 transition-opacity">→</span>
           </motion.button>

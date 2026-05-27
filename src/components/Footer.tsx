@@ -12,7 +12,7 @@ export default function Footer() {
           viewport={{ once: true }}
           className="font-serif text-3xl md:text-4xl font-bold text-ink mb-8 tracking-wide"
         >
-          【守破離 -SHUHARI- 】
+          【足つぼ専門店 イタキモ】
         </motion.h2>
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
@@ -21,8 +21,8 @@ export default function Footer() {
           transition={{ delay: 0.2 }}
           className="text-gray-600 mb-12 leading-loose max-w-xl text-sm md:text-base"
         >
-          日常のノイズを遮断し、本来の自分へと還る場所。<br/>
-          HIBARIDOUの決して大きくはない一室ではありますが、全身全霊を込めて足揉みさせて頂きます。
+          日々の疲れをリセットし、本来の身軽さを取り戻す場所。<br/>
+          HIBARIDOの決して大きくはない一室ではありますが、全身全霊を込めて足揉みさせて頂きます。
         </motion.p>
         
         <motion.p

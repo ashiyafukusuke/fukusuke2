@@ -4,25 +4,25 @@ import { motion } from "framer-motion";
 export default function Philosophy() {
   const cards = [
     {
-      title: "守",
-      subtitle: "伝統の習得",
+      title: "技",
+      subtitle: "圧倒的な経験値",
       color: "text-olive",
       border: "border-gray-100",
-      content: "リフレクソロジーを基礎とし、足裏に触れる技術と経験をひたすらに積み上げる。"
+      content: "何千人もの足を揉みほぐしてきた経験から、足裏に触れただけで、その方の疲れの芯を見つけ出します。"
     },
     {
-      title: "破",
-      subtitle: "科学へのシフト",
+      title: "理",
+      subtitle: "科学的な裏付け",
       color: "text-olive",
       border: "border-gray-100",
-      content: "経験とともにおぼろげな反射区の理論に矛盾を抱き、身体の仕組み（神経系・筋肉）という絶対的なファクトへ舵を切る。"
+      content: "反射区の言い伝えだけに頼るのではなく、筋肉や神経といった身体の仕組み（ファクト）に基づいた施術を行います。"
     },
     {
-      title: "離",
-      subtitle: "独自の『足揉み』へ",
+      title: "変",
+      subtitle: "進化し続ける",
       color: "text-terracotta",
       border: "border-b-4 border-b-terracotta border-gray-100",
-      content: "反射区だけに頼らず、身体の仕組みを多角的に捉える。伝統と科学を融合し、心身を再起動させる独自のスタイルを確立しました。"
+      content: "ただの足つぼでは終わらない。常にその日のベストを更新し続けることで、やみつきになる「イタキモ」体験を提供します。"
     }
   ];
 
@@ -36,7 +36,7 @@ export default function Philosophy() {
           transition={{ duration: 0.6 }}
           className="font-serif text-3xl md:text-4xl font-bold text-ink mb-16 border-l-4 border-terracotta pl-6 leading-tight"
         >
-          矛盾から生まれた、独自の「足揉み」
+          ただの足つぼではない、独自のスタイル
         </motion.h2>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
