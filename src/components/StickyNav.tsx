@@ -2,11 +2,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-interface StickyNavProps {
-  onOpenPhilosophy: () => void;
-}
-
-export default function StickyNav({ onOpenPhilosophy }: StickyNavProps) {
+export default function StickyNav() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {

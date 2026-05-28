@@ -17,7 +17,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen pb-32">
-      <StickyNav onOpenPhilosophy={() => setModalOpen(true)} />
+      <StickyNav />
       
       <Hero />
       
