@@ -13,95 +13,84 @@ const sections = [
     heading: null,
     body: (
       <>
-        <p className="text-sm text-olive font-serif tracking-widest mb-3">
-          足つぼ専門店 イタキモ について
-        </p>
         <p className="leading-loose text-gray-700">
-          はじめまして。西東京市ひばりヶ丘の足つぼ・足揉み専門店
-          <span className="text-ink font-semibold">【イタキモ】</span>
+          はじめまして。西東京市ひばりが丘の足つぼ専門店【イタキモ】<br />
           店主の福助です。
         </p>
-        <p className="mt-3 leading-loose text-gray-700">
-          「福助」は、私の源氏名。日本の伝統的な縁起物「福助人形」にあやかって名付けました。
-          この名を背負うことで、素のだらしない自分を切り離し、みんなに喜ばれる足揉み師として全力で振る舞う——
-          <span className="italic text-terracotta">私にとっての、覚悟のスイッチです。</span>
+        <p className="mt-4 leading-loose text-gray-700">
+          「福助」は源氏名です。福助人形からとりました。<br />
+          この名を使うと決めた日から、言い訳のきかない自分でいようと<br />
+          思っています。
         </p>
       </>
     ),
   },
   {
     icon: "⊶",
-    heading: "ガチガチの疲れを、足元から引き剥がす",
+    heading: null,
     body: (
       <>
         <p className="leading-loose text-gray-700">
-          スマホ、PC、絶え間ない通知、締め切り……。常に「ON」を強制される日々の中で、私たちは
-          無意識に疲れを溜め込んでいます。その疲れを足元から解きほぐし、
-          全身スッキリとした状態へリセットさせること——それが、私の使命です。
+          前職は全く別の仕事をしていました。<br />
+          足つぼを受けたことすらないまま、この世界に飛び込みました。
         </p>
-        <p className="mt-3 text-sm italic text-gray-400">
-          （大げさに聞こえたかもしれませんが、本気です。）
+        <p className="mt-4 leading-loose text-gray-700">
+          師匠にゼロから教わり、実際にお客様の足を揉み始めると、<br />
+          疑問が出てきました。
+        </p>
+        <p className="mt-4 leading-loose text-gray-700">
+          痛いのに、なぜ意識が溶けていくんだろう。<br />
+          このゴリゴリは、本当に老廃物なのか。<br />
+          反射区は、本当に臓器とつながっているのか。
+        </p>
+        <p className="mt-4 leading-loose text-gray-700">
+          答えを探して、解剖生理学や自律神経の本を読みました。<br />
+          今も読んでいます。完全な答えはまだ出ていません。
         </p>
       </>
     ),
   },
   {
-    icon: "⊶", // 元のicon: "⊷" から修正
-    heading: "正直な話をします",
+    icon: "⊶",
+    heading: null,
     body: (
       <>
         <p className="leading-loose text-gray-700">
-          私は「ここを押せばこの内臓が治る」といった治療行為にはこだわりません。
-          足裏の「反射区」は身体の負担を感じ取る「感性の地図」として今も価値がある。
-          ただ、足裏刺激で内臓を直接治療するエビデンスは、現代科学では十分ではない。
+          今のところ辿り着いているのは、足全体を深く丁寧に刺激する<br />
+          ことで副交感神経が優位になり、意識が少しずつ溶けていくと<br />
+          いう現象です。眠る人もいます。しゃべりながら目がトロンと<br />
+          する人もいます。施術後に「なんか変わった気がする」という<br />
+          感想は、ほぼ全員からいただきます。
         </p>
-        <p className="mt-3 text-sm italic text-gray-400">
-          （業界的に言いにくいことですが、正直に言います。）
+        <p className="mt-4 leading-loose text-gray-700">
+          反射区については、全否定もしていません。<br />
+          「ここを押せばこの臓器が治る」という因果関係には懐疑的です。<br />
+          ただ、首肩がこっている方の僧帽筋の反射区が硬くなっている<br />
+          ことは、実際によくある。体の負担が足裏に現れる「感性の地図」<br />
+          として読む分には、意味があると思っています。
         </p>
-        <p className="mt-3 leading-loose text-gray-700">
-          私が大切にしているのは——足全体を深く丁寧に刺激することで副交感神経を優位にし、
-          意識が「ふっと」溶けていくような状態へ導くこと。伝統を尊重しながら、
-          身体のファクトに正直であること。これが私のスタンスです。
-        </p>
-      </>
-    ),
-  },
-  {
-    icon: "⊸",
-    heading: "体感できること",
-    body: (
-      <>
-        <p className="leading-loose text-gray-700">
-          肩こり、腰痛、慢性的な疲労感、自律神経の乱れ。足裏がほぐれるにつれ、身体の奥底からじんわりと温まり、気づけば頭の中のノイズが消え去り、首・肩・腰までも軽くなっている—— これが<span className="font-semibold text-terracotta">「痛いのに、なぜか眠くなる」</span>という体験です。
-        </p>
-        <p className="mt-3 text-sm italic text-gray-400 font-medium">
-          （「足をもむだけでそんなに変わる？」と半信半疑の方へ。本当に変わるかどうか、まずは『初回お試し制度』でご自身の身体でお確かめください。）
+        <p className="mt-4 leading-loose text-gray-700">
+          信じていないことを売り文句にしたくないので、正直に書きました。
         </p>
       </>
     ),
   },
   {
     icon: "✿",
-    heading: "最後に",
+    heading: null,
     body: (
       <>
         <p className="leading-loose text-gray-700">
-          お金を払ってくれさえすれば誰の足でも揉むぜ！というスタンスではありません。
-          気持ちの籠らない足揉みには何の意味もないと思います。
-        </p>
-        <p className="mt-1 text-sm italic text-gray-400">
-          （正直すぎますか？でも本当のことです。）
-        </p>
-        <p className="mt-3 leading-loose text-gray-700">
-          限られた時間の中でご自身を大切にしようとする方、ご自身のために時間を使おうとしている方にこそ、
-          持てる技術のすべてをお届けしたいと考えています。
+          足つぼにゴールはないと思っています。<br />
+          次にお会いするときは、今日より上手くなっていたい。<br />
+          そのために学び続けています。
         </p>
         <p className="mt-4 leading-loose text-gray-700">
-          少し生意気な店主ではございますが、ひばりヶ丘HIBARIDO内の静かな一室で、お待ちしております。
+          ひばりが丘HIBARIDO内の小さな一室で、お待ちしています。
         </p>
         <div className="mt-6 flex justify-end">
           <p className="font-serif text-ink tracking-widest text-sm border-b border-terracotta/40 pb-1">
-            ―― 福助
+            ── 福助
           </p>
         </div>
       </>
