@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import ProcessCarousel from "./ProcessCarousel";
 
 export default function MenuCarousel() {
   const menus = [
@@ -44,8 +45,14 @@ export default function MenuCarousel() {
             メニュー・料金
             <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-olive rounded-full"></div>
           </h2>
-          <p className="text-gray-400 mt-6 text-[10px] md:text-xs tracking-widest font-bold">
-            ← 横にスクロールできます →
+        </div>
+
+        {/* ご利用の流れカルーセルをここに組み込む */}
+        <ProcessCarousel />
+
+        <div className="text-left mb-4">
+          <p className="text-gray-400 text-[10px] md:text-xs tracking-widest font-bold">
+            メニュー（← 横にスクロールできます →）
           </p>
         </div>
 
