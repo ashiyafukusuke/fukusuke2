@@ -29,10 +29,7 @@ export default function ProcessCarousel() {
     <section className="bg-white rounded-3xl shadow-lg shadow-black/5 border-t-8 border-vitality p-6 md:p-12 relative overflow-hidden">
       <div className="flex flex-col">
         <div className="text-center mb-8 md:mb-10">
-          <h2 className="font-serif text-2xl md:text-3xl font-bold text-ink inline-block relative">
-            ご利用の流れ
-            <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-vitality rounded-full"></div>
-          </h2>
+
           <p className="text-gray-400 mt-6 text-[10px] md:text-xs tracking-widest font-bold">
             ← 横にスクロールできます →
           </p>

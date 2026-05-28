@@ -32,7 +32,7 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-2xl md:text-3xl font-serif text-ink mb-10 leading-relaxed tracking-wide"
         >
-          痛いのに、<br className="md:hidden" />なぜか眠くなる。
+          痛いのに、<br className="md:hidden" />意識が溶けていく。
         </motion.p>
         
         <motion.p 
@@ -41,10 +41,10 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.8 }}
           className="text-lg md:text-xl text-gray-700 leading-loose max-w-2xl"
         >
-          足つぼ特有の「痛気持ちいい」刺激なのに、<br />
-          気づけばまどろみの夢見心地。<br />
-          ガチガチの疲れを奥底から引きはがし、<br /><br />
-          全身をスッキリとした状態へリセットします。
+          足裏への深い圧刺激が、<br />
+          体が「もう休んでいい」と判断するスイッチになるのかもしれません。<br /><br />
+          抜けない慢性的な疲れや、浅い眠りに悩む方へ。<br />
+          ただ痛いだけではない、無意識へと沈んでいく体験を。
         </motion.p>
 
         <motion.div
