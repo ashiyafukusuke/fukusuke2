@@ -54,7 +54,9 @@ export default function Hero() {
           className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-12"
         >
           <a
-            href="#"
+            href="https://reserva.be"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center bg-gradient-to-r from-vitality to-terracotta text-white font-bold py-4 px-10 rounded-full shadow-lg shadow-vitality/25 hover:shadow-vitality/40 hover:scale-105 transition-all duration-300 text-base tracking-wider"
           >
             予約枠を確保する
