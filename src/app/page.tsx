@@ -16,16 +16,21 @@ export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
-    <main className="min-h-screen pt-32 pb-32 px-4 md:px-8 space-y-16 max-w-5xl mx-auto">
+    <main className="min-h-screen pb-32">
       <StickyNav onOpenPhilosophy={() => setModalOpen(true)} />
+      
       <Hero />
-      <Experience />
-      <Profile onOpenPhilosophy={() => setModalOpen(true)} />
-      <Philosophy />
-      <Process />
-      <Menu />
-      <System />
-      <CancelPolicy />
+      
+      <div className="pt-16 px-4 md:px-8 space-y-16 max-w-5xl mx-auto">
+        <Experience />
+        <Profile onOpenPhilosophy={() => setModalOpen(true)} />
+        <Philosophy />
+        <Process />
+        <Menu />
+        <System />
+        <CancelPolicy />
+      </div>
+
       <Footer />
       {/* モーダルはページ最上位でレンダリング */}
       <PhilosophyModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />

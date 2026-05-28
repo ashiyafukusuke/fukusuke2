@@ -3,15 +3,15 @@ import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
-    <header className="bg-white rounded-3xl shadow-lg shadow-black/5 border-t-8 border-terracotta p-8 md:p-12 overflow-hidden relative">
-      <div className="flex flex-col items-start relative">
+    <header className="gradient-border bg-offwhite pt-24 pb-20 px-6 md:px-12 overflow-hidden">
+      <div className="max-w-4xl mx-auto flex flex-col items-start relative">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="mb-6"
         >
-          <span className="text-terracotta font-serif text-2xl md:text-3xl font-bold tracking-widest drop-shadow-sm">
+          <span className="bg-ink text-white text-sm md:text-base font-bold tracking-widest px-4 py-2 rounded-full">
             足つぼ専門店
           </span>
         </motion.div>

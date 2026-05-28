@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-br from-terracotta to-vitality py-24 px-6 relative overflow-hidden text-white">
+    <footer className="bg-gradient-to-br from-[#3d2b2b] to-ink py-24 px-6 relative overflow-hidden text-white">
       <div className="absolute top-0 left-0 w-full h-2 bg-white/20"></div>
       <div className="max-w-4xl mx-auto flex flex-col items-center text-center relative z-10">
         <motion.h2 
@@ -66,7 +66,7 @@ export default function Footer() {
           transition={{ delay: 0.6 }}
           className="mt-16 text-xs text-white/60 tracking-widest"
         >
-          西東京市 ひばりが丘 HIBARIDO 内 / イタキモ師 福助
+          西東京市 ひばりが丘 HIBARIDO 内 / 福助
         </motion.p>
       </div>
     </footer>

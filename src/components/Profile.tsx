@@ -31,7 +31,7 @@ export default function Profile({ onOpenPhilosophy }: ProfileProps) {
         >
           <p className="text-olive font-serif mb-2 tracking-widest text-sm font-bold">イタキモの伝道師</p>
           <h2 className="text-3xl md:text-4xl font-serif font-bold text-ink mb-6">
-            イタキモ師 福助
+            福助
             <span className="text-lg font-sans font-normal text-gray-400 ml-3 tracking-widest">Fukusuke</span>
           </h2>
           <div className="text-gray-700 leading-loose space-y-4">

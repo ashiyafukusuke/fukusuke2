@@ -101,7 +101,7 @@ const sections = [
         </p>
         <div className="mt-6 flex justify-end">
           <p className="font-serif text-ink tracking-widest text-sm border-b border-terracotta/40 pb-1">
-            ―― イタキモ師 福助
+            ―― 福助
           </p>
         </div>
       </>
