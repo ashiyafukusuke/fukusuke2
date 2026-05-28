@@ -4,6 +4,18 @@ import { motion } from "framer-motion";
 export default function Menu() {
   const menus = [
     {
+      title: "【 ぷちイタキモ 40分 】",
+      time: "お試し",
+      badge: "※初回お試し制度対象",
+      badgeColor: "bg-olive",
+      border: "border-olive",
+      desc: "いわゆる「お試しコース」です。まずは当店の手技があなたのお身体に合うかどうか、どうぞお気軽にお試しください。",
+      price: "4,500",
+      note: null,
+      highlight: true,
+      firstTimeBadge: true,
+    },
+    {
       title: "【 ザ・イタキモ 60分 】",
       time: "標準",
       badge: "看板メニュー",
@@ -21,23 +33,11 @@ export default function Menu() {
       badge: "2回目以降ご利用の方対象",
       badgeColor: "bg-gray-500",
       border: "border-gray-500",
-      desc: "『品定め』を終え、イタキモの虜になってしまった方のためのコース。日々の疲れを徹底的に解きほぐし、ズブズブと底なし沼のような深いリラックスへ沈んでください。",
+      desc: "『初回お試し』を終え、イタキモの虜になってしまった方のためのコース。日々の疲れを徹底的に解きほぐし、ズブズブと底なし沼のような深いリラックスへ沈んでください。",
       price: "9,500",
       note: null,
       highlight: false,
       firstTimeBadge: false,
-    },
-    {
-      title: "【 ぷちイタキモ 40分 】",
-      time: "お試し",
-      badge: "※品定め制度対象",
-      badgeColor: "bg-olive",
-      border: "border-olive",
-      desc: "いわゆる「お試しコース」です。まずは当店の手技があなたのお身体に合うかどうか、どうぞお気軽にお試しください。",
-      price: "4,500",
-      note: null,
-      highlight: true,
-      firstTimeBadge: true,
     }
   ];
 
@@ -50,7 +50,7 @@ export default function Menu() {
           viewport={{ once: true }}
           className="font-serif text-3xl md:text-4xl font-bold mb-16 border-l-4 border-olive pl-6"
         >
-          お品書き
+          メニュー
         </motion.h2>
         
         <div className="space-y-8">
@@ -87,7 +87,7 @@ export default function Menu() {
                 {/* ハイライトカード専用：品定め制度の補足 */}
                 {item.highlight && (
                   <p className="mt-4 text-olive text-xs font-bold tracking-wide">
-                    ▶ 合わなければ、お代は頂きません。（品定め制度）
+                    ▶ 合わなければ、お代は頂きません。（初回お試し制度）
                   </p>
                 )}
               </div>

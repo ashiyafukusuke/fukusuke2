@@ -230,7 +230,7 @@ export default function PhilosophyModal({ isOpen, onClose }: PhilosophyModalProp
                   rel="noopener noreferrer"
                   className="block w-full text-center bg-gradient-to-r from-vitality to-terracotta text-white font-bold py-3 rounded-full shadow-md hover:shadow-lg hover:scale-[1.02] transition-all duration-200 text-sm tracking-wide"
                 >
-                  足揉みを予約する
+                  行く日を決める
                 </a>
                 <p className="text-center text-xs text-gray-400 mt-2">Powered by RESERVA</p>
               </div>

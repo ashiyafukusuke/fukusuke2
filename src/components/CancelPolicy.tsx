@@ -35,15 +35,15 @@ const policies: PolicyRow[] = [
 ];
 
 const severityStyle: Record<PolicyRow["severity"], string> = {
-  ok:   "border-l-4 border-olive bg-olive/5",
-  warn: "border-l-4 border-terracotta bg-terracotta/5",
-  end:  "border-l-4 border-vitality bg-vitality/5",
+  ok:   "border-l-4 border-vitality bg-vitality/5",
+  warn: "border-l-4 border-vitality bg-vitality/5",
+  end:  "border-l-4 border-terracotta bg-terracotta/5",
 };
 
 const severityDot: Record<PolicyRow["severity"], string> = {
-  ok:   "bg-olive",
-  warn: "bg-terracotta",
-  end:  "bg-vitality",
+  ok:   "bg-vitality",
+  warn: "bg-vitality",
+  end:  "bg-terracotta",
 };
 
 export default function CancelPolicy() {
@@ -110,7 +110,7 @@ export default function CancelPolicy() {
           <p className="text-xs text-gray-400 leading-loose">
             ※「以降のご予約をお断りいたします」とは、当店との施術のご縁を終了することを意味します。<br/>
             ルールを設けているのは、罰のためではありません。枠を押さえたまま来られない方がいると、その時間を本当に必要としている別の誰かが機会を失うからです。<br/>
-            この限られた時間を大切にしていただければ幸いです。
+            お互いが気持ちよく過ごすためのルールとして、ご協力いただけますと幸いです。
           </p>
         </motion.div>
       </div>

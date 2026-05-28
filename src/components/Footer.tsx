@@ -44,8 +44,20 @@ export default function Footer() {
           href="#" 
           className="inline-flex items-center justify-center bg-gradient-to-r from-vitality to-terracotta hover:from-[#FF7A50] hover:to-[#C6674B] text-white font-bold py-4 px-16 rounded-full transition-all duration-300 shadow-xl shadow-vitality/30 hover:shadow-vitality/50 text-lg tracking-widest"
         >
-          足揉みを予約する
+          行く日を決める
         </motion.a>
+
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5 }}
+          className="mt-12 text-sm text-gray-500 leading-loose flex flex-col items-center"
+        >
+          <p><strong>所在地:</strong> 〒202-0001 東京都西東京市ひばりが丘3丁目2−51 2番 51号 2F R-09</p>
+          <p className="mt-2"><strong>営業日:</strong> 水・木 6時30分～21時30分</p>
+          <p className="text-xs mt-1">※その他曜日は予約ページにてご確認ください。予約枠がある日時は営業日となります。</p>
+        </motion.div>
         
         <motion.p 
           initial={{ opacity: 0 }}
@@ -54,7 +66,7 @@ export default function Footer() {
           transition={{ delay: 0.6 }}
           className="mt-16 text-xs text-gray-400 tracking-widest"
         >
-          西東京市 ひばりヶ丘 HIBARIDO 内 ｜ 足揉み職人 福助
+          西東京市 ひばりが丘 HIBARIDO 内 / 足揉み職人 福助
         </motion.p>
       </div>
     </footer>

@@ -8,21 +8,21 @@ export default function Philosophy() {
       subtitle: "圧倒的な経験値",
       color: "text-olive",
       border: "border-gray-100",
-      content: "何千人もの足を揉みほぐしてきた経験から、足裏に触れただけで、その方の疲れの芯を見つけ出します。"
+      content: "数千人もの足を揉みほぐしてきた圧倒的な経験。足裏に触れるだけで、その方の疲れの芯を的確に見つけ出します。"
     },
     {
       title: "理",
       subtitle: "科学的な裏付け",
       color: "text-olive",
       border: "border-gray-100",
-      content: "反射区の言い伝えだけに頼るのではなく、筋肉や神経といった身体の仕組み（ファクト）に基づいた施術を行います。"
+      content: "伝統的な反射区理論だけでなく、筋肉や神経といった身体の仕組み（ファクト）も融合。独自の足つぼスタイル理論で施術を行います。"
     },
     {
       title: "変",
       subtitle: "進化し続ける",
       color: "text-terracotta",
       border: "border-b-4 border-b-terracotta border-gray-100",
-      content: "ただの足つぼでは終わらない。常にその日のベストを更新し続けることで、やみつきになる「イタキモ」体験を提供します。"
+      content: "毎日人の足に触れ、上達し続ける技術。常にその日のベストを更新し続け、やみつきになる「イタキモ」体験を提供します。"
     }
   ];
 

@@ -34,18 +34,21 @@ export default function Profile({ onOpenPhilosophy }: ProfileProps) {
             福助 
             <span className="text-lg font-sans font-normal text-gray-400 ml-3 tracking-widest">Fukusuke</span>
           </h2>
-          <p className="text-gray-700 leading-loose">
-            古くから愛される福助人形のように、訪れる人に安心と福を届けたい。確かな技術と、包み隠さない誠実さを、一揉みごとに込めています。
-          </p>
-          <p className="text-gray-700 leading-loose mt-4">
-            反射区理論と科学的根拠。その間で葛藤した時期もありましたが、今では両方の良い面を素直に認め、ただの「足つぼ」ではないイタキモスタイルへと進化しました。
-          </p>
-          <p className="text-gray-700 leading-loose mt-4">
-            足揉みという仕事には、ゴールがありません。面白さは、毎日確実に上達できること。一日中揉んでいても身体は疲れず、むしろ施術中に「あ、今上手くなった！」と感じる瞬間がたまらなく楽しいのです。
-          </p>
-          <p className="text-gray-700 leading-loose mt-4">
-            今日この瞬間も、持てるすべての技術を出し尽くします。でも、次にお会いする時はもっと上手くなっているはず。常に最高を更新し続けられるからこそ、私はどんなエンタメよりも、足揉みが大好きなのです。<span className="text-terracotta font-medium block mt-2">終わりのない探求が、楽しくてしかたないんです！</span>
-          </p>
+          <div className="text-gray-700 leading-loose space-y-4">
+            <p>
+              古くから愛される福助人形のように、訪れる人に安心と福を届けたい。確かな技術と包み隠さない誠実さを一揉みごとに込めています。
+            </p>
+            <p>
+              反射区理論と科学的根拠。その間で葛藤した時期もありましたが、今では両方の良い面を素直に認め、ただの「足つぼ」ではないイタキモスタイルへと進化しました。
+            </p>
+            <p>
+              足揉みという仕事にはゴールがありません。面白さは毎日確実に上達できること。一日中揉んでいても身体は疲れず、むしろ施術中に「あ、今上手くなった！」と感じる瞬間がたまらなく楽しいのです。
+            </p>
+            <p>
+              今日この瞬間も持てるすべての技術を出し尽くします。でも次にお会いする時はもっと上手くなっているはず。<br />
+              <span className="font-bold text-ink">終わりのない探求が楽しくてしかたありません！</span>
+            </p>
+          </div>
 
           {/* 哲学モーダルを開くボタン */}
           <motion.button

@@ -9,12 +9,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        offwhite: '#F0F8FF', // アクア（空・水）
-        ink: '#2C3E50',      // カズマ（ダークスレート）
-        terracotta: '#E63946', // めぐみん（爆裂レッド）
-        olive: '#4CAF50',    // カズマ（ジャージグリーン）
-        paper: '#E0F7FA',    // アクア（シアンホワイト）
-        vitality: '#FFB703', // ダクネス（クルセイダーイエロー）
+        offwhite: '#FFFFFF', // ピュアホワイト
+        ink: '#1A1A1A',      // より強い黒
+        terracotta: '#FF3333', // ビビッドレッド
+        olive: '#00CC66',    // フレッシュグリーン
+        paper: '#F8F9FA',    // わずかにグレーがかった白（カードなど）
+        vitality: '#FFCC00', // ビビッドイエロー
       },
       fontFamily: {
         sans: ['var(--font-noto-sans)', 'sans-serif'],

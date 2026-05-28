@@ -62,7 +62,7 @@ export default function StickyNav({ onOpenPhilosophy }: StickyNavProps) {
               href="#"
               className="flex-shrink-0 bg-gradient-to-r from-vitality to-terracotta text-white text-xs sm:text-sm font-bold px-4 py-2 rounded-full shadow hover:scale-105 transition-transform duration-200 whitespace-nowrap"
             >
-              予約する
+              行く日を決める
             </a>
           </div>
         </motion.nav>

@@ -67,11 +67,11 @@ export default function Experience() {
           {/* 3 */}
           <motion.div variants={item} className="flex flex-col md:flex-row gap-8 items-start group">
             <div className="w-full md:w-1/3">
-              <h3 className="text-2xl font-serif text-terracotta font-bold group-hover:translate-x-2 transition-transform duration-300">うとうと夢見心地</h3>
+              <h3 className="text-2xl font-serif text-terracotta font-bold group-hover:translate-x-2 transition-transform duration-300">まどろみ</h3>
             </div>
             <div className="w-full md:w-2/3">
               <p className="text-gray-700 leading-loose text-lg">
-                眠っているのか、起きているのかわからない不思議な感覚。「イタタ…」と「スヤァ…」の繰り返しの中で、頭の中の雑念が静かに消えていきます。
+                眠っているのか起きているのかわからない不思議な感覚。「イタタ…」と「スヤァ…」の繰り返しの中で頭の中の雑念が静かに消えていきます。他店では味わえない、私だからこそ導ける唯一無二のリセット体験です。
               </p>
             </div>
           </motion.div>

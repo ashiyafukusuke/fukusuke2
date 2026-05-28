@@ -40,8 +40,8 @@ export default function Hero() {
           className="text-lg md:text-xl text-gray-700 leading-loose max-w-2xl"
         >
           足つぼ特有の「痛気持ちいい」刺激なのに、<br />
-          気づけばうとうと、夢見心地。<br />
-          ガチガチの疲れを底から引き剥がし、<br /><br />
+          気づけばまどろみの夢見心地。<br />
+          ガチガチの疲れを奥底から引きはがし、<br /><br />
           あなたを、全身スッキリとした状態へリセットします。
         </motion.p>
 
@@ -55,7 +55,7 @@ export default function Hero() {
             href="#"
             className="inline-flex items-center justify-center bg-gradient-to-r from-vitality to-terracotta text-white font-bold py-4 px-10 rounded-full shadow-lg shadow-vitality/25 hover:shadow-vitality/40 hover:scale-105 transition-all duration-300 text-base tracking-wider"
           >
-            足揉みを予約する
+            行く日を決める
           </a>
           <a
             href="#menu"
