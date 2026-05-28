@@ -29,7 +29,7 @@ export default function ProcessCarousel() {
     <div className="w-full mb-12">
       <div className="flex flex-col">
         <div className="text-left mb-4">
-          <p className="text-gray-400 text-[10px] md:text-xs tracking-widest font-bold">
+          <p className="text-gray-400 text-[10px] md:text-xs tracking-widest font-bold md:hidden">
             ご利用の流れ（← 横にスクロールできます →）
           </p>
         </div>

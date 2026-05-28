@@ -18,7 +18,7 @@ export default function MenuCarousel() {
       title: "60分枠",
       price: "6,500円",
       desc: "定番の全身アプローチ",
-      content: "当店の一番人気。台湾式足揉みの手技をベースに、神経生理学的な視点を重ねた独自のスタイルです。足裏に深く、丁寧に圧をかけていくことで、副交感神経が優位になり、全身の緊張がほどけていきます。左足が終わる頃には、多くの方の意識がふっと溶け始めます。",
+      content: "当店の一番人気。台湾式の手技をベースに、神経と血流への働きかけを意識した施術で全身を深いリセットへ導きます。左足が終わる頃には、多くの方の意識がゆっくりと溶け始めます。",
       color: "border-terracotta",
       bg: "bg-terracotta/5",
       badge: "王道・一番人気",
@@ -51,7 +51,7 @@ export default function MenuCarousel() {
         <ProcessCarousel />
 
         <div className="text-left mb-4">
-          <p className="text-gray-400 text-[10px] md:text-xs tracking-widest font-bold">
+          <p className="text-gray-400 text-[10px] md:text-xs tracking-widest font-bold md:hidden">
             メニュー（← 横にスクロールできます →）
           </p>
         </div>

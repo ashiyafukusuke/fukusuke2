@@ -29,17 +29,16 @@ export default function Profile({ onOpenPhilosophy }: ProfileProps) {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <p className="text-olive font-serif mb-2 tracking-widest text-sm font-bold">イタキモの伝道師</p>
+          <p className="text-olive font-serif mb-2 tracking-widest text-sm font-bold">店主 福助</p>
           <h2 className="text-3xl md:text-4xl font-serif font-bold text-ink mb-6">
             福助
             <span className="text-lg font-sans font-normal text-gray-400 ml-3 tracking-widest">Fukusuke</span>
           </h2>
           <div className="text-gray-700 leading-loose space-y-4 text-sm md:text-base">
             <p>
-              全くの異業種から、足揉みを受けた経験すらなくこの世界へ入りました。現場で「なぜ効くのか」を考え続け、痛みを感じるのは神経では？といった疑問から自律神経や体の仕組みを独学で学び直しました。
-            </p>
-            <p>
-              反射区という感性の地図を大切にしながらも、原因ではなく相関として捉えるようにしています。足揉みにゴールはありません。「次に会う時は今日より上手くなっている」。そう信じて、日々足と向き合っています。
+              足つぼにゴールはないと思っています。<br />
+              次にお会いするときは、今日より上手くなっていたい。<br />
+              そのために学び続けています。
             </p>
           </div>
 

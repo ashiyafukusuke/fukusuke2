@@ -41,10 +41,12 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.8 }}
           className="text-lg md:text-xl text-gray-700 leading-loose max-w-2xl"
         >
-          足裏への深い圧刺激が、<br />
-          体が「もう休んでいい」と判断するスイッチになるのかもしれません。<br /><br />
-          抜けない慢性的な疲れや、浅い眠りに悩む方へ。<br />
-          ただ痛いだけではない、無意識へと沈んでいく体験を。
+          強い刺激を受けているはずなのに、<br />
+          気づくと意識が遠くなっていく。<br />
+          眠る人もいます。しゃべりながら<br />
+          目がトロンとする人もいます。<br />
+          これは副交感神経が優位になった結果だと<br />
+          私は考えています。
         </motion.p>
 
         <motion.div

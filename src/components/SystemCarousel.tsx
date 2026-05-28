@@ -31,7 +31,7 @@ export default function SystemCarousel() {
             安心と継続の仕組み
             <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-olive rounded-full"></div>
           </h2>
-          <p className="text-gray-400 mt-6 text-[10px] md:text-xs tracking-widest font-bold">
+          <p className="text-gray-400 mt-6 text-[10px] md:text-xs tracking-widest font-bold md:hidden">
             ← 横にスクロールできます →
           </p>
         </div>

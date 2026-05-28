@@ -45,7 +45,7 @@ export default function PolicyCarousel() {
             限られた枠を大切にしたいと思っています。<br/>
             お互いの時間を誠実に扱うためのお約束として、お読みください。
           </p>
-          <p className="text-gray-400 mt-4 text-[10px] md:text-xs tracking-widest font-bold">
+          <p className="text-gray-400 mt-4 text-[10px] md:text-xs tracking-widest font-bold md:hidden">
             ← 横にスクロールできます →
           </p>
         </div>
