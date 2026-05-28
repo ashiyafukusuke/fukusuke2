@@ -44,14 +44,17 @@ export default function Menu() {
   return (
     <section id="menu" className="py-24 px-6 md:px-12 bg-offwhite text-ink">
       <div className="max-w-4xl mx-auto">
-        <motion.h2 
+        <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="font-serif text-3xl md:text-4xl font-bold text-ink mb-16 border-l-4 border-terracotta pl-6"
+          className="text-center mb-16"
         >
-          メニュー
-        </motion.h2>
+          <h2 className="font-serif text-3xl md:text-4xl font-bold text-ink inline-block relative">
+            メニュー
+            <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-terracotta rounded-full"></div>
+          </h2>
+        </motion.div>
         
         <div className="space-y-8">
           {menus.map((item, idx) => (
