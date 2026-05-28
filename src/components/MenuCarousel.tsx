@@ -30,6 +30,14 @@ export default function MenuCarousel() {
     }
   ];
 
+  const steps = [
+    { title: "ご予約", desc: "予約ページからオンラインで時間枠を確保します。" },
+    { title: "ご来店・お着替え", desc: "入室後、靴を脱ぎ、必要に応じてお着替えをします。（膝上までめくれるズボンがおすすめです）" },
+    { title: "施術（イタキモ体験）", desc: "ホットタオルで足を拭き、まどろみのイタキモ体験へ。" },
+    { title: "お目覚め・お着替え", desc: "スッキリ目覚めたらお着替えを。" },
+    { title: "お会計・ご退室", desc: "すべて「予約した時間枠の中」で完了します。遅刻した場合でも終了時間は遅れませんのでご安心を。" }
+  ];
+
   return (
     <section id="menu" className="bg-white rounded-3xl shadow-lg shadow-black/5 border-t-8 border-olive p-6 md:p-12 text-ink relative overflow-hidden">
       <div className="flex flex-col">
@@ -82,6 +90,40 @@ export default function MenuCarousel() {
             </motion.div>
           ))}
         </div>
+
+        {/* 施術の流れセクション追加 */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mt-12 mb-8 md:mt-16 md:mb-10"
+        >
+          <h3 className="font-serif text-xl md:text-2xl font-bold text-ink inline-block relative">
+            ご利用の流れ
+            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-8 h-1 bg-vitality rounded-full"></div>
+          </h3>
+        </motion.div>
+
+        {/* 施術の流れ 横スクロールコンテナ */}
+        <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-6 px-6 md:mx-0 md:px-0 scrollbar-hide items-stretch">
+          {steps.map((item, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              className={`min-w-[70vw] md:min-w-[280px] flex-1 shrink-0 snap-center rounded-2xl p-6 border-2 border-vitality/20 bg-vitality/5 flex flex-col justify-start relative overflow-hidden`}
+            >
+              <div className="text-6xl font-black text-vitality/10 absolute -top-2 -right-2">{`0${idx + 1}`}</div>
+              <h3 className="text-lg font-bold text-ink mb-3 relative z-10"><span className="text-vitality mr-2">STEP {idx + 1}.</span><br className="md:hidden" />{item.title}</h3>
+              <p className="text-sm md:text-base text-gray-700 leading-relaxed relative z-10">
+                {item.desc}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+        
       </div>
     </section>
   );

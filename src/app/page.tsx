@@ -4,7 +4,6 @@ import Hero from "@/components/Hero";
 import FeaturesCarousel from "@/components/FeaturesCarousel";
 import MenuCarousel from "@/components/MenuCarousel";
 import Profile from "@/components/Profile";
-import ProcessCarousel from "@/components/ProcessCarousel";
 import SystemCarousel from "@/components/SystemCarousel";
 import PolicyCarousel from "@/components/PolicyCarousel";
 import Footer from "@/components/Footer";
@@ -25,7 +24,6 @@ export default function Home() {
         <Profile onOpenPhilosophy={() => setModalOpen(true)} />
         <SystemCarousel />
         <MenuCarousel />
-        <ProcessCarousel />
         <PolicyCarousel />
       </div>
 
