@@ -1,8 +1,9 @@
 "use client";
 import { useState } from "react";
 import Hero from "@/components/Hero";
-import FeaturesCarousel from "@/components/FeaturesCarousel";
-import MenuCarousel from "@/components/MenuCarousel";
+import CombinedCarousel from "@/components/CombinedCarousel";
+import ProcessCarousel from "@/components/ProcessCarousel";
+import Enjoy100 from "@/components/Enjoy100";
 import Profile from "@/components/Profile";
 import SystemCarousel from "@/components/SystemCarousel";
 import PolicyCarousel from "@/components/PolicyCarousel";
@@ -20,10 +21,11 @@ export default function Home() {
       <Hero />
       
       <div className="pt-16 px-4 md:px-8 space-y-16 max-w-5xl mx-auto">
-        <FeaturesCarousel />
-        <Profile onOpenPhilosophy={() => setModalOpen(true)} />
+        <CombinedCarousel />
+        <ProcessCarousel />
+        <Enjoy100 />
         <SystemCarousel />
-        <MenuCarousel />
+        <Profile onOpenPhilosophy={() => setModalOpen(true)} />
         <PolicyCarousel />
       </div>
 
