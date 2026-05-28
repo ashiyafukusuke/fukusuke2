@@ -27,14 +27,14 @@ export default function Philosophy() {
   ];
 
   return (
-    <section className="bg-ink rounded-3xl shadow-xl shadow-black/20 p-8 md:p-12 text-white">
+    <section className="bg-white rounded-3xl shadow-lg shadow-black/5 border-t-8 border-terracotta p-8 md:p-12 text-ink">
       <div className="flex flex-col">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="font-serif text-3xl md:text-4xl font-bold text-white mb-16 border-l-4 border-terracotta pl-6 leading-tight"
+          className="font-serif text-3xl md:text-4xl font-bold text-ink mb-16 border-l-4 border-terracotta pl-6 leading-tight"
         >
           ただの足つぼではない、独自のスタイル
         </motion.h2>
@@ -47,11 +47,11 @@ export default function Philosophy() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className={`bg-[#2a2a2a] p-8 rounded-xl shadow-lg border hover:border-gray-500 transition-colors duration-300 ${card.border}`}
+              className={`p-8 rounded-xl shadow-sm border hover:shadow-md transition-shadow duration-300 ${card.border} ${index === 2 ? 'bg-terracotta/5' : 'bg-olive/5'}`}
             >
               <div className={`text-5xl font-serif mb-6 ${card.color}`}>{card.title}</div>
-              <h3 className="text-xl font-bold text-white mb-4">{card.subtitle}</h3>
-              <p className="text-gray-300 leading-relaxed text-sm md:text-base">{card.content}</p>
+              <h3 className="text-xl font-bold text-ink mb-4">{card.subtitle}</h3>
+              <p className="text-gray-700 leading-relaxed text-sm md:text-base">{card.content}</p>
             </motion.div>
           ))}
         </div>
