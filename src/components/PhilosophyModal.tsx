@@ -46,7 +46,7 @@ const sections = [
     ),
   },
   {
-    icon: "⊷",
+    icon: "⊶", // 元のicon: "⊷" から修正
     heading: "正直な話をします",
     body: (
       <>

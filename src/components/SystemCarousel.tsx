@@ -26,17 +26,15 @@ export default function SystemCarousel() {
   return (
     <section className="bg-white rounded-3xl shadow-lg shadow-black/5 border-t-8 border-olive p-6 md:p-12 text-ink relative overflow-hidden">
       <div className="flex flex-col">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-10 md:mb-12"
-        >
+        <div className="text-center mb-8 md:mb-10">
           <h2 className="font-serif text-2xl md:text-3xl font-bold text-ink inline-block relative">
             安心と継続の仕組み
             <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-olive rounded-full"></div>
           </h2>
-        </motion.div>
+          <p className="text-gray-400 mt-6 text-[10px] md:text-xs tracking-widest font-bold">
+            ← 横にスクロールできます →
+          </p>
+        </div>
         
         {/* 横スクロールコンテナ */}
         <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-8 -mx-6 px-6 md:mx-0 md:px-0 scrollbar-hide items-stretch">
@@ -47,14 +45,14 @@ export default function SystemCarousel() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className={`min-w-[85vw] md:min-w-[400px] flex-1 shrink-0 snap-center rounded-2xl p-6 md:p-8 border-2 ${item.color} ${item.bg} flex flex-col justify-start`}
+              className={`min-w-[80vw] sm:min-w-[50vw] md:min-w-[calc(50%-12px)] flex-1 shrink-0 snap-center rounded-2xl p-5 md:p-8 border-2 ${item.color} ${item.bg} flex flex-col justify-start`}
             >
               <div className="mb-4 flex items-center flex-wrap gap-2">
-                <h3 className="text-xl md:text-2xl font-bold font-serif text-ink">{item.title}</h3>
-                <span className={`text-xs font-bold text-white px-3 py-1 rounded-full ${item.badgeColor}`}>{item.desc}</span>
+                <h3 className="text-lg md:text-2xl font-bold font-serif text-ink">{item.title}</h3>
+                <span className={`text-[10px] md:text-xs font-bold text-white px-2.5 py-1 rounded-full ${item.badgeColor}`}>{item.desc}</span>
               </div>
-              <p className="text-lg font-bold text-ink mb-4">{item.headline}</p>
-              <p className="text-sm md:text-base text-gray-700 leading-relaxed">
+              <p className="text-base md:text-lg font-bold text-ink mb-4">{item.headline}</p>
+              <p className="text-xs md:text-base text-gray-700 leading-relaxed">
                 {item.content}
               </p>
             </motion.div>

@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss";
+﻿import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: [
@@ -9,12 +9,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        offwhite: '#FFFFFF', // ピュアホワイト
-        ink: '#1A1A1A',      // より強い黒
-        terracotta: '#FF3333', // ビビッドレッド
-        olive: '#00994C',    // フレッシュグリーン（視認性向上のため少し暗く）
-        paper: '#F8F9FA',    // わずかにグレーがかった白（カードなど）
-        vitality: '#FFCC00', // ビビッドイエロー
+        offwhite: '#FAF7F0',
+        ink: '#2C2C2C',
+        terracotta: '#B35E44',
+        olive: '#8A9A86',
+        paper: '#FFFFFF',
       },
       fontFamily: {
         sans: ['var(--font-noto-sans)', 'sans-serif'],
