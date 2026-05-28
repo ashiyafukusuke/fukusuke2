@@ -66,7 +66,7 @@ export default function Footer() {
           transition={{ delay: 0.6 }}
           className="mt-16 text-xs text-gray-400 tracking-widest"
         >
-          西東京市 ひばりが丘 HIBARIDO 内 / 足揉み職人 福助
+          西東京市 ひばりが丘 HIBARIDO 内 / イタキモ師 福助
         </motion.p>
       </div>
     </footer>

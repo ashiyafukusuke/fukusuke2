@@ -5,14 +5,16 @@ export default function Hero() {
   return (
     <header className="gradient-border bg-offwhite pt-24 pb-20 px-6 md:px-12 overflow-hidden">
       <div className="max-w-4xl mx-auto flex flex-col items-start relative">
-        <motion.p 
+        <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-olive font-serif text-lg md:text-xl tracking-widest mb-4"
+          className="mb-6"
         >
-          足つぼ専門店
-        </motion.p>
+          <span className="bg-ink text-white text-sm md:text-base font-bold tracking-widest px-4 py-2 rounded-full">
+            足つぼ専門店
+          </span>
+        </motion.div>
         
         <motion.h1 
           initial={{ opacity: 0, x: -30 }}
@@ -61,7 +63,7 @@ export default function Hero() {
             href="#menu"
             className="text-sm text-gray-500 hover:text-terracotta underline underline-offset-4 decoration-dotted transition-colors duration-200 tracking-wider"
           >
-            まずはお品書きを見る →
+            メニューを確認 ➔
           </a>
         </motion.div>
       </div>

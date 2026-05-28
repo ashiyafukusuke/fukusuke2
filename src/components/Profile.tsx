@@ -29,9 +29,9 @@ export default function Profile({ onOpenPhilosophy }: ProfileProps) {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <p className="text-olive font-serif mb-2 tracking-widest text-sm">足揉みバカ</p>
-          <h2 className="font-serif text-3xl font-bold text-ink mb-6 flex items-baseline">
-            福助 
+          <p className="text-olive font-serif mb-2 tracking-widest text-sm font-bold">イタキモの伝道師</p>
+          <h2 className="text-3xl md:text-4xl font-serif font-bold text-ink mb-6">
+            イタキモ師 福助
             <span className="text-lg font-sans font-normal text-gray-400 ml-3 tracking-widest">Fukusuke</span>
           </h2>
           <div className="text-gray-700 leading-loose space-y-4">
@@ -42,7 +42,7 @@ export default function Profile({ onOpenPhilosophy }: ProfileProps) {
               反射区理論と科学的根拠。その間で葛藤した時期もありましたが、今では両方の良い面を素直に認め、ただの「足つぼ」ではないイタキモスタイルへと進化しました。
             </p>
             <p>
-              足揉みという仕事にはゴールがありません。面白さは毎日確実に上達できること。一日中揉んでいても身体は疲れず、むしろ施術中に「あ、今上手くなった！」と感じる瞬間がたまらなく楽しいのです。
+              足揉みという仕事にはゴールがありません。面白さは毎日確実に上達できること。施術中に「あ、今上手くなった！」と感じる瞬間がたまらなく楽しいのです。
             </p>
             <p>
               今日この瞬間も持てるすべての技術を出し尽くします。でも次にお会いする時はもっと上手くなっているはず。<br />

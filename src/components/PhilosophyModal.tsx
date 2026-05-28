@@ -72,12 +72,10 @@ const sections = [
     body: (
       <>
         <p className="leading-loose text-gray-700">
-          肩こり、腰痛、慢性的な疲労感、自律神経の乱れ。足裏がほぐれるにつれ、身体の奥底から
-          じんわりと温まり、気づけば頭の中のノイズが消え去り、首・肩・腰までも軽くなっている——
-          これが<span className="font-semibold text-terracotta">「痛いのに、なぜか眠くなる」</span>という体験です。
+          肩こり、腰痛、慢性的な疲労感、自律神経の乱れ。足裏がほぐれるにつれ、身体の奥底からじんわりと温まり、気づけば頭の中のノイズが消え去り、首・肩・腰までも軽くなっている—— これが<span className="font-semibold text-terracotta">「痛いのに、なぜか眠くなる」</span>という体験です。
         </p>
-        <p className="mt-3 text-sm italic text-gray-400">
-          （「そんなに変わる？」と半信半疑のあなた。だから「品定め制度」があります。）
+        <p className="mt-3 text-sm italic text-gray-400 font-medium">
+          （「足をもむだけでそんなに変わる？」と半信半疑の方へ。本当に変わるかどうか、まずは『初回お試し制度』でご自身の身体でお確かめください。）
         </p>
       </>
     ),
@@ -103,7 +101,7 @@ const sections = [
         </p>
         <div className="mt-6 flex justify-end">
           <p className="font-serif text-ink tracking-widest text-sm border-b border-terracotta/40 pb-1">
-            ── 足揉み職人 福助
+            ―― イタキモ師 福助
           </p>
         </div>
       </>

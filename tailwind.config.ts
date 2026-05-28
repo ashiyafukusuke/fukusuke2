@@ -12,7 +12,7 @@ const config: Config = {
         offwhite: '#FFFFFF', // ピュアホワイト
         ink: '#1A1A1A',      // より強い黒
         terracotta: '#FF3333', // ビビッドレッド
-        olive: '#00CC66',    // フレッシュグリーン
+        olive: '#00994C',    // フレッシュグリーン（視認性向上のため少し暗く）
         paper: '#F8F9FA',    // わずかにグレーがかった白（カードなど）
         vitality: '#FFCC00', // ビビッドイエロー
       },
