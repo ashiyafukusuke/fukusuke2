@@ -33,27 +33,26 @@ export default function StickyNav({ onOpenPhilosophy }: StickyNavProps) {
               【イタキモ】
             </span>
 
-            {/* ナビリンク */}
             <div className="flex items-center gap-1 sm:gap-3 overflow-x-auto scrollbar-none">
-              <button
-                onClick={onOpenPhilosophy}
+              <a
+                href="#features"
                 className="text-xs sm:text-sm text-gray-500 hover:text-terracotta transition-colors whitespace-nowrap px-2 py-1 rounded hover:bg-terracotta/5"
               >
-                店主のスタンス
-              </button>
+                特徴
+              </a>
               <span className="text-gray-200 hidden sm:inline">|</span>
               <a
                 href="#menu"
                 className="text-xs sm:text-sm text-gray-500 hover:text-terracotta transition-colors whitespace-nowrap px-2 py-1 rounded hover:bg-terracotta/5"
               >
-                料金・お品書き
+                メニュー
               </a>
               <span className="text-gray-200 hidden sm:inline">|</span>
               <a
                 href="#cancel-policy"
                 className="text-xs sm:text-sm text-gray-500 hover:text-terracotta transition-colors whitespace-nowrap px-2 py-1 rounded hover:bg-terracotta/5"
               >
-                キャンセルポリシー
+                ポリシー
               </a>
             </div>
 
@@ -62,7 +61,7 @@ export default function StickyNav({ onOpenPhilosophy }: StickyNavProps) {
               href="#"
               className="flex-shrink-0 bg-gradient-to-r from-vitality to-terracotta text-white text-xs sm:text-sm font-bold px-4 py-2 rounded-full shadow hover:scale-105 transition-transform duration-200 whitespace-nowrap"
             >
-              行く日を決める
+              予約枠を確保する
             </a>
           </div>
         </motion.nav>

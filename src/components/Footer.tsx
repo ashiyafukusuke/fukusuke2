@@ -14,16 +14,18 @@ export default function Footer() {
         >
           【足つぼ専門店 イタキモ】
         </motion.h2>
-        <motion.p 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="text-gray-700 mb-12 leading-loose max-w-xl text-sm md:text-base font-medium"
+          className="mb-12 max-w-xl mx-auto"
         >
-          日々の疲れをリセットし、本来の身軽さを取り戻す場所。<br/>
-          HIBARIDOの決して大きくはない一室ではありますが、全身全霊を込めて足揉みさせて頂きます。
-        </motion.p>
+          <p className="text-gray-700 leading-loose text-sm md:text-base font-medium text-left inline-block">
+            日々の疲れをリセットし、本来の身軽さを取り戻す場所。<br/>
+            HIBARIDOの決して大きくはない一室ではありますが、<br className="hidden md:block" />全身全霊を込めて足揉みさせて頂きます。
+          </p>
+        </motion.div>
         
         <motion.p
           initial={{ opacity: 0 }}
@@ -44,7 +46,7 @@ export default function Footer() {
           href="#" 
           className="inline-flex items-center justify-center bg-gradient-to-r from-vitality to-terracotta hover:from-[#FF7A50] hover:to-[#C6674B] text-white font-bold py-4 px-16 rounded-full transition-all duration-300 shadow-xl shadow-vitality/30 hover:shadow-vitality/50 text-lg tracking-widest"
         >
-          行く日を決める
+          予約枠を確保する
         </motion.a>
 
         <motion.div 

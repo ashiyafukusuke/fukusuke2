@@ -77,7 +77,7 @@ export default function MenuCarousel() {
                   : "bg-white text-ink border border-gray-300 hover:bg-gray-50"
                 }`}
               >
-                行く日を決める
+                予約枠を確保する
               </a>
             </motion.div>
           ))}

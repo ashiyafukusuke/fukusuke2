@@ -44,7 +44,7 @@ export default function Hero() {
           足つぼ特有の「痛気持ちいい」刺激なのに、<br />
           気づけばまどろみの夢見心地。<br />
           ガチガチの疲れを奥底から引きはがし、<br /><br />
-          あなたを、全身スッキリとした状態へリセットします。
+          全身をスッキリとした状態へリセットします。
         </motion.p>
 
         <motion.div
@@ -57,7 +57,7 @@ export default function Hero() {
             href="#"
             className="inline-flex items-center justify-center bg-gradient-to-r from-vitality to-terracotta text-white font-bold py-4 px-10 rounded-full shadow-lg shadow-vitality/25 hover:shadow-vitality/40 hover:scale-105 transition-all duration-300 text-base tracking-wider"
           >
-            行く日を決める
+            予約枠を確保する
           </a>
           <a
             href="#menu"
