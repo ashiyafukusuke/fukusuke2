@@ -34,19 +34,12 @@ export default function Profile({ onOpenPhilosophy }: ProfileProps) {
             福助
             <span className="text-lg font-sans font-normal text-gray-400 ml-3 tracking-widest">Fukusuke</span>
           </h2>
-          <div className="text-gray-700 leading-loose space-y-4">
+          <div className="text-gray-700 leading-loose space-y-4 text-sm md:text-base">
             <p>
-              古くから愛される福助人形のように、訪れる人に安心と福を届けたい。確かな技術と包み隠さない誠実さを一揉みごとに込めています。
+              古くから愛される福助人形のように、安心と福を届けたい。反射区理論と現代の体の仕組み、両方の良い面を融合した「イタキモスタイル」で施術します。
             </p>
             <p>
-              反射区理論と科学的根拠。その間で葛藤した時期もありましたが、今では両方の良い面を素直に認め、ただの「足つぼ」ではないイタキモスタイルへと進化しました。
-            </p>
-            <p>
-              足揉みという仕事にはゴールがありません。面白さは毎日確実に上達できること。施術中に「あ、今上手くなった！」と感じる瞬間がたまらなく楽しいのです。
-            </p>
-            <p>
-              今日この瞬間も持てるすべての技術を出し尽くします。でも次にお会いする時はもっと上手くなっているはず。<br />
-              <span className="font-bold text-ink">終わりのない探求が楽しくてしかたありません！</span>
+              足揉みにはゴールがありません。「次にお会いする時は、今日よりもっと上手くなっている」。そんな終わりのない技術の探求が楽しくてしかたありません！
             </p>
           </div>
 

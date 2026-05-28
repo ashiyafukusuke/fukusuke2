@@ -29,11 +29,10 @@ export default function System() {
             </div>
             <p className="text-lg font-bold text-ink mb-6">合わないと感じたなら、お代は頂戴しません。</p>
             <p className="text-gray-700 leading-loose text-sm md:text-base flex-grow">
-              ※理由は一切問いません。<br/>
-              ・まずは左足から施術を開始します。<br/>
-              ・片足が終わった段階で、そのまま続けるかお伺いします。<br/>
-              ・合わなければ「今日はここまで」とお伝えください。<br/><br/>
-              <span className="font-bold text-ink">その時点で直ちに終了し、お代は頂戴いたしません。</span>
+              ※理由は問いません。<br/>
+              ・左足の施術後に継続を確認します。<br/>
+              ・合わなければお伝えください。<br/><br/>
+              <span className="font-bold text-ink">直ちに終了し、お代は頂戴いたしません。</span>
             </p>
           </motion.div>
 
@@ -67,8 +66,7 @@ export default function System() {
             </ul>
             
             <p className="text-xs text-gray-400 leading-relaxed">
-              将来的に他のコースのご利用状況を見ながら、継続特典を広げていく予定です。<br/>
-              （現在は60分枠【守破離】のみが対象となります）
+              ※現在は60分枠のみが対象となります
             </p>
           </motion.div>
 

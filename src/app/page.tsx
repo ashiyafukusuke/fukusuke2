@@ -1,11 +1,10 @@
 "use client";
 import { useState } from "react";
 import Hero from "@/components/Hero";
-import Experience from "@/components/Experience";
-import Philosophy from "@/components/Philosophy";
+import FeaturesCarousel from "@/components/FeaturesCarousel";
+import MenuCarousel from "@/components/MenuCarousel";
 import Profile from "@/components/Profile";
 import Process from "@/components/Process";
-import Menu from "@/components/Menu";
 import System from "@/components/System";
 import CancelPolicy from "@/components/CancelPolicy";
 import Footer from "@/components/Footer";
@@ -22,11 +21,10 @@ export default function Home() {
       <Hero />
       
       <div className="pt-16 px-4 md:px-8 space-y-16 max-w-5xl mx-auto">
-        <Experience />
+        <FeaturesCarousel />
+        <MenuCarousel />
         <Profile onOpenPhilosophy={() => setModalOpen(true)} />
-        <Philosophy />
         <Process />
-        <Menu />
         <System />
         <CancelPolicy />
       </div>

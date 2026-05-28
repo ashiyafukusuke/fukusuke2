@@ -3,11 +3,11 @@ import { motion } from "framer-motion";
 
 export default function Process() {
   const steps = [
-    { title: "1. ご予約", desc: "予約ページにて、ご希望の時間をオンラインで確保いただきます。" },
-    { title: "2. ご来店・お着替え", desc: "入室後、靴を脱ぎ、必要であればお着替えをしていただきます。" },
-    { title: "3. 施術（イタキモ体験）", desc: "ホットタオルで足を拭いた後、施術スタート。いつの間にかまどろみの中へ…。" },
-    { title: "4. お目覚め・お着替え", desc: "スッキリ目覚めた後、お着替えをしていただきます。" },
-    { title: "5. お会計・ご退室", desc: "お会計をして終了です。ここまですべて「予約した時間枠の中」で完了します。" }
+    { title: "1. ご予約", desc: "予約ページからオンラインで時間枠を確保します。" },
+    { title: "2. ご来店・お着替え", desc: "入室後、靴を脱ぎ、必要に応じてお着替えをします。" },
+    { title: "3. 施術", desc: "ホットタオルで足を拭き、まどろみのイタキモ体験へ。" },
+    { title: "4. お目覚め・お着替え", desc: "スッキリ目覚めたらお着替えを。" },
+    { title: "5. お会計・ご退室", desc: "すべて「予約した時間枠の中」で完了します。" }
   ];
 
   return (
@@ -68,18 +68,16 @@ export default function Process() {
             
             <div className="space-y-6">
               <div>
-                <h5 className="font-bold text-ink border-b-2 border-olive inline-block mb-2">⏱️ お着替えタイムの短縮テクニック</h5>
+                <h5 className="font-bold text-ink border-b-2 border-olive inline-block mb-2">⏱️ お着替えタイムの短縮</h5>
                 <p className="text-sm text-gray-700 leading-loose">
-                  施術時間を少しでも長く取りたい場合は、**「膝上までめくれるズボン」**をあらかじめ履いてきていただくのがおすすめです。<br/>
-                  <span className="text-xs text-gray-500">※スカートでご来店の場合は、スカートの下に着替え用のハーフパンツを履いていただきます。</span>
+                  施術時間を最大限に確保するため、**「膝上までめくれるズボン」**でのご来店がおすすめです。
                 </p>
               </div>
 
               <div>
-                <h5 className="font-bold text-ink border-b-2 border-terracotta inline-block mb-2">🏃 遅刻してしまった場合</h5>
+                <h5 className="font-bold text-ink border-b-2 border-terracotta inline-block mb-2">🏃 遅刻してしまったら</h5>
                 <p className="text-sm text-gray-700 leading-loose">
-                  当店のコースは「枠内ですべてを完了させる」システムです。遅刻した場合でも終了時間は同じになるため、後の予約の方にご迷惑をおかけすることはありません。安心してご来店ください。<br/>
-                  <span className="text-xs text-gray-500">※もし後ろに予約が入っていない状態であれば、可能な限りご予約分の施術時間を確保いたします。（予約が詰まっている時は時間ピッタリで終了します）</span>
+                  当店のコースは「枠内完了」システムです。終了時間は遅れませんので、後の方にご迷惑はかかりません。焦らずご来店ください。
                 </p>
               </div>
             </div>
