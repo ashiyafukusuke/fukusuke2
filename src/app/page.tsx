@@ -10,6 +10,7 @@ import PolicyCarousel from "@/components/PolicyCarousel";
 import Footer from "@/components/Footer";
 import StickyNav from "@/components/StickyNav";
 import PhilosophyModal from "@/components/PhilosophyModal";
+import Access from "@/components/Access";
 
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -23,9 +24,10 @@ export default function Home() {
       <div className="pt-16 px-4 md:px-8 space-y-16 max-w-5xl mx-auto">
         <FeaturesCarousel />
         <Profile onOpenPhilosophy={() => setModalOpen(true)} />
-        <SystemCarousel />
         <MenuCarousel />
+        <SystemCarousel />
         <Enjoy100 />
+        <Access />
         <PolicyCarousel />
       </div>
 

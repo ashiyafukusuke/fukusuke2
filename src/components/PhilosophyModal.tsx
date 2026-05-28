@@ -149,14 +149,17 @@ export default function PhilosophyModal({ isOpen, onClose }: PhilosophyModalProp
 
               {/* フッター CTA */}
               <div className="flex-shrink-0 px-6 py-4 border-t border-divider bg-bg">
-                <a
-                  href="https://reserva.be"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full text-center bg-main text-white font-bold py-[14px] rounded-[6px] hover:bg-mainhover transition duration-200 text-sm tracking-[0.08em]"
+                <button
+                  onClick={() => {
+                    onClose();
+                    setTimeout(() => {
+                      document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth' });
+                    }, 100);
+                  }}
+                  className="block w-full text-center bg-transparent text-main border-2 border-main font-semibold py-[14px] rounded-[6px] hover:bg-main hover:text-white transition duration-200 text-sm tracking-[0.08em]"
                 >
-                  行く日を決める
-                </a>
+                  コースを選ぶ ➔
+                </button>
                 <p className="text-center text-xs text-graytext mt-2 font-medium">Powered by RESERVA</p>
               </div>
             </div>

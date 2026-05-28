@@ -14,6 +14,21 @@ export default function Enjoy100() {
       content: "当サロンは「枠単位制」となっており、遅刻された場合でも終了時間は変わりません。後ろのお客様にご迷惑がかからない仕組みですので、万が一遅れそうな場合でも焦らず安全第一でお越しください。"
     },
     {
+      title: "強さについて",
+      icon: "💪",
+      content: `強く押すことはできますし、硬さによっては
+しっかりした圧が必要なこともあります。
+
+ただ「痛くても無視してもっと強く」には
+お応えしていません。足に力が入った状態では
+体は緊張したまま。意識が溶けていくどころか
+交感神経が優位になり続けるからです。
+
+体が受け入れられる範囲での強揉みは
+もちろん対応しています。
+「もう少し強く」はいつでもどうぞ。`
+    },
+    {
       title: "初めての方へ",
       icon: "🔰",
       content: "「足つぼって痛いのかな…」と緊張される方も多いですが、強さは必ず伺いながら調整します。合わなければ初回無料でお帰りいただける制度もありますので、気負わずリラックスしていらしてください。"
@@ -46,7 +61,7 @@ export default function Enjoy100() {
               <div className="text-5xl">{point.icon}</div>
               <div>
                 <h3 className="font-black text-lg text-ink mb-2">{point.title}</h3>
-                <p className="text-sm text-gray-700 leading-relaxed font-medium">
+                <p className="text-sm text-gray-700 leading-relaxed font-medium whitespace-pre-wrap">
                   {point.content}
                 </p>
               </div>
