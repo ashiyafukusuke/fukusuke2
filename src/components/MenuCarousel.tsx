@@ -4,37 +4,43 @@ import { motion } from "framer-motion";
 export default function MenuCarousel() {
   const menus = [
     {
-      title: "ぷちイタキモ 40分",
+      title: "40分枠",
       price: "4,500円",
       desc: "サクッとリセット",
       content: "お仕事帰りや隙間時間に。足裏からふくらはぎまでをテンポ良く揉みほぐし、短時間でもスッキリ軽くなる感覚を味わえます。",
       color: "border-olive",
-      bg: "bg-olive/5"
+      bg: "bg-olive/5",
+      badge: "お試し・クイック",
+      badgeColor: "bg-olive text-white"
     },
     {
-      title: "ザ・イタキモ 60分",
+      title: "60分枠",
       price: "6,500円",
       desc: "定番の全身アプローチ",
-      content: "当店の一番人気。足裏の反射区をくまなく刺激し、ふくらはぎ〜膝上までしっかり流します。迷ったらまずはこれ。",
+      content: "当店の一番人気。リフレクソロジー特有の反射区への刺激も交えながら、全身を深いリセットへと導きます。足揉みの醍醐味をしっかり味わえる、迷ったらまずはこれ。",
       color: "border-terracotta",
       bg: "bg-terracotta/5",
-      badge: "★ 一番人気"
+      badge: "王道・一番人気",
+      badgeColor: "bg-terracotta text-white",
+      isPopular: true
     },
     {
-      title: "どっぷりイタキモ 90分",
+      title: "90分枠",
       price: "9,000円",
       desc: "極上のリセット",
       content: "慢性的な疲れが抜けきらない方に。足先から膝上まで、時間をかけて細部まで徹底的にほぐし切る至福のコースです。",
       color: "border-vitality",
-      bg: "bg-vitality/5"
+      bg: "bg-vitality/5",
+      badge: "足つぼ沼へようこそ",
+      badgeColor: "bg-vitality text-ink"
     }
   ];
 
   const steps = [
     { title: "コースを決めて予約", desc: "下のメニューからコースを選び、予約ページで時間枠を確保します。" },
     { title: "ご来店・お着替え", desc: "入室後、靴を脱ぎ、必要に応じてお着替えをします。（膝上までめくれるズボンがおすすめです）" },
-    { title: "施術（イタキモ体験）", desc: "ホットタオルで足を拭き、まどろみのイタキモ体験へ。" },
-    { title: "お目覚め・お着替え", desc: "スッキリ目覚めたらお着替えを。" },
+    { title: "施術", desc: "痛気持ちいい刺激から始まり、身体も意識もふっと軽くなり溶けていくような時間をお楽しみください。" },
+    { title: "施術終了・お着替え", desc: "全身がスッキリと軽くなった状態でお着替えをしていただきます。" },
     { title: "お会計・ご退室", desc: "すべて「予約した時間枠の中」で完了します。遅刻した場合でも終了時間は遅れませんのでご安心を。" }
   ];
 
@@ -86,7 +92,7 @@ export default function MenuCarousel() {
             >
               <div>
                 {item.badge && (
-                  <span className="inline-block bg-terracotta text-white text-xs font-bold px-3 py-1 rounded-full mb-3">
+                  <span className={`inline-block text-xs font-bold px-3 py-1 rounded-full mb-3 ${item.badgeColor}`}>
                     {item.badge}
                   </span>
                 )}
@@ -100,7 +106,7 @@ export default function MenuCarousel() {
               <a 
                 href="#"
                 className={`block text-center w-full py-3 rounded-full font-bold transition-all duration-300 ${
-                  item.badge 
+                  item.isPopular 
                   ? "bg-terracotta text-white shadow-lg hover:bg-[#C6674B]" 
                   : "bg-white text-ink border border-gray-300 hover:bg-gray-50"
                 }`}
