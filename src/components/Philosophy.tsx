@@ -27,8 +27,8 @@ export default function Philosophy() {
   ];
 
   return (
-    <section className="py-24 px-6 md:px-12 bg-ink text-white">
-      <div className="max-w-4xl mx-auto">
+    <section className="bg-ink rounded-3xl shadow-xl shadow-black/20 p-8 md:p-12 text-white">
+      <div className="flex flex-col">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -48,8 +48,8 @@ const severityDot: Record<PolicyRow["severity"], string> = {
 
 export default function CancelPolicy() {
   return (
-    <section id="cancel-policy" className="py-24 px-6 md:px-12 bg-white">
-      <div className="max-w-4xl mx-auto">
+    <section id="cancel-policy" className="bg-white rounded-3xl shadow-lg shadow-black/5 border-t-8 border-gray-300 p-8 md:p-12 text-ink">
+      <div className="flex flex-col">
         <motion.h2
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}

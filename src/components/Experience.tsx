@@ -16,9 +16,8 @@ export default function Experience() {
   };
 
   return (
-    <section className="py-24 px-6 md:px-12 bg-white bg-opacity-70 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-offwhite/50 to-transparent pointer-events-none"></div>
-      <div className="max-w-4xl mx-auto relative z-10">
+    <section className="bg-white rounded-3xl shadow-lg shadow-black/5 border-t-8 border-vitality p-8 md:p-12 relative overflow-hidden">
+      <div className="flex flex-col">
         <motion.h2 
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}

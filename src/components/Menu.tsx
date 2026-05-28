@@ -42,8 +42,8 @@ export default function Menu() {
   ];
 
   return (
-    <section id="menu" className="py-24 px-6 md:px-12 bg-offwhite text-ink">
-      <div className="max-w-4xl mx-auto">
+    <section id="menu" className="bg-white rounded-3xl shadow-lg shadow-black/5 border-t-8 border-terracotta p-8 md:p-12 text-ink">
+      <div className="flex flex-col">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -7,7 +7,7 @@ interface ProfileProps {
 
 export default function Profile({ onOpenPhilosophy }: ProfileProps) {
   return (
-    <section className="py-24 px-6 md:px-12 bg-white bg-opacity-50 relative overflow-hidden">
+    <section className="bg-white rounded-3xl shadow-lg shadow-black/5 border-t-8 border-olive p-8 md:p-12 relative overflow-hidden">
       <div className="absolute -right-20 -bottom-20 w-64 h-64 bg-olive/10 rounded-full blur-3xl"></div>
       <div className="max-w-4xl mx-auto flex flex-col md:flex-row gap-12 items-center relative z-10">
         

@@ -16,7 +16,7 @@ export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen pt-32 pb-32 px-4 md:px-8 space-y-16 max-w-5xl mx-auto">
       <StickyNav onOpenPhilosophy={() => setModalOpen(true)} />
       <Hero />
       <Experience />
