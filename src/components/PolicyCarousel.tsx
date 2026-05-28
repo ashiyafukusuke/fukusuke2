@@ -7,39 +7,39 @@ export default function PolicyCarousel() {
       situation: "前日までの予約変更",
       rule: "3回まで承ります",
       note: "4回目以降は、以降のご予約をお断りいたします",
-      color: "border-gray-200",
-      bg: "bg-gray-50",
+      color: "border-divider",
+      bg: "bg-cardlight",
     },
     {
       situation: "当日の予約変更",
       rule: "1回まで承ります",
       note: "2回目以降は「当日連絡ありキャンセル」として扱います（ただし事情による）",
-      color: "border-gray-200",
-      bg: "bg-gray-50",
+      color: "border-divider",
+      bg: "bg-cardlight",
     },
     {
       situation: "当日キャンセル（連絡あり）",
       rule: "キャンセル料は頂きません",
       note: "ただし3回目以降は、以降のご予約をお断りいたします",
-      color: "border-gray-200",
-      bg: "bg-gray-50",
+      color: "border-divider",
+      bg: "bg-cardlight",
     },
     {
       situation: "当日無断キャンセル",
       rule: "即時、以降のご予約をお断りいたします",
       note: "",
-      color: "border-terracotta",
-      bg: "bg-terracotta/5",
+      color: "border-main",
+      bg: "bg-card",
     },
   ];
 
   return (
-    <section id="cancel-policy" className="bg-white rounded-3xl shadow-lg shadow-black/5 border-t-8 border-gray-300 p-6 md:p-12 text-ink relative overflow-hidden">
+    <section id="cancel-policy" className="bg-card rounded-3xl shadow-lg shadow-black/5 border-t-8 border-divider p-6 md:p-12 text-ink relative overflow-hidden">
       <div className="flex flex-col">
         <div className="text-center mb-8 md:mb-10">
-          <h2 className="font-serif text-2xl md:text-3xl font-bold text-ink inline-block relative">
+          <h2 className="font-serif text-2xl md:text-3xl font-black text-ink inline-block relative tracking-widest">
             キャンセルポリシー
-            <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-gray-300 rounded-full"></div>
+            <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-divider rounded-full"></div>
           </h2>
           <p className="text-gray-500 mt-6 text-xs md:text-sm leading-loose max-w-xl mx-auto">
             限られた枠を大切にしたいと思っています。<br/>
@@ -64,7 +64,7 @@ export default function PolicyCarousel() {
               <p className="text-[10px] md:text-xs text-gray-500 tracking-wider mb-2 font-bold">
                 {item.situation}
               </p>
-              <h3 className={`text-base md:text-lg font-bold mb-3 ${idx === 3 ? "text-terracotta" : "text-ink"}`}>{item.rule}</h3>
+              <h3 className={`text-base md:text-lg font-black mb-3 ${idx === 3 ? "text-main" : "text-ink"}`}>{item.rule}</h3>
               {item.note && (
                 <p className="text-xs md:text-sm text-gray-600 leading-relaxed mt-auto">
                   ※{item.note}

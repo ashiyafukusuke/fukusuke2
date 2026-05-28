@@ -43,13 +43,13 @@ export default function ProcessCarousel() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="min-w-[70vw] sm:min-w-[45vw] md:min-w-[calc(25%-12px)] flex-1 shrink-0 snap-center rounded-2xl p-5 md:p-6 border-2 border-vitality/20 bg-vitality/5 flex flex-col justify-start relative overflow-hidden"
+              className="min-w-[70vw] sm:min-w-[45vw] md:min-w-[calc(25%-12px)] flex-1 shrink-0 snap-center rounded-2xl p-5 md:p-6 border-2 border-divider bg-card flex flex-col justify-start relative overflow-hidden"
             >
-              <div className="text-5xl font-black text-vitality/10 absolute -top-1 -right-1">
+              <div className="text-5xl font-black text-main/10 absolute -top-1 -right-1">
                 {`0${idx + 1}`}
               </div>
-              <h3 className="text-base md:text-lg font-bold text-ink mb-3 relative z-10">
-                <span className="text-vitality mr-2">STEP {idx + 1}</span>
+              <h3 className="text-base md:text-lg font-black text-ink mb-3 relative z-10">
+                <span className="text-main font-black mr-2">STEP {idx + 1}</span>
                 <br />
                 {item.title}
               </h3>

@@ -7,8 +7,8 @@ interface ProfileProps {
 
 export default function Profile({ onOpenPhilosophy }: ProfileProps) {
   return (
-    <section className="bg-white rounded-3xl shadow-lg shadow-black/5 border-t-8 border-olive p-8 md:p-12 relative overflow-hidden">
-      <div className="absolute -right-20 -bottom-20 w-64 h-64 bg-olive/10 rounded-full blur-3xl"></div>
+    <section className="bg-card rounded-3xl shadow-lg shadow-black/5 border-t-8 border-sub p-8 md:p-12 relative overflow-hidden">
+      <div className="absolute -right-20 -bottom-20 w-64 h-64 bg-sub/20 rounded-full blur-3xl"></div>
       <div className="max-w-4xl mx-auto flex flex-col md:flex-row gap-12 items-center relative z-10">
         
         <motion.div 
@@ -29,12 +29,12 @@ export default function Profile({ onOpenPhilosophy }: ProfileProps) {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <p className="text-olive font-serif mb-2 tracking-widest text-sm font-bold">店主 福助</p>
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-ink mb-6">
+          <p className="text-main font-serif mb-2 tracking-widest text-sm font-bold">店主 福助</p>
+          <h2 className="text-3xl md:text-4xl font-serif font-black text-ink mb-6 tracking-widest">
             福助
             <span className="text-lg font-sans font-normal text-gray-400 ml-3 tracking-widest">Fukusuke</span>
           </h2>
-          <div className="text-gray-700 leading-loose space-y-4 text-sm md:text-base">
+          <div className="text-ink leading-loose space-y-4 text-sm md:text-base font-medium">
             <p>
               足つぼにゴールはないと思っています。<br />
               次にお会いするときは、今日より上手くなっていたい。<br />
@@ -45,14 +45,10 @@ export default function Profile({ onOpenPhilosophy }: ProfileProps) {
           {/* 哲学モーダルを開くボタン */}
           <motion.button
             onClick={onOpenPhilosophy}
-            whileHover={{ x: 4 }}
-            transition={{ type: "spring", stiffness: 300 }}
-            className="mt-7 inline-flex items-center gap-2 text-sm text-terracotta hover:text-terracotta/70 font-serif tracking-wide transition-colors group"
+            whileHover={{ y: -2 }}
+            className="mt-7 inline-flex items-center justify-center bg-transparent text-main border-2 border-main font-semibold py-[12px] px-[28px] rounded-[6px] hover:bg-main hover:text-white transition duration-200 text-sm tracking-wide"
           >
-            <span className="border-b border-terracotta/40 group-hover:border-terracotta/70 transition-colors pb-0.5">
-              店主のスタンスを読む
-            </span>
-            <span className="text-xs opacity-60 group-hover:opacity-100 transition-opacity">→</span>
+            <span>店主のスタンスを読む ➔</span>
           </motion.button>
         </motion.div>
 

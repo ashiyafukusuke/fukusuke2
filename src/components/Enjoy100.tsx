@@ -21,34 +21,32 @@ export default function Enjoy100() {
   ];
 
   return (
-    <section className="bg-white rounded-3xl shadow-lg shadow-black/5 border-t-8 border-[#F5A623] p-6 md:p-12 text-ink relative overflow-hidden">
+    <section className="bg-card rounded-3xl shadow-lg shadow-black/5 border-t-8 border-sub p-6 md:p-12 text-ink relative overflow-hidden">
       <div className="flex flex-col">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-10 md:mb-12"
-        >
-          <h2 className="font-serif text-2xl md:text-3xl font-bold text-ink inline-block relative">
+        <div className="text-center mb-8 md:mb-10">
+          <h2 className="font-serif text-2xl md:text-3xl font-black text-ink inline-block relative tracking-widest">
             イタキモを100％楽しむために
-            <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-[#F5A623] rounded-full"></div>
+            <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-sub rounded-full"></div>
           </h2>
-        </motion.div>
+          <p className="text-gray-400 mt-6 text-[10px] md:text-xs tracking-widest font-bold md:hidden">
+            ← 横にスクロールできます →
+          </p>
+        </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-8 -mx-6 px-6 md:mx-0 md:px-0 scrollbar-hide items-stretch">
           {points.map((point, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="p-6 bg-offwhite rounded-2xl border border-gray-100 flex flex-col sm:flex-row gap-4 items-start"
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              className="min-w-[70vw] sm:min-w-[45vw] md:min-w-[calc(33.333%-11px)] flex-1 shrink-0 snap-center p-6 bg-cardlight rounded-2xl border-2 border-divider flex flex-col sm:flex-row gap-4 items-start"
             >
-              <div className="text-4xl">{point.icon}</div>
+              <div className="text-5xl">{point.icon}</div>
               <div>
-                <h3 className="font-bold text-lg text-ink mb-2">{point.title}</h3>
-                <p className="text-sm text-gray-700 leading-relaxed">
+                <h3 className="font-black text-lg text-ink mb-2">{point.title}</h3>
+                <p className="text-sm text-gray-700 leading-relaxed font-medium">
                   {point.content}
                 </p>
               </div>

@@ -3,14 +3,14 @@ import { motion } from "framer-motion";
 
 export default function Footer() {
   return (
-    <footer className="bg-paper py-24 px-6 border-t-8 border-olive relative overflow-hidden text-ink">
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-olive to-terracotta"></div>
+    <footer className="bg-bg py-24 px-6 border-t-8 border-sub relative overflow-hidden text-ink">
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-sub to-main"></div>
       <div className="max-w-4xl mx-auto flex flex-col items-center text-center relative z-10">
         <motion.h2 
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="font-serif text-3xl md:text-4xl font-bold text-ink mb-8 tracking-wide drop-shadow-sm"
+          className="font-serif text-3xl md:text-4xl font-black text-ink mb-8 tracking-widest drop-shadow-sm"
         >
           【足つぼ専門店 イタキモ】
         </motion.h2>
@@ -44,7 +44,7 @@ export default function Footer() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           href="#" 
-          className="inline-flex items-center justify-center bg-gradient-to-r from-vitality to-terracotta hover:from-[#FF7A50] hover:to-[#C6674B] text-white font-bold py-4 px-16 rounded-full transition-all duration-300 shadow-xl shadow-vitality/30 hover:shadow-vitality/50 text-lg tracking-widest"
+          className="inline-flex items-center justify-center bg-main hover:bg-mainhover text-white font-bold py-[14px] px-[32px] rounded-[6px] transition-all duration-200 shadow-xl shadow-main/30 hover:shadow-main/50 text-lg tracking-[0.08em]"
         >
           予約枠を確保する
         </motion.a>

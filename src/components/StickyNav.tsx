@@ -21,7 +21,7 @@ export default function StickyNav() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -60, opacity: 0 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="fixed top-0 left-0 right-0 z-50 bg-paper/90 backdrop-blur-md border-b border-gray-100 shadow-sm"
+          className="fixed top-0 left-0 right-0 z-50 bg-bg/90 backdrop-blur-md border-b border-divider shadow-sm"
         >
           <div className="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between gap-2">
             {/* ブランド名 */}
@@ -32,21 +32,21 @@ export default function StickyNav() {
             <div className="flex items-center gap-1 sm:gap-3 overflow-x-auto scrollbar-none">
               <a
                 href="#features"
-                className="text-xs sm:text-sm text-gray-500 hover:text-terracotta transition-colors whitespace-nowrap px-2 py-1 rounded hover:bg-terracotta/5"
+                className="text-xs sm:text-sm text-graytext hover:text-main transition-colors whitespace-nowrap px-2 py-1 rounded hover:bg-main/5 font-semibold"
               >
                 特徴
               </a>
-              <span className="text-gray-200 hidden sm:inline">|</span>
+              <span className="text-divider hidden sm:inline">|</span>
               <a
                 href="#menu"
-                className="text-xs sm:text-sm text-gray-500 hover:text-terracotta transition-colors whitespace-nowrap px-2 py-1 rounded hover:bg-terracotta/5"
+                className="text-xs sm:text-sm text-graytext hover:text-main transition-colors whitespace-nowrap px-2 py-1 rounded hover:bg-main/5 font-semibold"
               >
                 メニュー
               </a>
-              <span className="text-gray-200 hidden sm:inline">|</span>
+              <span className="text-divider hidden sm:inline">|</span>
               <a
                 href="#cancel-policy"
-                className="text-xs sm:text-sm text-gray-500 hover:text-terracotta transition-colors whitespace-nowrap px-2 py-1 rounded hover:bg-terracotta/5"
+                className="text-xs sm:text-sm text-graytext hover:text-main transition-colors whitespace-nowrap px-2 py-1 rounded hover:bg-main/5 font-semibold"
               >
                 ポリシー
               </a>
@@ -56,7 +56,7 @@ export default function StickyNav() {
               href="https://reserva.be"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-shrink-0 bg-gradient-to-r from-vitality to-terracotta text-white text-xs sm:text-sm font-bold px-4 py-2 rounded-full shadow hover:scale-105 transition-transform duration-200 whitespace-nowrap"
+              className="flex-shrink-0 bg-main text-white text-xs sm:text-sm font-bold px-4 py-2 rounded-[4px] shadow hover:bg-mainhover transition-colors duration-200 whitespace-nowrap tracking-wide"
             >
               予約枠を確保する
             </a>

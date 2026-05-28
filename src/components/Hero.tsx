@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
-    <header className="gradient-border bg-offwhite pt-24 pb-20 px-6 md:px-12 overflow-hidden">
+    <header className="bg-bg pt-24 pb-20 px-6 md:px-12 overflow-hidden">
       <div className="max-w-4xl mx-auto flex flex-col items-start relative">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -20,17 +20,17 @@ export default function Hero() {
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="font-serif text-5xl md:text-7xl font-bold text-ink leading-tight mb-6 tracking-wide"
+          className="font-serif text-5xl md:text-7xl font-black text-ink leading-tight mb-6 tracking-widest"
         >
           【イタキモ】<br/>
-          <span className="text-3xl md:text-4xl text-terracotta mt-2 block">-ITAKIMO-</span>
+          <span className="text-3xl md:text-4xl text-main mt-2 block tracking-widest">-ITAKIMO-</span>
         </motion.h1>
 
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-2xl md:text-3xl font-serif text-ink mb-10 leading-relaxed tracking-wide"
+          className="text-3xl md:text-5xl font-serif text-main font-black mb-10 leading-relaxed tracking-widest"
         >
           痛いのに、<br className="md:hidden" />意識が溶けていく。
         </motion.p>
@@ -39,7 +39,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.8 }}
-          className="text-lg md:text-xl text-gray-700 leading-loose max-w-2xl"
+          className="text-lg md:text-xl text-ink font-medium leading-[1.8] md:leading-loose max-w-2xl"
         >
           強い刺激を受けているはずなのに、<br />
           気づくと意識が遠くなっていく。<br />
@@ -59,13 +59,13 @@ export default function Hero() {
             href="https://reserva.be"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center bg-gradient-to-r from-vitality to-terracotta text-white font-bold py-4 px-10 rounded-full shadow-lg shadow-vitality/25 hover:shadow-vitality/40 hover:scale-105 transition-all duration-300 text-base tracking-wider"
+            className="inline-flex items-center justify-center bg-main text-white font-bold py-[14px] px-[32px] rounded-[6px] hover:bg-mainhover transition duration-200 text-base tracking-[0.08em]"
           >
             予約枠を確保する
           </a>
           <a
             href="#menu"
-            className="text-sm text-gray-500 hover:text-terracotta underline underline-offset-4 decoration-dotted transition-colors duration-200 tracking-wider"
+            className="inline-flex items-center justify-center bg-transparent text-main border-2 border-main font-semibold py-[12px] px-[28px] rounded-[6px] hover:bg-main hover:text-white transition duration-200 text-sm tracking-wide"
           >
             メニューを確認 ➔
           </a>

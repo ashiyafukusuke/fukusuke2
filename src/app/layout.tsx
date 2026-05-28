@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ja" className="scroll-smooth">
-      <body className={`${notoSans.variable} ${notoSerif.variable} font-sans bg-offwhite text-ink antialiased`}>
+      <body className={`${notoSans.variable} ${notoSerif.variable} font-sans bg-bg text-ink font-medium antialiased`}>
         {children}
       </body>
     </html>

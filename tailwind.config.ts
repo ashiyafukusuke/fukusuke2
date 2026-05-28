@@ -1,4 +1,4 @@
-﻿import type { Config } from "tailwindcss";
+import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: [
@@ -9,11 +9,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        offwhite: '#FAF7F0',
-        ink: '#2C2C2C',
-        terracotta: '#B35E44',
-        olive: '#8A9A86',
-        paper: '#FFFFFF',
+        bg: '#FFFBF5',
+        ink: '#1C1C1C',
+        graytext: '#5C5C5C',
+        main: '#D94F3D',
+        mainhover: '#C23F2E',
+        sub: '#F2A65A',
+        divider: '#E8DDD5',
+        card: '#FFFFFF',
+        cardlight: '#FFF7F0',
       },
       fontFamily: {
         sans: ['var(--font-noto-sans)', 'sans-serif'],

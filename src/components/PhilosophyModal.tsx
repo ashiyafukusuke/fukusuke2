@@ -7,97 +7,6 @@ interface PhilosophyModalProps {
   onClose: () => void;
 }
 
-const sections = [
-  {
-    icon: "✦",
-    heading: null,
-    body: (
-      <>
-        <p className="leading-loose text-gray-700">
-          はじめまして。西東京市ひばりが丘の足つぼ専門店【イタキモ】<br />
-          店主の福助です。
-        </p>
-        <p className="mt-4 leading-loose text-gray-700">
-          「福助」は源氏名です。福助人形からとりました。<br />
-          この名を使うと決めた日から、言い訳のきかない自分でいようと<br />
-          思っています。
-        </p>
-      </>
-    ),
-  },
-  {
-    icon: "⊶",
-    heading: null,
-    body: (
-      <>
-        <p className="leading-loose text-gray-700">
-          前職は全く別の仕事をしていました。<br />
-          足つぼを受けたことすらないまま、この世界に飛び込みました。
-        </p>
-        <p className="mt-4 leading-loose text-gray-700">
-          師匠にゼロから教わり、実際にお客様の足を揉み始めると、<br />
-          疑問が出てきました。
-        </p>
-        <p className="mt-4 leading-loose text-gray-700">
-          痛いのに、なぜ意識が溶けていくんだろう。<br />
-          このゴリゴリは、本当に老廃物なのか。<br />
-          反射区は、本当に臓器とつながっているのか。
-        </p>
-        <p className="mt-4 leading-loose text-gray-700">
-          答えを探して、解剖生理学や自律神経の本を読みました。<br />
-          今も読んでいます。完全な答えはまだ出ていません。
-        </p>
-      </>
-    ),
-  },
-  {
-    icon: "⊶",
-    heading: null,
-    body: (
-      <>
-        <p className="leading-loose text-gray-700">
-          今のところ辿り着いているのは、足全体を深く丁寧に刺激する<br />
-          ことで副交感神経が優位になり、意識が少しずつ溶けていくと<br />
-          いう現象です。眠る人もいます。しゃべりながら目がトロンと<br />
-          する人もいます。施術後に「なんか変わった気がする」という<br />
-          感想は、ほぼ全員からいただきます。
-        </p>
-        <p className="mt-4 leading-loose text-gray-700">
-          反射区については、全否定もしていません。<br />
-          「ここを押せばこの臓器が治る」という因果関係には懐疑的です。<br />
-          ただ、首肩がこっている方の僧帽筋の反射区が硬くなっている<br />
-          ことは、実際によくある。体の負担が足裏に現れる「感性の地図」<br />
-          として読む分には、意味があると思っています。
-        </p>
-        <p className="mt-4 leading-loose text-gray-700">
-          信じていないことを売り文句にしたくないので、正直に書きました。
-        </p>
-      </>
-    ),
-  },
-  {
-    icon: "✿",
-    heading: null,
-    body: (
-      <>
-        <p className="leading-loose text-gray-700">
-          足つぼにゴールはないと思っています。<br />
-          次にお会いするときは、今日より上手くなっていたい。<br />
-          そのために学び続けています。
-        </p>
-        <p className="mt-4 leading-loose text-gray-700">
-          ひばりが丘HIBARIDO内の小さな一室で、お待ちしています。
-        </p>
-        <div className="mt-6 flex justify-end">
-          <p className="font-serif text-ink tracking-widest text-sm border-b border-terracotta/40 pb-1">
-            ── 福助
-          </p>
-        </div>
-      </>
-    ),
-  },
-];
-
 export default function PhilosophyModal({ isOpen, onClose }: PhilosophyModalProps) {
   // Escキーで閉じる
   useEffect(() => {
@@ -139,87 +48,116 @@ export default function PhilosophyModal({ isOpen, onClose }: PhilosophyModalProp
             className="fixed inset-0 z-50 flex items-end sm:items-center justify-center px-0 sm:px-4 pointer-events-none"
           >
             <div
-              className="pointer-events-auto relative w-full sm:max-w-2xl max-h-[92dvh] sm:max-h-[88vh] flex flex-col bg-offwhite rounded-t-3xl sm:rounded-3xl shadow-2xl overflow-hidden"
+              className="pointer-events-auto relative w-full sm:max-w-[640px] max-h-[92dvh] sm:max-h-[88vh] flex flex-col bg-bg rounded-t-[12px] sm:rounded-[12px] shadow-2xl overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
               {/* ヘッダー */}
-              <div className="flex-shrink-0 flex items-center justify-between px-6 pt-6 pb-4 border-b border-gray-100">
+              <div className="flex-shrink-0 flex items-center justify-between px-6 pt-6 pb-4 border-b border-divider">
                 <div>
-                  <p className="text-xs text-olive tracking-widest font-serif mb-0.5">
+                  <p className="text-xs text-sub tracking-widest font-serif mb-0.5">
                     STANCE
                   </p>
-                  <h2 className="font-serif text-lg font-bold text-ink tracking-wide">
+                  <h2 className="font-serif text-lg font-black text-ink tracking-widest">
                     福助のスタンス
                   </h2>
                 </div>
                 <button
                   onClick={onClose}
                   aria-label="モーダルを閉じる"
-                  className="w-9 h-9 rounded-full bg-gray-100 hover:bg-terracotta/10 text-gray-400 hover:text-terracotta flex items-center justify-center transition-colors text-lg leading-none"
+                  className="w-9 h-9 rounded-full bg-divider/30 hover:bg-main/10 text-graytext hover:text-main flex items-center justify-center transition-colors text-lg leading-none"
                 >
                   ✕
                 </button>
               </div>
 
               {/* スクロールエリア */}
-              <div className="flex-1 overflow-y-auto overscroll-contain px-6 py-6 space-y-8">
-                {sections.map((section, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: 0.1 + i * 0.07 }}
-                    className="relative"
-                  >
-                    {/* セクションヘッダー */}
-                    {section.heading && (
-                      <div className="flex items-center gap-3 mb-3">
-                        <span className="text-terracotta/60 text-base select-none" aria-hidden>
-                          {section.icon}
-                        </span>
-                        <h3 className="font-serif font-bold text-ink text-base tracking-wide">
-                          {section.heading}
-                        </h3>
-                        <span className="flex-1 h-px bg-gray-200" />
-                      </div>
-                    )}
+              <div className="flex-1 overflow-y-auto overscroll-contain px-8 py-10">
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.1 }}
+                  className="relative text-sm sm:text-base text-ink"
+                >
+                  <p className="leading-[2.0] mb-[1.8em]">
+                    はじめまして。西東京市ひばりが丘の足つぼ専門店【イタキモ】<br />
+                    店主の福助です。
+                  </p>
+                  <p className="leading-[2.0] mb-[1.8em]">
+                    「福助」は源氏名です。福助人形からとりました。<br />
+                    この名を使うと決めた日から、言い訳のきかない自分でいようと<br />
+                    思っています。
+                  </p>
 
-                    {/* 最初のセクションだけアイコン無し（挨拶文） */}
-                    {!section.heading && i === 0 && (
-                      <div className="flex items-center gap-3 mb-3">
-                        <span className="flex-1 h-px bg-terracotta/20" />
-                        <span className="text-terracotta/40 text-xs tracking-widest font-serif">
-                          ── ご挨拶 ──
-                        </span>
-                        <span className="flex-1 h-px bg-terracotta/20" />
-                      </div>
-                    )}
+                  <div className="w-[40px] h-[2px] bg-main mx-auto my-8"></div>
 
-                    <div className="text-sm sm:text-base">{section.body}</div>
+                  <p className="leading-[2.0] mb-[1.8em]">
+                    前職は全く別の仕事をしていました。<br />
+                    足つぼを受けたことすらないまま、この世界に飛び込みました。
+                  </p>
+                  <p className="leading-[2.0] mb-[1.8em]">
+                    師匠にゼロから教わり、実際にお客様の足を揉み始めると、<br />
+                    疑問が出てきました。
+                  </p>
 
-                    {/* セクション間の装飾区切り（最後以外） */}
-                    {i < sections.length - 1 && (
-                      <div className="flex justify-center mt-8">
-                        <span className="text-gray-200 tracking-[0.5em] text-xs select-none">
-                          ✦ ✦ ✦
-                        </span>
-                      </div>
-                    )}
-                  </motion.div>
-                ))}
+                  <div className="border-l-[3px] border-main bg-cardlight px-4 py-3 rounded-r font-semibold mb-[1.8em]">
+                    <p className="leading-[2.0] text-ink">痛いのに、なぜ意識が溶けていくんだろう。</p>
+                    <p className="leading-[2.0] text-ink">このゴリゴリは、本当に老廃物なのか。</p>
+                    <p className="leading-[2.0] text-ink">反射区は、本当に臓器とつながっているのか。</p>
+                  </div>
+
+                  <p className="leading-[2.0] mb-[1.8em]">
+                    答えを探して、解剖生理学や自律神経の本を読みました。<br />
+                    今も読んでいます。完全な答えはまだ出ていません。
+                  </p>
+
+                  <div className="w-[40px] h-[2px] bg-main mx-auto my-8"></div>
+
+                  <p className="leading-[2.0] mb-[1.8em]">
+                    今のところ辿り着いているのは、足全体を深く丁寧に刺激する<br />
+                    ことで副交感神経が優位になり、意識が少しずつ溶けていくと<br />
+                    いう現象です。眠る人もいます。しゃべりながら目がトロンと<br />
+                    する人もいます。施術後に「なんか変わった気がする」という<br />
+                    感想は、ほぼ全員からいただきます。
+                  </p>
+                  <p className="leading-[2.0] mb-[1.8em]">
+                    反射区については、全否定もしていません。<br />
+                    「ここを押せばこの臓器が治る」という因果関係には懐疑的です。<br />
+                    ただ、首肩がこっている方の僧帽筋の反射区が硬くなっている<br />
+                    ことは、実際によくある。体の負担が足裏に現れる<span className="text-main font-bold">感性の地図</span><br />
+                    として読む分には、意味があると思っています。
+                  </p>
+                  <p className="leading-[2.0] mb-[1.8em]">
+                    信じていないことを売り文句にしたくないので、正直に書きました。
+                  </p>
+
+                  <div className="w-[40px] h-[2px] bg-main mx-auto my-8"></div>
+
+                  <p className="leading-[2.0] mb-[1.8em]">
+                    足つぼにゴールはないと思っています。<br />
+                    次にお会いするときは、今日より上手くなっていたい。<br />
+                    そのために学び続けています。
+                  </p>
+                  <p className="leading-[2.0] mb-[1.8em]">
+                    ひばりが丘HIBARIDO内の小さな一室で、お待ちしています。
+                  </p>
+
+                  <p className="text-right font-bold text-main mt-10 tracking-[0.1em]">
+                    ── 福助
+                  </p>
+                </motion.div>
               </div>
 
               {/* フッター CTA */}
-              <div className="flex-shrink-0 px-6 py-4 border-t border-gray-100 bg-offwhite">
+              <div className="flex-shrink-0 px-6 py-4 border-t border-divider bg-bg">
                 <a
                   href="https://reserva.be"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block w-full text-center bg-gradient-to-r from-vitality to-terracotta text-white font-bold py-3 rounded-full shadow-md hover:shadow-lg hover:scale-[1.02] transition-all duration-200 text-sm tracking-wide"
+                  className="block w-full text-center bg-main text-white font-bold py-[14px] rounded-[6px] hover:bg-mainhover transition duration-200 text-sm tracking-[0.08em]"
                 >
                   行く日を決める
                 </a>
-                <p className="text-center text-xs text-gray-400 mt-2">Powered by RESERVA</p>
+                <p className="text-center text-xs text-graytext mt-2 font-medium">Powered by RESERVA</p>
               </div>
             </div>
           </motion.div>
