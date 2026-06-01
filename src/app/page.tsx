@@ -17,6 +17,10 @@ export default function Home() {
 
   return (
     <main className="min-h-screen pb-32">
+      <div className="w-full bg-main text-white text-[13px] font-medium tracking-[0.05em] py-[10px] px-4 text-center leading-relaxed">
+        まもなく、痛気持ちいいが始まります。<br />
+        ― 2026年6月中旬 プレオープン予定
+      </div>
       <StickyNav />
       
       <Hero />
