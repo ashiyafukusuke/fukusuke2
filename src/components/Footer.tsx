@@ -35,7 +35,7 @@ export default function Footer() {
           transition={{ delay: 0.4 }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          href="https://reserva.be/ashiyafukusuke" 
+          href="https://itakimo-hibarigaoka.stores.jp/reserve/hibarigaoka_ashitsubo" 
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center bg-main hover:bg-mainhover text-white font-bold py-[14px] px-[32px] rounded-[6px] transition-all duration-200 shadow-xl shadow-main/30 hover:shadow-main/50 text-lg tracking-[0.08em]"
