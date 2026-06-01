@@ -81,7 +81,9 @@ export default function MenuCarousel() {
                 </p>
               </div>
               <a 
-                href="#"
+                href="https://reserva.be/ashiyafukusuke"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`block text-center w-full py-[14px] rounded-[6px] font-bold transition-all duration-200 text-sm tracking-[0.08em] ${
                   item.isPopular 
                   ? "bg-main text-white shadow-lg hover:bg-mainhover" 

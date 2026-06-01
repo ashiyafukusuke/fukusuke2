@@ -27,15 +27,7 @@ export default function Footer() {
           </p>
         </motion.div>
         
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-          className="text-xs text-gray-500 tracking-widest mb-4 uppercase"
-        >
-          Powered by RESERVA
-        </motion.p>
+
         <motion.a 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -43,7 +35,9 @@ export default function Footer() {
           transition={{ delay: 0.4 }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          href="#" 
+          href="https://reserva.be/ashiyafukusuke" 
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex items-center justify-center bg-main hover:bg-mainhover text-white font-bold py-[14px] px-[32px] rounded-[6px] transition-all duration-200 shadow-xl shadow-main/30 hover:shadow-main/50 text-lg tracking-[0.08em]"
         >
           予約枠を確保する
@@ -69,6 +63,19 @@ export default function Footer() {
           className="mt-16 text-xs text-gray-400 tracking-widest"
         >
           西東京市 ひばりが丘 HIBARIDO 内 / 福助
+        </motion.p>
+        
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.7 }}
+          className="text-[11px] text-[#5C5C5C] text-center mt-4 leading-[1.8]"
+        >
+          当店の施術はリラクゼーションを目的としたものであり、<br />
+          医療行為・治療行為にはあたりません。<br />
+          疾病の診断・治療・予防を目的とするものではございません。<br />
+          体調に不安のある方は、事前に医師にご相談ください。
         </motion.p>
       </div>
     </footer>

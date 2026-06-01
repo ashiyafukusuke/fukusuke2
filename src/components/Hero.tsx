@@ -42,7 +42,7 @@ export default function Hero() {
           className="text-lg md:text-xl text-ink font-medium leading-[1.8] md:leading-loose max-w-2xl"
         >
           強い刺激を受けているはずなのに、<br />
-          気づくと意識が遠くなっていく。<br />
+          気づくと、頭の中が静かになっていく。<br />
           <br />
           眠る人もいます。しゃべりながら<br />
           目がトロンとする人もいます。<br />
@@ -63,7 +63,7 @@ export default function Hero() {
           className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-12"
         >
           <a
-            href="https://reserva.be"
+            href="https://reserva.be/ashiyafukusuke"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center bg-main text-white font-bold py-[14px] px-[32px] rounded-[6px] hover:bg-mainhover transition duration-200 text-base tracking-[0.08em]"

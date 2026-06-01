@@ -53,7 +53,7 @@ export default function StickyNav() {
             </div>
 
             <a
-              href="https://reserva.be"
+              href="https://reserva.be/ashiyafukusuke"
               target="_blank"
               rel="noopener noreferrer"
               className="flex-shrink-0 bg-main text-white text-xs sm:text-sm font-bold px-4 py-2 rounded-[4px] shadow hover:bg-mainhover transition-colors duration-200 whitespace-nowrap tracking-wide"
