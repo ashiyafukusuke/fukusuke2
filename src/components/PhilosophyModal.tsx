@@ -106,8 +106,12 @@ export default function PhilosophyModal({ isOpen, onClose }: PhilosophyModalProp
                   </div>
 
                   <p className="leading-[2.0] mb-[1.8em]">
-                    答えを探して、身体の構造や自律神経の本を読みました。<br />
-                    今も読んでいます。完全な答えはまだ出ていません。
+                    答えを探して、解剖生理学・神経生理学の書籍を読み込みました。<br />
+                    読むだけでなく、学んだことを施術に落とし込み、<br />
+                    また疑問が生まれる。その繰り返しが今も続いています。<br />
+                    完全な答えはまだ出ていません。<br />
+                    それでも近づこうとし続けることが、<br />
+                    施術者としての宿命だと思っています。
                   </p>
 
                   <div className="w-[40px] h-[2px] bg-main mx-auto my-8"></div>
@@ -149,18 +153,14 @@ export default function PhilosophyModal({ isOpen, onClose }: PhilosophyModalProp
 
               {/* フッター CTA */}
               <div className="flex-shrink-0 px-6 py-4 border-t border-divider bg-bg">
-                <button
-                  onClick={() => {
-                    onClose();
-                    setTimeout(() => {
-                      document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth' });
-                    }, 100);
-                  }}
-                  className="block w-full text-center bg-transparent text-main border-2 border-main font-semibold py-[14px] rounded-[6px] hover:bg-main hover:text-white transition duration-200 text-sm tracking-[0.08em]"
+                <a
+                  href="https://itakimo-hibarigaoka.stores.jp/reserve/hibarigaoka_ashitsubo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full text-center bg-main text-white font-bold py-[14px] rounded-[6px] hover:bg-mainhover transition duration-200 text-sm tracking-[0.08em]"
                 >
-                  コースを選ぶ ➔
-                </button>
-                <p className="text-center text-xs text-graytext mt-2 font-medium">Powered by RESERVA</p>
+                  予約枠を確保する
+                </a>
               </div>
             </div>
           </motion.div>
