@@ -6,25 +6,23 @@ export default function Hero() {
     <header className="bg-bg pt-24 pb-20 px-6 md:px-12 overflow-hidden">
       <div className="max-w-4xl mx-auto flex flex-col items-start relative">
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-6"
-        >
-          <span className="bg-ink text-white text-sm md:text-base font-bold tracking-widest px-4 py-2 rounded-full">
-            足つぼ専門店
-          </span>
-        </motion.div>
-        
-        <motion.h1 
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="font-serif text-5xl md:text-7xl font-black text-ink leading-tight mb-6 tracking-widest"
+          className="mb-8 md:mb-12"
         >
-          【イタキモ】<br/>
-          <span className="text-3xl md:text-4xl text-main mt-2 block tracking-widest">-ITAKIMO-</span>
-        </motion.h1>
+          {/* 
+            TODO: base64データが長すぎて途切れてしまったため、
+            代わりに画像ファイル（/logo.png）を読み込むようにしています。
+            publicフォルダに「logo.png」という名前でロゴ画像を配置してください。
+            または、直接ここにbase64データを貼り付けてください。
+          */}
+          <img 
+            src="/logo.png" 
+            alt="イタキモロゴ" 
+            className="w-[280px] md:w-[400px] h-auto object-contain mt-2 mb-4" 
+          />
+        </motion.div>
 
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
