@@ -11,7 +11,7 @@ export default function MenuCarousel() {
       content: "お仕事帰りや隙間時間に。足裏からふくらはぎまでをテンポ良く揉みほぐし、短時間でもスッキリ軽くなる感覚を味わえます。",
       color: "border-divider",
       bg: "bg-card",
-      badge: "お試し・クイック",
+      badge: "クイック",
       badgeColor: "bg-main text-white font-bold rounded-[4px]"
     },
     {
