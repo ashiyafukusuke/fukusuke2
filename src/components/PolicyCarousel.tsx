@@ -5,22 +5,22 @@ export default function PolicyCarousel() {
   const policies = [
     {
       situation: "前日までの予約変更",
-      rule: "3回まで承ります",
-      note: "4回目以降は、以降のご予約をお断りいたします",
+      rule: "1回のご予約につき3回まで承ります",
+      note: "同一予約での4回目以降の変更はお断りいたします",
       color: "border-divider",
       bg: "bg-cardlight",
     },
     {
       situation: "当日の予約変更",
-      rule: "1回まで承ります",
-      note: "2回目以降は「当日連絡ありキャンセル」として扱います（ただし事情による）",
+      rule: "1回のご予約につき1回まで承ります",
+      note: "2回目以降は当日キャンセル扱いとなります",
       color: "border-divider",
       bg: "bg-cardlight",
     },
     {
       situation: "当日キャンセル（連絡あり）",
       rule: "キャンセル料は頂きません",
-      note: "ただし3回目以降は、以降のご予約をお断りいたします",
+      note: "通算3回目以降は、以降のご予約をお断りいたします",
       color: "border-divider",
       bg: "bg-cardlight",
     },
@@ -41,7 +41,11 @@ export default function PolicyCarousel() {
             キャンセルポリシー
             <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-divider rounded-full"></div>
           </h2>
-          <p className="text-gray-500 mt-6 text-xs md:text-sm leading-loose max-w-xl mx-auto">
+          <p className="text-[13px] text-[#5C5C5C] mb-[16px] text-center mt-10">
+            予約の変更・キャンセルは、<br className="sm:hidden" />
+            予約確認メールのリンクよりお手続きください。
+          </p>
+          <p className="text-gray-500 mt-2 text-xs md:text-sm leading-loose max-w-xl mx-auto">
             限られた枠を大切にしたいと思っています。<br/>
             お互いの時間を誠実に扱うためのお約束として、お読みください。
           </p>

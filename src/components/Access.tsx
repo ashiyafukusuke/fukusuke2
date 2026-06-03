@@ -4,19 +4,19 @@ import { motion } from "framer-motion";
 export default function Access() {
   const routes = [
     {
-      station: "西武池袋線 ひばりヶ丘駅",
+      station: "西武池袋線 ひばりヶ丘駅からお越しの場合",
       info: "徒歩17分\nまたは\n西武バス「境04」武蔵境駅行き\n「交番前」下車 徒歩1分",
     },
     {
-      station: "西武新宿線 田無駅",
+      station: "西武新宿線 田無駅からお越しの場合",
       info: "西武バス「境04」ひばりヶ丘駅行き\n「交番前」下車 徒歩1分",
     },
     {
-      station: "JR中央線 武蔵境駅",
+      station: "JR中央線 武蔵境駅からお越しの場合",
       info: "西武バス「境04」ひばりヶ丘駅行き\n「交番前」下車 徒歩1分",
     },
     {
-      station: "JR中央線 三鷹駅",
+      station: "JR中央線 三鷹駅からお越しの場合",
       info: "西武バス「鷹22」ひばりヶ丘駅行き\n「交番前」下車 徒歩1分",
     },
   ];
@@ -93,6 +93,21 @@ export default function Access() {
             <p className="text-graytext text-sm leading-relaxed">
               駐車場はございません。<br />
               近隣のコインパーキングをご利用ください。
+            </p>
+          </motion.div>
+
+          {/* 駐輪場案内 */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <h3 className="font-bold text-lg text-ink mb-2">🚲 駐輪場</h3>
+            <p className="text-graytext text-sm leading-relaxed">
+              建物前にHIBARIDOが用意した<br />
+              駐輪スペースがございます。<br />
+              マナーを守ってご利用ください。
             </p>
           </motion.div>
         </div>
