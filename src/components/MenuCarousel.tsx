@@ -11,23 +11,21 @@ export default function MenuCarousel() {
       content: "お仕事帰りや隙間時間に。足裏からふくらはぎまでをテンポ良く揉みほぐし、短時間でもスッキリ軽くなる感覚を味わえます。",
       color: "border-divider",
       bg: "bg-card",
-      badge: "クイック",
-      badgeColor: "bg-main text-white font-bold rounded-[4px]"
+      badges: [
+        { text: "クイック", color: "bg-main text-white font-bold rounded-[4px]" }
+      ]
     },
     {
       title: "60分枠",
       price: "6,500円",
       desc: "定番の全身アプローチ",
-      content: (
-        <>
-          当店の一番人気。台湾式の手技をベースに、神経と血流への働きかけを意識した施術で全身を深いリセットへ導きます。左足が終わる頃には、多くの方の意識がゆっくりと溶け始めます。
-          <p className="text-[11px] text-main mt-2 font-medium">※初回は合わなければ無料でお帰りいただけます</p>
-        </>
-      ),
+      content: "当店の一番人気。台湾式の手技をベースに、神経と血流への働きかけを意識した施術で全身を深いリセットへ導きます。左足が終わる頃には、多くの方の意識がゆっくりと溶け始めます。",
       color: "border-divider",
       bg: "bg-cardlight",
-      badge: "王道・一番人気",
-      badgeColor: "bg-main text-white font-bold rounded-[4px]",
+      badges: [
+        { text: "イタキモの真骨頂", color: "bg-main text-white font-bold rounded-[4px]" },
+        { text: "初回お試し対象", color: "bg-white text-main border border-main font-bold rounded-[4px]" }
+      ],
       isPopular: true
     },
     {
@@ -37,8 +35,9 @@ export default function MenuCarousel() {
       content: "慢性的な疲れが抜けきらない方に。時間をかけて細部まで徹底的にほぐし切る、至福のコースです。",
       color: "border-divider",
       bg: "bg-card",
-      badge: "足つぼ沼へようこそ",
-      badgeColor: "bg-main text-white font-bold rounded-[4px]"
+      badges: [
+        { text: "足つぼ沼へようこそ", color: "bg-main text-white font-bold rounded-[4px]" }
+      ]
     }
   ];
 
@@ -77,12 +76,16 @@ export default function MenuCarousel() {
               className={`min-w-[70vw] sm:min-w-[45vw] md:min-w-[calc(25%-12px)] flex-1 shrink-0 snap-center rounded-2xl p-5 md:p-6 border-2 ${item.color} ${item.bg} flex flex-col justify-between`}
             >
               <div>
-                {item.badge && (
-                  <span className={`inline-block text-[10px] md:text-xs font-bold px-2 py-1 rounded-full mb-3 ${item.badgeColor}`}>
-                    {item.badge}
-                  </span>
+                {item.badges && (
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    {item.badges.map((b, i) => (
+                      <span key={i} className={`inline-block text-[10px] md:text-xs px-2 py-1 ${b.color}`}>
+                        {b.text}
+                      </span>
+                    ))}
+                  </div>
                 )}
-                <h3 className="text-lg md:text-xl font-bold font-serif mb-1">{item.title}</h3>
+                <h3 className="text-xl md:text-2xl font-black font-serif text-ink mb-1">{item.title}</h3>
                 <p className="text-xs font-bold text-gray-500 mb-3">{item.desc}</p>
                 <div className="text-xl md:text-2xl font-black text-ink mb-4">{item.price}</div>
                 <p className="text-xs md:text-sm text-gray-700 leading-relaxed mb-6">
