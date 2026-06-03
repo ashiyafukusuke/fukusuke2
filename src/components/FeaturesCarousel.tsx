@@ -16,8 +16,8 @@ export default function FeaturesCarousel() {
       borderColor: "border-divider"
     },
     {
-      title: "台湾式×神経生理学",
-      content: "台湾式の手技をベースに、解剖生理学・自律神経の知見を重ねた独自スタイル。「なぜ効くのか」を現場から自分で考え続けた施術者が届ける、根拠のある足つぼです。",
+      title: "台湾式×神経の働き",
+      content: "台湾式の手技をベースに、身体の構造・自律神経の知見を重ねた独自スタイル。「なぜ効くのか」を現場から自分で考え続けた施術者が届ける、根拠のある足つぼです。",
       bg: "bg-cardlight",
       borderColor: "border-divider"
     }

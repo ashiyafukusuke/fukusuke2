@@ -93,7 +93,7 @@ export default function MenuCarousel() {
                 </p>
               </div>
               <a 
-                href="https://itakimo-hibarigaoka.stores.jp/reserve/hibarigaoka_ashitsubo"
+                href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`block text-center w-full py-[14px] rounded-[6px] font-bold transition-all duration-200 text-sm tracking-[0.08em] ${

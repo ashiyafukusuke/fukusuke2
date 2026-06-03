@@ -106,7 +106,7 @@ export default function PhilosophyModal({ isOpen, onClose }: PhilosophyModalProp
                   </div>
 
                   <p className="leading-[2.0] mb-[1.8em]">
-                    答えを探して、解剖生理学や自律神経の本を読みました。<br />
+                    答えを探して、身体の構造や自律神経の本を読みました。<br />
                     今も読んでいます。完全な答えはまだ出ていません。
                   </p>
 
