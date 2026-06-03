@@ -18,7 +18,12 @@ export default function MenuCarousel() {
       title: "60分枠",
       price: "6,500円",
       desc: "定番の全身アプローチ",
-      content: "当店の一番人気。台湾式の手技をベースに、神経と血流への働きかけを意識した施術で全身を深いリセットへ導きます。左足が終わる頃には、多くの方の意識がゆっくりと溶け始めます。",
+      content: (
+        <>
+          当店の一番人気。台湾式の手技をベースに、神経と血流への働きかけを意識した施術で全身を深いリセットへ導きます。左足が終わる頃には、多くの方の意識がゆっくりと溶け始めます。
+          <p className="text-[11px] text-main mt-2 font-medium">※初回は合わなければ無料でお帰りいただけます</p>
+        </>
+      ),
       color: "border-divider",
       bg: "bg-cardlight",
       badge: "王道・一番人気",
@@ -41,10 +46,14 @@ export default function MenuCarousel() {
     <section id="menu" className="bg-card rounded-3xl shadow-lg shadow-black/5 border-t-8 border-main p-6 md:p-12 text-ink relative overflow-hidden">
       <div className="flex flex-col">
         <div className="text-center mb-8 md:mb-10">
-          <h2 className="font-serif text-2xl md:text-3xl font-black text-ink inline-block relative tracking-widest">
+          <h2 className="font-serif text-2xl md:text-3xl font-black text-ink inline-block relative tracking-widest mb-6">
             メニュー・料金
             <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-main rounded-full"></div>
           </h2>
+          <p className="text-[14px] text-[#5C5C5C] text-center mb-4 leading-relaxed">
+            はじめての方には60分コースがおすすめです。<br />
+            左足が終わる頃には、多くの方の意識が<br className="md:hidden" />ゆっくりと溶け始めます。
+          </p>
         </div>
 
         {/* ご利用の流れカルーセルをここに組み込む */}

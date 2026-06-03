@@ -11,7 +11,7 @@ export default function FeaturesCarousel() {
     },
     {
       title: "独自のスタイル",
-      content: "反射区（ツボ）にこだわりすぎないアプローチ。筋肉や神経といった身体の仕組みも捉え、あなたの足に本当に必要な刺激を届けます。",
+      content: "反射区（ツボ）にこだわりすぎないアプローチ。筋肉や神経といった身体の仕組みも捉え、あなたの足に本当に必要な刺激を届けます。\n「強ければ効く」は誤解です。必要な圧を、必要な場所に。",
       bg: "bg-card",
       borderColor: "border-divider"
     },
@@ -48,7 +48,7 @@ export default function FeaturesCarousel() {
               className={`min-w-[70vw] sm:min-w-[45vw] md:min-w-[calc(25%-12px)] flex-1 shrink-0 snap-center rounded-2xl p-5 md:p-6 border-2 ${feature.borderColor} ${feature.bg} flex flex-col justify-start`}
             >
               <h3 className="text-base md:text-lg font-black font-serif mb-3 md:mb-4">{feature.title}</h3>
-              <p className="text-xs md:text-sm text-gray-700 leading-relaxed">
+              <p className="text-xs md:text-sm text-gray-700 leading-relaxed whitespace-pre-wrap">
                 {feature.content}
               </p>
             </motion.div>

@@ -37,10 +37,14 @@ export default function Enjoy100() {
     <section className="bg-card rounded-3xl shadow-lg shadow-black/5 border-t-8 border-sub p-6 md:p-12 text-ink relative overflow-hidden">
       <div className="flex flex-col">
         <div className="text-center mb-8 md:mb-10">
-          <h2 className="font-serif text-2xl md:text-3xl font-black text-ink inline-block relative tracking-widest">
+          <h2 className="font-serif text-2xl md:text-3xl font-black text-ink inline-block relative tracking-widest mb-6">
             イタキモを100％楽しむために
             <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-sub rounded-full"></div>
           </h2>
+          <p className="text-[14px] text-[#5C5C5C] text-center mb-6 leading-relaxed">
+            初めての方もご安心ください。<br />
+            来店前に知っておくと、より体験が深まります。
+          </p>
           <p className="text-gray-400 mt-6 text-[10px] md:text-xs tracking-widest font-bold md:hidden">
             ← 横にスクロールできます →
           </p>

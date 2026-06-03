@@ -45,10 +45,10 @@ export default function StickyNav() {
               </a>
               <span className="text-divider hidden sm:inline">|</span>
               <a
-                href="#cancel-policy"
+                href="#access"
                 className="text-xs sm:text-sm text-graytext hover:text-main transition-colors whitespace-nowrap px-2 py-1 rounded hover:bg-main/5 font-semibold"
               >
-                ポリシー
+                アクセス
               </a>
             </div>
 
