@@ -21,7 +21,7 @@ export default function StickyNav() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -60, opacity: 0 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="fixed top-0 left-0 right-0 z-50 bg-bg/90 backdrop-blur-md border-b border-divider shadow-sm"
+          className="sticky top-0 z-[100] bg-[rgba(255,251,245,0.95)] backdrop-blur-[8px] border-b border-divider shadow-sm"
         >
           <div className="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between gap-2">
             {/* ブランド名 */}
@@ -32,21 +32,35 @@ export default function StickyNav() {
             <div className="flex items-center gap-1 sm:gap-3 overflow-x-auto scrollbar-none">
               <a
                 href="#features"
-                className="text-xs sm:text-sm text-graytext hover:text-main transition-colors whitespace-nowrap px-2 py-1 rounded hover:bg-main/5 font-semibold"
+                className="text-[12px] sm:text-sm text-graytext hover:text-main transition-colors whitespace-nowrap px-1 py-1 rounded hover:bg-main/5 font-semibold"
               >
                 特徴
               </a>
               <span className="text-divider hidden sm:inline">|</span>
               <a
                 href="#menu"
-                className="text-xs sm:text-sm text-graytext hover:text-main transition-colors whitespace-nowrap px-2 py-1 rounded hover:bg-main/5 font-semibold"
+                className="text-[12px] sm:text-sm text-graytext hover:text-main transition-colors whitespace-nowrap px-1 py-1 rounded hover:bg-main/5 font-semibold"
               >
                 メニュー
               </a>
               <span className="text-divider hidden sm:inline">|</span>
               <a
+                href="#trial"
+                className="text-[12px] sm:text-sm text-graytext hover:text-main transition-colors whitespace-nowrap px-1 py-1 rounded hover:bg-main/5 font-semibold"
+              >
+                お試し制度
+              </a>
+              <span className="text-divider hidden sm:inline">|</span>
+              <a
+                href="#tips"
+                className="text-[12px] sm:text-sm text-graytext hover:text-main transition-colors whitespace-nowrap px-1 py-1 rounded hover:bg-main/5 font-semibold"
+              >
+                来店前に
+              </a>
+              <span className="text-divider hidden sm:inline">|</span>
+              <a
                 href="#access"
-                className="text-xs sm:text-sm text-graytext hover:text-main transition-colors whitespace-nowrap px-2 py-1 rounded hover:bg-main/5 font-semibold"
+                className="text-[12px] sm:text-sm text-graytext hover:text-main transition-colors whitespace-nowrap px-1 py-1 rounded hover:bg-main/5 font-semibold"
               >
                 アクセス
               </a>

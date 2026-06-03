@@ -5,7 +5,7 @@ export default function SystemCarousel() {
   const systems = [
     {
       title: "初回お試し制度",
-      desc: "初回来店時限定",
+      desc: "60分枠・初回来店時限定",
       headline: "合わないと感じたなら、お代は頂戴しません。",
       content: "まずは左足から施術を開始します。片足が終わった段階で継続を確認し、合わなければ「今日はここまで」とお伝えください。その時点で直ちに終了し、お代は頂戴いたしません。",
       color: "border-divider",
@@ -24,7 +24,7 @@ export default function SystemCarousel() {
   ];
 
   return (
-    <section className="bg-card rounded-3xl shadow-lg shadow-black/5 border-t-8 border-sub p-6 md:p-12 text-ink relative overflow-hidden">
+    <section id="trial" className="bg-card rounded-3xl shadow-lg shadow-black/5 border-t-8 border-sub p-6 md:p-12 text-ink relative overflow-hidden">
       <div className="flex flex-col">
         <div className="text-center mb-8 md:mb-10">
           <h2 className="font-serif text-2xl md:text-3xl font-black text-ink inline-block relative tracking-widest">

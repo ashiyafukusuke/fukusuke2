@@ -9,7 +9,7 @@ export default function Hero() {
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-8 md:mb-12"
+          className="w-full flex justify-center mb-8 md:mb-12"
         >
           {/* 
             TODO: base64データが長すぎて途切れてしまったため、
@@ -20,7 +20,7 @@ export default function Hero() {
           <img 
             src="/logo.png" 
             alt="イタキモロゴ" 
-            className="w-[280px] md:w-[400px] h-auto object-contain mt-2 mb-4" 
+            className="w-[90vw] max-w-[700px] h-auto block mx-auto mb-8 object-contain" 
           />
         </motion.div>
 
