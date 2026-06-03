@@ -79,24 +79,25 @@ export default function PhilosophyModal({ isOpen, onClose }: PhilosophyModalProp
                   className="relative text-sm sm:text-base text-ink"
                 >
                   <p className="leading-[2.0] mb-[1.8em]">
-                    はじめまして。西東京市ひばりが丘の足つぼ専門店【イタキモ】<br />
-                    店主の福助です。
+                    はじめまして。西東京市ひばりが丘の足つぼ専門店<br className="hidden sm:inline" />
+                    【イタキモ】店主の福助です。
                   </p>
                   <p className="leading-[2.0] mb-[1.8em]">
                     「福助」は源氏名です。福助人形からとりました。<br />
-                    この名を使うと決めた日から、言い訳のきかない自分でいようと<br />
-                    思っています。
+                    この名を使うと決めた日から、言い訳のきかない<br />
+                    自分でいようと思っています。
                   </p>
 
                   <div className="w-[40px] h-[2px] bg-main mx-auto my-8"></div>
 
                   <p className="leading-[2.0] mb-[1.8em]">
                     前職は全く別の仕事をしていました。<br />
-                    足つぼを受けたことすらないまま、この世界に飛び込みました。
+                    足つぼを受けたことすらないまま、<br />
+                    この世界に飛び込みました。
                   </p>
                   <p className="leading-[2.0] mb-[1.8em]">
-                    師匠にゼロから教わり、実際にお客様の足を揉み始めると、<br />
-                    疑問が出てきました。
+                    師匠にゼロから教わり、実際にお客様の足を<br />
+                    揉み始めると、疑問が出てきました。
                   </p>
 
                   <div className="border-l-[3px] border-main bg-cardlight px-4 py-3 rounded-r font-semibold mb-[1.8em]">
@@ -106,7 +107,8 @@ export default function PhilosophyModal({ isOpen, onClose }: PhilosophyModalProp
                   </div>
 
                   <p className="leading-[2.0] mb-[1.8em]">
-                    答えを探して、解剖生理学・神経生理学の書籍を読み込みました。<br />
+                    答えを探して、解剖生理学・神経生理学の書籍を<br />
+                    読み込みました。<br />
                     読むだけでなく、学んだことを施術に落とし込み、<br />
                     また疑問が生まれる。その繰り返しが今も続いています。<br />
                     完全な答えはまだ出ていません。<br />
@@ -117,21 +119,33 @@ export default function PhilosophyModal({ isOpen, onClose }: PhilosophyModalProp
                   <div className="w-[40px] h-[2px] bg-main mx-auto my-8"></div>
 
                   <p className="leading-[2.0] mb-[1.8em]">
-                    今のところ辿り着いているのは、足全体を深く丁寧に刺激する<br />
-                    ことで副交感神経が優位になり、意識が少しずつ溶けていくと<br />
-                    いう現象です。眠る人もいます。しゃべりながら目がトロンと<br />
-                    する人もいます。施術後に「なんか変わった気がする」という<br />
-                    感想は、ほぼ全員からいただきます。
+                    今のところ辿り着いているのは、足全体を深く丁寧に<br />
+                    刺激することで副交感神経が優位になり、意識が<br />
+                    少しずつ溶けていくという現象です。<br />
+                    施術後に「なんか変わった気がする」という感想は、<br />
+                    ほぼ全員からいただきます。
                   </p>
                   <p className="leading-[2.0] mb-[1.8em]">
-                    反射区については、全否定もしていません。<br />
-                    「ここを押せばこの臓器が治る」という因果関係には懐疑的です。<br />
-                    ただ、首肩がこっている方の僧帽筋の反射区が硬くなっている<br />
-                    ことは、実際によくある。体の負担が足裏に現れる<span className="text-main font-bold">感性の地図</span><br />
-                    として読む分には、意味があると思っています。
+                    反射区については、全否定はしていません。<br />
+                    「ここを押せばこの臓器が治る」という因果関係には<br />
+                    懐疑的ですが、首肩がこっている方の僧帽筋の反射区が<br />
+                    硬くなっていることは実際によくある。<br />
+                    体の負担が足裏に現れる「感性の地図」として読む分には、<br />
+                    意味があると思っています。
                   </p>
                   <p className="leading-[2.0] mb-[1.8em]">
-                    信じていないことを売り文句にしたくないので、正直に書きました。
+                    ただ、施術の根拠は「足裏を刺激すると身体全体が<br />
+                    どう反応するか」という問いに置いています。<br />
+                    血流を促したり、深部の筋肉を緩めたり、<br />
+                    自律神経のバランスを整えたり——<br />
+                    実際に体感できる変化を積み重ねることで、<br />
+                    足元からふっと軽くなるリセットを目指しています。
+                  </p>
+                  <p className="leading-[2.0] mb-[1.8em]">
+                    科学がこれからさらに進むかもしれないし、<br />
+                    考え方が更新されるかもしれない。<br />
+                    その可能性も大切にしながら、<br />
+                    今できる最善の方法で向き合いたいと思っています。
                   </p>
 
                   <div className="w-[40px] h-[2px] bg-main mx-auto my-8"></div>
@@ -142,7 +156,8 @@ export default function PhilosophyModal({ isOpen, onClose }: PhilosophyModalProp
                     そのために学び続けています。
                   </p>
                   <p className="leading-[2.0] mb-[1.8em]">
-                    ひばりが丘HIBARIDO内の小さな一室で、お待ちしています。
+                    ひばりが丘HIBARIDO内の小さな一室で、<br />
+                    お待ちしています。
                   </p>
 
                   <p className="text-right font-bold text-main mt-10 tracking-[0.1em]">
