@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP, Noto_Serif_JP } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const notoSans = Noto_Sans_JP({ 
@@ -18,7 +19,7 @@ const notoSerif = Noto_Serif_JP({
 
 export const metadata: Metadata = {
   title: "足つぼ専門店 イタキモ",
-  description: "痛いのに、意識が溶けていく。西東京市ひばりが丘の足つぼ専門店「イタキモ」。台湾式×神経の働きで届ける、根拠のある足つぼ。",
+  description: "西東京市ひばりが丘の足つぼ専門店「イタキモ」。足が疲れたら、ここに来てください。台湾式の本格的な圧で、身体の奥まで届けます。",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -29,6 +30,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className={`${notoSans.variable} ${notoSerif.variable} font-sans bg-bg text-ink font-medium antialiased`}>
         {children}
+
+        {/* Google Analytics */}
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-HHQGT4N5TQ"
+        />
+        <Script
+          id="gtag-init"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-HHQGT4N5TQ');
+            `,
+          }}
+        />
       </body>
     </html>
   );
