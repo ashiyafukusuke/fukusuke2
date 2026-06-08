@@ -82,34 +82,38 @@ export default function Access() {
             </div>
           </motion.div>
 
-          {/* 駐車場案内 */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <h3 className="font-bold text-lg text-ink mb-2">🅿️ 駐車場</h3>
-            <p className="text-graytext text-sm leading-relaxed">
-              駐車場はございません。<br />
-              近隣のコインパーキングをご利用ください。
-            </p>
-          </motion.div>
+          <div className="flex flex-col sm:flex-row gap-8">
+            {/* 駐車場案内 */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="flex-1"
+            >
+              <h3 className="font-bold text-lg text-ink mb-2">🅿️ 駐車場</h3>
+              <p className="text-graytext text-sm leading-relaxed">
+                駐車場はございません。<br />
+                近隣のコインパーキングをご利用ください。
+              </p>
+            </motion.div>
 
-          {/* 駐輪場案内 */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            <h3 className="font-bold text-lg text-ink mb-2">🚲 駐輪場</h3>
-            <p className="text-graytext text-sm leading-relaxed">
-              建物前にHIBARIDOが用意した<br />
-              駐輪スペースがございます。<br />
-              マナーを守ってご利用ください。
-            </p>
-          </motion.div>
+            {/* 駐輪場案内 */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="flex-1"
+            >
+              <h3 className="font-bold text-lg text-ink mb-2">🚲 駐輪場</h3>
+              <p className="text-graytext text-sm leading-relaxed">
+                建物前にHIBARIDOが用意した<br />
+                駐輪スペースがございます。<br />
+                マナーを守ってご利用ください。
+              </p>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>

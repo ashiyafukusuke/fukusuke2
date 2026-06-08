@@ -10,14 +10,14 @@ export default function FeaturesCarousel() {
       borderColor: "border-divider"
     },
     {
-      title: "独自のスタイル",
-      content: "反射区（ツボ）にこだわりすぎないアプローチ。筋肉や神経といった身体の仕組みも捉え、あなたの足に本当に必要な刺激を届けます。\n「強ければ効く」は誤解です。必要な圧を、必要な場所に。",
+      title: "反射区にこだわらない",
+      content: "反射区の位置だけを追うのではなく、筋肉や神経の状態を見ながら、その足に必要な圧を届けます。",
       bg: "bg-card",
       borderColor: "border-divider"
     },
     {
-      title: "台湾式×神経の働き",
-      content: "台湾式の手技に、身体の構造と\n神経の働きの知見を重ねた独自スタイル。\n「なぜ効くのか」を現場から\n考え続けています。",
+      title: "台湾式をベースに",
+      content: "台湾式の手技を土台に、身体の構造と神経の働きの知見を重ねています。「なぜ効くのか」を現場から考え続けています。",
       bg: "bg-cardlight",
       borderColor: "border-divider"
     }
