@@ -19,9 +19,6 @@ export default function Profile({ onOpenPhilosophy }: ProfileProps) {
           style={{ display: 'none' }}
           className="w-48 h-48 md:w-64 md:h-64 rounded-full bg-gradient-to-tr from-gray-200 to-gray-100 overflow-hidden flex-shrink-0 border-4 border-white shadow-xl"
         >
-          <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm font-serif">
-            福助の写真
-          </div>
         </motion.div>
         
         <motion.div

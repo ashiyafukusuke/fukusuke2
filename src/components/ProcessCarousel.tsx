@@ -13,7 +13,7 @@ export default function ProcessCarousel() {
     },
     { 
       title: "施術", 
-      desc: "痛気持ち良い、身体も意識もふっと軽くなり溶けていく施術をお楽しみください。" 
+      desc: "痛気持ちいい圧で、身体も意識もふっとゆるんでいく時間をお楽しみください。" 
     },
     { 
       title: "施術終了・お着替え", 

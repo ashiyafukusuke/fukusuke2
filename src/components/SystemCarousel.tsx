@@ -16,7 +16,7 @@ export default function SystemCarousel() {
       title: "継続ご利用特典",
       desc: "60分枠限定",
       headline: "2回目以降はずっとお得に。",
-      content: "2回目〜5回目は5,500円（1,000円OFF）、6回目以降は5,000円（さらに500円OFF）でご利用いただけます。※現在は60分枠のみが対象となります。",
+      content: "2回目以降は5,500円でご利用いただけます。※現在は60分枠のみが対象となります。",
       color: "border-divider",
       bg: "bg-cardlight",
       badgeColor: "bg-sub",
