@@ -2,13 +2,14 @@
 import { motion } from "framer-motion";
 
 export default function PolicyCarousel() {
-  const policies = [
+  const policiesGroup1 = [
     {
       situation: "前日までの予約変更",
       rule: "1回のご予約につき3回まで承ります",
       note: "同一予約での4回目以降の変更はお断りいたします",
       color: "border-divider",
       bg: "bg-cardlight",
+      isRed: false,
     },
     {
       situation: "当日の予約変更",
@@ -16,13 +17,18 @@ export default function PolicyCarousel() {
       note: "2回目以降は当日キャンセル扱いとなります",
       color: "border-divider",
       bg: "bg-cardlight",
+      isRed: false,
     },
+  ];
+
+  const policiesGroup2 = [
     {
       situation: "当日キャンセル（連絡あり）",
       rule: "キャンセル料は頂きません",
       note: "通算3回目以降は、以降のご予約をお断りいたします",
       color: "border-divider",
       bg: "bg-cardlight",
+      isRed: false,
     },
     {
       situation: "当日無断キャンセル",
@@ -30,6 +36,7 @@ export default function PolicyCarousel() {
       note: "",
       color: "border-main",
       bg: "bg-card",
+      isRed: true,
     },
   ];
 
@@ -55,27 +62,62 @@ export default function PolicyCarousel() {
         </div>
         
         {/* 横スクロールコンテナ */}
-        <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-8 -mx-6 px-6 md:mx-0 md:px-0 scrollbar-hide items-stretch">
-          {policies.map((item, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className={`min-w-[70vw] sm:min-w-[45vw] md:min-w-[calc(25%-12px)] flex-1 shrink-0 snap-center rounded-2xl p-5 md:p-6 border-2 ${item.color} ${item.bg} flex flex-col justify-start`}
-            >
-              <p className="text-[10px] md:text-xs text-gray-500 tracking-wider mb-2 font-bold">
-                {item.situation}
-              </p>
-              <h3 className={`text-base md:text-lg font-black mb-3 ${idx === 3 ? "text-main" : "text-ink"}`}>{item.rule}</h3>
-              {item.note && (
-                <p className="text-xs md:text-sm text-gray-600 leading-relaxed mt-auto">
-                  ※{item.note}
-                </p>
-              )}
-            </motion.div>
-          ))}
+        <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 md:gap-8 pb-8 -mx-6 px-6 md:mx-0 md:px-0 scrollbar-hide items-stretch">
+          
+          {/* グループ1: 予約の変更について */}
+          <div className="flex flex-col shrink-0">
+            <h3 className="font-bold text-ink text-sm md:text-base mb-4 border-l-4 border-divider pl-3 ml-1">予約の変更について</h3>
+            <div className="flex gap-4 h-full items-stretch">
+              {policiesGroup1.map((item, idx) => (
+                <motion.div
+                  key={`g1-${idx}`}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  className={`w-[75vw] sm:w-[40vw] md:w-[220px] lg:w-[260px] shrink-0 snap-center rounded-2xl p-5 md:p-6 border-2 ${item.color} ${item.bg} flex flex-col justify-start`}
+                >
+                  <p className="text-[10px] md:text-xs text-gray-500 tracking-wider mb-2 font-bold">
+                    {item.situation}
+                  </p>
+                  <h3 className={`text-base md:text-lg font-black mb-3 ${item.isRed ? "text-main" : "text-ink"}`}>{item.rule}</h3>
+                  {item.note && (
+                    <p className="text-xs md:text-sm text-gray-600 leading-relaxed mt-auto">
+                      ※{item.note}
+                    </p>
+                  )}
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* グループ2: キャンセルについて */}
+          <div className="flex flex-col shrink-0 relative pl-0 md:pl-8 md:border-l border-gray-200">
+            <h3 className="font-bold text-ink text-sm md:text-base mb-4 border-l-4 border-main pl-3 ml-1">キャンセルについて</h3>
+            <div className="flex gap-4 h-full items-stretch">
+              {policiesGroup2.map((item, idx) => (
+                <motion.div
+                  key={`g2-${idx}`}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: (idx + 2) * 0.1 }}
+                  className={`w-[75vw] sm:w-[40vw] md:w-[220px] lg:w-[260px] shrink-0 snap-center rounded-2xl p-5 md:p-6 border-2 ${item.color} ${item.bg} flex flex-col justify-start`}
+                >
+                  <p className="text-[10px] md:text-xs text-gray-500 tracking-wider mb-2 font-bold">
+                    {item.situation}
+                  </p>
+                  <h3 className={`text-base md:text-lg font-black mb-3 ${item.isRed ? "text-main" : "text-ink"}`}>{item.rule}</h3>
+                  {item.note && (
+                    <p className="text-xs md:text-sm text-gray-600 leading-relaxed mt-auto">
+                      ※{item.note}
+                    </p>
+                  )}
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
         </div>
 
         {/* 補足 */}
