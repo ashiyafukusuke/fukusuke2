@@ -58,7 +58,7 @@ export default function Hero() {
           className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-12"
         >
           <a
-            href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka"
+            href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011#pageContent"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center bg-main text-white font-bold py-[14px] px-[32px] rounded-[6px] hover:bg-mainhover transition duration-200 text-base tracking-[0.08em]"
