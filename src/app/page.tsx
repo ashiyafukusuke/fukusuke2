@@ -17,9 +17,16 @@ export default function Home() {
 
   return (
     <main className="min-h-screen pb-32">
-      <div className="w-full bg-main text-white text-[13px] font-medium tracking-[0.05em] py-[10px] px-4 text-center leading-relaxed">
-        まもなく、痛気持ちいいが始まります。<br />
-        ― 2026年6月中旬 プレオープン予定
+      <div className="w-full bg-main text-white text-[13px] font-medium tracking-[0.05em] py-[10px] px-4 text-center leading-relaxed flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6">
+        <span>6/17（水）テスト営業実施。特別価格・現金のみ・概ね60分。</span>
+        <a 
+          href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center justify-center bg-white text-main border border-white font-bold py-1.5 px-4 rounded hover:bg-transparent hover:text-white transition duration-200 text-xs tracking-wide shadow-sm"
+        >
+          詳細を確認して予約
+        </a>
       </div>
       <StickyNav />
       
