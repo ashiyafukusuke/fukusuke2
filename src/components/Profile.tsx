@@ -10,7 +10,7 @@ export default function Profile({ onOpenPhilosophy }: ProfileProps) {
   return (
     <section className="bg-card rounded-3xl shadow-lg shadow-black/5 border-t-8 border-sub p-8 md:p-12 relative overflow-hidden">
       <div className="absolute -right-20 -bottom-20 w-64 h-64 bg-sub/20 rounded-full blur-3xl"></div>
-      <div className="max-w-4xl mx-auto flex flex-col md:flex-row gap-12 items-center relative z-10">
+      <div className="max-w-4xl mx-auto flex flex-col md:flex-row-reverse gap-12 items-center relative z-10">
         
         <motion.div 
           initial={{ scale: 0.9, opacity: 0 }}
@@ -31,7 +31,7 @@ export default function Profile({ onOpenPhilosophy }: ProfileProps) {
         </motion.div>
         
         <motion.div
-          initial={{ opacity: 0, x: 30 }}
+          initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
