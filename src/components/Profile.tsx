@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 interface ProfileProps {
   onOpenPhilosophy: () => void;
@@ -16,9 +17,16 @@ export default function Profile({ onOpenPhilosophy }: ProfileProps) {
           whileInView={{ scale: 1, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, type: "spring" }}
-          style={{ display: 'none' }}
-          className="w-48 h-48 md:w-64 md:h-64 rounded-full bg-gradient-to-tr from-gray-200 to-gray-100 overflow-hidden flex-shrink-0 border-4 border-white shadow-xl"
+          className="w-48 h-48 md:w-64 md:h-64 rounded-full bg-gray-100 overflow-hidden flex-shrink-0 border-4 border-white shadow-xl relative"
         >
+          <Image 
+            src="/profile.jpg" 
+            alt="店主 福助" 
+            fill
+            sizes="(max-width: 768px) 192px, 256px"
+            className="object-cover"
+            priority
+          />
         </motion.div>
         
         <motion.div
