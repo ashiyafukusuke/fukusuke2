@@ -25,6 +25,7 @@ export default function Profile({ onOpenPhilosophy }: ProfileProps) {
             fill
             sizes="(max-width: 768px) 192px, 256px"
             className="object-cover"
+            style={{ objectPosition: 'center 75%' }}
             priority
           />
         </motion.div>
