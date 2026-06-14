@@ -50,7 +50,7 @@ export default function Footer() {
           transition={{ delay: 0.5 }}
           className="mt-12 text-sm text-gray-600 leading-loose flex flex-col items-center"
         >
-          <p><strong>所在地:</strong> 〒202-0001 東京都西東京市ひばりが丘3丁目2−51 2番 51号 2F R-09</p>
+          <p><strong>所在地:</strong> 〒202-0001 東京都西東京市ひばりが丘3丁目2−51 HIBARIDO 2F R-09</p>
           <p className="mt-2"><strong>営業日:</strong> 水・木 6時30分～21時30分</p>
           <p className="text-xs mt-1 text-gray-500">※その他曜日は予約ページにてご確認ください。予約枠がある日時は営業日となります。</p>
           <a href="https://www.instagram.com/fukusuke.ashiya/" target="_blank" rel="noopener noreferrer" className="text-[13px] text-main underline block text-center mt-3">
