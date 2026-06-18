@@ -21,7 +21,7 @@ export default function StickyNav() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -60, opacity: 0 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="sticky top-0 z-[100] bg-[rgba(255,251,245,0.95)] backdrop-blur-[8px] border-b border-divider shadow-sm"
+          className="sticky top-[40px] z-[100] bg-[rgba(255,251,245,0.95)] backdrop-blur-[8px] border-b border-divider shadow-sm"
         >
           <div className="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between gap-2">
             {/* ブランド名 */}

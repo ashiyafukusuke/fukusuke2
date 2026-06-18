@@ -17,15 +17,15 @@ export default function Home() {
 
   return (
     <main className="min-h-screen pb-32">
-      <div className="w-full bg-main text-white text-[13px] font-medium tracking-[0.05em] py-[10px] px-4 text-center leading-relaxed flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6">
-        <span>6/17（水）テスト営業実施。特別価格・現金のみ・概ね60分。</span>
+      <div className="sticky top-0 z-[110] w-full bg-main text-white text-[13px] font-medium tracking-[0.05em] py-[8px] px-4 text-center flex flex-row items-center justify-center gap-4 shadow-md">
+        <span>ご予約受付中</span>
         <a 
           href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011#pageContent"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center justify-center bg-white text-main border border-white font-bold py-1.5 px-4 rounded hover:bg-transparent hover:text-white transition duration-200 text-xs tracking-wide shadow-sm"
+          className="inline-flex items-center justify-center bg-white text-main border border-white font-bold py-1 px-4 rounded hover:bg-transparent hover:text-white transition duration-200 text-xs tracking-wide shadow-sm whitespace-nowrap"
         >
-          詳細を確認して予約
+          予約ページへ ➔
         </a>
       </div>
       <StickyNav />
