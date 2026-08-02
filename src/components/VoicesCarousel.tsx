@@ -25,7 +25,7 @@ export default function VoicesCarousel() {
       <div className="flex flex-col">
         <div className="text-center mb-8 md:mb-10">
           <h2 className="font-serif text-2xl md:text-3xl font-black text-ink inline-block relative tracking-widest mb-3">
-            来てくださった方の言葉
+            足をお任せいただいた方の声
             <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-main rounded-full"></div>
           </h2>
           <div className="mt-5 flex items-center justify-center gap-1">
