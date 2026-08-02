@@ -51,7 +51,7 @@ export default function MenuCarousel() {
           </h2>
           <p className="text-[14px] text-[#5C5C5C] text-center mb-4 leading-relaxed">
             はじめての方には60分コースがおすすめです。<br />
-            左足が終わる頃には、多くの方の意識が<br className="md:hidden" />ゆっくりと溶け始めます。
+            「足だけでなく、気持ちまで軽くなった」——<br className="md:hidden" />そんな声を、いちばん多くいただくコースです。
           </p>
         </div>
 

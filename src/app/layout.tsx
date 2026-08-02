@@ -19,7 +19,7 @@ const notoSerif = Noto_Serif_JP({
 
 export const metadata: Metadata = {
   title: "足つぼ専門店 イタキモ",
-  description: "西東京市ひばりが丘の足つぼ専門店「イタキモ」。足が疲れたら、ここに来てください。台湾式の本格的な圧で、身体の奥まで届けます。",
+  description: "西東京市ひばりが丘の台湾式足つぼ専門店。足が疲れたら、ここに来てください。痛気持ちいい絶妙な圧で足裏からふくらはぎまでほぐします。完全予約制・HIBARIDO 2F。",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

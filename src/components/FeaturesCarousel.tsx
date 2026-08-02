@@ -5,7 +5,7 @@ export default function FeaturesCarousel() {
   const features = [
     {
       title: "意識が溶けていく",
-      content: "痛いのに、意識が遠くなる。これがイタキモの施術の核心です。左足が終わる頃には、ほとんどの方の意識がゆっくりと溶け始めます。",
+      content: "痛いのに、意識が遠くなる——施術中、うとうと眠ってしまう方が少なくありません。この不思議な感覚こそ、イタキモの施術の核心です。",
       bg: "bg-cardlight",
       borderColor: "border-divider"
     },

@@ -39,16 +39,16 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.8 }}
           className="text-lg md:text-xl text-ink font-medium leading-[1.8] md:leading-loose max-w-2xl"
         >
-          強い刺激を受けているはずなのに、<br />
-          気づくと、頭の中が静かになっていく。<br />
+          疲れが抜けない。眠りが浅い。<br />
+          何をしても、奥の疲れだけが残る。<br />
+          <br />
+          その足に強い圧を届けていくと、<br />
+          痛いはずなのに、頭の中が静かになっていく。<br />
           <br />
           眠る人もいます。しゃべりながら<br />
           目がトロンとする人もいます。<br />
           <br />
-          疲れが抜けない。眠りが浅い。<br />
-          何をしても、奥の疲れだけが残る。<br />
-          <br />
-          そんな方に、ぜひ一度だけでも試してほしい。
+          まずは一度、試してみてください。
         </motion.p>
 
         <motion.div

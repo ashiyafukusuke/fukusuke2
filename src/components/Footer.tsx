@@ -22,8 +22,9 @@ export default function Footer() {
           className="mb-12 max-w-xl mx-auto"
         >
           <p className="text-gray-700 leading-loose text-sm md:text-base font-medium text-left inline-block">
-            日々の疲れをリセットし、本来の身軽さを取り戻す場所。<br/>
-            HIBARIDOの決して大きくはない一室ではありますが、<br className="hidden md:block" />全身全霊を込めて足揉みさせて頂きます。
+            足が軽くなると、気持ちまで軽くなる。<br />
+            イタキモは「この人の疲れを取りたい」と思える方の足だけを揉む、小さな店です。<br className="hidden md:block" />
+            ここまで読んでくださったあなたは——たぶん、もうその一人です。
           </p>
         </motion.div>
         
