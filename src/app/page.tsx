@@ -3,6 +3,7 @@ import { useState } from "react";
 import Hero from "@/components/Hero";
 import FeaturesCarousel from "@/components/FeaturesCarousel";
 import Profile from "@/components/Profile";
+import VoicesCarousel from "@/components/VoicesCarousel";
 import SystemCarousel from "@/components/SystemCarousel";
 import MenuCarousel from "@/components/MenuCarousel";
 import Enjoy100 from "@/components/Enjoy100";
@@ -35,6 +36,7 @@ export default function Home() {
       <div className="pt-16 px-4 md:px-8 space-y-16 max-w-5xl mx-auto">
         <FeaturesCarousel />
         <Profile onOpenPhilosophy={() => setModalOpen(true)} />
+        <VoicesCarousel />
         <MenuCarousel />
         <SystemCarousel />
         <Enjoy100 />
