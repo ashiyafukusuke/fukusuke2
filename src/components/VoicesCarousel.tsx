@@ -60,16 +60,26 @@ export default function VoicesCarousel() {
 
         <div className="mt-2 text-center flex flex-col items-center">
           <p className="text-xs text-gray-500 mb-6 leading-relaxed">
-            クチコミは募っていません。<br className="md:hidden" />いただいた言葉を、そのまま載せています。
+            こちらからクチコミをお願いすることは致しませんが、<br className="md:hidden" />ご感想を頂けるとやはり嬉しいです。ありがとうございます！
           </p>
-          <a
-            href="https://g.page/r/placeholder/review" 
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center bg-transparent text-main border-2 border-main font-bold py-[10px] px-[24px] rounded-[6px] hover:bg-main hover:text-white transition duration-200 text-xs tracking-wide"
-          >
-            Googleでクチコミを見る ➔
-          </a>
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
+            <a
+              href="https://share.google/hoX4rSA5QB2lNpmHH" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center bg-transparent text-main border-2 border-main font-bold py-[10px] px-[24px] rounded-[6px] hover:bg-main hover:text-white transition duration-200 text-xs tracking-wide"
+            >
+              Googleクチコミを見る ➔
+            </a>
+            <a
+              href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/reviews" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center bg-transparent text-main border-2 border-main font-bold py-[10px] px-[24px] rounded-[6px] hover:bg-main hover:text-white transition duration-200 text-xs tracking-wide"
+            >
+              STORESレビューを見る ➔
+            </a>
+          </div>
         </div>
       </div>
     </section>
