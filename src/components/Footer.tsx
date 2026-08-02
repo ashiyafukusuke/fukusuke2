@@ -51,7 +51,10 @@ export default function Footer() {
           className="mt-12 text-sm text-gray-600 leading-loose flex flex-col items-center"
         >
           <p><strong>所在地:</strong> 〒202-0001 東京都西東京市ひばりが丘3丁目2−51 HIBARIDO 2F R-09</p>
-          <p className="mt-2"><strong>営業日:</strong> 水・木 6時30分～21時30分</p>
+          <div className="mt-2 text-center leading-relaxed">
+            <p><strong>営業日:</strong> 水・木 09時00分～22時40分</p>
+            <p><strong>水木以外・夜特別枠(1枠限り):</strong> 21時10分～22時40分</p>
+          </div>
           <p className="text-xs mt-1 text-gray-500">※その他曜日は予約ページにてご確認ください。予約枠がある日時は営業日となります。</p>
           <div className="mt-6 flex flex-col items-center w-full">
             <p className="text-[13px] font-bold text-gray-700 mb-2">お問い合わせ</p>
@@ -81,7 +84,7 @@ export default function Footer() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.7 }}
-          className="text-[11px] text-[#5C5C5C] text-center mt-4 leading-[1.8]"
+          className="text-[11px] text-[#5C5C5C] text-left inline-block mt-4 leading-[1.8]"
         >
           当店の施術はリラクゼーションを目的としたものであり、<br />
           医療行為・治療行為にはあたりません。<br />
