@@ -6,9 +6,9 @@ export default function Hero() {
     <header className="bg-bg pt-4 pb-20 px-6 md:px-12 overflow-hidden">
       <div className="max-w-4xl mx-auto flex flex-col items-start relative">
         <motion.div 
-          initial={{ opacity: 0, x: -30 }}
+          initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
           className="w-full flex justify-center mb-8 md:mb-12 bg-transparent border-none shadow-none p-0"
         >
           {/* 
@@ -24,37 +24,28 @@ export default function Hero() {
           />
         </motion.div>
 
-        <motion.p 
-          initial={{ opacity: 0, y: 20 }}
+        <motion.h1 
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-3xl md:text-5xl font-serif text-main font-black mb-10 leading-relaxed tracking-widest"
+          transition={{ duration: 0.4, delay: 0.2 }}
+          className="text-4xl md:text-6xl font-heading text-main font-black mb-6 leading-[1.3] md:leading-[1.4] tracking-wider"
         >
-          痛いのに、<br className="md:hidden" />意識が溶けていく。
-        </motion.p>
+          最初から最後まで、<br className="md:hidden" />イタキモチイイが続く。
+        </motion.h1>
         
         <motion.p 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.8 }}
-          className="text-lg md:text-xl text-ink font-medium leading-[1.8] md:leading-loose max-w-2xl"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="text-lg md:text-xl text-ink font-bold tracking-widest"
         >
-          疲れが抜けない。眠りが浅い。<br />
-          何をしても、奥の疲れだけが残る。<br />
-          <br />
-          その足に、深く圧を届けていくと、<br />
-          痛いはずなのに、頭の中が静かになっていく。<br />
-          <br />
-          眠る人もいます。しゃべりながら<br />
-          目がトロンとする人もいます。<br />
-          <br />
-          まずは一度、試してみてください。
+          ひばりが丘の足つぼ専門店 イタキモ
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 1.2 }}
+          transition={{ duration: 0.4, delay: 0.4 }}
           className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-12"
         >
           <a
@@ -67,9 +58,9 @@ export default function Hero() {
           </a>
           <a
             href="#menu"
-            className="inline-flex items-center justify-center bg-transparent text-main border-2 border-main font-semibold py-[12px] px-[28px] rounded-[6px] hover:bg-main hover:text-white transition duration-200 text-sm tracking-wide"
+            className="inline-flex items-center justify-center bg-transparent text-main border-2 border-main font-bold py-[12px] px-[28px] rounded-[6px] hover:bg-main hover:text-white transition duration-200 text-sm tracking-wide"
           >
-            メニューを確認 ➔
+            メニューを見る ➔
           </a>
         </motion.div>
       </div>

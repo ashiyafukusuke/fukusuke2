@@ -10,7 +10,7 @@ export default function Footer() {
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="font-serif text-3xl md:text-4xl font-black text-ink mb-8 tracking-widest drop-shadow-sm"
+          className="font-heading text-3xl md:text-4xl text-main mb-8 tracking-widest drop-shadow-sm"
         >
           【足つぼ専門店 イタキモ】
         </motion.h2>
@@ -21,10 +21,10 @@ export default function Footer() {
           transition={{ delay: 0.2 }}
           className="mb-12 max-w-xl mx-auto"
         >
-          <p className="text-gray-700 leading-loose text-sm md:text-base font-medium text-left inline-block">
-            足が軽くなると、気持ちまで軽くなる。<br />
-            イタキモは「この人の疲れを取りたい」と思える方の足だけを揉む、小さな店です。<br className="hidden md:block" />
-            ここまで読んでくださったあなたは——たぶん、もうその一人です。
+          <p className="text-gray-700 leading-loose text-sm md:text-base font-bold text-left inline-block">
+            日々の疲れをリセットし、本来の身軽さを取り戻す場所。<br />
+            HIBARIDOの決して大きくはない一室ですが、<br className="hidden md:block" />
+            だからこそ、あなたの足だけに全力を注げます。
           </p>
         </motion.div>
         
@@ -53,10 +53,9 @@ export default function Footer() {
         >
           <p><strong>所在地:</strong> 〒202-0001 東京都西東京市ひばりが丘3丁目2−51 HIBARIDO 2F R-09</p>
           <div className="mt-2 text-center leading-relaxed">
-            <p><strong>営業日:</strong> 水・木 09時00分～22時40分</p>
-            <p><strong>水木以外・夜特別枠(1枠限り):</strong> 21時10分～22時40分</p>
+            <p><strong>営業日:</strong> 水・木 9:00〜22:40</p>
+            <p className="text-xs mt-1 text-gray-500">（その他曜日は夜のみ、予約ページの空き枠をご確認ください）</p>
           </div>
-          <p className="text-xs mt-1 text-gray-500">※その他曜日は予約ページにてご確認ください。予約枠がある日時は営業日となります。</p>
           <div className="mt-6 flex flex-col items-center w-full">
             <p className="text-[13px] font-bold text-gray-700 mb-2">お問い合わせ</p>
             <div className="flex flex-col gap-2 w-max text-left">

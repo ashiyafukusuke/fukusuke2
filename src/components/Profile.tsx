@@ -16,7 +16,7 @@ export default function Profile({ onOpenPhilosophy }: ProfileProps) {
           initial={{ scale: 0.9, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, type: "spring" }}
+          transition={{ duration: 0.6, type: "spring" }}
           className="w-48 h-48 md:w-64 md:h-64 rounded-full bg-gray-100 overflow-hidden flex-shrink-0 border-4 border-white shadow-xl relative"
         >
           <Image 
@@ -31,17 +31,21 @@ export default function Profile({ onOpenPhilosophy }: ProfileProps) {
         </motion.div>
         
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
+          initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.4, delay: 0.1 }}
         >
-          <p className="text-main font-serif mb-2 tracking-widest text-sm font-bold">店主 福助</p>
-          <h2 className="text-3xl md:text-4xl font-serif font-black text-ink mb-6 tracking-widest">
-            福助
-            <span className="text-lg font-sans font-normal text-gray-400 ml-3 tracking-widest">Fukusuke</span>
+          <p className="text-gray-500 font-bold mb-3 tracking-widest text-sm">店主 福助</p>
+          <h2 className="text-2xl md:text-4xl font-heading text-main mb-6 tracking-wide leading-relaxed">
+            足を揉むのが、<br className="md:hidden" />好きで仕方ない。
           </h2>
           <div className="text-ink leading-loose space-y-4 text-sm md:text-base font-medium">
+            <p>
+              毎日、足を揉んでいます。<br />
+              それでも飽きるどころか、毎日新しい発見があります。<br />
+              同じ足は一つもないからです。
+            </p>
             <p>
               足つぼにゴールはないと思っています。<br />
               次にお会いするときは、今日より上手くなっていたい。<br />
@@ -53,7 +57,7 @@ export default function Profile({ onOpenPhilosophy }: ProfileProps) {
           <motion.button
             onClick={onOpenPhilosophy}
             whileHover={{ y: -2 }}
-            className="mt-7 inline-flex items-center justify-center bg-transparent text-main border-2 border-main font-semibold py-[12px] px-[28px] rounded-[6px] hover:bg-main hover:text-white transition duration-200 text-sm tracking-wide"
+            className="mt-8 inline-flex items-center justify-center bg-transparent text-main border-2 border-main font-bold py-[12px] px-[28px] rounded-[6px] hover:bg-main hover:text-white transition duration-200 text-sm tracking-wide"
           >
             <span>店主のスタンスを読む ➔</span>
           </motion.button>

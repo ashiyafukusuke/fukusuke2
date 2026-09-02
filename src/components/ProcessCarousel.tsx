@@ -13,15 +13,15 @@ export default function ProcessCarousel() {
     },
     { 
       title: "施術", 
-      desc: "痛気持ちいい圧で、身体も意識もふっとゆるんでいく時間をお楽しみください。" 
+      desc: "痛気持ちいい圧を、たっぷりどうぞ。強さはいつでも調整できます。遠慮なく言ってください。" 
     },
     { 
       title: "施術終了・お着替え", 
-      desc: "全身がスッキリと軽くなった状態でお着替えをしていただきます。" 
+      desc: "足が軽くなった状態でお着替えいただきます。" 
     },
     { 
       title: "お会計・ご退室", 
-      desc: "すべて「予約した時間枠の中」で完了します。遅刻した場合でも終了時間は遅れませんのでご安心を。" 
+      desc: "すべて「予約した時間枠の中」で完了します。遅刻した場合でも終了時間は変わりませんのでご安心を。" 
     }
   ];
 
@@ -42,14 +42,14 @@ export default function ProcessCarousel() {
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="min-w-[70vw] sm:min-w-[45vw] md:min-w-[calc(25%-12px)] flex-1 shrink-0 snap-center rounded-2xl p-5 md:p-6 border-2 border-divider bg-card flex flex-col justify-start relative overflow-hidden"
+              transition={{ duration: 0.4, delay: idx * 0.1 }}
+              className="min-w-[75vw] sm:min-w-[45vw] md:min-w-[calc(33.333%-12px)] flex-1 shrink-0 snap-center rounded-3xl p-5 md:p-6 border-2 border-sub bg-cardlight flex flex-col justify-start relative overflow-hidden shadow-sm"
             >
               <div className="text-5xl font-black text-main/10 absolute -top-1 -right-1">
                 {`0${idx + 1}`}
               </div>
-              <h3 className="text-base md:text-lg font-black text-ink mb-3 relative z-10">
-                <span className="text-main font-black mr-2">STEP {idx + 1}</span>
+              <h3 className="text-base md:text-lg font-heading text-ink mb-3 relative z-10">
+                <span className="text-main font-heading mr-2">STEP {idx + 1}</span>
                 <br />
                 {item.title}
               </h3>

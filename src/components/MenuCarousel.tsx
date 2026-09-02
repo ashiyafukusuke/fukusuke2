@@ -8,7 +8,7 @@ export default function MenuCarousel() {
       title: "40分枠",
       price: "4,500円",
       desc: "短時間で足をリセット",
-      content: "足裏とふくらはぎを中心に、手早くほぐします。仕事前後や時間が取れない日に。サクッと済ませたい方向けのコースです。",
+      content: "足裏とふくらはぎを中心に、手早くほぐします。仕事前後や、時間が取れない日に。",
       color: "border-divider",
       bg: "bg-card",
       badges: [
@@ -19,8 +19,8 @@ export default function MenuCarousel() {
       title: "60分枠",
       price: "6,500円",
       desc: "はじめての方におすすめ",
-      content: "足裏から全身にかけて、じっくり圧をかけていきます。左足が終わる頃には、多くの方がうとうとし始めます。初回お試し制度の対象コースです。",
-      color: "border-divider",
+      content: "足裏から全身にかけて、じっくり圧をかけていきます。最初から最後まで、同じ質の圧が続く60分。初回お試し制度の対象コースです。",
+      color: "border-sub",
       bg: "bg-cardlight",
       badges: [
         { text: "イタキモの真骨頂", color: "bg-main text-white font-bold rounded-[4px]" },
@@ -32,11 +32,11 @@ export default function MenuCarousel() {
       title: "90分枠",
       price: "9,000円",
       desc: "ゆっくり時間をかけたい方へ",
-      content: "足裏から全身まで、60分よりもゆっくりとした時間の流れで進めます。急がず、その感覚をじっくり味わいたい方に。",
+      content: "足裏から全身まで、60分よりゆったりした流れで進めます。急がず、じっくり味わいたい方に。",
       color: "border-divider",
       bg: "bg-card",
       badges: [
-        { text: "足つぼ沼へようこそ", color: "bg-main text-white font-bold rounded-[4px]" }
+        { text: "足つぼ沼へようこそ", color: "bg-sub text-white font-bold rounded-[4px]" }
       ]
     }
   ];
@@ -45,13 +45,13 @@ export default function MenuCarousel() {
     <section id="menu" className="bg-card rounded-3xl shadow-lg shadow-black/5 border-t-8 border-main p-6 md:p-12 text-ink relative overflow-hidden">
       <div className="flex flex-col">
         <div className="text-center mb-8 md:mb-10">
-          <h2 className="font-serif text-2xl md:text-3xl font-black text-ink inline-block relative tracking-widest mb-6">
+          <h2 className="font-heading text-2xl md:text-3xl text-main inline-block relative tracking-widest mb-6">
             メニュー・料金
-            <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-main rounded-full"></div>
+            <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-sub rounded-full"></div>
           </h2>
-          <p className="text-[14px] text-[#5C5C5C] text-center mb-4 leading-relaxed">
-            はじめての方には60分コースがおすすめです。<br />
-            「足だけでなく、気持ちまで軽くなった」——<br className="md:hidden" />そんな声を、いちばん多くいただくコースです。
+          <p className="text-[14px] text-ink font-bold text-center mb-4 leading-relaxed">
+            はじめての方には60分枠がおすすめです。<br />
+            圧の質を一番体感できる長さです。
           </p>
         </div>
 
@@ -85,7 +85,7 @@ export default function MenuCarousel() {
                     ))}
                   </div>
                 )}
-                <h3 className="text-xl md:text-2xl font-black font-serif text-ink mb-1">{item.title}</h3>
+                <h3 className="text-xl md:text-2xl font-heading text-main mb-1">{item.title}</h3>
                 <p className="text-xs font-bold text-gray-500 mb-3">{item.desc}</p>
                 <div className="text-xl md:text-2xl font-black text-ink mb-4">{item.price}</div>
                 <p className="text-xs md:text-sm text-gray-700 leading-relaxed mb-6">
@@ -106,6 +106,24 @@ export default function MenuCarousel() {
               </a>
             </motion.div>
           ))}
+        </div>
+
+        {/* 特典・割引ブロック */}
+        <div className="mt-8 flex flex-col md:flex-row gap-4 w-full">
+          <div className="flex-1 bg-cardlight border-2 border-sub rounded-2xl p-5 md:p-6 shadow-sm">
+            <h4 className="text-sm font-bold text-sub mb-2">継続ご利用特典（60分枠限定）</h4>
+            <p className="text-lg font-heading text-main mb-3">2回目以降はずっと<br className="md:hidden"/>5,500円。</p>
+            <p className="text-xs md:text-sm text-gray-700 leading-relaxed">
+              イタキモは、通ってくださる方ほどお得になる店です。
+            </p>
+          </div>
+          <div className="flex-1 bg-card border-2 border-divider rounded-2xl p-5 md:p-6 shadow-sm">
+            <h4 className="text-sm font-bold text-gray-500 mb-2">事前決済割引（60分・リピーター向け）</h4>
+            <p className="text-lg font-heading text-ink mb-3">オンライン決済で<br className="md:hidden"/>1回5,000円。</p>
+            <p className="text-xs md:text-sm text-gray-700 leading-relaxed">
+              オンラインで事前にお支払いいただくとお得です。施術後はお会計なしで、一番ゆるんだ状態のままお帰りください。
+            </p>
+          </div>
         </div>
       </div>
     </section>

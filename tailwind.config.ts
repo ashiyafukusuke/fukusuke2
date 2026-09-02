@@ -10,17 +10,18 @@ const config: Config = {
     extend: {
       colors: {
         bg: '#FFFBF5',
-        ink: '#1C1C1C',
+        ink: '#2a2520',
         graytext: '#5C5C5C',
         main: '#D94F3D',
         mainhover: '#C23F2E',
-        sub: '#F2A65A',
-        divider: '#E8DDD5',
+        sub: '#E8833A',
+        divider: '#B08D6A',
         card: '#FFFFFF',
         cardlight: '#FFF7F0',
       },
       fontFamily: {
         sans: ['var(--font-noto-sans)', 'sans-serif'],
+        heading: ['var(--font-dela-gothic)', 'sans-serif'],
         serif: ['var(--font-noto-serif)', 'serif'],
       }
     },

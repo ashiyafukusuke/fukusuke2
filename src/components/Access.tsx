@@ -25,9 +25,9 @@ export default function Access() {
     <section id="access" className="bg-bg rounded-3xl shadow-lg shadow-black/5 p-6 md:p-12 text-ink relative overflow-hidden">
       <div className="flex flex-col max-w-4xl mx-auto">
         <div className="text-center mb-8 md:mb-10">
-          <h2 className="font-serif text-2xl md:text-3xl font-black text-ink inline-block relative tracking-widest">
+          <h2 className="font-heading text-2xl md:text-3xl text-main inline-block relative tracking-widest">
             アクセス
-            <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-main rounded-full"></div>
+            <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-sub rounded-full"></div>
           </h2>
         </div>
 
