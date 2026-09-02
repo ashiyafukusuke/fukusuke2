@@ -28,9 +28,10 @@ export default function Hero() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.2 }}
-          className="text-4xl md:text-6xl font-heading text-main font-black mb-6 leading-[1.3] md:leading-[1.4] tracking-wider"
+          className="text-4xl md:text-6xl font-sans text-ink font-black mb-6 leading-[1.3] md:leading-[1.4] tracking-wider"
         >
-          最初から最後まで、<br className="md:hidden" />イタキモチイイが続く。
+          最初から最後まで、<br />
+          <span className="text-main">イタ気持ちいい</span>が続く。
         </motion.h1>
         
         <motion.p 
