@@ -24,7 +24,7 @@ export default function VoicesCarousel() {
     <section id="voices" className="bg-card rounded-3xl shadow-lg shadow-black/5 border-t-8 border-main p-6 md:p-12 text-ink relative overflow-hidden">
       <div className="flex flex-col">
         <div className="text-center mb-8 md:mb-10">
-          <h2 className="font-serif text-2xl md:text-3xl font-black text-ink inline-block relative tracking-widest mb-3">
+          <h2 className="font-sans font-black text-2xl md:text-3xl text-main inline-block relative tracking-widest mb-3">
             足をお任せいただいた方の声
             <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-main rounded-full"></div>
           </h2>
@@ -45,8 +45,8 @@ export default function VoicesCarousel() {
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className={`min-w-[70vw] sm:min-w-[45vw] md:min-w-[calc(33.333%-12px)] flex-1 shrink-0 snap-center rounded-2xl p-5 md:p-6 border-2 ${voice.borderColor} ${voice.bg} flex flex-col justify-between`}
+              transition={{ duration: 0.4, delay: idx * 0.1 }}
+              className={`min-w-[70vw] sm:min-w-[45vw] md:min-w-[calc(33.333%-12px)] flex-1 shrink-0 snap-center rounded-3xl p-5 md:p-6 border-2 ${voice.borderColor} ${voice.bg} flex flex-col justify-between shadow-sm`}
             >
               <p className="text-[13px] md:text-sm font-bold text-gray-700 leading-loose whitespace-pre-wrap mb-4">
                 {voice.content}

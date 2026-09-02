@@ -34,9 +34,9 @@ export default function Enjoy100() {
     <section id="tips" className="bg-card rounded-3xl shadow-lg shadow-black/5 border-t-8 border-sub p-6 md:p-12 text-ink relative overflow-hidden">
       <div className="flex flex-col">
         <div className="text-center mb-8 md:mb-10">
-          <h2 className="font-heading text-2xl md:text-3xl text-main inline-block relative tracking-widest mb-6">
+          <h2 className="font-sans font-black text-2xl md:text-3xl text-main inline-block relative tracking-widest mb-6">
             イタキモを100％楽しむために
-            <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-sub rounded-full"></div>
+            <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-main rounded-full"></div>
           </h2>
           <p className="text-[14px] text-ink font-bold text-center mb-6 leading-relaxed">
             初めての方もご安心ください。<br />
@@ -55,7 +55,7 @@ export default function Enjoy100() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.4, delay: idx * 0.1 }}
-              className="min-w-[70vw] sm:min-w-[45vw] md:min-w-[calc(33.333%-11px)] flex-1 shrink-0 snap-center p-6 bg-cardlight rounded-3xl border-2 border-sub flex flex-col sm:flex-row gap-4 items-start shadow-sm"
+              className="min-w-[70vw] sm:min-w-[45vw] md:min-w-[calc(33.333%-11px)] flex-1 shrink-0 snap-center p-6 bg-cardlight rounded-3xl border-2 border-divider flex flex-col sm:flex-row gap-4 items-start shadow-sm"
             >
               <div className="text-5xl">{point.icon}</div>
               <div>

@@ -9,8 +9,7 @@ export default function Footer() {
         <motion.h2 
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          className="font-heading text-3xl md:text-4xl text-main mb-8 tracking-widest drop-shadow-sm"
+          className="font-sans font-black text-3xl md:text-4xl text-main mb-8 tracking-widest drop-shadow-sm"
         >
           【足つぼ専門店 イタキモ】
         </motion.h2>

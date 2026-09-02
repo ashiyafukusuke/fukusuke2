@@ -9,8 +9,8 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        bg: '#FFFBF5',
-        ink: '#2a2520',
+        bg: '#FFFFFF',
+        ink: '#1a1a1a',
         graytext: '#5C5C5C',
         main: '#D94F3D',
         mainhover: '#C23F2E',

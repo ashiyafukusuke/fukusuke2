@@ -36,9 +36,9 @@ export default function SystemCarousel() {
     <section id="trial" className="bg-card rounded-3xl shadow-lg shadow-black/5 border-t-8 border-sub p-6 md:p-12 text-ink relative overflow-hidden">
       <div className="flex flex-col">
         <div className="text-center mb-8 md:mb-10">
-          <h2 className="font-heading text-2xl md:text-3xl text-main inline-block relative tracking-widest">
+          <h2 className="font-sans font-black text-2xl md:text-3xl text-main inline-block relative tracking-widest">
             安心して試せる仕組み
-            <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-sub rounded-full"></div>
+            <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-main rounded-full"></div>
           </h2>
           <p className="text-gray-400 mt-6 text-[10px] md:text-xs tracking-widest font-bold md:hidden">
             ← 横にスクロールできます →
@@ -57,7 +57,7 @@ export default function SystemCarousel() {
               className={`min-w-[80vw] sm:min-w-[45vw] md:min-w-[calc(33.33%-12px)] flex-1 shrink-0 snap-center rounded-3xl p-5 md:p-8 border-2 ${item.color} ${item.bg} flex flex-col justify-start shadow-sm`}
             >
               <div className="mb-4 flex items-center flex-wrap gap-2">
-                <h3 className="text-lg md:text-xl font-heading text-main">{item.title}</h3>
+                <h3 className="text-lg md:text-xl font-sans font-black text-main">{item.title}</h3>
                 <span className={`text-[10px] md:text-xs font-bold text-white px-2.5 py-1 rounded-[4px] ${item.badgeColor}`}>{item.desc}</span>
               </div>
               <p className="text-base md:text-lg font-bold text-ink mb-4">{item.headline}</p>
