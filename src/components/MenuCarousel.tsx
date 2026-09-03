@@ -19,7 +19,7 @@ export default function MenuCarousel() {
       title: "60分枠",
       price: "6,500円",
       desc: "はじめての方におすすめ",
-      content: "足裏から全身にかけて、じっくり圧をかけていきます。最初から最後まで、同じ質の圧が続く60分。初回お試し制度の対象コースです。",
+      content: "足裏からふくらはぎ・膝裏まで、じっくり圧をかけていきます。最初から最後まで、同じ質の圧が続く60分。初回お試し制度の対象コースです。",
       color: "border-divider",
       bg: "bg-cardlight",
       badges: [
@@ -32,7 +32,7 @@ export default function MenuCarousel() {
       title: "90分枠",
       price: "9,000円",
       desc: "ゆっくり時間をかけたい方へ",
-      content: "足裏から全身まで、60分よりゆったりした流れで進めます。急がず、じっくり味わいたい方に。",
+      content: "足裏からふくらはぎ・膝裏まで、60分よりゆったりした流れで進めます。急がず、じっくり味わいたい方に。",
       color: "border-divider",
       bg: "bg-card",
       badges: [
