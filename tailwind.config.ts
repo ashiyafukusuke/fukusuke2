@@ -10,12 +10,11 @@ const config: Config = {
     extend: {
       colors: {
         bg: '#FFFFFF',
-        ink: '#111111',
-        graytext: '#555555',
-        main: '#111111',
-        mainhover: '#262626',
-        sub: '#111111',
-        accent: '#B83B26',
+        ink: '#1a1a1a',
+        graytext: '#5C5C5C',
+        main: '#E60012',
+        mainhover: '#B00010',
+        sub: '#E60012',
         divider: '#E5E5E5',
         card: '#FFFFFF',
         cardlight: '#FAFAFA',
