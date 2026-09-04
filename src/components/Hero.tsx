@@ -6,22 +6,22 @@ export default function Hero() {
     <header className="bg-bg pt-4 pb-20 px-6 md:px-12 overflow-hidden">
       <div className="max-w-4xl mx-auto flex flex-col items-start relative">
         <motion.div 
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="w-full flex justify-center mb-8 md:mb-12 bg-transparent border-none shadow-none p-0"
+          className="w-full flex justify-center mb-6 md:mb-10"
         >
-          {/* 
-            TODO: base64データが長すぎて途切れてしまったため、
-            代わりに画像ファイル（/logo.png）を読み込むようにしています。
-            publicフォルダに「logo.png」という名前でロゴ画像を配置してください。
-            または、直接ここにbase64データを貼り付けてください。
-          */}
-          <img 
-            src="/logo.png" 
-            alt="イタキモロゴ" 
-            className="w-[min(560px,92vw)] max-w-[560px] h-auto block mx-auto mb-[24px] object-contain" 
-          />
+          <div className="relative w-[min(480px,92vw)] aspect-[4/3] sm:aspect-[16/10] overflow-hidden flex items-center justify-center">
+            {/* 
+              画像をpublic/logo.pngとして上書き保存してください。
+              画像周囲の余白が広いため、scaleで拡大してトリミング調整しています。
+            */}
+            <img 
+              src="/logo.png" 
+              alt="イタキモロゴ" 
+              className="absolute w-full h-full object-cover scale-[1.65] md:scale-[1.75] origin-center mix-blend-multiply" 
+            />
+          </div>
         </motion.div>
 
         <motion.h1 
