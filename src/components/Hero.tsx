@@ -31,38 +31,48 @@ export default function Hero() {
           className="text-4xl md:text-6xl font-sans text-ink font-black mb-6 leading-[1.3] md:leading-[1.4] tracking-wider"
         >
           最初から最後まで、<br />
-          <span className="text-main">イタ気持ちいい</span>が続く。
+          <span className="relative inline-block">
+            イタ気持ちいい
+            <span className="absolute bottom-1 left-0 w-full h-[2px] bg-accent opacity-80"></span>
+          </span>
+          が続く。
         </motion.h1>
         
-        <motion.p 
+        <motion.div 
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-lg md:text-xl text-ink font-bold tracking-widest"
+          className="inline-flex items-center justify-center bg-white border border-divider text-ink font-bold text-xs md:text-sm px-4 py-1.5 rounded-full tracking-widest"
         >
           ひばりが丘の足つぼ専門店 イタキモ
-        </motion.p>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.4 }}
-          className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-12"
+          className="flex flex-col items-start mt-12 gap-3"
         >
-          <a
-            href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011#pageContent"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center bg-main text-white font-bold py-[14px] px-[32px] rounded-[6px] hover:bg-mainhover transition duration-200 text-base tracking-[0.08em]"
-          >
-            予約枠を確保する
-          </a>
-          <a
-            href="#menu"
-            className="inline-flex items-center justify-center bg-transparent text-main border-2 border-main font-bold py-[12px] px-[28px] rounded-[6px] hover:bg-main hover:text-white transition duration-200 text-sm tracking-wide"
-          >
-            メニューを見る ➔
-          </a>
+          <div className="flex gap-2">
+            <span className="inline-block bg-white border border-accent text-ink text-[10px] md:text-xs font-bold px-2 py-0.5 rounded-full">完全予約制</span>
+            <span className="inline-block bg-white border border-accent text-ink text-[10px] md:text-xs font-bold px-2 py-0.5 rounded-full">WEB限定</span>
+          </div>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <a
+              href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011#pageContent"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center bg-main text-white font-bold py-[14px] px-[32px] rounded-[6px] hover:bg-mainhover transition duration-200 text-base tracking-[0.08em]"
+            >
+              予約枠を確保する
+            </a>
+            <a
+              href="#menu"
+              className="inline-flex items-center justify-center bg-transparent text-main border-2 border-main font-bold py-[12px] px-[28px] rounded-[6px] hover:bg-main hover:text-white transition duration-200 text-sm tracking-wide"
+            >
+              メニューを見る ➔
+            </a>
+          </div>
         </motion.div>
       </div>
     </header>
