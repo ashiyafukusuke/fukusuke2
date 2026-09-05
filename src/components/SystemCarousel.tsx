@@ -56,9 +56,9 @@ export default function SystemCarousel() {
               transition={{ duration: 0.4, delay: idx * 0.1 }}
               className={`min-w-[80vw] sm:min-w-[45vw] md:min-w-[calc(33.33%-12px)] flex-1 shrink-0 snap-center rounded-3xl p-5 md:p-8 border-2 ${item.color} ${item.bg} flex flex-col justify-start shadow-sm`}
             >
-              <div className="mb-4 flex items-center flex-wrap gap-2">
+              <div className="mb-4 flex flex-col items-start gap-2">
                 <h3 className="text-lg md:text-xl font-sans font-black text-main">{item.title}</h3>
-                <span className={`text-[10px] md:text-xs font-bold text-white px-2.5 py-1 rounded-[4px] ${item.badgeColor}`}>{item.desc}</span>
+                <span className={`inline-block text-[10px] md:text-xs font-bold text-white px-2.5 py-1 rounded-[4px] ${item.badgeColor}`}>{item.desc}</span>
               </div>
               <p className="text-base md:text-lg font-bold text-ink mb-4">{item.headline}</p>
               <p className="text-xs md:text-base text-gray-700 leading-relaxed">

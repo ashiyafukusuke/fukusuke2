@@ -35,7 +35,7 @@ export default function MenuCarousel() {
       color: "border-divider",
       bg: "bg-card",
       badges: [
-        { text: "足つぼ沼へようこそ", color: "bg-sub text-white font-bold rounded-[4px]" }
+        { text: "実は1番人気", color: "bg-sub text-white font-bold rounded-[4px]" }
       ]
     }
   ];
