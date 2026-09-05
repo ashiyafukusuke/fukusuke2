@@ -62,7 +62,7 @@ export default function VoicesCarousel() {
           <p className="text-xs text-gray-500 mb-6 leading-relaxed">
             こちらからクチコミをお願いすることは致しませんが、<br className="md:hidden" />ご感想を頂けるとやはり嬉しいです。ありがとうございます！
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 mb-3">
             <a
               href="https://share.google/hoX4rSA5QB2lNpmHH" 
               target="_blank"
@@ -80,6 +80,18 @@ export default function VoicesCarousel() {
               STORESレビューを見る ➔
             </a>
           </div>
+          <p className="text-[11px] text-gray-400 mb-8">
+            ※STORESのレビューは、実際にご来店いただいた方のみ投稿できます。
+          </p>
+
+          <a
+            href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011#pageContent"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center bg-main text-white font-bold py-[14px] px-[36px] rounded-[6px] hover:bg-mainhover transition duration-200 text-sm tracking-[0.08em] shadow-md"
+          >
+            予約枠を確保する
+          </a>
         </div>
       </div>
     </section>

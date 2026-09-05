@@ -24,15 +24,20 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        <motion.h1 
+        <motion.div 
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.2 }}
-          className="w-full text-center text-4xl md:text-6xl font-sans text-ink font-black mb-6 leading-[1.3] md:leading-[1.4] tracking-wider"
+          className="w-full text-center mb-6 md:mb-8"
         >
-          最初から最後まで、<br />
-          <span className="text-main">イタ気持ちいい</span>が続く。
-        </motion.h1>
+          <h1 className="text-4xl md:text-6xl font-sans text-ink font-black mb-3 md:mb-4 leading-[1.3] md:leading-[1.4] tracking-wider">
+            最初から最後まで、<br />
+            <span className="text-main">イタ気持ちいい</span>が続く。
+          </h1>
+          <p className="text-xl md:text-3xl font-sans text-ink font-bold tracking-wider">
+            そして帰り道は、足が軽い。
+          </p>
+        </motion.div>
         
         <motion.p 
           initial={{ opacity: 0, y: 10 }}

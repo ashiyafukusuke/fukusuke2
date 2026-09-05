@@ -1,6 +1,5 @@
 "use client";
 import { motion } from "framer-motion";
-import ProcessCarousel from "./ProcessCarousel";
 
 export default function MenuCarousel() {
   const menus = [
@@ -54,9 +53,6 @@ export default function MenuCarousel() {
             圧の質を一番体感できる長さです。
           </p>
         </div>
-
-        {/* ご利用の流れカルーセルをここに組み込む */}
-        <ProcessCarousel />
 
         <div className="text-left mb-4">
           <p className="text-gray-400 text-[10px] md:text-xs tracking-widest font-bold md:hidden">

@@ -26,11 +26,15 @@ export default function ProcessCarousel() {
   ];
 
   return (
-    <div className="w-full mb-12">
+    <section id="flow" className="bg-card rounded-3xl shadow-lg shadow-black/5 border-t-8 border-main p-6 md:p-12 text-ink relative overflow-hidden">
       <div className="flex flex-col">
-        <div className="text-left mb-4">
-          <p className="text-gray-400 text-[10px] md:text-xs tracking-widest font-bold md:hidden">
-            ご利用の流れ（← 横にスクロールできます →）
+        <div className="text-center mb-8 md:mb-10">
+          <h2 className="font-sans font-black text-2xl md:text-3xl text-main inline-block relative tracking-widest">
+            ご利用の流れ
+            <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-main rounded-full"></div>
+          </h2>
+          <p className="text-gray-400 mt-6 text-[10px] md:text-xs tracking-widest font-bold md:hidden">
+            ← 横にスクロールできます →
           </p>
         </div>
 
@@ -60,6 +64,6 @@ export default function ProcessCarousel() {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
