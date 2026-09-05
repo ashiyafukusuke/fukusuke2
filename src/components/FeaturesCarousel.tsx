@@ -7,7 +7,7 @@ export default function FeaturesCarousel() {
       title: "圧が落ちない体の使い方",
       content: "腕の力ではなく、体重移動とリズムで揉みます。この揉み方だと、何人揉んでも疲れません。だから、最後の10分も最初の10分と同じ圧です。途中で圧が軽くなった経験のある方ほど、違いが分かると思います。",
       bg: "bg-cardlight",
-      borderColor: "border-sub"
+      borderColor: "border-divider"
     },
     {
       title: "反射区にこだわらない",
@@ -19,7 +19,7 @@ export default function FeaturesCarousel() {
       title: "台湾式がベース",
       content: "台湾式の手技を土台に、身体の構造と神経の働きの知見を重ねています。強いだけの圧ではなく、奥まで届く圧を目指しています。",
       bg: "bg-cardlight",
-      borderColor: "border-sub"
+      borderColor: "border-divider"
     }
   ];
 
@@ -28,7 +28,7 @@ export default function FeaturesCarousel() {
       <div className="flex flex-col">
         <div className="text-center mb-8 md:mb-10">
           <h2 className="font-sans font-black text-2xl md:text-3xl text-main inline-block relative tracking-widest">
-            なぜ、続くのか。
+            最後まで圧が抜けない秘密
             <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-main rounded-full"></div>
           </h2>
           <p className="text-gray-400 mt-6 text-[10px] md:text-xs tracking-widest font-bold md:hidden">
