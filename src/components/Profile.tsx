@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 interface ProfileProps {
   onOpenPhilosophy: () => void;
@@ -53,14 +54,13 @@ export default function Profile({ onOpenPhilosophy }: ProfileProps) {
             </p>
           </div>
 
-          {/* 哲学モーダルを開くボタン */}
-          <motion.button
-            onClick={onOpenPhilosophy}
-            whileHover={{ y: -2 }}
+          {/* 店主のスタンスページへのリンク */}
+          <Link
+            href="/stance"
             className="mt-8 inline-flex items-center justify-center bg-transparent text-main border-2 border-main font-bold py-[12px] px-[28px] rounded-[6px] hover:bg-main hover:text-white transition duration-200 text-sm tracking-wide"
           >
             <span>店主のスタンスを読む ➔</span>
-          </motion.button>
+          </Link>
         </motion.div>
 
       </div>
