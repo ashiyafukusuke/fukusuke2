@@ -38,7 +38,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-lg md:text-xl text-ink font-bold tracking-widest"
+          className="w-full text-center text-lg md:text-xl text-ink font-bold tracking-widest"
         >
           ひばりが丘の足つぼ専門店 イタキモ
         </motion.p>
@@ -47,7 +47,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.4 }}
-          className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-12"
+          className="w-full flex flex-col sm:flex-row items-center justify-center gap-4 mt-12"
         >
           <a
             href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011#pageContent"
