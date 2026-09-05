@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 export default function Hero() {
   return (
     <header className="bg-bg pt-4 pb-20 px-6 md:px-12 overflow-hidden">
-      <div className="max-w-4xl mx-auto flex flex-col items-start relative">
+      <div className="max-w-4xl mx-auto flex flex-col items-center relative">
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -28,7 +28,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.2 }}
-          className="text-4xl md:text-6xl font-sans text-ink font-black mb-6 leading-[1.3] md:leading-[1.4] tracking-wider"
+          className="w-full text-center text-4xl md:text-6xl font-sans text-ink font-black mb-6 leading-[1.3] md:leading-[1.4] tracking-wider"
         >
           最初から最後まで、<br />
           <span className="text-main">イタ気持ちいい</span>が続く。
