@@ -14,8 +14,8 @@ export default function SystemCarousel() {
     },
     {
       title: "枠単位制",
-      desc: "延長なし",
-      headline: "すべて予約した枠の中で完了します。",
+      desc: "枠内完結",
+      headline: "お会計まで枠の中。終わる時間が読めます。",
       content: "施術・お着替え・お会計まで、すべて予約した枠の中で完了します。延長のおすすめはしません。終わる時間が読めるので、仕事前や予定の合間でも安心です。",
       color: "border-divider",
       bg: "bg-card",

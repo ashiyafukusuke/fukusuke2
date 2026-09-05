@@ -36,8 +36,8 @@ export default function Home() {
       
       <div className="pt-16 px-4 md:px-8 space-y-16 max-w-5xl mx-auto">
         <FeaturesCarousel />
-        <Profile onOpenPhilosophy={() => setModalOpen(true)} />
         <VoicesCarousel />
+        <Profile onOpenPhilosophy={() => setModalOpen(true)} />
         <SystemCarousel />
         <MenuCarousel />
         <ProcessCarousel />
