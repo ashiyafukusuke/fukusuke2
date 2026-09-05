@@ -20,7 +20,7 @@ const notoSerif = Noto_Serif_JP({
 
 export const metadata: Metadata = {
   title: "足つぼ専門店 イタキモ｜ひばりが丘",
-  description: "西東京市ひばりが丘の足つぼ専門店「イタキモ」。最初から最後まで、イタキモチイイが続く。体重移動で揉むから、最後の10分も同じ圧。初回は合わなければ無料。",
+  description: "西東京市ひばりが丘の足つぼ専門店「イタキモ」。力任せではなく、しっかりと深く体重圧で揉むから、最初から最後までイタキモチイイが続きます。初めての方も安心の「初回お試し制度」をご用意しています。適用条件・詳細はサイトをご覧ください。",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
