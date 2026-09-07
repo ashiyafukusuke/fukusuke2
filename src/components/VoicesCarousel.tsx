@@ -4,18 +4,27 @@ import { motion } from "framer-motion";
 export default function VoicesCarousel() {
   const voices = [
     {
-      content: "「店名の通り、イタキモの絶妙な心地良さを味わうことができました」",
+      content: "「行きは足が重かったのですが、帰りは足がスイスイと歩けました」",
+      source: "— STORESレビューより",
       bg: "bg-cardlight",
       borderColor: "border-divider"
     },
     {
-      content: "「風が通るような綺麗な作りで、居心地が良かったです」",
+      content: "「帰り道の軽くなった身体が忘れられず、また行きたいと思いました」",
+      source: "— STORESレビューより",
       bg: "bg-card",
       borderColor: "border-divider"
     },
     {
-      content: "「足だけでなく、気持ちまで軽くなりました」",
+      content: "「翌日も足がポカポカしていて、柔らかい状態が続いているのがうれしく」",
+      source: "— STORESレビューより",
       bg: "bg-cardlight",
+      borderColor: "border-divider"
+    },
+    {
+      content: "「店名の通り、イタキモの絶妙な心地良さを味わうことができました」",
+      source: "— Googleクチコミより",
+      bg: "bg-card",
       borderColor: "border-divider"
     }
   ];
@@ -32,6 +41,9 @@ export default function VoicesCarousel() {
             <span className="text-[#fbbc04] text-lg tracking-widest">★★★★★</span>
             <span className="text-xs font-bold text-gray-500 ml-1">Googleクチコミ 5.0</span>
           </div>
+          <p className="text-sm md:text-base font-bold text-ink mt-4 tracking-wider">
+            帰り道で、確かめた方たちの声。
+          </p>
           <p className="text-gray-400 mt-6 text-[10px] md:text-xs tracking-widest font-bold md:hidden">
             ← 横にスクロールできます →
           </p>
@@ -52,7 +64,7 @@ export default function VoicesCarousel() {
                 {voice.content}
               </p>
               <p className="text-[10px] md:text-xs text-gray-400 text-right mt-auto">
-                — Googleクチコミより
+                {voice.source}
               </p>
             </motion.div>
           ))}
@@ -81,7 +93,7 @@ export default function VoicesCarousel() {
             </a>
           </div>
           <p className="text-[11px] text-gray-400 mb-8">
-            ※STORESのレビューは、実際にご来店いただいた方のみ投稿できます。
+            ※ご感想は、STORESレビューとGoogleクチコミから抜粋しています。
           </p>
 
           <a
