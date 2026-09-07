@@ -17,35 +17,35 @@ export default function StancePage() {
   const reserveUrl = "https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011#pageContent";
 
   return (
-    <main className={`min-h-screen bg-[#FCFCFC] text-[#1a1a1a] selection:bg-main/10 selection:text-main ${shippori.className}`}>
+    <main className={`min-h-screen bg-white text-[#1a1a1a] selection:bg-main/10 selection:text-main ${shippori.className}`}>
       {/* 戻るナビゲーション */}
-      <nav className="max-w-2xl mx-auto px-6 pt-12 pb-6">
+      <nav className="max-w-[540px] mx-auto px-6 pt-12 pb-6">
         <Link 
           href="/" 
-          className="inline-flex items-center gap-2 text-xs md:text-sm text-neutral-400 hover:text-neutral-700 transition-colors tracking-widest"
+          className="inline-flex items-center gap-2 text-xs md:text-sm text-neutral-400 hover:text-neutral-700 transition-colors tracking-[0.05em]"
         >
           <span>←</span>
           <span>トップへ戻る</span>
         </Link>
       </nav>
 
-      {/* 本文エリア */}
-      <article className="max-w-2xl mx-auto px-6 pt-10 pb-32 md:pt-16 md:pb-40">
+      {/* 本文エリア（最大幅540pxで全角30文字程度に制限・中央配置） */}
+      <article className="max-w-[540px] mx-auto px-6 pt-8 pb-32 md:pt-14 md:pb-44 text-[17px] md:text-[18px] font-medium leading-[2.1] tracking-[0.05em] text-[#1a1a1a]">
         {/* ページタイトル */}
-        <header className="mb-24 md:mb-32">
-          <p className="text-xs tracking-[0.25em] text-neutral-400 uppercase mb-3">
+        <header className="mb-20 md:mb-28">
+          <p className="text-xs tracking-[0.25em] text-neutral-400 uppercase mb-3 font-normal">
             STANCE
           </p>
-          <h1 className="text-2xl md:text-3xl font-medium tracking-[0.15em] text-[#111111] leading-relaxed">
+          <h1 className="text-2xl md:text-3xl font-semibold tracking-[0.12em] text-[#111111] leading-relaxed">
             店主のスタンス
           </h1>
           <div className="w-8 h-[1px] bg-neutral-300 mt-8"></div>
         </header>
 
         {/* 冒頭 */}
-        <section className="mb-24 md:mb-32">
-          <div className="space-y-6 text-sm md:text-base leading-[2.5] tracking-wide text-neutral-800">
-            <p className="text-base md:text-lg font-medium text-[#111111]">
+        <section className="mb-24 md:mb-36">
+          <div className="space-y-8">
+            <p className="text-lg md:text-xl font-semibold text-[#111111]">
               実は、あなたの足は軽いんです。
             </p>
             <p>
@@ -60,11 +60,11 @@ export default function StancePage() {
         </section>
 
         {/* イタキモという体験 */}
-        <section className="mb-24 md:mb-32">
-          <h2 className="text-lg md:text-xl font-medium tracking-[0.12em] text-[#111111] mb-8">
+        <section className="mb-24 md:mb-36 pt-4">
+          <h2 className="text-[24px] md:text-[27px] font-semibold tracking-[0.08em] text-[#111111] mb-8 md:mb-10">
             イタキモという体験
           </h2>
-          <div className="space-y-6 text-sm md:text-base leading-[2.4] tracking-wide text-neutral-800">
+          <div className="space-y-8">
             <p>
               当店のテーマは、<br />
               <span className="border-b border-neutral-300 pb-0.5">「痛いのに、意識が溶けていく」</span>。
@@ -93,11 +93,11 @@ export default function StancePage() {
         </section>
 
         {/* 反射区について、正直に */}
-        <section className="mb-24 md:mb-32">
-          <h2 className="text-lg md:text-xl font-medium tracking-[0.12em] text-[#111111] mb-8">
+        <section className="mb-24 md:mb-36 pt-4">
+          <h2 className="text-[24px] md:text-[27px] font-semibold tracking-[0.08em] text-[#111111] mb-8 md:mb-10">
             反射区について、正直に
           </h2>
-          <div className="space-y-6 text-sm md:text-base leading-[2.4] tracking-wide text-neutral-800">
+          <div className="space-y-8">
             <p>
               「ここは胃のツボですね」という説明を、<br />
               当店ではしません。
@@ -113,7 +113,7 @@ export default function StancePage() {
               それを見つけて、ほどいていく。<br />
               それが私の仕事だと思っています。
             </p>
-            <p className="font-medium text-[#111111]">
+            <p className="font-semibold text-[#111111]">
               分からないことを、分かると言わない。<br />
               その代わり、分かることには全力を注ぐ。<br />
               これが当店のスタンスです。
@@ -121,12 +121,34 @@ export default function StancePage() {
           </div>
         </section>
 
+        {/* 施術は、二人でつくるもの */}
+        <section className="mb-24 md:mb-36 pt-4">
+          <h2 className="text-[24px] md:text-[27px] font-semibold tracking-[0.08em] text-[#111111] mb-8 md:mb-10">
+            施術は、二人でつくるもの
+          </h2>
+          <div className="space-y-8">
+            <p>
+              どんなに手が上達しても、<br />
+              私一人では良い施術になりません。
+            </p>
+            <p>
+              「もう少し強く」「そこ、もう一回」。<br />
+              あなたの声が入るたび、圧は正確になっていきます。
+            </p>
+            <p>
+              左足が終わったら、右足と見比べてみてください。<br />
+              その違いを一緒に面白がれたら、<br />
+              もう施術は半分成功しています。
+            </p>
+          </div>
+        </section>
+
         {/* なぜ、最後まで続くのか */}
-        <section className="mb-24 md:mb-32">
-          <h2 className="text-lg md:text-xl font-medium tracking-[0.12em] text-[#111111] mb-8">
+        <section className="mb-24 md:mb-36 pt-4">
+          <h2 className="text-[24px] md:text-[27px] font-semibold tracking-[0.08em] text-[#111111] mb-8 md:mb-10">
             なぜ、最後まで続くのか
           </h2>
-          <div className="space-y-6 text-sm md:text-base leading-[2.4] tracking-wide text-neutral-800">
+          <div className="space-y-8">
             <p>
               私は腕の力で揉みません。<br />
               体重とリズムで揉みます。
@@ -145,11 +167,11 @@ export default function StancePage() {
         </section>
 
         {/* どんな方に来てほしいか */}
-        <section className="mb-24 md:mb-32">
-          <h2 className="text-lg md:text-xl font-medium tracking-[0.12em] text-[#111111] mb-8">
+        <section className="mb-24 md:mb-36 pt-4">
+          <h2 className="text-[24px] md:text-[27px] font-semibold tracking-[0.08em] text-[#111111] mb-8 md:mb-10">
             どんな方に来てほしいか
           </h2>
-          <div className="space-y-6 text-sm md:text-base leading-[2.4] tracking-wide text-neutral-800">
+          <div className="space-y-8">
             <p>
               イタキモは、施術者一人の小さな店です。<br />
               だからこそ、一枠一枠を大切にしたいと思っています。
@@ -159,25 +181,25 @@ export default function StancePage() {
               疲れを放置せず、ちゃんと降ろしに来られる方。<br />
               予約の時間を、お互いに大切にできる方。
             </p>
-            <p className="font-medium text-[#111111]">
+            <p className="font-semibold text-[#111111]">
               そういう方の足を、揉ませてください。
             </p>
           </div>
         </section>
 
         {/* 結び */}
-        <section className="mb-20 md:mb-28 pt-8 border-t border-neutral-200">
-          <div className="space-y-6 text-sm md:text-base leading-[2.4] tracking-wide text-neutral-800 mb-12">
+        <section className="mb-20 md:mb-28 pt-12 border-t border-neutral-200">
+          <div className="space-y-8 mb-12">
             <p>
               言葉で伝えられるのは、ここまでです。
             </p>
-            <p className="text-base md:text-lg font-medium text-[#111111]">
+            <p className="text-lg md:text-xl font-semibold text-[#111111]">
               「溶ける」がどういうことかは、<br />
               あなたの足で確かめてください。
             </p>
           </div>
 
-          <div className="text-right text-base tracking-[0.2em] text-neutral-600 mb-16">
+          <div className="text-right text-base tracking-[0.2em] text-neutral-600 mb-16 font-normal">
             店主 福助
           </div>
 

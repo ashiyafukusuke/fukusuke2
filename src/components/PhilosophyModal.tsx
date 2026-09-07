@@ -151,6 +151,26 @@ export default function PhilosophyModal({ isOpen, onClose }: PhilosophyModalProp
 
                   <div className="w-8 h-px bg-divider my-8"></div>
 
+                  {/* 施術は、二人でつくるもの */}
+                  <div className="mb-12">
+                    <h3 className="font-bold text-base text-ink mb-4">施術は、二人でつくるもの</h3>
+                    <p className="leading-[2.2] mb-4">
+                      どんなに手が上達しても、<br />
+                      私一人では良い施術になりません。
+                    </p>
+                    <p className="leading-[2.2] mb-4">
+                      「もう少し強く」「そこ、もう一回」。<br />
+                      あなたの声が入るたび、圧は正確になっていきます。
+                    </p>
+                    <p className="leading-[2.2]">
+                      左足が終わったら、右足と見比べてみてください。<br />
+                      その違いを一緒に面白がれたら、<br />
+                      もう施術は半分成功しています。
+                    </p>
+                  </div>
+
+                  <div className="w-8 h-px bg-divider my-8"></div>
+
                   {/* なぜ、最後まで続くのか */}
                   <div className="mb-12">
                     <h3 className="font-bold text-base text-ink mb-4">なぜ、最後まで続くのか</h3>
