@@ -41,9 +41,6 @@ export default function VoicesCarousel() {
             <span className="text-[#fbbc04] text-lg tracking-widest">★★★★★</span>
             <span className="text-xs font-bold text-gray-500 ml-1">Googleクチコミ 5.0</span>
           </div>
-          <p className="text-sm md:text-base font-bold text-ink mt-4 tracking-wider">
-            帰り道で、確かめた方たちの声。
-          </p>
           <p className="text-gray-400 mt-6 text-[10px] md:text-xs tracking-widest font-bold md:hidden">
             ← 横にスクロールできます →
           </p>
