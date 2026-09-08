@@ -15,16 +15,16 @@ export default function Outcome() {
         </h2>
         <div className="space-y-6 text-sm md:text-base text-gray-700 leading-[2.2] md:leading-[2.4] tracking-wider">
           <p>
-            同じ質の圧が、最後まで足を揉み続けます。<br />
+            同じ質の圧で最後まで足を揉み続けます。<br />
             ふくらはぎの張りも、足裏の硬さも、<br />
-            指先で確かめながら、順番にほどいていきます。
+            指先で確かめながら順番にほどいていきます。
           </p>
           <p>
-            施術が終わって、立ち上がったとき。<br />
-            行きとは違う足が、そこにあります。
+            施術が終わって立ち上がったとき、<br />
+            来た時とは違う足が、そこにあります。
           </p>
           <p className="text-main font-bold text-base md:text-lg pt-2">
-            帰り道で、確かめてください。
+            帰り道で、ぜひ、その違いを確かめてください。
           </p>
         </div>
       </motion.div>
