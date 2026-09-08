@@ -16,8 +16,8 @@ export default function Outcome() {
         <div className="space-y-6 text-sm md:text-base text-gray-700 leading-[2.2] md:leading-[2.4] tracking-wider">
           <p>
             同じ質の圧が、最後まで足を揉み続けます。<br />
-            ふくらはぎの張りも、足裏の硬さも、順番にほどけていく。<br />
-            私はその変化を、指先で確かめながら進めています。
+            ふくらはぎの張りも、足裏の硬さも、<br />
+            指先で確かめながら、順番にほどいていきます。
           </p>
           <p>
             施術が終わって、立ち上がったとき。<br />
