@@ -35,9 +35,15 @@ export default function Home() {
       
       <Hero />
       
-      <div className="pt-16 px-4 md:px-8 space-y-16 max-w-5xl mx-auto">
+      <div className="pt-16 px-4 md:px-8 max-w-5xl mx-auto">
         <FeaturesCarousel />
+      </div>
+
+      <div className="my-16">
         <Outcome />
+      </div>
+
+      <div className="px-4 md:px-8 space-y-16 max-w-5xl mx-auto">
         <VoicesCarousel />
         <Profile onOpenPhilosophy={() => setModalOpen(true)} />
         <SystemCarousel />

@@ -21,12 +21,12 @@ export default function Profile({ onOpenPhilosophy }: ProfileProps) {
           className="w-48 h-48 md:w-64 md:h-64 rounded-full bg-gray-100 overflow-hidden flex-shrink-0 border-4 border-white shadow-xl relative"
         >
           <Image 
-            src="/profile.jpg" 
-            alt="店主 福助" 
+            src="/owner.jpg" 
+            alt="施術中の店主 福助" 
             fill
             sizes="(max-width: 768px) 192px, 256px"
             className="object-cover"
-            style={{ objectPosition: 'center 75%' }}
+            style={{ objectPosition: 'center 15%' }}
             priority
           />
         </motion.div>
