@@ -25,16 +25,9 @@ export default function StickyNav() {
         >
           <div className="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between gap-2">
             {/* ブランド名 */}
-            <a href="#" className="flex items-center gap-2 flex-shrink-0 group">
-              <div className="w-8 h-8 rounded-full overflow-hidden flex items-center justify-center border border-divider/80 bg-white shadow-xs">
-                <img 
-                  src="/logo.png" 
-                  alt="イタキモ" 
-                  className="w-full h-full object-cover scale-[1.7] origin-center mix-blend-multiply" 
-                />
-              </div>
-              <span className="font-sans font-black text-sm sm:text-base tracking-wider text-ink group-hover:text-main transition-colors">
-                イタ<span className="text-main">キモ</span>
+            <a href="#" className="flex items-center flex-shrink-0 group">
+              <span className="font-sans font-black text-sm sm:text-base tracking-wider text-ink group-hover:opacity-80 transition-opacity">
+                イ<span className="text-main">タ</span>キモ
               </span>
             </a>
 
