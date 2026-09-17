@@ -78,12 +78,14 @@ export default function PhilosophyModal({ isOpen, onClose }: PhilosophyModalProp
                   transition={{ duration: 0.4, delay: 0.1 }}
                   className="relative text-sm sm:text-base text-ink"
                 >
-                  {/* 導入 */}
+                  {/* 1. 実は、あなたの足は軽いんです。 */}
                   <div className="mb-12">
                     <p className="font-bold text-lg text-ink mb-4">実は、あなたの足は軽いんです。</p>
                     <p className="leading-[2.2] mb-4">
                       重いのは、足そのものではありません。<br />
-                      一日分の疲れが、上に乗っているだけです。
+                      積み重なった物理的な疲労と、<br />
+                      そこに乗っている精神的な疲労が、<br />
+                      足を重くしています。
                     </p>
                     <p className="leading-[2.2]">
                       イタキモは、その乗っているものを<br />
@@ -93,73 +95,75 @@ export default function PhilosophyModal({ isOpen, onClose }: PhilosophyModalProp
 
                   <div className="w-8 h-px bg-divider my-8"></div>
 
-                  {/* イタキモという体験 */}
+                  {/* 2. 当店のテーマ */}
                   <div className="mb-12">
-                    <h3 className="font-bold text-base text-ink mb-4">イタキモという体験</h3>
+                    <h3 className="font-bold text-base text-ink mb-4">当店のテーマ</h3>
                     <p className="leading-[2.2] mb-4">
                       当店のテーマは、<br />
-                      <strong className="border-b border-divider pb-0.5">「痛いのに、意識が溶けていく」</strong>。
-                    </p>
-                    <p className="leading-[2.2] mb-4">
-                      不思議に聞こえるかもしれません。<br />
-                      痛いのに、なぜか呼吸が深くなる。<br />
-                      痛いのに、なぜか目を開けていられなくなる。
-                    </p>
-                    <p className="leading-[2.2] mb-4">
-                      施術は左足から始めます。<br />
-                      左足が終わる頃、多くの方はもう、<br />
-                      うとうとし始めています。
-                    </p>
-                    <p className="leading-[2.2] mb-4">
-                      それでいいんです。<br />
-                      むしろ、そのための施術をしています。
+                      「この人に喜んでもらいたい」と思う人の足を揉む、<br />
+                      ということです。
                     </p>
                     <p className="leading-[2.2]">
-                      イタ気持ちいい圧は、身体の力をほどいていきます。<br />
-                      力みが抜けた身体は、休むことを思い出します。<br />
-                      眠ってしまっても、圧は最後まで変わりません。<br />
-                      安心して、溶けてください。
+                      技術の話でも、価格の話でもありません。<br />
+                      誰の足を揉むか、という話です。
                     </p>
                   </div>
 
                   <div className="w-8 h-px bg-divider my-8"></div>
 
-                  {/* 反射区について、正直に */}
+                  {/* 3. 気持ちが入らなければ、結果は変わる */}
                   <div className="mb-12">
-                    <h3 className="font-bold text-base text-ink mb-4">反射区について、正直に</h3>
+                    <h3 className="font-bold text-base text-ink mb-4">気持ちが入らなければ、結果は変わる</h3>
                     <p className="leading-[2.2] mb-4">
-                      「ここは胃のツボですね」という説明を、<br />
-                      当店ではしません。
+                      揉む場所も、手順も、圧の入れ方も同じ。<br />
+                      それでも、気持ちの入らない足揉みでは、<br />
+                      結果が変わります。
                     </p>
                     <p className="leading-[2.2] mb-4">
-                      足を揉んでいると、たしかに面白い一致に出会います。<br />
-                      けれど、それを「足のここが内臓のあそこにつながっている」と<br />
-                      言い切ることは、今の私には誠実だと思えません。
-                    </p>
-                    <p className="leading-[2.2] mb-4">
-                      私が確かに言えるのは、目の前の足の状態だけです。<br />
-                      硬いところ、冷えているところ、圧を待っているところ。<br />
-                      それを見つけて、ほどいていく。<br />
-                      それが私の仕事だと思っています。
+                      圧の届き方が変わります。<br />
+                      気づける場所が変わります。<br />
+                      時間の使い方が変わります。
                     </p>
                     <p className="leading-[2.2] font-bold text-ink">
-                      分からないことを、分かると言わない。<br />
-                      その代わり、分かることには全力を注ぐ。<br />
-                      これが当店のスタンスです。
+                      技術は同じでも、施術は同じになりません。
                     </p>
                   </div>
 
                   <div className="w-8 h-px bg-divider my-8"></div>
 
-                  {/* 施術は、二人でつくるもの */}
+                  {/* 4. だから、ルールがうるさい */}
                   <div className="mb-12">
-                    <h3 className="font-bold text-base text-ink mb-4">施術は、二人でつくるもの</h3>
+                    <h3 className="font-bold text-base text-ink mb-4">だから、ルールがうるさい</h3>
+                    <p className="leading-[2.2] mb-4">
+                      当店は、他店よりルールやシステムがうるさいと思います。
+                    </p>
+                    <p className="leading-[2.2] mb-4">
+                      完全予約制で、WEBからのご予約のみ。<br />
+                      キャンセルポリシーも、決して緩くはありません。
+                    </p>
+                    <p className="leading-[2.2] mb-4">
+                      当店のルールを「普通のことじゃない？」と思える方こそ、<br />
+                      私が喜んでほしいと思う方々です。
+                    </p>
+                    <p className="leading-[2.2]">
+                      「自分一人が良ければいい」という方には厳しいルールですが、<br />
+                      「自分勝手なことをすると他の方に迷惑がかかる」という感覚を<br />
+                      持っている方にとっては、<br />
+                      特に気になることすら無い常識だと思います。
+                    </p>
+                  </div>
+
+                  <div className="w-8 h-px bg-divider my-8"></div>
+
+                  {/* 5. 施術の調整は、遠慮なくお伝えください */}
+                  <div className="mb-12">
+                    <h3 className="font-bold text-base text-ink mb-4">施術の調整は、遠慮なくお伝えください</h3>
                     <p className="leading-[2.2] mb-4">
                       どんなに手が上達しても、<br />
                       私一人では良い施術になりません。
                     </p>
                     <p className="leading-[2.2] mb-4">
-                      「もう少し強く」「そこ、もう一回」。<br />
+                      「もう少し強く」「そこは弱めで」。<br />
                       あなたの声が入るたび、圧は正確になっていきます。
                     </p>
                     <p className="leading-[2.2]">
@@ -171,54 +175,13 @@ export default function PhilosophyModal({ isOpen, onClose }: PhilosophyModalProp
 
                   <div className="w-8 h-px bg-divider my-8"></div>
 
-                  {/* なぜ、最後まで続くのか */}
-                  <div className="mb-12">
-                    <h3 className="font-bold text-base text-ink mb-4">なぜ、最後まで続くのか</h3>
-                    <p className="leading-[2.2] mb-4">
-                      私は腕の力で揉みません。<br />
-                      体重とリズムで揉みます。
-                    </p>
-                    <p className="leading-[2.2] mb-4">
-                      だから何人揉んでも、ほとんど疲れません。<br />
-                      あなたがその日の最後のお客様でも、<br />
-                      最初のお客様と同じ圧でお迎えできます。
-                    </p>
-                    <p className="leading-[2.2]">
-                      足を揉むことが、好きで仕方ないんです。<br />
-                      同じ足は一つもないので、毎日が新しい発見です。<br />
-                      この仕事に、ゴールはないと思っています。
-                    </p>
-                  </div>
-
-                  <div className="w-8 h-px bg-divider my-8"></div>
-
-                  {/* どんな方に来てほしいか */}
-                  <div className="mb-12">
-                    <h3 className="font-bold text-base text-ink mb-4">どんな方に来てほしいか</h3>
-                    <p className="leading-[2.2] mb-4">
-                      イタキモは、施術者一人の小さな店です。<br />
-                      だからこそ、一枠一枠を大切にしたいと思っています。
-                    </p>
-                    <p className="leading-[2.2] mb-4">
-                      ご自身の身体に興味がある方。<br />
-                      疲れを放置せず、ちゃんと降ろしに来られる方。<br />
-                      予約の時間を、お互いに大切にできる方。
-                    </p>
-                    <p className="leading-[2.2] font-bold text-ink">
-                      そういう方の足を、揉ませてください。
-                    </p>
-                  </div>
-
-                  <div className="w-8 h-px bg-divider my-8"></div>
-
-                  {/* 結び */}
+                  {/* 6. 結び */}
                   <div className="mb-6">
                     <p className="leading-[2.2] mb-4">
                       言葉で伝えられるのは、ここまでです。
                     </p>
                     <p className="leading-[2.2] font-bold text-ink">
-                      「溶ける」がどういうことかは、<br />
-                      あなたの足で確かめてください。
+                      あとは、あなたの足で確かめてください。
                     </p>
                     <p className="text-right text-graytext mt-8 tracking-widest">
                       店主 福助

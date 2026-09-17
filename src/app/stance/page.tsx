@@ -10,7 +10,7 @@ const shippori = Shippori_Mincho({
 
 export const metadata: Metadata = {
   title: "店主のスタンス｜足つぼ専門店 イタキモ",
-  description: "イタキモ店主・福助の施術に対する考え方、スタンスについて。「痛いのに、意識が溶けていく」その体験の裏側を言葉にしました。",
+  description: "イタキモ店主・福助の施術に対する考え方、スタンスについて。「この人に喜んでもらいたい」と思う人の足を揉む、その想いを言葉にしました。",
 };
 
 export default function StancePage() {
@@ -42,7 +42,7 @@ export default function StancePage() {
           <div className="w-8 h-[1px] bg-neutral-300 mt-8"></div>
         </header>
 
-        {/* 冒頭 */}
+        {/* 1. 実は、あなたの足は軽いんです。 */}
         <section className="mb-24 md:mb-36">
           <div className="space-y-8">
             <p className="text-lg md:text-xl font-semibold text-[#111111]">
@@ -50,7 +50,9 @@ export default function StancePage() {
             </p>
             <p>
               重いのは、足そのものではありません。<br />
-              一日分の疲れが、上に乗っているだけです。
+              積み重なった物理的な疲労と、<br />
+              そこに乗っている精神的な疲労が、<br />
+              足を重くしています。
             </p>
             <p>
               イタキモは、その乗っているものを<br />
@@ -59,72 +61,76 @@ export default function StancePage() {
           </div>
         </section>
 
-        {/* イタキモという体験 */}
+        {/* 2. 当店のテーマ */}
         <section className="mb-24 md:mb-36 pt-4">
           <h2 className="text-[24px] md:text-[27px] font-semibold tracking-[0.08em] text-[#111111] mb-8 md:mb-10">
-            イタキモという体験
+            当店のテーマ
           </h2>
           <div className="space-y-8">
             <p>
               当店のテーマは、<br />
-              <span className="border-b border-neutral-300 pb-0.5">「痛いのに、意識が溶けていく」</span>。
+              「この人に喜んでもらいたい」と思う人の足を揉む、<br />
+              ということです。
             </p>
             <p>
-              不思議に聞こえるかもしれません。<br />
-              痛いのに、なぜか呼吸が深くなる。<br />
-              痛いのに、なぜか目を開けていられなくなる。
-            </p>
-            <p>
-              施術は左足から始めます。<br />
-              左足が終わる頃、多くの方はもう、<br />
-              うとうとし始めています。
-            </p>
-            <p>
-              それでいいんです。<br />
-              むしろ、そのための施術をしています。
-            </p>
-            <p>
-              イタ気持ちいい圧は、身体の力をほどいていきます。<br />
-              力みが抜けた身体は、休むことを思い出します。<br />
-              眠ってしまっても、圧は最後まで変わりません。<br />
-              安心して、溶けてください。
+              技術の話でも、価格の話でもありません。<br />
+              誰の足を揉むか、という話です。
             </p>
           </div>
         </section>
 
-        {/* 反射区について、正直に */}
+        {/* 3. 気持ちが入らなければ、結果は変わる */}
         <section className="mb-24 md:mb-36 pt-4">
           <h2 className="text-[24px] md:text-[27px] font-semibold tracking-[0.08em] text-[#111111] mb-8 md:mb-10">
-            反射区について、正直に
+            気持ちが入らなければ、結果は変わる
           </h2>
           <div className="space-y-8">
             <p>
-              「ここは胃のツボですね」という説明を、<br />
-              当店ではしません。
+              揉む場所も、手順も、圧の入れ方も同じ。<br />
+              それでも、気持ちの入らない足揉みでは、<br />
+              結果が変わります。
             </p>
             <p>
-              足を揉んでいると、たしかに面白い一致に出会います。<br />
-              けれど、それを「足のここが内臓のあそこにつながっている」と<br className="hidden sm:inline" />
-              言い切ることは、今の私には誠実だと思えません。
-            </p>
-            <p>
-              私が確かに言えるのは、目の前の足の状態だけです。<br />
-              硬いところ、冷えているところ、圧を待っているところ。<br />
-              それを見つけて、ほどいていく。<br />
-              それが私の仕事だと思っています。
+              圧の届き方が変わります。<br />
+              気づける場所が変わります。<br />
+              時間の使い方が変わります。
             </p>
             <p className="font-semibold text-[#111111]">
-              分からないことを、分かると言わない。<br />
-              その代わり、分かることには全力を注ぐ。<br />
-              これが当店のスタンスです。
+              技術は同じでも、施術は同じになりません。
             </p>
           </div>
         </section>
 
-        {/* 施術は、二人でつくるもの */}
+        {/* 4. だから、ルールがうるさい */}
         <section className="mb-24 md:mb-36 pt-4">
           <h2 className="text-[24px] md:text-[27px] font-semibold tracking-[0.08em] text-[#111111] mb-8 md:mb-10">
-            施術は、二人でつくるもの
+            だから、ルールがうるさい
+          </h2>
+          <div className="space-y-8">
+            <p>
+              当店は、他店よりルールやシステムがうるさいと思います。
+            </p>
+            <p>
+              完全予約制で、WEBからのご予約のみ。<br />
+              キャンセルポリシーも、決して緩くはありません。
+            </p>
+            <p>
+              当店のルールを「普通のことじゃない？」と思える方こそ、<br />
+              私が喜んでほしいと思う方々です。
+            </p>
+            <p>
+              「自分一人が良ければいい」という方には厳しいルールですが、<br />
+              「自分勝手なことをすると他の方に迷惑がかかる」という感覚を<br />
+              持っている方にとっては、<br />
+              特に気になることすら無い常識だと思います。
+            </p>
+          </div>
+        </section>
+
+        {/* 5. 施術の調整は、遠慮なくお伝えください */}
+        <section className="mb-24 md:mb-36 pt-4">
+          <h2 className="text-[24px] md:text-[27px] font-semibold tracking-[0.08em] text-[#111111] mb-8 md:mb-10">
+            施術の調整は、遠慮なくお伝えください
           </h2>
           <div className="space-y-8">
             <p>
@@ -132,7 +138,7 @@ export default function StancePage() {
               私一人では良い施術になりません。
             </p>
             <p>
-              「もう少し強く」「そこ、もう一回」。<br />
+              「もう少し強く」「そこは弱めで」。<br />
               あなたの声が入るたび、圧は正確になっていきます。
             </p>
             <p>
@@ -143,59 +149,14 @@ export default function StancePage() {
           </div>
         </section>
 
-        {/* なぜ、最後まで続くのか */}
-        <section className="mb-24 md:mb-36 pt-4">
-          <h2 className="text-[24px] md:text-[27px] font-semibold tracking-[0.08em] text-[#111111] mb-8 md:mb-10">
-            なぜ、最後まで続くのか
-          </h2>
-          <div className="space-y-8">
-            <p>
-              私は腕の力で揉みません。<br />
-              体重とリズムで揉みます。
-            </p>
-            <p>
-              だから何人揉んでも、ほとんど疲れません。<br />
-              あなたがその日の最後のお客様でも、<br />
-              最初のお客様と同じ圧でお迎えできます。
-            </p>
-            <p>
-              足を揉むことが、好きで仕方ないんです。<br />
-              同じ足は一つもないので、毎日が新しい発見です。<br />
-              この仕事に、ゴールはないと思っています。
-            </p>
-          </div>
-        </section>
-
-        {/* どんな方に来てほしいか */}
-        <section className="mb-24 md:mb-36 pt-4">
-          <h2 className="text-[24px] md:text-[27px] font-semibold tracking-[0.08em] text-[#111111] mb-8 md:mb-10">
-            どんな方に来てほしいか
-          </h2>
-          <div className="space-y-8">
-            <p>
-              イタキモは、施術者一人の小さな店です。<br />
-              だからこそ、一枠一枠を大切にしたいと思っています。
-            </p>
-            <p>
-              ご自身の身体に興味がある方。<br />
-              疲れを放置せず、ちゃんと降ろしに来られる方。<br />
-              予約の時間を、お互いに大切にできる方。
-            </p>
-            <p className="font-semibold text-[#111111]">
-              そういう方の足を、揉ませてください。
-            </p>
-          </div>
-        </section>
-
-        {/* 結び */}
+        {/* 6. 結び */}
         <section className="mb-20 md:mb-28 pt-12 border-t border-neutral-200">
           <div className="space-y-8 mb-12">
             <p>
               言葉で伝えられるのは、ここまでです。
             </p>
             <p className="text-lg md:text-xl font-semibold text-[#111111]">
-              「溶ける」がどういうことかは、<br />
-              あなたの足で確かめてください。
+              あとは、あなたの足で確かめてください。
             </p>
           </div>
 
