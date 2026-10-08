@@ -30,15 +30,17 @@ export default function Hero() {
           transition={{ duration: 0.4, delay: 0.2 }}
           className="w-full text-center mb-6 md:mb-8"
         >
-          <h1 className="text-2xl min-[400px]:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans text-ink font-black mb-4 md:mb-6 leading-[1.35] md:leading-[1.4] tracking-wider whitespace-nowrap">
-            反射区のその先。<br />
-            足つぼはもっと気持ち良い。
+          <h1 className="text-[19px] min-[390px]:text-[21px] sm:text-3xl md:text-5xl lg:text-6xl font-sans text-ink font-black mb-4 md:mb-6 leading-[1.35] md:leading-[1.4] tracking-wider whitespace-nowrap">
+            反射区のその先に、<br />
+            もっと気持ち良い足つぼがある。
           </h1>
-          <p className="text-base sm:text-xl md:text-2xl font-sans text-ink font-bold tracking-wider mb-2">
-            深く、ゆっくり、<br className="sm:hidden" />足の奥までしみわたる。
+          <p className="text-sm min-[390px]:text-base sm:text-xl md:text-2xl font-sans text-ink font-bold tracking-wider mb-3 leading-[1.6]">
+            ゆっくり、じんわり、<br />
+            足の奥まで。
           </p>
-          <p className="text-sm sm:text-lg md:text-xl font-sans text-ink font-bold tracking-wider">
-            新しい足で、いってらっしゃい。
+          <p className="text-xs min-[390px]:text-sm sm:text-base md:text-lg font-sans text-ink font-bold tracking-wider leading-[1.6]">
+            さあ、リセット完了。<br />
+            いってらっしゃい。<br className="min-[480px]:hidden" />おつかれさま。おやすみなさい。
           </p>
         </motion.div>
         
