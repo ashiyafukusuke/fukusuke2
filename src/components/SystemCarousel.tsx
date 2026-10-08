@@ -40,13 +40,10 @@ export default function SystemCarousel() {
             安心して試せる仕組み
             <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-main rounded-full"></div>
           </h2>
-          <p className="text-gray-400 mt-6 text-[10px] md:text-xs tracking-widest font-bold md:hidden">
-            ← 横にスクロールできます →
-          </p>
         </div>
         
-        {/* 横スクロールコンテナ */}
-        <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-8 -mx-6 px-6 md:mx-0 md:px-0 scrollbar-hide items-stretch">
+        {/* スマホ縦積み / PCグリッド */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
           {systems.map((item, idx) => (
             <motion.div
               key={idx}
@@ -54,7 +51,7 @@ export default function SystemCarousel() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.4, delay: idx * 0.1 }}
-              className={`min-w-[80vw] sm:min-w-[45vw] md:min-w-[calc(33.33%-12px)] flex-1 shrink-0 snap-center rounded-3xl p-5 md:p-8 border-2 ${item.color} ${item.bg} flex flex-col justify-start shadow-sm`}
+              className={`rounded-3xl p-6 md:p-8 border-2 ${item.color} ${item.bg} flex flex-col justify-start shadow-sm`}
             >
               <div className="mb-4 flex flex-col items-start gap-2">
                 <h3 className="text-lg md:text-xl font-sans font-black text-main">{item.title}</h3>

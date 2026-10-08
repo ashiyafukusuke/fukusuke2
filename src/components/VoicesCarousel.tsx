@@ -55,7 +55,7 @@ export default function VoicesCarousel() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.4, delay: idx * 0.1 }}
-              className={`min-w-[70vw] sm:min-w-[45vw] md:min-w-[calc(33.333%-12px)] flex-1 shrink-0 snap-center rounded-3xl p-5 md:p-6 border-2 ${voice.borderColor} ${voice.bg} flex flex-col justify-between shadow-sm`}
+              className={`min-w-[83vw] max-w-[340px] sm:min-w-[45vw] md:min-w-[calc(33.333%-12px)] flex-1 shrink-0 snap-center rounded-3xl p-5 md:p-6 border-2 ${voice.borderColor} ${voice.bg} flex flex-col justify-between shadow-sm`}
             >
               <p className="text-[13px] md:text-sm font-bold text-gray-700 leading-loose whitespace-pre-wrap mb-4">
                 {voice.content}

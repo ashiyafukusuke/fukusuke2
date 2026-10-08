@@ -33,13 +33,10 @@ export default function ProcessCarousel() {
             ご利用の流れ
             <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-main rounded-full"></div>
           </h2>
-          <p className="text-gray-400 mt-6 text-[10px] md:text-xs tracking-widest font-bold md:hidden">
-            ← 横にスクロールできます →
-          </p>
         </div>
 
-        {/* 横スクロールコンテナ */}
-        <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-8 -mx-6 px-6 md:mx-0 md:px-0 scrollbar-hide items-stretch">
+        {/* スマホ縦積み / PCグリッド */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
           {steps.map((item, idx) => (
             <motion.div
               key={idx}
@@ -47,7 +44,7 @@ export default function ProcessCarousel() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.4, delay: idx * 0.1 }}
-              className="min-w-[75vw] sm:min-w-[45vw] md:min-w-[calc(33.333%-12px)] flex-1 shrink-0 snap-center rounded-3xl p-5 md:p-6 border-2 border-divider bg-cardlight flex flex-col justify-start relative overflow-hidden shadow-sm"
+              className="rounded-3xl p-6 md:p-8 border-2 border-divider bg-cardlight flex flex-col justify-start relative overflow-hidden shadow-sm"
             >
               <div className="text-5xl font-black text-main/10 absolute -top-1 -right-1">
                 {`0${idx + 1}`}

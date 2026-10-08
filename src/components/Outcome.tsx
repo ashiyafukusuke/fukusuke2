@@ -39,7 +39,8 @@ export default function Outcome() {
               来た時とは違う足が、そこにあります。
             </p>
             <p className="text-[#FF3B30] font-bold text-base md:text-lg pt-2">
-              帰り道で、ぜひ、その違いを確かめてください。
+              帰り道で、ぜひ、その違いを確かめてください。<br />
+              思わずスキップしたくなった、と言ってくださる方もいます。
             </p>
           </div>
         </motion.div>

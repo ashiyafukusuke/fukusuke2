@@ -56,18 +56,15 @@ export default function PolicyCarousel() {
             限られた枠を大切にしたいと思っています。<br/>
             お互いの時間を誠実に扱うためのお約束として、お読みください。
           </p>
-          <p className="text-gray-400 mt-4 text-[10px] md:text-xs tracking-widest font-bold md:hidden">
-            ← 横にスクロールできます →
-          </p>
         </div>
         
-        {/* 横スクロールコンテナ */}
-        <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 md:gap-8 pb-8 -mx-6 px-6 md:mx-0 md:px-0 scrollbar-hide items-stretch">
+        {/* スマホ縦積み / PC グリッド */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
           
           {/* グループ1: 予約の変更について */}
-          <div className="flex flex-col shrink-0">
+          <div className="flex flex-col">
             <h3 className="font-bold text-ink text-sm md:text-base mb-4 border-l-4 border-divider pl-3 ml-1">予約の変更について</h3>
-            <div className="flex gap-4 h-full items-stretch">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-stretch">
               {policiesGroup1.map((item, idx) => (
                 <motion.div
                   key={`g1-${idx}`}
@@ -75,7 +72,7 @@ export default function PolicyCarousel() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  className={`w-[75vw] sm:w-[40vw] md:w-[220px] lg:w-[260px] shrink-0 snap-center rounded-2xl p-5 md:p-6 border-2 ${item.color} ${item.bg} flex flex-col justify-start`}
+                  className={`rounded-2xl p-5 md:p-6 border-2 ${item.color} ${item.bg} flex flex-col justify-start`}
                 >
                   <p className="text-[10px] md:text-xs text-gray-500 tracking-wider mb-2 font-bold">
                     {item.situation}
@@ -92,9 +89,9 @@ export default function PolicyCarousel() {
           </div>
 
           {/* グループ2: キャンセルについて */}
-          <div className="flex flex-col shrink-0 relative pl-0 md:pl-8 md:border-l border-gray-200">
+          <div className="flex flex-col relative pl-0 md:pl-8 md:border-l border-gray-200">
             <h3 className="font-bold text-ink text-sm md:text-base mb-4 border-l-4 border-main pl-3 ml-1">キャンセルについて</h3>
-            <div className="flex gap-4 h-full items-stretch">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-stretch">
               {policiesGroup2.map((item, idx) => (
                 <motion.div
                   key={`g2-${idx}`}
@@ -102,7 +99,7 @@ export default function PolicyCarousel() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.5, delay: (idx + 2) * 0.1 }}
-                  className={`w-[75vw] sm:w-[40vw] md:w-[220px] lg:w-[260px] shrink-0 snap-center rounded-2xl p-5 md:p-6 border-2 ${item.color} ${item.bg} flex flex-col justify-start`}
+                  className={`rounded-2xl p-5 md:p-6 border-2 ${item.color} ${item.bg} flex flex-col justify-start`}
                 >
                   <p className="text-[10px] md:text-xs text-gray-500 tracking-wider mb-2 font-bold">
                     {item.situation}

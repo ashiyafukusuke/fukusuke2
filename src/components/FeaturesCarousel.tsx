@@ -31,13 +31,10 @@ export default function FeaturesCarousel() {
             最後まで圧が抜けない秘密
             <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-main rounded-full"></div>
           </h2>
-          <p className="text-gray-400 mt-6 text-[10px] md:text-xs tracking-widest font-bold md:hidden">
-            ← 横にスクロールできます →
-          </p>
         </div>
 
-        {/* 横スクロールコンテナ */}
-        <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-8 -mx-6 px-6 md:mx-0 md:px-0 scrollbar-hide items-stretch">
+        {/* グリッド/縦積みコンテナ */}
+        <div className="flex flex-col md:grid md:grid-cols-3 gap-4 items-stretch">
           {features.map((feature, idx) => (
             <motion.div
               key={idx}
@@ -45,7 +42,7 @@ export default function FeaturesCarousel() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.4, delay: idx * 0.1 }}
-              className={`min-w-[75vw] sm:min-w-[45vw] md:min-w-[calc(33.333%-12px)] flex-1 shrink-0 snap-center rounded-3xl p-5 md:p-6 border-2 ${feature.borderColor} ${feature.bg} flex flex-col justify-start shadow-sm`}
+              className={`w-full rounded-3xl p-5 md:p-6 border-2 ${feature.borderColor} ${feature.bg} flex flex-col justify-start shadow-sm`}
             >
               <h3 className="text-base md:text-lg text-main font-sans font-black mb-3 md:mb-4">{feature.title}</h3>
               <p className="text-xs md:text-sm text-gray-700 leading-relaxed whitespace-pre-wrap">

@@ -42,12 +42,10 @@ export default function Enjoy100() {
             初めての方もご安心ください。<br />
             来店前に知っておくと、より体験が深まります。
           </p>
-          <p className="text-gray-400 mt-6 text-[10px] md:text-xs tracking-widest font-bold md:hidden">
-            ← 横にスクロールできます →
-          </p>
         </div>
         
-        <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-8 -mx-6 px-6 md:mx-0 md:px-0 scrollbar-hide items-stretch">
+        {/* スマホ縦積み / PC 2列グリッド */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
           {points.map((point, idx) => (
             <motion.div
               key={idx}
@@ -55,9 +53,9 @@ export default function Enjoy100() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.4, delay: idx * 0.1 }}
-              className="min-w-[70vw] sm:min-w-[45vw] md:min-w-[calc(33.333%-11px)] flex-1 shrink-0 snap-center p-6 bg-cardlight rounded-3xl border-2 border-divider flex flex-col sm:flex-row gap-4 items-start shadow-sm"
+              className="p-6 md:p-8 bg-cardlight rounded-3xl border-2 border-divider flex flex-col sm:flex-row gap-4 items-start shadow-sm"
             >
-              <div className="text-5xl">{point.icon}</div>
+              <div className="text-5xl shrink-0">{point.icon}</div>
               <div>
                 <h3 className="font-black text-lg text-ink mb-2">{point.title}</h3>
                 <p className="text-sm text-gray-700 leading-relaxed font-medium whitespace-pre-wrap">

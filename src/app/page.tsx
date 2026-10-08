@@ -14,6 +14,7 @@ import PhilosophyModal from "@/components/PhilosophyModal";
 import Access from "@/components/Access";
 import ProcessCarousel from "@/components/ProcessCarousel";
 import Outcome from "@/components/Outcome";
+import KnowFeet from "@/components/KnowFeet";
 
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -33,27 +34,49 @@ export default function Home() {
       </div>
       <StickyNav />
       
+      {/* 1. ヒーロー */}
       <Hero />
       
-      <div className="pt-16 px-4 md:px-8 max-w-5xl mx-auto">
+      <div className="px-4 md:px-8 space-y-16 max-w-5xl mx-auto pt-16">
+        {/* 2. お客様の声 */}
+        <VoicesCarousel />
+
+        {/* 3. 最後まで圧が抜けない秘密 */}
         <FeaturesCarousel />
       </div>
 
+      {/* 4. 続いた先に、あるもの。 */}
       <div className="my-16">
         <Outcome />
       </div>
 
       <div className="px-4 md:px-8 space-y-16 max-w-5xl mx-auto">
-        <VoicesCarousel />
+        {/* 5. 店主プロフィール */}
         <Profile onOpenPhilosophy={() => setModalOpen(true)} />
-        <SystemCarousel />
+
+        {/* 6. メニュー・料金（料金表、予約ボタン、2回目からのイタキモ含む） */}
         <MenuCarousel />
+
+        {/* 7. 安心して試せる仕組み */}
+        <SystemCarousel />
+
+        {/* 8. 足を知る */}
+        <KnowFeet />
+
+        {/* 9. ご利用の流れ */}
         <ProcessCarousel />
+
+        {/* 10. イタキモを100％楽しむために */}
         <Enjoy100 />
+
+        {/* 11. アクセス */}
         <Access />
+
+        {/* 12. キャンセルポリシー */}
         <PolicyCarousel />
       </div>
 
+      {/* 13. フッター */}
       <Footer />
       {/* モーダルはページ最上位でレンダリング */}
       <PhilosophyModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
