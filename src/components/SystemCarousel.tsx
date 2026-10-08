@@ -5,7 +5,7 @@ export default function SystemCarousel() {
   const systems = [
     {
       title: "初回お試し制度",
-      desc: "60分枠限定",
+      desc: "60分・90分枠限定",
       headline: "合わないと感じたなら、お代は頂戴しません。",
       content: "まず左足から始めます。片足が終わった時点で「合わない」と感じたら、そこで終了。お代は頂きません。足つぼが初めての方こそ、気負わず使ってください。",
       color: "border-divider",

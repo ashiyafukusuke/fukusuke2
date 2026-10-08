@@ -37,7 +37,8 @@ export default function MenuCarousel() {
       color: "border-divider",
       bg: "bg-card",
       badges: [
-        { text: "実は1番人気", color: "bg-sub text-white font-bold rounded-[4px]" }
+        { text: "実は1番人気", color: "bg-sub text-white font-bold rounded-[4px]" },
+        { text: "初回お試し対象", color: "bg-white text-main border border-main font-bold rounded-[4px]" }
       ]
     }
   ];
@@ -131,8 +132,8 @@ export default function MenuCarousel() {
                 <tr className="bg-cardlight border-b border-divider text-ink font-bold">
                   <th className="py-2.5 px-1 sm:py-3.5 sm:px-3 border-r border-divider w-[18%]">コース</th>
                   <th className="py-2.5 px-1 sm:py-3.5 sm:px-3 border-r border-divider w-[24%]">初回</th>
-                  <th className="py-2.5 px-1 sm:py-3.5 sm:px-3 border-r border-divider w-[28%] bg-main/5 text-main font-black">2回目以降</th>
-                  <th className="py-2.5 px-0.5 sm:py-3.5 sm:px-3 w-[30%] leading-tight">
+                  <th className="py-2.5 px-1 sm:py-3.5 sm:px-3 border-r border-divider w-[28%] bg-main/[0.06] text-main font-black">2回目以降</th>
+                  <th className="py-2.5 px-0.5 sm:py-3.5 sm:px-3 w-[30%] leading-tight bg-main/[0.12] text-main font-black">
                     2回目以降＋<br className="sm:hidden" />事前決済
                   </th>
                 </tr>
@@ -141,20 +142,20 @@ export default function MenuCarousel() {
                 <tr>
                   <td className="py-3 px-1 sm:py-3.5 sm:px-3 font-bold border-r border-divider bg-cardlight/50">30分</td>
                   <td className="py-3 px-1 sm:py-3.5 sm:px-3 border-r border-divider">3,500円</td>
-                  <td className="py-3 px-1 sm:py-3.5 sm:px-3 border-r border-divider bg-main/5 text-main font-black">3,300円</td>
-                  <td className="py-3 px-1 sm:py-3.5 sm:px-3">3,000円</td>
+                  <td className="py-3 px-1 sm:py-3.5 sm:px-3 border-r border-divider bg-main/[0.06] text-main font-black">3,300円</td>
+                  <td className="py-3 px-1 sm:py-3.5 sm:px-3 bg-main/[0.12] text-main font-black">3,000円</td>
                 </tr>
                 <tr>
                   <td className="py-3 px-1 sm:py-3.5 sm:px-3 font-bold border-r border-divider bg-cardlight/50">60分</td>
                   <td className="py-3 px-1 sm:py-3.5 sm:px-3 border-r border-divider">6,500円</td>
-                  <td className="py-3 px-1 sm:py-3.5 sm:px-3 border-r border-divider bg-main/5 text-main font-black">5,500円</td>
-                  <td className="py-3 px-1 sm:py-3.5 sm:px-3">5,000円</td>
+                  <td className="py-3 px-1 sm:py-3.5 sm:px-3 border-r border-divider bg-main/[0.06] text-main font-black">5,500円</td>
+                  <td className="py-3 px-1 sm:py-3.5 sm:px-3 bg-main/[0.12] text-main font-black">5,000円</td>
                 </tr>
                 <tr>
                   <td className="py-3 px-1 sm:py-3.5 sm:px-3 font-bold border-r border-divider bg-cardlight/50">90分</td>
                   <td className="py-3 px-1 sm:py-3.5 sm:px-3 border-r border-divider">9,000円</td>
-                  <td className="py-3 px-1 sm:py-3.5 sm:px-3 border-r border-divider bg-main/5 text-main font-black">8,000円</td>
-                  <td className="py-3 px-1 sm:py-3.5 sm:px-3">7,500円</td>
+                  <td className="py-3 px-1 sm:py-3.5 sm:px-3 border-r border-divider bg-main/[0.06] text-main font-black">8,000円</td>
+                  <td className="py-3 px-1 sm:py-3.5 sm:px-3 bg-main/[0.12] text-main font-black">7,500円</td>
                 </tr>
               </tbody>
             </table>
@@ -164,7 +165,7 @@ export default function MenuCarousel() {
           <div className="mt-4 text-left text-[11px] sm:text-xs text-gray-600 leading-relaxed space-y-1">
             <p>※前回から間隔が空いても、2回目以降はずっと継続料金です。</p>
             <p>※事前決済はオンラインでのお支払いです。施術後はお会計なしで、一番ゆるんだ状態のままお帰りください。</p>
-            <p>※初回お試し制度は60分枠が対象です。</p>
+            <p>※初回お試し制度は60分枠・90分枠が対象です。</p>
           </div>
 
           {/* 予約ボタン（料金表・注記の直下） */}
