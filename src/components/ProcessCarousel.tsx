@@ -17,7 +17,7 @@ export default function ProcessCarousel() {
     },
     { 
       title: "施術終了・お着替え", 
-      desc: "足が軽くなった状態でお着替えいただきます。" 
+      desc: "施術後、そのままお着替えいただきます。" 
     },
     { 
       title: "お会計・ご退室", 

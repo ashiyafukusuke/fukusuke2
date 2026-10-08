@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 export default function FeaturesCarousel() {
   const features = [
     {
-      title: "反射区を狙わない",
-      content: "反射区をピンポイントで狙ってグリグリ押すのではなく、気持ち良さを目印に、ゆっくり深く、広く流していきます。それでも「ピンポイントで押されているみたい」と言われることがよくあります。",
+      title: "反射区だけにこだわらない",
+      content: "反射区だけをピンポイントで追うのではなく、気持ち良さを目印に、ゆっくり深く、広く流していきます。それでも「ピンポイントで押されているみたい」と言われることがよくあります。",
       bg: "bg-cardlight",
       borderColor: "border-divider"
     },

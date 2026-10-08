@@ -181,11 +181,11 @@ export default function MenuCarousel() {
           </div>
         </div>
 
-        {/* 2回目からの、イタキモ（通うメリット） */}
+        {/* 2回目からのイタキモ（通うメリット） */}
         <div className="pt-6 border-t border-divider">
           <div className="text-center mb-8">
             <h3 className="font-sans font-black text-xl md:text-2xl text-main inline-block relative tracking-wider">
-              2回目からの、イタキモ
+              2回目からのイタキモ
             </h3>
           </div>
 

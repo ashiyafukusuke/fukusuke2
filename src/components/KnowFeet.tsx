@@ -20,7 +20,7 @@ export default function KnowFeet() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5 }}
-          className="max-w-3xl mx-auto space-y-6 text-xs md:text-sm text-gray-700 leading-loose"
+          className="max-w-3xl mx-auto space-y-6 text-sm md:text-base text-gray-700 leading-[2.2] md:leading-[2.4]"
         >
           <p>
             よく勘違いされますが、足を触っただけで体の不調がわかる、ということはありません。<br />
