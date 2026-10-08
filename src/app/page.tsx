@@ -45,7 +45,7 @@ export default function Home() {
         <FeaturesCarousel />
       </div>
 
-      {/* 4. 続いた先に、あるもの。 */}
+      {/* 4. ほどけた先に、あるもの。 */}
       <div className="my-16">
         <Outcome />
       </div>

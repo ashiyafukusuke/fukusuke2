@@ -26,7 +26,7 @@ export default function Outcome() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="font-sans font-black text-xl md:text-2xl text-[#FFFFFF] tracking-widest mb-8 md:mb-12">
-            続いた先に、あるもの。
+            ほどけた先に、あるもの。
           </h2>
           <div className="space-y-6 text-sm md:text-base text-[#FFFFFF] leading-[2.2] md:leading-[2.4] tracking-wider font-normal">
             <p>
