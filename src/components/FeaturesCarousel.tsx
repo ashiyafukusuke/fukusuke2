@@ -4,14 +4,14 @@ import { motion } from "framer-motion";
 export default function FeaturesCarousel() {
   const features = [
     {
-      title: "圧が落ちない体の使い方",
-      content: "腕の力ではなく、体重移動とリズムで揉みます。この揉み方だと、何人揉んでも疲れません。だから、最後の10分も最初の10分と同じ圧です。途中で圧が軽くなった経験のある方ほど、違いが分かると思います。",
+      title: "反射区を狙わない",
+      content: "反射区をピンポイントで狙ってグリグリ押すのではなく、気持ち良さを目印に、ゆっくり深く、広く流していきます。それでも「ピンポイントで押されているみたい」と言われることがよくあります。",
       bg: "bg-cardlight",
       borderColor: "border-divider"
     },
     {
-      title: "反射区にこだわらない",
-      content: "反射区の位置だけを追うのではなく、筋肉や神経の状態を見ながら、その足に必要な圧を届けます。「なぜ気持ちいいのか」を現場から考え続けています。",
+      title: "体重移動とリズムで揉む",
+      content: "腕の力ではなく、体重移動とリズムで揉みます。だから、ゆっくり深い圧が最後まで同じ質で続きます。途中で圧が軽くなった経験のある方ほど、違いが分かると思います。",
       bg: "bg-cardlight",
       borderColor: "border-divider"
     },
@@ -28,7 +28,7 @@ export default function FeaturesCarousel() {
       <div className="flex flex-col">
         <div className="text-center mb-8 md:mb-10">
           <h2 className="font-sans font-black text-2xl md:text-3xl text-main inline-block relative tracking-widest">
-            最後まで圧が抜けない秘密
+            奥までしみわたる理由
             <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-main rounded-full"></div>
           </h2>
         </div>

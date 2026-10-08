@@ -20,7 +20,7 @@ export default function MenuCarousel() {
       title: "60分枠",
       price: "初回 6,500円",
       desc: "はじめての方におすすめ",
-      content: "足裏からふくらはぎ・膝裏まで、じっくり圧をかけていきます。最初から最後まで、同じ質の圧が続く60分。初回お試し制度の対象コースです。",
+      content: "足裏からふくらはぎ・膝裏まで、ゆっくり深く、広く流していきます。イタキモの施術を一番バランスよく味わえる60分。初回お試し制度の対象コースです。",
       color: "border-divider",
       bg: "bg-cardlight",
       badges: [
@@ -69,7 +69,7 @@ export default function MenuCarousel() {
           </h2>
           <p className="text-[14px] text-ink font-bold text-center mb-4 leading-relaxed">
             はじめての方には60分枠がおすすめです。<br />
-            圧の質を一番体感できる長さです。
+            足の奥までしみわたる感覚を、一番味わいやすい長さです。
           </p>
         </div>
 
@@ -134,7 +134,7 @@ export default function MenuCarousel() {
                   <th className="py-2.5 px-1 sm:py-3.5 sm:px-3 border-r border-divider w-[24%]">初回</th>
                   <th className="py-2.5 px-1 sm:py-3.5 sm:px-3 border-r border-divider w-[28%] bg-main/[0.06] text-main font-black">2回目以降</th>
                   <th className="py-2.5 px-0.5 sm:py-3.5 sm:px-3 w-[30%] leading-tight bg-main/[0.12] text-main font-black">
-                    2回目以降＋<br className="sm:hidden" />事前決済
+                    2回目以降＋<br />クレジット決済
                   </th>
                 </tr>
               </thead>
@@ -164,7 +164,7 @@ export default function MenuCarousel() {
           {/* 料金表の注記 */}
           <div className="mt-4 text-left text-[11px] sm:text-xs text-gray-600 leading-relaxed space-y-1">
             <p>※前回から間隔が空いても、2回目以降はずっと継続料金です。</p>
-            <p>※事前決済はオンラインでのお支払いです。施術後はお会計なしで、一番ゆるんだ状態のままお帰りください。</p>
+            <p>※ご予約時にクレジット決済された場合の料金です。施術後はお会計なし、ゆるんだ状態のままお帰りいただけます。</p>
             <p>※初回お試し制度は60分枠・90分枠が対象です。</p>
           </div>
 

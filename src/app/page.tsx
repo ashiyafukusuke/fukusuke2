@@ -41,7 +41,7 @@ export default function Home() {
         {/* 2. お客様の声 */}
         <VoicesCarousel />
 
-        {/* 3. 最後まで圧が抜けない秘密 */}
+        {/* 3. 奥までしみわたる理由 */}
         <FeaturesCarousel />
       </div>
 
