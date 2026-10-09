@@ -20,7 +20,7 @@ export default function MenuCarousel() {
       title: "60分枠",
       price: "初回 6,500円",
       desc: "はじめての方におすすめ",
-      content: "足裏からふくらはぎ・膝裏まで、ゆっくり深く、広く流していきます。イタキモの施術を一番バランスよく味わえる60分。初回お試し制度の対象コースです。",
+      content: "足裏からふくらはぎ・膝裏まで、ゆっくり深くほぐしていきます。イタキモの施術を一番バランスよく味わえる60分。初回お試し制度の対象コースです。",
       color: "border-divider",
       bg: "bg-cardlight",
       badges: [
