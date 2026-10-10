@@ -15,6 +15,7 @@ import Access from "@/components/Access";
 import ProcessCarousel from "@/components/ProcessCarousel";
 import Outcome from "@/components/Outcome";
 import KnowFeet from "@/components/KnowFeet";
+import CalendarSection from "@/components/CalendarSection";
 
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -37,7 +38,15 @@ export default function Home() {
       {/* 1. ヒーロー */}
       <Hero />
       
-      <div className="px-4 md:px-8 space-y-16 max-w-5xl mx-auto pt-16">
+      {/* 営業日・カレンダー誘導帯 */}
+      <div className="w-full bg-[#fdfaf9] border-y border-main/10 py-2.5 px-2 text-center text-[11px] sm:text-[13px] text-ink leading-snug">
+        営業日：水・木 9:00〜22:40／その他の日は夜 21:10〜22:40（週により異なります）
+        <a href="#calendar" className="text-main font-bold hover:opacity-80 ml-1 whitespace-nowrap">
+          今月の営業カレンダーを見る ↓
+        </a>
+      </div>
+
+      <div className="px-4 md:px-8 space-y-16 max-w-5xl mx-auto pt-10">
         {/* 2. お客様の声 */}
         <VoicesCarousel />
 
@@ -53,6 +62,9 @@ export default function Home() {
       <div className="px-4 md:px-8 space-y-16 max-w-5xl mx-auto">
         {/* 5. 店主プロフィール */}
         <Profile onOpenPhilosophy={() => setModalOpen(true)} />
+
+        {/* 営業カレンダー */}
+        <CalendarSection />
 
         {/* 6. メニュー・料金（料金表、予約ボタン、2回目からのイタキモ含む） */}
         <MenuCarousel />
