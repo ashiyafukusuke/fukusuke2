@@ -133,8 +133,8 @@ export default function MenuCarousel() {
                   <th className="py-2.5 px-1 sm:py-3.5 sm:px-3 border-r border-divider w-[18%]">コース</th>
                   <th className="py-2.5 px-1 sm:py-3.5 sm:px-3 border-r border-divider w-[24%]">初回</th>
                   <th className="py-2.5 px-1 sm:py-3.5 sm:px-3 border-r border-divider w-[28%] bg-main/[0.06] text-main font-black">2回目以降</th>
-                  <th className="py-2.5 px-0.5 sm:py-3.5 sm:px-3 w-[30%] leading-tight bg-main/[0.12] text-main font-black">
-                    2回目以降＋<br />クレジット決済
+                  <th className="py-2.5 px-0.5 sm:py-3.5 sm:px-3 w-[30%] leading-tight bg-main/[0.12] text-main font-black text-[10px] sm:text-sm md:text-base">
+                    2回目以降＋<br />ご予約時カード決済
                   </th>
                 </tr>
               </thead>
