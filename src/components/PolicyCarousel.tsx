@@ -7,16 +7,16 @@ export default function PolicyCarousel() {
       situation: "前日までの予約変更",
       rule: "1回のご予約につき3回まで承ります",
       note: "同一予約での4回目以降の変更はお断りいたします",
-      color: "border-divider",
-      bg: "bg-cardlight",
+      color: "border-hairline",
+      bg: "bg-paper-alt",
       isRed: false,
     },
     {
       situation: "当日の予約変更",
       rule: "1回のご予約につき1回まで承ります",
       note: "2回目以降は当日キャンセル扱いとなります",
-      color: "border-divider",
-      bg: "bg-cardlight",
+      color: "border-hairline",
+      bg: "bg-paper-alt",
       isRed: false,
     },
   ];
@@ -26,33 +26,33 @@ export default function PolicyCarousel() {
       situation: "当日キャンセル（連絡あり）",
       rule: "キャンセル料は頂きません",
       note: "通算3回目以降は、以降のご予約をお断りいたします",
-      color: "border-divider",
-      bg: "bg-cardlight",
+      color: "border-hairline",
+      bg: "bg-paper-alt",
       isRed: false,
     },
     {
       situation: "当日無断キャンセル",
       rule: "即時、以降のご予約をお断りいたします",
       note: "",
-      color: "border-main",
-      bg: "bg-card",
+      color: "border-brand",
+      bg: "bg-surface",
       isRed: true,
     },
   ];
 
   return (
-    <section id="cancel-policy" className="bg-card rounded-3xl shadow-lg shadow-black/5 border-t-8 border-divider p-6 md:p-12 text-ink relative overflow-hidden">
+    <section id="cancel-policy" className="bg-surface rounded-3xl shadow-lg shadow-black/5 border-t-8 border-hairline p-6 md:p-12 text-ink relative overflow-hidden">
       <div className="flex flex-col">
         <div className="text-center mb-8 md:mb-10">
           <h2 className="font-serif text-2xl md:text-3xl font-black text-ink inline-block relative tracking-widest">
             キャンセルポリシー
-            <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-divider rounded-full"></div>
+            <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-hairline rounded-full"></div>
           </h2>
-          <p className="text-[13px] text-[#5C5C5C] mb-[16px] text-center mt-10">
+          <p className="text-[13px] text-ink-muted mb-[16px] text-center mt-10">
             予約の変更・キャンセルは、<br className="sm:hidden" />
             予約確認メールのリンクよりお手続きください。
           </p>
-          <p className="text-gray-500 mt-2 text-xs md:text-sm leading-loose max-w-xl mx-auto">
+          <p className="text-ink-500 mt-2 text-xs md:text-sm leading-loose max-w-xl mx-auto">
             限られた枠を大切にしたいと思っています。<br/>
             お互いの時間を誠実に扱うためのお約束として、お読みください。
           </p>
@@ -63,7 +63,7 @@ export default function PolicyCarousel() {
           
           {/* グループ1: 予約の変更について */}
           <div className="flex flex-col">
-            <h3 className="font-bold text-ink text-sm md:text-base mb-4 border-l-4 border-divider pl-3 ml-1">予約の変更について</h3>
+            <h3 className="font-bold text-ink text-sm md:text-base mb-4 border-l-4 border-hairline pl-3 ml-1">予約の変更について</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-stretch">
               {policiesGroup1.map((item, idx) => (
                 <motion.div
@@ -74,12 +74,12 @@ export default function PolicyCarousel() {
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
                   className={`rounded-2xl p-5 md:p-6 border-2 ${item.color} ${item.bg} flex flex-col justify-start`}
                 >
-                  <p className="text-[10px] md:text-xs text-gray-500 tracking-wider mb-2 font-bold">
+                  <p className="text-[10px] md:text-xs text-ink-500 tracking-wider mb-2 font-bold">
                     {item.situation}
                   </p>
-                  <h3 className={`text-base md:text-lg font-black mb-3 ${item.isRed ? "text-main" : "text-ink"}`}>{item.rule}</h3>
+                  <h3 className={`text-base md:text-lg font-black mb-3 ${item.isRed ? "text-brand" : "text-ink"}`}>{item.rule}</h3>
                   {item.note && (
-                    <p className="text-xs md:text-sm text-gray-600 leading-relaxed mt-auto">
+                    <p className="text-xs md:text-sm text-ink-600 leading-relaxed mt-auto">
                       ※{item.note}
                     </p>
                   )}
@@ -89,8 +89,8 @@ export default function PolicyCarousel() {
           </div>
 
           {/* グループ2: キャンセルについて */}
-          <div className="flex flex-col relative pl-0 md:pl-8 md:border-l border-gray-200">
-            <h3 className="font-bold text-ink text-sm md:text-base mb-4 border-l-4 border-main pl-3 ml-1">キャンセルについて</h3>
+          <div className="flex flex-col relative pl-0 md:pl-8 md:border-l border-hairline">
+            <h3 className="font-bold text-ink text-sm md:text-base mb-4 border-l-4 border-brand pl-3 ml-1">キャンセルについて</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-stretch">
               {policiesGroup2.map((item, idx) => (
                 <motion.div
@@ -101,12 +101,12 @@ export default function PolicyCarousel() {
                   transition={{ duration: 0.5, delay: (idx + 2) * 0.1 }}
                   className={`rounded-2xl p-5 md:p-6 border-2 ${item.color} ${item.bg} flex flex-col justify-start`}
                 >
-                  <p className="text-[10px] md:text-xs text-gray-500 tracking-wider mb-2 font-bold">
+                  <p className="text-[10px] md:text-xs text-ink-500 tracking-wider mb-2 font-bold">
                     {item.situation}
                   </p>
-                  <h3 className={`text-base md:text-lg font-black mb-3 ${item.isRed ? "text-main" : "text-ink"}`}>{item.rule}</h3>
+                  <h3 className={`text-base md:text-lg font-black mb-3 ${item.isRed ? "text-brand" : "text-ink"}`}>{item.rule}</h3>
                   {item.note && (
-                    <p className="text-xs md:text-sm text-gray-600 leading-relaxed mt-auto">
+                    <p className="text-xs md:text-sm text-ink-600 leading-relaxed mt-auto">
                       ※{item.note}
                     </p>
                   )}
@@ -123,9 +123,9 @@ export default function PolicyCarousel() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.5 }}
-          className="mt-4 p-5 md:p-6 bg-offwhite rounded-xl border border-gray-100"
+          className="mt-4 p-5 md:p-6 rounded-xl border border-hairline"
         >
-          <p className="text-[10px] md:text-xs text-gray-400 leading-loose">
+          <p className="text-[10px] md:text-xs text-ink-400 leading-loose">
             ※「以降のご予約をお断りいたします」とは、当店との施術のご縁を終了することを意味します。<br/>
             ルールを設けているのは、罰のためではありません。枠を押さえたまま来られない方がいると、その時間を本当に必要としている別の誰かが機会を失うからです。<br/>
             お互いが気持ちよく過ごすためのルールとして、ご協力いただけますと幸いです。

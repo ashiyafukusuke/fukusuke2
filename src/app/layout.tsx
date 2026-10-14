@@ -30,7 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" type="image/png" href="/favicon.png?v=3" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3" />
       </head>
-      <body className={`${notoSans.variable} ${notoSerif.variable} font-sans bg-bg text-ink font-medium antialiased`}>
+      <body className={`${notoSans.variable} ${notoSerif.variable} font-sans bg-paper text-ink font-medium antialiased`}>
         {children}
 
         {/* Google Analytics */}

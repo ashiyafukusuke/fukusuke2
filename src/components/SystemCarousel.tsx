@@ -8,37 +8,37 @@ export default function SystemCarousel() {
       desc: "60分・90分枠限定",
       headline: "合わないと感じたなら、お代は頂戴しません。",
       content: "まず左足から始めます。片足が終わった時点で「合わない」と感じたら、そこで終了。お代は頂きません。足つぼが初めての方こそ、気負わず使ってください。",
-      color: "border-divider",
-      bg: "bg-cardlight",
-      badgeColor: "bg-main",
+      color: "border-hairline",
+      bg: "bg-paper-alt",
+      badgeColor: "bg-brand",
     },
     {
       title: "枠単位制",
       desc: "枠内完結",
       headline: "お会計まで枠の中。終わる時間が読めます。",
       content: "施術・お着替え・お会計まで、すべて予約した枠の中で完了します。延長のおすすめはしません。終わる時間が読めるので、仕事前や予定の合間でも安心です。",
-      color: "border-divider",
-      bg: "bg-card",
-      badgeColor: "bg-sub",
+      color: "border-hairline",
+      bg: "bg-surface",
+      badgeColor: "bg-brand",
     },
     {
       title: "完全予約制の一人店",
       desc: "貸切空間",
       headline: "あなたの足だけに全力を注ぎます。",
       content: "施術者は店主一人。あなたの枠の間、この部屋は貸切です。他のお客様と顔を合わせることはありません。小さな部屋で、あなたの足だけに全力を注ぎます。",
-      color: "border-divider",
-      bg: "bg-cardlight",
-      badgeColor: "bg-main",
+      color: "border-hairline",
+      bg: "bg-paper-alt",
+      badgeColor: "bg-brand",
     }
   ];
 
   return (
-    <section id="trial" className="bg-card rounded-3xl shadow-lg shadow-black/5 border-t-8 border-sub p-6 md:p-12 text-ink relative overflow-hidden">
+    <section id="trial" className="bg-surface rounded-3xl shadow-lg shadow-black/5 border-t-8 border-brand p-6 md:p-12 text-ink relative overflow-hidden">
       <div className="flex flex-col">
         <div className="text-center mb-8 md:mb-10">
-          <h2 className="font-sans font-black text-2xl md:text-3xl text-main inline-block relative tracking-widest">
+          <h2 className="font-sans font-black text-2xl md:text-3xl text-brand inline-block relative tracking-widest">
             安心して試せる仕組み
-            <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-main rounded-full"></div>
+            <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-brand rounded-full"></div>
           </h2>
         </div>
         
@@ -54,11 +54,11 @@ export default function SystemCarousel() {
               className={`rounded-3xl p-6 md:p-8 border-2 ${item.color} ${item.bg} flex flex-col justify-start shadow-sm`}
             >
               <div className="mb-4 flex flex-col items-start gap-2">
-                <h3 className="text-lg md:text-xl font-sans font-black text-main">{item.title}</h3>
+                <h3 className="text-lg md:text-xl font-sans font-black text-brand">{item.title}</h3>
                 <span className={`inline-block text-[10px] md:text-xs font-bold text-white px-2.5 py-1 rounded-[4px] ${item.badgeColor}`}>{item.desc}</span>
               </div>
               <p className="text-base md:text-lg font-bold text-ink mb-4">{item.headline}</p>
-              <p className="text-xs md:text-base text-gray-700 leading-relaxed">
+              <p className="text-xs md:text-base text-ink-700 leading-relaxed">
                 {item.content}
               </p>
             </motion.div>

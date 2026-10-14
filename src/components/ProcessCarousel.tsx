@@ -26,12 +26,12 @@ export default function ProcessCarousel() {
   ];
 
   return (
-    <section id="flow" className="bg-card rounded-3xl shadow-lg shadow-black/5 border-t-8 border-main p-6 md:p-12 text-ink relative overflow-hidden">
+    <section id="flow" className="bg-surface rounded-3xl shadow-lg shadow-black/5 border-t-8 border-brand p-6 md:p-12 text-ink relative overflow-hidden">
       <div className="flex flex-col">
         <div className="text-center mb-8 md:mb-10">
-          <h2 className="font-sans font-black text-2xl md:text-3xl text-main inline-block relative tracking-widest">
+          <h2 className="font-sans font-black text-2xl md:text-3xl text-brand inline-block relative tracking-widest">
             ご利用の流れ
-            <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-main rounded-full"></div>
+            <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-brand rounded-full"></div>
           </h2>
         </div>
 
@@ -44,17 +44,17 @@ export default function ProcessCarousel() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.4, delay: idx * 0.1 }}
-              className="rounded-3xl p-6 md:p-8 border-2 border-divider bg-cardlight flex flex-col justify-start relative overflow-hidden shadow-sm"
+              className="rounded-3xl p-6 md:p-8 border-2 border-hairline bg-paper-alt flex flex-col justify-start relative overflow-hidden shadow-sm"
             >
-              <div className="text-5xl font-black text-main/10 absolute -top-1 -right-1">
+              <div className="text-5xl font-black text-brand/10 absolute -top-1 -right-1">
                 {`0${idx + 1}`}
               </div>
               <h3 className="text-base md:text-lg font-sans font-black text-ink mb-3 relative z-10">
-                <span className="text-main font-sans font-black mr-2">STEP {idx + 1}</span>
+                <span className="text-brand font-sans font-black mr-2">STEP {idx + 1}</span>
                 <br />
                 {item.title}
               </h3>
-              <p className="text-xs md:text-sm text-gray-700 leading-relaxed relative z-10">
+              <p className="text-xs md:text-sm text-ink-700 leading-relaxed relative z-10">
                 {item.desc}
               </p>
             </motion.div>

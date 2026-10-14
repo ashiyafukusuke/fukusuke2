@@ -9,14 +9,14 @@ export default function CalendarSection() {
       <div className="max-w-3xl mx-auto px-4 md:px-8 text-center">
         <h2 className="font-sans font-black text-2xl md:text-3xl text-ink inline-block relative tracking-widest mb-8">
           営業カレンダー
-          <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-main rounded-full"></div>
+          <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-brand rounded-full"></div>
         </h2>
         
         <div className="flex flex-col items-center">
           <img 
-            src={`/calendar.png?t=${new Date().getTime()}`} 
+            src={`/calendar.png?v=${process.env.NEXT_PUBLIC_CALENDAR_HASH || "1"}`} 
             alt="イタキモ 今月の営業カレンダー" 
-            className="w-full max-w-[600px] h-auto object-contain mx-auto shadow-sm border border-divider rounded-lg mb-6"
+            className="w-full max-w-[600px] h-auto object-contain mx-auto shadow-sm border border-hairline rounded-lg mb-6"
             loading="lazy"
           />
           
@@ -28,7 +28,7 @@ export default function CalendarSection() {
             href={reserveUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center bg-main text-white font-bold py-[14px] px-[36px] rounded-[6px] hover:bg-mainhover transition duration-200 text-sm tracking-[0.08em] shadow-md w-full sm:w-auto"
+            className="inline-flex items-center justify-center bg-brand text-white font-bold py-[14px] px-[36px] rounded-[6px] hover:bg-brand-hover transition duration-200 text-sm tracking-[0.08em] shadow-md w-full sm:w-auto"
           >
             予約枠を確保する
           </a>

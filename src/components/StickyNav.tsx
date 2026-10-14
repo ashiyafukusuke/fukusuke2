@@ -21,48 +21,48 @@ export default function StickyNav() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -60, opacity: 0 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="sticky top-[40px] z-[100] bg-[rgba(255,251,245,0.95)] backdrop-blur-[8px] border-b border-divider shadow-sm"
+          className="sticky top-[40px] z-[100] bg-paper/95 backdrop-blur-[8px] border-b border-hairline shadow-sm"
         >
           <div className="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between gap-2">
             {/* ブランド名 */}
             <a href="#" className="flex items-center flex-shrink-0 group">
               <span className="font-sans font-black text-sm sm:text-base tracking-wider text-ink group-hover:opacity-80 transition-opacity">
-                イ<span className="text-main">タ</span>キモ
+                イ<span className="text-brand">タ</span>キモ
               </span>
             </a>
 
             <div className="flex items-center gap-1 sm:gap-3 overflow-x-auto scrollbar-none">
               <a
                 href="#features"
-                className="text-[12px] sm:text-sm text-graytext hover:text-main transition-colors whitespace-nowrap px-1 py-1 rounded hover:bg-main/5 font-semibold"
+                className="text-[12px] sm:text-sm text-ink-muted hover:text-brand transition-colors whitespace-nowrap px-1 py-1 rounded hover:bg-brand/5 font-semibold"
               >
                 特徴
               </a>
-              <span className="text-divider hidden sm:inline">|</span>
+              <span className="text-hairline hidden sm:inline">|</span>
               <a
                 href="#menu"
-                className="text-[12px] sm:text-sm text-graytext hover:text-main transition-colors whitespace-nowrap px-1 py-1 rounded hover:bg-main/5 font-semibold"
+                className="text-[12px] sm:text-sm text-ink-muted hover:text-brand transition-colors whitespace-nowrap px-1 py-1 rounded hover:bg-brand/5 font-semibold"
               >
                 メニュー
               </a>
-              <span className="text-divider hidden sm:inline">|</span>
+              <span className="text-hairline hidden sm:inline">|</span>
               <a
                 href="#trial"
-                className="text-[12px] sm:text-sm text-graytext hover:text-main transition-colors whitespace-nowrap px-1 py-1 rounded hover:bg-main/5 font-semibold"
+                className="text-[12px] sm:text-sm text-ink-muted hover:text-brand transition-colors whitespace-nowrap px-1 py-1 rounded hover:bg-brand/5 font-semibold"
               >
                 お試し制度
               </a>
-              <span className="text-divider hidden sm:inline">|</span>
+              <span className="text-hairline hidden sm:inline">|</span>
               <a
                 href="#tips"
-                className="text-[12px] sm:text-sm text-graytext hover:text-main transition-colors whitespace-nowrap px-1 py-1 rounded hover:bg-main/5 font-semibold"
+                className="text-[12px] sm:text-sm text-ink-muted hover:text-brand transition-colors whitespace-nowrap px-1 py-1 rounded hover:bg-brand/5 font-semibold"
               >
                 来店前に
               </a>
-              <span className="text-divider hidden sm:inline">|</span>
+              <span className="text-hairline hidden sm:inline">|</span>
               <a
                 href="#access"
-                className="text-[12px] sm:text-sm text-graytext hover:text-main transition-colors whitespace-nowrap px-1 py-1 rounded hover:bg-main/5 font-semibold"
+                className="text-[12px] sm:text-sm text-ink-muted hover:text-brand transition-colors whitespace-nowrap px-1 py-1 rounded hover:bg-brand/5 font-semibold"
               >
                 アクセス
               </a>
@@ -72,7 +72,7 @@ export default function StickyNav() {
               href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011#pageContent"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-shrink-0 bg-main text-white text-xs sm:text-sm font-bold px-4 py-2 rounded-[4px] shadow hover:bg-mainhover transition-colors duration-200 whitespace-nowrap tracking-wide"
+              className="flex-shrink-0 bg-brand text-white text-xs sm:text-sm font-bold px-4 py-2 rounded-[4px] shadow hover:bg-brand-hover transition-colors duration-200 whitespace-nowrap tracking-wide"
             >
               予約枠を確保する
             </a>

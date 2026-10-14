@@ -17,7 +17,7 @@ export default function StancePage() {
   const reserveUrl = "https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011#pageContent";
 
   return (
-    <main className={`min-h-screen bg-white text-[#1a1a1a] selection:bg-main/10 selection:text-main ${shippori.className}`}>
+    <main className={`min-h-screen bg-paper text-ink selection:bg-brand/10 selection:text-brand ${shippori.className}`}>
       {/* 戻るナビゲーション */}
       <nav className="max-w-[540px] mx-auto px-6 pt-12 pb-6">
         <Link 
@@ -30,13 +30,13 @@ export default function StancePage() {
       </nav>
 
       {/* 本文エリア（最大幅540pxで全角30文字程度に制限・中央配置） */}
-      <article className="max-w-[540px] mx-auto px-6 pt-8 pb-32 md:pt-14 md:pb-44 text-[17px] md:text-[18px] font-medium leading-[2.1] tracking-[0.05em] text-[#1a1a1a]">
+      <article className="max-w-[540px] mx-auto px-6 pt-8 pb-32 md:pt-14 md:pb-44 text-[17px] md:text-[18px] font-medium leading-[2.1] tracking-[0.05em] text-ink">
         {/* ページタイトル */}
         <header className="mb-20 md:mb-28">
           <p className="text-xs tracking-[0.25em] text-neutral-400 uppercase mb-3 font-normal">
             STANCE
           </p>
-          <h1 className="text-2xl md:text-3xl font-semibold tracking-[0.12em] text-[#111111] leading-relaxed">
+          <h1 className="text-2xl md:text-3xl font-semibold tracking-[0.12em] text-ink leading-relaxed">
             店主のスタンス
           </h1>
           <div className="w-8 h-[1px] bg-neutral-300 mt-8"></div>
@@ -45,7 +45,7 @@ export default function StancePage() {
         {/* 1. 実は、あなたの足は軽いんです。 */}
         <section className="mb-24 md:mb-36">
           <div className="space-y-8">
-            <p className="text-lg md:text-xl font-semibold text-[#111111]">
+            <p className="text-lg md:text-xl font-semibold text-ink">
               実は、あなたの足は軽いんです。
             </p>
             <p>
@@ -63,7 +63,7 @@ export default function StancePage() {
 
         {/* 2. 当店のテーマ */}
         <section className="mb-24 md:mb-36 pt-4">
-          <h2 className="text-[24px] md:text-[27px] font-semibold tracking-[0.08em] text-[#111111] mb-8 md:mb-10">
+          <h2 className="text-[24px] md:text-[27px] font-semibold tracking-[0.08em] text-ink mb-8 md:mb-10">
             当店のテーマ
           </h2>
           <div className="space-y-8">
@@ -81,7 +81,7 @@ export default function StancePage() {
 
         {/* 3. 気持ちが入らなければ、結果は変わる */}
         <section className="mb-24 md:mb-36 pt-4">
-          <h2 className="text-[24px] md:text-[27px] font-semibold tracking-[0.08em] text-[#111111] mb-8 md:mb-10">
+          <h2 className="text-[24px] md:text-[27px] font-semibold tracking-[0.08em] text-ink mb-8 md:mb-10">
             気持ちが入らなければ、結果は変わる
           </h2>
           <div className="space-y-8">
@@ -95,7 +95,7 @@ export default function StancePage() {
               気づける場所が変わります。<br />
               時間の使い方が変わります。
             </p>
-            <p className="font-semibold text-[#111111]">
+            <p className="font-semibold text-ink">
               技術は同じでも、施術は同じになりません。
             </p>
           </div>
@@ -103,7 +103,7 @@ export default function StancePage() {
 
         {/* 4. だから、ルールがうるさい */}
         <section className="mb-24 md:mb-36 pt-4">
-          <h2 className="text-[24px] md:text-[27px] font-semibold tracking-[0.08em] text-[#111111] mb-8 md:mb-10">
+          <h2 className="text-[24px] md:text-[27px] font-semibold tracking-[0.08em] text-ink mb-8 md:mb-10">
             だから、ルールがうるさい
           </h2>
           <div className="space-y-8">
@@ -129,7 +129,7 @@ export default function StancePage() {
 
         {/* 5. 施術の調整は、遠慮なくお伝えください */}
         <section className="mb-24 md:mb-36 pt-4">
-          <h2 className="text-[24px] md:text-[27px] font-semibold tracking-[0.08em] text-[#111111] mb-8 md:mb-10">
+          <h2 className="text-[24px] md:text-[27px] font-semibold tracking-[0.08em] text-ink mb-8 md:mb-10">
             施術の調整は、遠慮なくお伝えください
           </h2>
           <div className="space-y-8">
@@ -155,7 +155,7 @@ export default function StancePage() {
             <p>
               言葉で伝えられるのは、ここまでです。
             </p>
-            <p className="text-lg md:text-xl font-semibold text-[#111111]">
+            <p className="text-lg md:text-xl font-semibold text-ink">
               あとは、あなたの足で確かめてください。
             </p>
           </div>
@@ -170,7 +170,7 @@ export default function StancePage() {
               href={reserveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block w-full sm:w-auto min-w-[280px] bg-main text-white font-medium py-4 px-8 rounded-[4px] hover:bg-mainhover transition-all duration-300 text-sm md:text-base tracking-[0.15em] shadow-sm hover:shadow"
+              className="inline-block w-full sm:w-auto min-w-[280px] bg-brand text-white font-medium py-4 px-8 rounded-[4px] hover:bg-brand-hover transition-all duration-300 text-sm md:text-base tracking-[0.15em] shadow-sm hover:shadow"
             >
               予約枠を確保する
             </a>

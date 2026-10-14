@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
-    <header className="bg-bg pt-4 pb-20 px-6 md:px-12 overflow-hidden">
+    <header className="bg-paper pt-4 pb-20 px-6 md:px-12 overflow-hidden">
       <div className="max-w-4xl mx-auto flex flex-col items-center relative">
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
@@ -63,13 +63,13 @@ export default function Hero() {
             href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011#pageContent"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center bg-main text-white font-bold py-[14px] px-[32px] rounded-[6px] hover:bg-mainhover transition duration-200 text-base tracking-[0.08em]"
+            className="inline-flex items-center justify-center bg-brand text-white font-bold py-[14px] px-[32px] rounded-[6px] hover:bg-brand-hover transition duration-200 text-base tracking-[0.08em]"
           >
             予約枠を確保する
           </a>
           <a
             href="#menu"
-            className="inline-flex items-center justify-center bg-transparent text-main border-2 border-main font-bold py-[12px] px-[28px] rounded-[6px] hover:bg-main hover:text-white transition duration-200 text-sm tracking-wide"
+            className="inline-flex items-center justify-center bg-transparent text-brand border-2 border-brand font-bold py-[12px] px-[28px] rounded-[6px] hover:bg-brand hover:text-white transition duration-200 text-sm tracking-wide"
           >
             メニューを見る ➔
           </a>

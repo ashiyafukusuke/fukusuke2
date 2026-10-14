@@ -48,13 +48,13 @@ export default function PhilosophyModal({ isOpen, onClose }: PhilosophyModalProp
             className="fixed inset-0 z-50 flex items-end sm:items-center justify-center px-0 sm:px-4 pointer-events-none"
           >
             <div
-              className="pointer-events-auto relative w-full sm:max-w-[640px] max-h-[92dvh] sm:max-h-[88vh] flex flex-col bg-bg rounded-t-[12px] sm:rounded-[12px] shadow-2xl overflow-hidden"
+              className="pointer-events-auto relative w-full sm:max-w-[640px] max-h-[92dvh] sm:max-h-[88vh] flex flex-col bg-paper rounded-t-[12px] sm:rounded-[12px] shadow-2xl overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
               {/* ヘッダー */}
-              <div className="flex-shrink-0 flex items-center justify-between px-6 pt-6 pb-4 border-b border-divider">
+              <div className="flex-shrink-0 flex items-center justify-between px-6 pt-6 pb-4 border-b border-hairline">
                 <div>
-                  <p className="text-xs text-sub tracking-widest font-serif mb-0.5">
+                  <p className="text-xs text-brand tracking-widest font-serif mb-0.5">
                     STANCE
                   </p>
                   <h2 className="font-serif text-lg font-black text-ink tracking-widest">
@@ -64,7 +64,7 @@ export default function PhilosophyModal({ isOpen, onClose }: PhilosophyModalProp
                 <button
                   onClick={onClose}
                   aria-label="モーダルを閉じる"
-                  className="w-9 h-9 rounded-full bg-divider/30 hover:bg-main/10 text-graytext hover:text-main flex items-center justify-center transition-colors text-lg leading-none"
+                  className="w-9 h-9 rounded-full bg-hairline/30 hover:bg-brand/10 text-ink-muted hover:text-brand flex items-center justify-center transition-colors text-lg leading-none"
                 >
                   ✕
                 </button>
@@ -93,7 +93,7 @@ export default function PhilosophyModal({ isOpen, onClose }: PhilosophyModalProp
                     </p>
                   </div>
 
-                  <div className="w-8 h-px bg-divider my-8"></div>
+                  <div className="w-8 h-px bg-hairline my-8"></div>
 
                   {/* 2. 当店のテーマ */}
                   <div className="mb-12">
@@ -109,7 +109,7 @@ export default function PhilosophyModal({ isOpen, onClose }: PhilosophyModalProp
                     </p>
                   </div>
 
-                  <div className="w-8 h-px bg-divider my-8"></div>
+                  <div className="w-8 h-px bg-hairline my-8"></div>
 
                   {/* 3. 気持ちが入らなければ、結果は変わる */}
                   <div className="mb-12">
@@ -129,7 +129,7 @@ export default function PhilosophyModal({ isOpen, onClose }: PhilosophyModalProp
                     </p>
                   </div>
 
-                  <div className="w-8 h-px bg-divider my-8"></div>
+                  <div className="w-8 h-px bg-hairline my-8"></div>
 
                   {/* 4. だから、ルールがうるさい */}
                   <div className="mb-12">
@@ -153,7 +153,7 @@ export default function PhilosophyModal({ isOpen, onClose }: PhilosophyModalProp
                     </p>
                   </div>
 
-                  <div className="w-8 h-px bg-divider my-8"></div>
+                  <div className="w-8 h-px bg-hairline my-8"></div>
 
                   {/* 5. 施術の調整は、遠慮なくお伝えください */}
                   <div className="mb-12">
@@ -173,7 +173,7 @@ export default function PhilosophyModal({ isOpen, onClose }: PhilosophyModalProp
                     </p>
                   </div>
 
-                  <div className="w-8 h-px bg-divider my-8"></div>
+                  <div className="w-8 h-px bg-hairline my-8"></div>
 
                   {/* 6. 結び */}
                   <div className="mb-6">
@@ -183,7 +183,7 @@ export default function PhilosophyModal({ isOpen, onClose }: PhilosophyModalProp
                     <p className="leading-[2.2] font-bold text-ink">
                       あとは、あなたの足で確かめてください。
                     </p>
-                    <p className="text-right text-graytext mt-8 tracking-widest">
+                    <p className="text-right text-ink-muted mt-8 tracking-widest">
                       店主 福助
                     </p>
                   </div>
@@ -191,12 +191,12 @@ export default function PhilosophyModal({ isOpen, onClose }: PhilosophyModalProp
               </div>
 
               {/* フッター CTA */}
-              <div className="flex-shrink-0 px-6 py-4 border-t border-divider bg-bg">
+              <div className="flex-shrink-0 px-6 py-4 border-t border-hairline bg-paper">
                 <a
                   href="https://itakimo-hibarigaoka.stores.jp/reserve/hibarigaoka_ashitsubo"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block w-full text-center bg-main text-white font-bold py-[14px] rounded-[6px] hover:bg-mainhover transition duration-200 text-sm tracking-[0.08em]"
+                  className="block w-full text-center bg-brand text-white font-bold py-[14px] rounded-[6px] hover:bg-brand-hover transition duration-200 text-sm tracking-[0.08em]"
                 >
                   予約枠を確保する
                 </a>

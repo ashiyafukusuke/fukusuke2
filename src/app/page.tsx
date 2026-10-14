@@ -22,13 +22,13 @@ export default function Home() {
 
   return (
     <main className="min-h-screen pb-32">
-      <div className="sticky top-0 z-[110] w-full bg-main text-white text-[13px] font-medium tracking-[0.05em] py-[8px] px-4 text-center flex flex-row items-center justify-center gap-4 shadow-md">
+      <div className="sticky top-0 z-[110] w-full bg-brand text-white text-[13px] font-medium tracking-[0.05em] py-[8px] px-4 text-center flex flex-row items-center justify-center gap-4 shadow-md">
         <span>ご予約受付中</span>
         <a 
           href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011#pageContent"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center justify-center bg-white text-main border border-white font-bold py-1 px-4 rounded hover:bg-transparent hover:text-white transition duration-200 text-xs tracking-wide shadow-sm whitespace-nowrap"
+          className="inline-flex items-center justify-center bg-surface text-brand border border-white font-bold py-1 px-4 rounded hover:bg-transparent hover:text-white transition duration-200 text-xs tracking-wide shadow-sm whitespace-nowrap"
         >
           予約ページへ ➔
         </a>
@@ -39,9 +39,9 @@ export default function Home() {
       <Hero />
       
       {/* 営業日・カレンダー誘導帯 */}
-      <div className="w-full bg-[#fdfaf9] border-y border-main/10 py-2.5 px-2 text-center text-[11px] sm:text-[13px] text-ink leading-snug">
+      <div className="w-full bg-paper-alt border-y border-brand/10 py-2.5 px-2 text-center text-[11px] sm:text-[13px] text-ink leading-snug">
         営業日：水・木 9:00〜22:40／その他の日は夜 21:10〜22:40（週により異なります）
-        <a href="#calendar" className="text-main font-bold hover:opacity-80 ml-1 whitespace-nowrap">
+        <a href="#calendar" className="text-brand font-bold hover:opacity-80 ml-1 whitespace-nowrap">
           今月の営業カレンダーを見る ↓
         </a>
       </div>
