@@ -29,6 +29,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ['var(--font-noto-sans)', 'sans-serif'],
+        serif: ['"Noto Serif JP"', 'serif'],
       }
     },
   },

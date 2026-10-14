@@ -11,15 +11,11 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="w-full flex justify-center mb-6 md:mb-10"
         >
-          <div className="relative w-[min(480px,92vw)] aspect-[4/3] sm:aspect-[16/10] overflow-hidden flex items-center justify-center">
-            {/* 
-              画像をpublic/logo.pngとして上書き保存してください。
-              画像周囲の余白が広いため、scaleで拡大してトリミング調整しています。
-            */}
+          <div className="relative w-[min(230px,62vw)] sm:w-[270px] md:w-[280px] aspect-square flex items-center justify-center">
             <img 
-              src="/logo.png" 
-              alt="イタキモロゴ" 
-              className="absolute w-full h-full object-cover scale-[1.65] md:scale-[1.75] origin-center mix-blend-multiply" 
+              src="/logo.svg" 
+              alt="足つぼ専門店 イタキモ" 
+              className="w-full h-full object-contain" 
             />
           </div>
         </motion.div>
@@ -30,11 +26,11 @@ export default function Hero() {
           transition={{ duration: 0.4, delay: 0.2 }}
           className="w-full text-center mb-6 md:mb-8"
         >
-          <h1 className="text-[19px] min-[390px]:text-[21px] sm:text-3xl md:text-5xl lg:text-6xl font-sans text-ink font-black mb-6 md:mb-8 leading-[1.35] md:leading-[1.4] tracking-wider">
+          <h1 className="text-[19px] min-[390px]:text-[21px] sm:text-3xl md:text-5xl lg:text-6xl font-serif text-ink font-semibold mb-6 md:mb-8 leading-[1.35] md:leading-[1.4] tracking-[0.04em]">
             <span className="inline-block">気持ちいいだけで</span>
             <span className="inline-block">終わらせない。</span>
           </h1>
-          <div className="text-sm min-[390px]:text-base sm:text-xl md:text-2xl font-sans text-ink font-bold tracking-wider leading-[1.8] space-y-2 sm:space-y-3">
+          <div className="text-sm min-[390px]:text-base sm:text-xl md:text-2xl font-sans text-ink-700 font-normal tracking-wider leading-[1.9] space-y-2 sm:space-y-3">
             <p>
               <span className="inline-block">反射区を地図に、</span>
               <span className="inline-block">構造をたどる。</span>
@@ -57,7 +53,7 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="w-full text-center text-base md:text-xl text-ink font-bold tracking-widest mt-6 md:mt-8"
         >
-          ひばりが丘の足つぼ専門店 イタキモ
+          西東京市ひばりが丘の足つぼ専門店
         </motion.p>
 
         <motion.div

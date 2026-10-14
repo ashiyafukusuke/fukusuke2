@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP, Noto_Serif_JP } from "next/font/google";
+import { Noto_Sans_JP } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
@@ -9,14 +9,6 @@ const notoSans = Noto_Sans_JP({
   variable: "--font-noto-sans", 
   display: "swap" 
 });
-
-const notoSerif = Noto_Serif_JP({ 
-  subsets: ["latin"], 
-  weight: ["400","700"], 
-  variable: "--font-noto-serif", 
-  display: "swap" 
-});
-
 
 export const metadata: Metadata = {
   title: "足つぼ専門店 イタキモ｜ひばりが丘",
@@ -29,8 +21,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="icon" type="image/png" href="/favicon.png?v=3" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@600&display=swap" rel="stylesheet" />
       </head>
-      <body className={`${notoSans.variable} ${notoSerif.variable} font-sans bg-paper text-ink font-medium antialiased`}>
+      <body className={`${notoSans.variable} font-sans bg-paper text-ink font-medium antialiased`}>
         {children}
 
         {/* Google Analytics */}
