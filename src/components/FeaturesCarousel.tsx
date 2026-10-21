@@ -31,6 +31,10 @@ export default function FeaturesCarousel() {
             奥までしみわたる理由
             <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-brand rounded-full"></div>
           </h2>
+          <div className="text-sm md:text-base font-medium text-ink mt-8 leading-relaxed space-y-1">
+            <p>反射区を地図に、構造をたどる。</p>
+            <p>足裏から膝裏まで、つながりごとほどく。</p>
+          </div>
         </div>
 
         {/* グリッド/縦積みコンテナ */}

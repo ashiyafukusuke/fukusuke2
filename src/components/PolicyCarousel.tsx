@@ -2,25 +2,6 @@
 import { motion } from "framer-motion";
 
 export default function PolicyCarousel() {
-  const policiesGroup1 = [
-    {
-      situation: "前日までの予約変更",
-      rule: "1回のご予約につき3回まで承ります",
-      note: "同一予約での4回目以降の変更はお断りいたします",
-      color: "border-hairline",
-      bg: "bg-paper-alt",
-      isRed: false,
-    },
-    {
-      situation: "当日の予約変更",
-      rule: "1回のご予約につき1回まで承ります",
-      note: "2回目以降は当日キャンセル扱いとなります",
-      color: "border-hairline",
-      bg: "bg-paper-alt",
-      isRed: false,
-    },
-  ];
-
   const policiesGroup2 = [
     {
       situation: "当日キャンセル（連絡あり）",
@@ -48,9 +29,9 @@ export default function PolicyCarousel() {
             キャンセルポリシー
             <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-hairline rounded-full"></div>
           </h2>
-          <p className="text-[13px] text-ink-muted mb-[16px] text-center mt-10">
-            予約の変更・キャンセルは、<br className="sm:hidden" />
-            予約確認メールのリンクよりお手続きください。
+          <p className="text-[13px] text-ink-muted mb-[16px] text-center mt-10 leading-relaxed">
+            キャンセルは、予約確認メールのリンクよりお手続きください。<br />
+            予約の変更は、ご予約後に直接ご連絡ください。
           </p>
           <p className="text-ink-500 mt-2 text-xs md:text-sm leading-loose max-w-xl mx-auto">
             限られた枠を大切にしたいと思っています。<br/>
@@ -64,28 +45,17 @@ export default function PolicyCarousel() {
           {/* グループ1: 予約の変更について */}
           <div className="flex flex-col">
             <h3 className="font-bold text-ink text-sm md:text-base mb-4 border-l-4 border-hairline pl-3 ml-1">予約の変更について</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-stretch">
-              {policiesGroup1.map((item, idx) => (
-                <motion.div
-                  key={`g1-${idx}`}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  className={`rounded-2xl p-5 md:p-6 border-2 ${item.color} ${item.bg} flex flex-col justify-start`}
-                >
-                  <p className="text-[10px] md:text-xs text-ink-500 tracking-wider mb-2 font-bold">
-                    {item.situation}
-                  </p>
-                  <h3 className={`text-base md:text-lg font-black mb-3 ${item.isRed ? "text-brand" : "text-ink"}`}>{item.rule}</h3>
-                  {item.note && (
-                    <p className="text-xs md:text-sm text-ink-600 leading-relaxed mt-auto">
-                      ※{item.note}
-                    </p>
-                  )}
-                </motion.div>
-              ))}
-            </div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5 }}
+              className="rounded-2xl p-5 md:p-6 border-2 border-hairline bg-paper-alt flex flex-col justify-start"
+            >
+              <p className="text-xs md:text-sm text-ink-700 leading-relaxed">
+                ご予約後に、メール・Instagram DM・お問い合わせフォームのいずれかから直接ご連絡ください。
+              </p>
+            </motion.div>
           </div>
 
           {/* グループ2: キャンセルについて */}

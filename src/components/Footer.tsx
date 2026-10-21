@@ -58,6 +58,9 @@ export default function Footer() {
           <div className="mt-6 flex flex-col items-center w-full">
             <p className="text-[13px] font-bold text-ink-700 mb-2">お問い合わせ</p>
             <div className="flex flex-col gap-2 w-max text-left">
+              <a href="mailto:fukusuke@itakimo.net" className="text-[13px] text-brand underline hover:no-underline block">
+                ・メール：fukusuke@itakimo.net
+              </a>
               <a href="https://www.instagram.com/fukusuke.ashiya/" target="_blank" rel="noopener noreferrer" className="text-[13px] text-brand underline hover:no-underline block">
                 ・Instagram DM
               </a>

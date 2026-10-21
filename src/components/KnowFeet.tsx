@@ -10,9 +10,14 @@ export default function KnowFeet() {
             足を知る
             <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-brand rounded-full"></div>
           </h2>
-          <p className="text-sm md:text-base font-bold text-ink mt-6 leading-relaxed">
-            病院に行くほどではない。でも、なんとなく気になる足。
-          </p>
+          <div className="mt-6 space-y-2">
+            <p className="text-sm md:text-base font-bold text-ink leading-relaxed">
+              気持ちいいだけで終わらせない。
+            </p>
+            <p className="text-sm md:text-base font-bold text-ink leading-relaxed">
+              病院に行くほどではない。でも、なんとなく気になる足。
+            </p>
+          </div>
         </div>
 
         <motion.div
