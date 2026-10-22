@@ -58,7 +58,7 @@ export default function Hero() {
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center bg-brand text-white font-bold py-[14px] px-[32px] rounded-[6px] hover:bg-brand-hover transition duration-200 text-base tracking-[0.08em]"
           >
-            初回60分を予約する
+            イタキモを体験してみる
           </a>
           <a
             href="#menu"
