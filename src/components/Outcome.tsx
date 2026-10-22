@@ -30,7 +30,7 @@ export default function Outcome() {
           </h2>
           <div className="space-y-6 text-sm md:text-base text-[#FFFFFF] leading-[2.2] md:leading-[2.4] tracking-wider font-normal">
             <p>
-              ゆっくり深い圧で、最後まで足を揉み続けます。<br />
+              足の変化に合わせて圧を変えながら、最後まで揉み続けます。<br />
               ふくらはぎの張りも、足裏の硬さも、<br />
               指先で確かめながら順番にほどいていきます。
             </p>
