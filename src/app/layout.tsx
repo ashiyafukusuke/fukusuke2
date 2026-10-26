@@ -11,11 +11,33 @@ const notoSans = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.itakimo.net"),
   title: "足つぼ専門店 イタキモ｜ひばりが丘",
   description: "西東京市ひばりが丘の足つぼ専門店「イタキモ」。じっくり、ゆっくり、奥深く。痛いけど気持ち良くて、帰り道は足が軽い足つぼ。初めての方も安心の「初回お試し制度」（60分・90分）あり。完全予約制・一人営業の専門店です。",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "足つぼ専門店 イタキモ｜ひばりが丘",
     description: "西東京市ひばりが丘の足つぼ専門店「イタキモ」。じっくり、ゆっくり、奥深く。痛いけど気持ち良くて、帰り道は足が軽い足つぼ。初めての方も安心の「初回お試し制度」（60分・90分）あり。完全予約制・一人営業の専門店です。",
+    url: "https://www.itakimo.net/",
+    siteName: "足つぼ専門店 イタキモ",
+    locale: "ja_JP",
+    type: "website",
+    images: [
+      {
+        url: "https://www.itakimo.net/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "足つぼ専門店 イタキモ",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "足つぼ専門店 イタキモ｜ひばりが丘",
+    description: "西東京市ひばりが丘の足つぼ専門店「イタキモ」。じっくり、ゆっくり、奥深く。痛いけど気持ち良くて、帰り道は足が軽い足つぼ。初めての方も安心の「初回お試し制度」（60分・90分）あり。完全予約制・一人営業の専門店です。",
+    images: ["https://www.itakimo.net/og-image.jpg"],
   },
 };
 

@@ -17,11 +17,44 @@ import Outcome from "@/components/Outcome";
 import KnowFeet from "@/components/KnowFeet";
 import CalendarSection from "@/components/CalendarSection";
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "HealthAndBeautyBusiness",
+  name: "足つぼ専門店 イタキモ",
+  url: "https://www.itakimo.net/",
+  logo: "https://www.itakimo.net/logo.png",
+  image: "https://www.itakimo.net/logo.png",
+  address: {
+    "@type": "PostalAddress",
+    postalCode: "202-0001",
+    addressCountry: "JP",
+    addressRegion: "東京都",
+    addressLocality: "西東京市",
+    streetAddress: "ひばりが丘3丁目2−51 HIBARIDO 2F R-09",
+  },
+  priceRange: "¥3,000–¥9,000",
+  sameAs: [
+    "https://www.instagram.com/fukusuke.ashiya/",
+  ],
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Wednesday", "Thursday"],
+      opens: "09:00",
+      closes: "22:40",
+    },
+  ],
+};
+
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <main className="min-h-screen pb-32">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="sticky top-0 z-[110] w-full bg-brand text-white text-[13px] font-medium tracking-[0.05em] py-[8px] px-4 text-center flex flex-row items-center justify-center gap-4 shadow-md">
         <span>ご予約受付中</span>
         <a 

@@ -11,6 +11,31 @@ const shippori = Shippori_Mincho({
 export const metadata: Metadata = {
   title: "店主のスタンス｜足つぼ専門店 イタキモ",
   description: "イタキモ店主・福助の施術に対する考え方、スタンスについて。「この人に喜んでもらいたい」と思う人の足を揉む、その想いを言葉にしました。",
+  alternates: {
+    canonical: "/stance",
+  },
+  openGraph: {
+    title: "店主のスタンス｜足つぼ専門店 イタキモ",
+    description: "イタキモ店主・福助の施術に対する考え方、スタンスについて。「この人に喜んでもらいたい」と思う人の足を揉む、その想いを言葉にしました。",
+    url: "https://www.itakimo.net/stance",
+    siteName: "足つぼ専門店 イタキモ",
+    locale: "ja_JP",
+    type: "article",
+    images: [
+      {
+        url: "https://www.itakimo.net/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "足つぼ専門店 イタキモ",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "店主のスタンス｜足つぼ専門店 イタキモ",
+    description: "イタキモ店主・福助の施術に対する考え方、スタンスについて。「この人に喜んでもらいたい」と思う人の足を揉む、その想いを言葉にしました。",
+    images: ["https://www.itakimo.net/og-image.jpg"],
+  },
 };
 
 export default function StancePage() {
