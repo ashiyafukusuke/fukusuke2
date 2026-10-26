@@ -27,7 +27,7 @@ export default function StickyNav() {
             {/* ブランド名 */}
             <a href="#" className="flex items-center flex-shrink-0 group">
               <span className="font-sans font-black text-sm sm:text-base tracking-wider text-ink group-hover:opacity-80 transition-opacity">
-                イ<span className="text-brand">タ</span>キモ
+                <span className="text-brand">イタ</span>キモ
               </span>
             </a>
 
