@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     type: "article",
     images: [
       {
-        url: "https://www.itakimo.net/og-image.jpg",
+        url: "https://www.itakimo.net/og-image.png",
         width: 1200,
         height: 630,
         alt: "足つぼ専門店 イタキモ",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "店主のスタンス｜足つぼ専門店 イタキモ",
     description: "イタキモ店主・福助の施術に対する考え方、スタンスについて。「この人に喜んでもらいたい」と思う人の足を揉む、その想いを言葉にしました。",
-    images: ["https://www.itakimo.net/og-image.jpg"],
+    images: ["https://www.itakimo.net/og-image.png"],
   },
 };
 
