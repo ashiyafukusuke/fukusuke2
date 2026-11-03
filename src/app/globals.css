@@ -23,6 +23,9 @@ summary {
   object-fit: cover;
   object-position: 50% 46%;
 }
+.hero-pc {
+  object-position: 62% 40%;
+}
 .hero-veil {
   position: absolute;
   inset: 0;

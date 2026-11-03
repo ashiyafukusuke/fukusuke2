@@ -45,6 +45,7 @@ export default function Home() {
             className="hero-img hero-pc"
             src="/images/hero-pc.jpg"
             alt="両手で足を包み込むように揉む、イタキモの施術の様子"
+            style={{ objectPosition: "62% 40%" }}
             // @ts-ignore
             fetchPriority="high"
           />
@@ -165,7 +166,7 @@ export default function Home() {
           </div>
           <div style={{ flex: "2 1 600px", minWidth: 0, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "32px 24px" }}>
             <div>
-              <img src="/images/reason-01.jpg" alt="指の関節にタコのある施術者の手が、足裏を押している" style={{ display: "block", width: "100%", aspectRatio: "4 / 3", objectFit: "cover", marginBottom: "18px", background: "#f1efea" }} />
+              <img src="/images/reason-01.jpg" alt="指の関節にタコのある施術者の手が、足を包み込むように押している" style={{ display: "block", width: "100%", aspectRatio: "4 / 3", objectFit: "cover", marginBottom: "18px", background: "#f1efea" }} />
               <h3 style={{ margin: "0 0 8px", fontSize: "15px", fontWeight: 700 }}><span style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontWeight: 500, fontSize: "18px", color: "#9b321f", marginRight: "10px" }}>01</span>反射区だけにこだわらない</h3>
               <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>反射区だけを狙うのではなく、イタ気持ちよさを目印に、ゆっくり深くほぐします。それでも「ピンポイントで押されているみたい」と言われることがよくあります。</p>
             </div>
@@ -187,7 +188,7 @@ export default function Home() {
       <section style={{ background: "#2d2c28", color: "#fefdfa" }}>
         <div style={{ display: "flex", flexWrap: "wrap", alignItems: "stretch" }}>
           <div style={{ flex: "1 1 440px", minWidth: 0, minHeight: "520px", position: "relative", background: "#3a3833" }}>
-            <img src="/images/owner.jpg" alt="スツールに座って足を揉む店主" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "60% 45%" }} />
+            <img src="/images/owner.jpg" alt="足を揉む店主 福助" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "72% 22%" }} />
           </div>
           <div style={{ flex: "1 1 440px", minWidth: 0, display: "flex", alignItems: "center" }}>
             <div style={{ maxWidth: "540px", padding: "88px 24px 88px 56px", boxSizing: "border-box" }}>
