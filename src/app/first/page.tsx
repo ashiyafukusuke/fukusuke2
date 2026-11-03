@@ -76,19 +76,19 @@ export default function FirstPage() {
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "28px 40px" }}>
               <div>
                 <h3 style={{ margin: "0 0 6px", fontSize: "14px", fontWeight: 700 }}>強さは、いつでも調整できます</h3>
-                <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>強く押すほど深く届くわけではありません。筋肉が圧に慣れてきたとき、はじめて指は奥に入っていきます。「もう少し強く」「弱めに」は、遠慮なくお伝えください。</p>
+                <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>強く押すほど深く届くわけではありません。筋肉が圧に慣れてきたとき、初めて指は奥に入っていきます。「もう少し強く」「弱めに」は、遠慮なくお伝えください。</p>
               </div>
               <div>
                 <h3 style={{ margin: "0 0 6px", fontSize: "14px", fontWeight: 700 }}>枠の中ですべて完結</h3>
-                <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>施術・お着替え・お会計まで、予約した枠の中で終わります。延長のおすすめはしません。</p>
+                <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>施術・お着替え・お会計まで、ご予約の枠の中で終わります。延長のご案内もしていません。</p>
               </div>
               <div>
                 <h3 style={{ margin: "0 0 6px", fontSize: "14px", fontWeight: 700 }}>膝上まで出せる服装で</h3>
-                <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>足元にクリームを使います。めくれない方には、ひざ掛けをお貸しします。</p>
+                <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>足元にクリームを使います。膝上までめくれない服装の場合は、ひざ掛けをお貸しします。</p>
               </div>
               <div>
                 <h3 style={{ margin: "0 0 6px", fontSize: "14px", fontWeight: 700 }}>到着は10分前ごろに</h3>
-                <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>待合スペースはありません。遅れた場合も終了時間は変わらないので、焦らず安全第一でお越しください。</p>
+                <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>待合スペースがないため、早く着いた場合は近くで少し時間を調整してからお越しください。遅れた場合も終了時間は変わりませんので、焦らず安全第一でお越しください。</p>
               </div>
               <div>
                 <h3 style={{ margin: "0 0 6px", fontSize: "14px", fontWeight: 700 }}>妊娠中の方・お子さま</h3>
@@ -166,7 +166,7 @@ export default function FirstPage() {
                 <dd style={{ margin: 0, flex: "1 1 260px", color: "#3d3a34" }}>以降のご予約はお受けしていません。</dd>
               </div>
             </dl>
-            <p style={{ margin: "14px 0 0", fontSize: "12px", color: "#5c5c5c" }}>枠を押さえたまま来られない方がいると、その時間を必要としている別の誰かが機会を失ってしまうためです。キャンセルは予約確認メールのリンクからお手続きください。</p>
+            <p style={{ margin: "14px 0 0", fontSize: "12px", color: "#5c5c5c" }}>このルールを設けているのは、枠を押さえたまま来られない方がいると、その時間を必要としている別の方が機会を失ってしまうからです。キャンセルは予約確認メールのリンクからお手続きください。</p>
           </div>
         </div>
       </section>

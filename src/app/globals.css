@@ -128,3 +128,104 @@ summary {
 ::-webkit-scrollbar-thumb:hover {
   background: #842a1a;
 }
+
+/* Stance page styles */
+.chap {
+  border-bottom: 1px solid #ebe9e4;
+}
+.chap-in {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 88px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 36px 48px;
+}
+.chap-h {
+  flex: 1 1 260px;
+  min-width: 0;
+}
+.chap-b {
+  flex: 3 1 640px;
+  min-width: 0;
+}
+.item {
+  padding: 0 0 36px;
+  margin: 0 0 36px;
+  border-bottom: 1px solid #ebe9e4;
+}
+.item:last-child {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-bottom: 0;
+}
+.item h3 {
+  margin: 0 0 12px;
+  font-family: 'Shippori Mincho', serif;
+  font-weight: 600;
+  font-size: 21px;
+  letter-spacing: 0.06em;
+  line-height: 1.6;
+}
+.item h3 .n {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 19px;
+  color: #9b321f;
+  margin-right: 12px;
+}
+.item p {
+  margin: 0 0 12px;
+  font-size: 14px;
+  color: #3d3a34;
+  line-height: 2.05;
+}
+.item p:last-child {
+  margin-bottom: 0;
+}
+.lbl {
+  margin: 0 0 6px;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 17px;
+  color: #9b321f;
+}
+.ch2 {
+  margin: 0;
+  font-family: 'Shippori Mincho', serif;
+  font-weight: 500;
+  font-size: clamp(22px, 2.8vw, 28px);
+  letter-spacing: 0.1em;
+  line-height: 1.6;
+}
+.shelf {
+  margin: 4px 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0;
+  border-top: 1px solid #ebe9e4;
+}
+.shelf div {
+  padding: 14px 18px 14px 0;
+}
+.shelf dt {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 4px;
+}
+.shelf dd {
+  margin: 0;
+  font-size: 12px;
+  color: #3d3a34;
+  line-height: 1.9;
+}
+@media (max-width: 767px) {
+  .chap-in {
+    padding: 64px 24px;
+  }
+  .item h3 {
+    font-size: 19px;
+  }
+}

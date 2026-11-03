@@ -117,7 +117,7 @@ export default function Home() {
               <div style={{ borderTop: "1px solid #ebe9e4", paddingTop: "18px" }}>
                 <h3 style={{ margin: "0 0 6px", fontFamily: "'Shippori Mincho', serif", fontWeight: 600, fontSize: "19px", letterSpacing: "0.06em" }}>枠の中ですべて完結</h3>
                 <p style={{ margin: "0 0 8px", fontWeight: 700, fontSize: "14px" }}>遅れても、終了時間は変わりません。</p>
-                <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>施術・お着替え・お会計まで、予約した枠の中で終わります。延長のおすすめはしません。待合スペースはないので、到着は10分前ごろに。</p>
+                <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>施術・お着替え・お会計まで、ご予約の枠の中で終わります。延長のご案内もしていません。待合スペースがないため、到着は10分前ごろを目安にしてください。</p>
               </div>
               <div style={{ borderTop: "1px solid #ebe9e4", paddingTop: "18px" }}>
                 <h3 style={{ margin: "0 0 6px", fontFamily: "'Shippori Mincho', serif", fontWeight: 600, fontSize: "19px", letterSpacing: "0.06em" }}>予約のお約束</h3>
@@ -161,8 +161,8 @@ export default function Home() {
           <div style={{ flex: "1 1 300px", minWidth: 0 }}>
             <p style={{ margin: "0 0 6px", fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "17px", color: "#9b321f" }}>Method</p>
             <h2 style={{ margin: "0 0 24px", fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(24px, 3vw, 30px)", letterSpacing: "0.1em" }}>奥までしみわたる理由</h2>
-            <p style={{ margin: "0 0 28px", color: "#3d3a34", lineHeight: 2.1 }}>反射区を地図に、構造をたどる。足裏から膝裏まで、つながりごとほどく。台湾式の手技を土台に、身体の構造と神経の働きの知見を重ねています。</p>
-            <Link href="/stance" style={{ color: "#1a1a1a", fontSize: "13px", textUnderlineOffset: "6px", minHeight: "44px", display: "inline-flex", alignItems: "center" }}>イタキモの考え方を読む</Link>
+            <p style={{ margin: "0 0 28px", color: "#3d3a34", lineHeight: 2.1 }}>反射区を地図に、構造をたどる。足裏から膝裏まで、つながりごとほどく。台湾式の手技を土台に、解剖学と神経の働きの知見を重ねています。</p>
+            <Link href="/stance#technique" style={{ color: "#1a1a1a", fontSize: "13px", textUnderlineOffset: "6px", minHeight: "44px", display: "inline-flex", alignItems: "center" }}>施術の考え方を詳しく読む</Link>
           </div>
           <div style={{ flex: "2 1 600px", minWidth: 0, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "32px 24px" }}>
             <div>
@@ -173,12 +173,12 @@ export default function Home() {
             <div>
               <img src="/images/reason-02.jpg" alt="親指でふくらはぎを押す施術の手元" style={{ display: "block", width: "100%", aspectRatio: "4 / 3", objectFit: "cover", marginBottom: "18px", background: "#f1efea" }} />
               <h3 style={{ margin: "0 0 8px", fontSize: "15px", fontWeight: 700 }}><span style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontWeight: 500, fontSize: "18px", color: "#9b321f", marginRight: "10px" }}>02</span>足に合わせて、圧を変える</h3>
-              <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>硬かった場所がゆるめば、圧の届き方も変わります。その変化に合わせて圧を変え、最初から最後まで、イタ気持ちいいまま揉んでいきます。</p>
+              <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>硬かった場所がゆるめば、圧の届き方も変わります。その変化に合わせて強さを調整し、最初から最後まで、イタ気持ちいいまま揉んでいきます。</p>
             </div>
             <div>
               <img src="/images/reason-03.jpg" alt="リクライニングチェア、赤いスツール、ふわふわのラグがある、一人用の施術スペース" style={{ display: "block", width: "100%", aspectRatio: "4 / 3", objectFit: "cover", marginBottom: "18px", background: "#f1efea" }} />
               <h3 style={{ margin: "0 0 8px", fontSize: "15px", fontWeight: 700 }}><span style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontWeight: 500, fontSize: "18px", color: "#9b321f", marginRight: "10px" }}>03</span>一人ひとりに向き合う</h3>
-              <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>完全予約制の一人店。あなたの枠の間、この部屋は貸切です。他のお客様と顔を合わせることはありません。</p>
+              <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>完全予約制の一人店です。ご予約の時間中は、この部屋を貸切でお使いいただけます。他のお客様と顔を合わせることはありません。</p>
             </div>
           </div>
         </div>
@@ -197,7 +197,7 @@ export default function Home() {
               <p style={{ margin: "0 0 18px", color: "#e7e2d8", lineHeight: 2.1 }}>毎日、足を揉んでいます。それでも飽きるどころか、毎日新しい発見があります。同じ足は一つもないからです。</p>
               <p style={{ margin: "0 0 28px", color: "#e7e2d8", lineHeight: 2.1 }}>足つぼにゴールはないと思っています。次にお会いするときは、今日より上手くなっていたい。そのために学び続けています。</p>
               <p style={{ margin: "0 0 24px", fontSize: "13px", color: "#b8b3a8" }}>店主　福助</p>
-              <Link href="/stance" style={{ color: "#fefdfa", fontSize: "13px", textUnderlineOffset: "6px", minHeight: "44px", display: "inline-flex", alignItems: "center" }}>店主のスタンスを読む</Link>
+              <Link href="/stance" style={{ color: "#fefdfa", fontSize: "13px", textUnderlineOffset: "6px", minHeight: "44px", display: "inline-flex", alignItems: "center" }}>イタキモの考え方を読む</Link>
             </div>
           </div>
         </div>
@@ -211,7 +211,7 @@ export default function Home() {
             <div style={{ flex: "1 1 260px", minWidth: 0 }}>
               <p style={{ margin: "0 0 6px", fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "17px", color: "#9b321f" }}>Menu</p>
               <h2 style={{ margin: "0 0 16px", fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(24px, 3vw, 30px)", letterSpacing: "0.1em" }}>メニュー・料金</h2>
-              <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>はじめての方には60分枠がおすすめです。足の奥までしみわたる感覚を、一番味わいやすい長さです。</p>
+              <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>初めての方には60分枠がおすすめです。足の奥までしみわたる感覚を、一番味わいやすい長さです。</p>
             </div>
             <div style={{ flex: "3 1 640px", minWidth: 0, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(190px, 1fr))", gap: 0 }}>
               <div style={{ padding: "0 28px 28px", borderLeft: "1px solid #ebe9e4" }}>
@@ -221,7 +221,7 @@ export default function Home() {
                 <p style={{ margin: 0, fontSize: "12px", color: "#5c5c5c" }}>2回目以降 3,300円</p>
               </div>
               <div style={{ padding: "0 28px 28px", borderLeft: "1px solid #ebe9e4" }}>
-                <p style={{ margin: "0 0 4px", fontSize: "13px", fontWeight: 700 }}>60分 <span style={{ marginLeft: "6px", fontSize: "10px", fontWeight: 500, color: "#9b321f", border: "1px solid #9b321f", borderRadius: "2px", padding: "1px 6px" }}>はじめての方に</span></p>
+                <p style={{ margin: "0 0 4px", fontSize: "13px", fontWeight: 700 }}>60分 <span style={{ marginLeft: "6px", fontSize: "10px", fontWeight: 500, color: "#9b321f", border: "1px solid #9b321f", borderRadius: "2px", padding: "1px 6px" }}>初めての方に</span></p>
                 <p style={{ margin: "0 0 12px", fontSize: "12px", color: "#5c5c5c" }}>足裏からふくらはぎ・膝裏まで</p>
                 <p style={{ margin: 0, fontSize: "12px", color: "#5c5c5c" }}>初回 <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "30px", color: "#1a1a1a" }}>6,500</span>円</p>
                 <p style={{ margin: 0, fontSize: "12px", color: "#5c5c5c" }}>2回目以降 5,500円</p>
@@ -237,7 +237,7 @@ export default function Home() {
           <div style={{ marginTop: "40px", paddingTop: "28px", borderTop: "1px solid #ebe9e4", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: "20px 40px" }}>
             <div style={{ flex: "1 1 480px", minWidth: 0 }}>
               <p style={{ margin: "0 0 6px", fontFamily: "'Shippori Mincho', serif", fontSize: "17px" }}>通ってくださる方ほど安くなるのが、正しいと思っています。</p>
-              <p style={{ margin: 0, fontSize: "12px", color: "#5c5c5c" }}>2回目以降は、間隔が空いてもずっと継続料金です。さらに予約時にカード決済をされると、60分・90分は500円、30分は300円お安くなり、施術後のお会計もなくそのままお帰りいただけます。</p>
+              <p style={{ margin: 0, fontSize: "12px", color: "#5c5c5c" }}>さらに予約時にカード決済をされると、60分・90分は500円、30分は300円お安くなります。施術後のお会計もなく、そのままお帰りいただけます。</p>
             </div>
             <a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011" style={{ background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "15px 36px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.12em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>空き枠を見る</a>
           </div>
@@ -249,8 +249,8 @@ export default function Home() {
         <img src="/logo/mark.svg" alt="" style={{ position: "absolute", right: "-80px", bottom: "-50px", width: "560px", maxWidth: "90%", height: "auto", opacity: 0.12, pointerEvents: "none" }} />
         <div style={{ position: "relative", maxWidth: "1200px", margin: "0 auto", padding: "104px 24px", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: "32px" }}>
           <div>
-            <h2 style={{ margin: "0 0 12px", fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(28px, 3.6vw, 40px)", letterSpacing: "0.12em" }}>足に、ご褒美を。</h2>
-            <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34", letterSpacing: "0.1em" }}>日々の一歩を、軽やかに。</p>
+            <h2 style={{ margin: "0 0 12px", fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(28px, 3.6vw, 40px)", letterSpacing: "0.12em" }}>まずは、左足から。</h2>
+            <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34", letterSpacing: "0.1em" }}>合わなければ、お代は頂きません。</p>
           </div>
           <a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011" style={{ background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "16px 48px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.12em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>予約する</a>
         </div>
