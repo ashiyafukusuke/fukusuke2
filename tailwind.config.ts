@@ -28,8 +28,10 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ['var(--font-noto-sans)', 'sans-serif'],
-        serif: ['"Noto Serif JP"', 'serif'],
+        sans: ['"Noto Sans JP"', 'system-ui', 'sans-serif'],
+        serif: ['"Shippori Mincho"', 'serif'],
+        mincho: ['"Shippori Mincho"', 'serif'],
+        garamond: ['"Cormorant Garamond"', 'serif'],
       }
     },
   },

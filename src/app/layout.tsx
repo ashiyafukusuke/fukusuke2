@@ -13,13 +13,13 @@ const notoSans = Noto_Sans_JP({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.itakimo.net"),
   title: "足つぼ専門店 イタキモ｜ひばりが丘",
-  description: "西東京市ひばりが丘の足つぼ専門店「イタキモ」。じっくり、ゆっくり、奥深く。痛いけど気持ち良くて、帰り道は足が軽い足つぼ。初めての方も安心の「初回お試し制度」（60分・90分）あり。完全予約制・一人営業の専門店です。",
+  description: "西東京市ひばりが丘の足つぼ専門店「イタキモ」。じっくり、ゆっくり、奥深く。痛いけど気持ち良くて、帰り道は足が軽い足つぼ。初めての方も安心の「左足トライアル」（60分・90分）あり。完全予約制・一人営業の専門店です。",
   alternates: {
     canonical: "/",
   },
   openGraph: {
     title: "足つぼ専門店 イタキモ｜ひばりが丘",
-    description: "西東京市ひばりが丘の足つぼ専門店「イタキモ」。じっくり、ゆっくり、奥深く。痛いけど気持ち良くて、帰り道は足が軽い足つぼ。初めての方も安心の「初回お試し制度」（60分・90分）あり。完全予約制・一人営業の専門店です。",
+    description: "西東京市ひばりが丘の足つぼ専門店「イタキモ」。じっくり、ゆっくり、奥深く。痛いけど気持ち良くて、帰り道は足が軽い足つぼ。初めての方も安心の「左足トライアル」（60分・90分）あり。完全予約制・一人営業の専門店です。",
     url: "https://www.itakimo.net/",
     siteName: "足つぼ専門店 イタキモ",
     locale: "ja_JP",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "足つぼ専門店 イタキモ｜ひばりが丘",
-    description: "西東京市ひばりが丘の足つぼ専門店「イタキモ」。じっくり、ゆっくり、奥深く。痛いけど気持ち良くて、帰り道は足が軽い足つぼ。初めての方も安心の「初回お試し制度」（60分・90分）あり。完全予約制・一人営業の専門店です。",
+    description: "西東京市ひばりが丘の足つぼ専門店「イタキモ」。じっくり、ゆっくり、奥深く。痛いけど気持ち良くて、帰り道は足が軽い足つぼ。初めての方も安心の「左足トライアル」（60分・90分）あり。完全予約制・一人営業の専門店です。",
     images: ["https://www.itakimo.net/og-image.png"],
   },
 };
@@ -49,9 +49,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@600&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet" />
       </head>
-      <body className={`${notoSans.variable} font-sans bg-paper text-ink font-medium antialiased`}>
+      <body className={`${notoSans.variable} font-sans bg-[#fefdfa] text-[#1a1a1a] antialiased`}>
         {children}
 
         {/* Google Analytics */}
