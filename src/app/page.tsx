@@ -292,7 +292,7 @@ export default function Home() {
             </div>
           </div>
           <p style={{ margin: "28px 0 0", fontSize: "12px", color: "#5c5c5c" }}>
-            ご予約の変更やご質問は、<a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/contact" style={{ color: "#5c5c5c" }}>お問い合わせ</a>またはInstagramのDMからどうぞ。
+            ご予約の変更やご質問は、メール（<a href="mailto:fukusuke@itakimo.net" style={{ color: "#5c5c5c" }}>fukusuke@itakimo.net</a>）、<a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/contact" style={{ color: "#5c5c5c" }}>お問い合わせフォーム</a>、InstagramのDMからどうぞ。
           </p>
         </div>
       </section>
@@ -304,7 +304,7 @@ export default function Home() {
           <img src="/logo/logo-horizontal-web.svg" alt="足つぼ専門店 イタキモ" style={{ display: "block", height: "52px", width: "auto", alignSelf: "flex-start" }} />
           <div>
             <p style={{ margin: 0 }}>東京都西東京市ひばりが丘3丁目2−51 HIBARIDO 2F R-09（<Link href="/first#access" style={{ color: "#5c5c5c" }}>アクセス</Link>）</p>
-            <p style={{ margin: 0 }}>fukusuke@itakimo.net　／　<a href="https://www.instagram.com/fukusuke.ashiya/" style={{ color: "#5c5c5c" }}>Instagram</a>　／　<a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/contact" style={{ color: "#5c5c5c" }}>お問い合わせ</a></p>
+            <p style={{ margin: 0 }}><a href="mailto:fukusuke@itakimo.net" style={{ color: "#5c5c5c" }}>fukusuke@itakimo.net</a>　／　<a href="https://www.instagram.com/fukusuke.ashiya/" style={{ color: "#5c5c5c" }}>Instagram</a>　／　<a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/contact" style={{ color: "#5c5c5c" }}>お問い合わせ</a></p>
           </div>
         </div>
         <p style={{ flex: "1 1 360px", minWidth: 0, margin: 0, lineHeight: 1.9 }}>当店の施術はリラクゼーションを目的としたものであり、医療行為・治療行為にはあたりません。疾病の診断・治療・予防を目的とするものではございません。体調に不安のある方は、事前に医師にご相談ください。</p>

@@ -153,7 +153,7 @@ export default function FirstPage() {
             <dl style={{ margin: 0, fontSize: "13px", borderTop: "1px solid #ebe9e4" }}>
               <div style={{ display: "flex", flexWrap: "wrap", gap: "4px 24px", padding: "12px 0", borderBottom: "1px solid #ebe9e4" }}>
                 <dt style={{ flex: "0 0 200px", fontWeight: 700 }}>予約の変更</dt>
-                <dd style={{ margin: 0, flex: "1 1 260px", color: "#3d3a34" }}>メール・Instagram DM・お問い合わせフォームからご連絡ください。</dd>
+                <dd style={{ margin: 0, flex: "1 1 260px", color: "#3d3a34" }}>メール（<a href="mailto:fukusuke@itakimo.net" style={{ color: "#3d3a34" }}>fukusuke@itakimo.net</a>）・Instagram DM・お問い合わせフォームからご連絡ください。</dd>
               </div>
               <div style={{ display: "flex", flexWrap: "wrap", gap: "4px 24px", padding: "12px 0", borderBottom: "1px solid #ebe9e4" }}>
                 <dt style={{ flex: "0 0 200px", fontWeight: 700 }}>当日キャンセル（連絡あり）</dt>
