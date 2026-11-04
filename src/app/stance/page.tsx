@@ -84,6 +84,7 @@ export default function StancePage() {
           <div className="chap-h">
             <p className="lbl">Technique</p>
             <h2 className="ch2">施術について</h2>
+            <img src="/images/reason-01.jpg" alt="指の関節にタコのある施術者の手が、足を包み込むように押している" style={{ display: "block", width: "100%", maxWidth: "320px", aspectRatio: "4 / 3", objectFit: "cover", marginTop: "28px", background: "#f1efea" }} />
           </div>
           <div className="chap-b">
             <div className="item">
