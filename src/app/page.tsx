@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SiteNav, FooterNav } from "@/components/site/SiteNav";
+import { news, formatDate } from "@/data/news";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -295,6 +296,31 @@ export default function Home() {
           <p style={{ margin: "28px 0 0", fontSize: "12px", color: "#5c5c5c" }}>
             ご予約の変更やご質問は、メール（<a href="mailto:fukusuke@itakimo.net" style={{ color: "#5c5c5c" }}>fukusuke@itakimo.net</a>）、<a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/contact" style={{ color: "#5c5c5c" }}>お問い合わせフォーム</a>、InstagramのDMからどうぞ。
           </p>
+        </div>
+      </section>
+
+      {/* お知らせ */}
+      <section id="news" style={{ borderBottom: "1px solid #ebe9e4" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "52px 24px", display: "flex", flexWrap: "wrap", gap: "20px 48px" }}>
+          <div style={{ flex: "1 1 220px", minWidth: 0 }}>
+            <p style={{ margin: "0 0 6px", fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "17px", color: "#9b321f" }}>News</p>
+            <h2 style={{ margin: 0, fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(22px, 2.6vw, 26px)", letterSpacing: "0.1em" }}>お知らせ</h2>
+          </div>
+          <div style={{ flex: "3 1 640px", minWidth: 0 }}>
+            <ul style={{ listStyle: "none", margin: 0, padding: 0, borderTop: "1px solid #ebe9e4" }}>
+              {news.slice(0, 3).map((n) => (
+                <li key={n.id} style={{ borderBottom: "1px solid #ebe9e4" }}>
+                  <Link href={`/news#${n.id}`} className="news-row">
+                    <time dateTime={n.date}>{formatDate(n.date)}</time>
+                    <span>{n.title}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <p style={{ margin: "12px 0 0" }}>
+              <Link className="lnk" href="/news" style={{ color: "#1a1a1a", fontSize: "13px" }}><span>お知らせ一覧</span></Link>
+            </p>
+          </div>
         </div>
       </section>
 

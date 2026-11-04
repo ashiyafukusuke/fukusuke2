@@ -431,3 +431,10 @@ details[open] > summary .tog svg { transform: rotate(180deg); }
   .bcal td { height: 50px; padding: 4px; }
   .bcal-d { font-size: 16px; }
 }
+
+/* お知らせ */
+.news-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 24px; padding: 16px 0; min-height: 44px; color: #1a1a1a; text-decoration: none; font-size: 14px; }
+.news-row time { font-family: 'Cormorant Garamond', serif; font-size: 16px; color: #5c5c5c; flex: 0 0 96px; }
+.news-row span { flex: 1 1 280px; min-width: 0; }
+.news-row:hover span { text-decoration: underline; text-underline-offset: 5px; }
+@media (max-width: 767px) { .news-row { padding: 14px 0; } .news-row time { flex-basis: 100%; } }
