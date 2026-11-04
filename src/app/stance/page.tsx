@@ -34,9 +34,9 @@ export const metadata: Metadata = {
 export default function StancePage() {
   return (
     <div style={{ background: "#fefdfa", color: "#1a1a1a", fontFamily: "'Noto Sans JP', system-ui, sans-serif", fontSize: "15px", lineHeight: "1.85", letterSpacing: "0.04em" }}>
-      {/* ヘッダー */}
-      <header style={{ borderBottom: "1px solid #ebe9e4" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "16px 24px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "16px" }}>
+      {/* ヘッダー（上部固定） */}
+      <header style={{ position: "sticky", top: 0, zIndex: 20, background: "rgba(254,253,250,0.94)", borderBottom: "1px solid #ebe9e4" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "16px 24px", display: "flex", alignItems: "center", justify-content: "space-between", gap: "16px" }}>
           <Link href="/" style={{ display: "flex", alignItems: "center", textDecoration: "none", color: "#1a1a1a", minHeight: "44px" }}>
             <img src="/logo/logo-horizontal-web.svg" alt="足つぼ専門店 イタキモ" style={{ display: "block", height: "48px", width: "auto" }} />
           </Link>
@@ -47,7 +47,7 @@ export default function StancePage() {
       {/* ヒーロー：Philosophy */}
       <section style={{ position: "relative", overflow: "hidden", borderBottom: "1px solid #ebe9e4" }}>
         <img src="/logo/mark.svg" alt="" style={{ position: "absolute", right: "-60px", top: "24px", width: "380px", maxWidth: "70%", height: "auto", opacity: 0.09, pointerEvents: "none" }} />
-        <div style={{ position: "relative", maxWidth: "1200px", margin: "0 auto", padding: "80px 24px 88px" }}>
+        <div style={{ position: "relative", maxWidth: "1200px", margin: "0 auto", padding: "56px 24px 60px" }}>
           <p className="lbl">Philosophy</p>
           <h1 style={{ margin: "0 0 32px", fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(30px, 4.4vw, 44px)", letterSpacing: "0.1em" }}>イタキモの考え方</h1>
           <div style={{ maxWidth: "640px" }}>
@@ -188,7 +188,7 @@ export default function StancePage() {
 
       {/* 墨色の締め（店主 福助・予約する） */}
       <section style={{ background: "#2d2c28", color: "#fefdfa" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "72px 24px", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: "28px 48px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "52px 24px", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: "28px 48px" }}>
           <div>
             <p style={{ margin: "0 0 14px", fontFamily: "'Shippori Mincho', serif", fontSize: "clamp(20px, 2.8vw, 28px)", letterSpacing: "0.08em", lineHeight: 1.8 }}>言葉で伝えられるのは、ここまでです。<br />あとは、あなたの足で確かめてください。</p>
             <p style={{ margin: 0, fontSize: "13px", color: "#b8b3a8" }}>店主　福助</p>
@@ -198,7 +198,7 @@ export default function StancePage() {
       </section>
 
       {/* フッター */}
-      <footer style={{ maxWidth: "1200px", margin: "0 auto", padding: "40px 24px 56px", fontSize: "12px", color: "#5c5c5c", lineHeight: 1.9 }}>
+      <footer style={{ maxWidth: "1200px", margin: "0 auto", padding: "32px 24px 40px", fontSize: "12px", color: "#5c5c5c", lineHeight: 1.9 }}>
         <p style={{ margin: "0 0 8px" }}>
           <Link href="/" style={{ color: "#1a1a1a", minHeight: "44px", display: "inline-flex", alignItems: "center" }}>トップへ戻る</Link>
           <span style={{ display: "inline-block", width: "16px" }}></span>

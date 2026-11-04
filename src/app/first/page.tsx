@@ -34,8 +34,8 @@ export const metadata: Metadata = {
 export default function FirstPage() {
   return (
     <div style={{ background: "#fefdfa", color: "#1a1a1a", fontFamily: "'Noto Sans JP', system-ui, sans-serif", fontSize: "15px", lineHeight: "1.85", letterSpacing: "0.04em" }}>
-      {/* ヘッダー */}
-      <header style={{ borderBottom: "1px solid #ebe9e4" }}>
+      {/* ヘッダー（上部固定） */}
+      <header style={{ position: "sticky", top: 0, zIndex: 20, background: "rgba(254,253,250,0.94)", borderBottom: "1px solid #ebe9e4" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "16px 24px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "16px" }}>
           <Link href="/" style={{ display: "flex", alignItems: "center", textDecoration: "none", color: "#1a1a1a", minHeight: "44px" }}>
             <img src="/logo/logo-horizontal-web.svg" alt="足つぼ専門店 イタキモ" style={{ display: "block", height: "48px", width: "auto" }} />
@@ -47,11 +47,11 @@ export default function FirstPage() {
       {/* 見出しと写真 */}
       <section style={{ position: "relative", overflow: "hidden" }}>
         <img src="/logo/mark.svg" alt="" style={{ position: "absolute", right: "-60px", top: "24px", width: "380px", maxWidth: "70%", height: "auto", opacity: 0.09, pointerEvents: "none" }} />
-        <div style={{ position: "relative", maxWidth: "1200px", margin: "0 auto", padding: "72px 24px 24px" }}>
+        <div style={{ position: "relative", maxWidth: "1200px", margin: "0 auto", padding: "52px 24px 8px" }}>
           <p style={{ margin: "0 0 6px", fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "17px", color: "#9b321f" }}>For first-timers</p>
           <h1 style={{ margin: "0 0 16px", fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(30px, 4.4vw, 44px)", letterSpacing: "0.1em" }}>初めての方へ</h1>
           <p style={{ margin: 0, color: "#3d3a34" }}>ご予約の前に知っておいていただきたいことを、まとめました。</p>
-          <div style={{ marginTop: "40px", maxWidth: "720px" }}>
+          <div style={{ marginTop: "28px", maxWidth: "720px" }}>
             <figure style={{ margin: 0 }}>
               <img src="/images/first-chair.jpg" alt="リクライニングチェアと、クリームを置いた木の棚" style={{ display: "block", width: "100%", aspectRatio: "4 / 3", objectFit: "cover", background: "#f1efea" }} />
               <figcaption style={{ marginTop: "8px", fontSize: "12px", color: "#5c5c5c" }}>施術はこのチェアに座ったまま受けていただきます。</figcaption>
@@ -62,7 +62,7 @@ export default function FirstPage() {
 
       {/* ご来店の前に */}
       <section id="first" style={{ borderBottom: "1px solid #ebe9e4" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "96px 24px", display: "flex", flexWrap: "wrap", gap: "40px 48px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "64px 24px", display: "flex", flexWrap: "wrap", gap: "40px 48px" }}>
           <div style={{ flex: "1 1 260px", minWidth: 0 }}>
             <p style={{ margin: "0 0 6px", fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "17px", color: "#9b321f" }}>Before your visit</p>
             <h2 style={{ margin: 0, fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(24px, 3vw, 30px)", letterSpacing: "0.1em" }}>ご来店の前に</h2>
@@ -76,7 +76,7 @@ export default function FirstPage() {
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "28px 40px" }}>
               <div>
                 <h3 style={{ margin: "0 0 6px", fontSize: "14px", fontWeight: 700 }}>強さは、いつでも調整できます</h3>
-                <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>強く押すほど深く届くわけではありません。筋肉が圧に慣れてきたとき、初めて指は奥に入っていきます。「もう少し強く」「弱めに」は、遠慮なくお伝えください。</p>
+                <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>強く押すほど深く届くわけではありません。筋肉が圧に慣れてきたとき、はじめて指は奥に入っていきます。「もう少し強く」「弱めに」は、遠慮なくお伝えください。</p>
               </div>
               <div>
                 <h3 style={{ margin: "0 0 6px", fontSize: "14px", fontWeight: 700 }}>枠の中ですべて完結</h3>
@@ -100,9 +100,9 @@ export default function FirstPage() {
         </div>
       </section>
 
-      {/* 営業日 & アクセス */}
+      {/* 営業日・アクセス */}
       <section id="access" style={{ borderBottom: "1px solid #ebe9e4" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "96px 24px", display: "flex", flexWrap: "wrap", gap: "56px 64px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "64px 24px", display: "flex", flexWrap: "wrap", gap: "56px 64px" }}>
           <div style={{ flex: "1 1 420px", minWidth: 0 }}>
             <p style={{ margin: "0 0 6px", fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "17px", color: "#9b321f" }}>Hours</p>
             <h2 style={{ margin: "0 0 24px", fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(24px, 3vw, 30px)", letterSpacing: "0.1em" }}>営業日</h2>
@@ -110,10 +110,7 @@ export default function FirstPage() {
               <dt style={{ fontWeight: 700 }}>水・木</dt>
               <dd style={{ margin: 0 }}><span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "22px" }}>9:00 – 22:40</span></dd>
               <dt style={{ fontWeight: 700 }}>その他</dt>
-              <dd style={{ margin: 0 }}>
-                <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "22px" }}>21:10 – 22:40</span>
-                <span style={{ fontSize: "12px", color: "#5c5c5c", marginLeft: "12px" }}>週により異なります</span>
-              </dd>
+              <dd style={{ margin: 0 }}><span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "22px" }}>21:10 – 22:40</span><span style={{ fontSize: "12px", color: "#5c5c5c", marginLeft: "12px" }}>週により異なります</span></dd>
             </dl>
             <img src="/calendar.png" alt="イタキモ 今月の営業カレンダー" style={{ display: "block", width: "100%", height: "auto" }} />
           </div>
@@ -145,7 +142,7 @@ export default function FirstPage() {
 
       {/* 予約の変更・キャンセル */}
       <section>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "72px 24px", display: "flex", flexWrap: "wrap", gap: "32px 48px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "52px 24px", display: "flex", flexWrap: "wrap", gap: "32px 48px" }}>
           <div style={{ flex: "1 1 260px", minWidth: 0 }}>
             <p style={{ margin: "0 0 6px", fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "17px", color: "#9b321f" }}>Policy</p>
             <h2 style={{ margin: 0, fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "22px", letterSpacing: "0.1em" }}>予約の変更・キャンセル</h2>
@@ -173,14 +170,14 @@ export default function FirstPage() {
 
       {/* 予約導線（墨色帯） */}
       <section style={{ background: "#2d2c28", color: "#fefdfa" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "64px 24px", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: "28px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "48px 24px", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: "24px" }}>
           <p style={{ margin: 0, fontFamily: "'Shippori Mincho', serif", fontSize: "clamp(22px, 3vw, 30px)", letterSpacing: "0.1em" }}>気負わず、まずは左足から。</p>
           <a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011" style={{ background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "15px 44px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.12em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>予約する</a>
         </div>
       </section>
 
       {/* フッター */}
-      <footer style={{ maxWidth: "1200px", margin: "0 auto", padding: "40px 24px 56px", fontSize: "12px", color: "#5c5c5c", lineHeight: 1.9 }}>
+      <footer style={{ maxWidth: "1200px", margin: "0 auto", padding: "32px 24px 40px", fontSize: "12px", color: "#5c5c5c", lineHeight: 1.9 }}>
         <p style={{ margin: "0 0 8px" }}>
           <Link href="/" style={{ color: "#1a1a1a", minHeight: "44px", display: "inline-flex", alignItems: "center" }}>トップへ戻る</Link>
         </p>
