@@ -87,7 +87,7 @@ export default function Home() {
             <div className="hero-cta">
               <a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011/book/course_type?courseCanonicalId=947238" style={{ background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "15px 40px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.12em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>予約する</a>
               <a href="#menu" style={{ color: "#1a1a1a", fontSize: "14px", textUnderlineOffset: "6px", minHeight: "44px", display: "inline-flex", alignItems: "center" }}>メニューと料金</a>
-              <p className="hero-note">初めての方は「左足トライアル」。合わなければ、お代は頂きません。</p>
+              <p className="hero-note">強さは、いつでも調整できます。<br />初めての方は「左足トライアル」。合わなければ、お代は頂きません。</p>
             </div>
           </div>
         </div>
@@ -137,7 +137,7 @@ export default function Home() {
           <summary style={{ listStyle: "none", cursor: "pointer", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "12px 24px", padding: "20px 0", minHeight: "44px" }}>
             <span style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: "6px 20px" }}>
               <span style={{ fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(22px, 2.6vw, 26px)", letterSpacing: "0.1em", color: "#1a1a1a" }}>足をお任せいただいた方の声</span>
-              <span style={{ fontSize: "12px", color: "#5c5c5c" }}>Googleクチコミ <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "20px", color: "#1a1a1a" }}>5.0</span></span>
+              <span style={{ fontSize: "12px", color: "#5c5c5c" }}>Googleクチコミ <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "20px", color: "#1a1a1a" }}>5.0</span>（4件）</span>
               <span style={{ fontSize: "12px", color: "#5c5c5c" }}>STORESレビュー <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "20px", color: "#1a1a1a" }}>7</span>件</span>
             </span>
             <span className="tog" style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "13px", color: "#1a1a1a" }}>
@@ -146,6 +146,7 @@ export default function Home() {
             </span>
           </summary>
           <div style={{ padding: "4px 0 32px" }}>
+            <p style={{ margin: "0 0 24px", fontSize: "12px", color: "#5c5c5c", lineHeight: 1.9 }}>当店では、お客様に「クチコミを書いてください」とお願いすることはしていません。書いていただけたらとても嬉しいですが、書きたくないのに書くものではないと思っています。ここに載せているのは、お客様が自分から書いてくださったものです。</p>
             <div className="voices-grid">
               {storesReviews.map((r) => (
                 <figure key={r.date} style={{ margin: 0, paddingTop: "16px", borderTop: "1px solid #ebe9e4" }}>
