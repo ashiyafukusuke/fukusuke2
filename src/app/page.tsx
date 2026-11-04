@@ -30,6 +30,16 @@ const jsonLd = {
   ],
 };
 
+const storesReviews: { date: string; text: string }[] = [
+  { date: "2026年8月26日", text: "足裏マッサージは好きでたまに行きますが、寝ての施術になるところが多く、イタキモさんはリクライニングチェアーで座っての施術なので、なんでゴリゴリしたのが出るのかなど聞くことができてとても勉強になりました。右足と左足で同じ強さで施術いただいているのに感じ方が全く違うのも面白かったです。痛めにしてもらうのが好きなのですが、痛すぎるとすぐ根をあげるので、「もう少し強めに」→「やっぱりもう少しソフトに」と細やかに応えていただき足が喜んでいます。疲れた時のご褒美でまた伺えればと思います。ありがとうございました。" },
+  { date: "2026年8月17日", text: "2度目のお伺いでした。\n連日の座り仕事に加えて、慣れない庭仕事も重なり、「これは足にご褒美をあげなくては……」と伺いました。\n絶妙な圧を痛気持ち良く感じながら施術を受けていると、足の状態が明確に変わっていくのが分かり、とても面白く、すっかりクセになりそうです。\n翌日も足がポカポカしていて、柔らかい状態が続いているのがうれしく、今回も効果を実感しました。\n近場で当日でも駆け込みでお願いできること、事前決済ができるので身軽に行けることも、とてもありがたいです。\nまたよろしくお願いします。" },
+  { date: "2026年8月14日", text: "店名通りイタ気持ちいい強さで足裏とふくらはぎを丁寧にもんでいただきました。足が随分とほぐれた気がします。" },
+  { date: "2026年7月29日", text: "歩き方や日常の過ごし方のヒントが頂けたり、身体全体を支えている足の大切さ、足ツボの奥深さを知れました。痛気持ちいい施術も帰り道の軽くなった身体が忘れられず、また行きたいと思いました。ありがとうございました。" },
+  { date: "2026年6月24日", text: "今日偶然見つけて予約入れました。ちょっと場所と男性セラピストさんなので、心配しながら足が辛かったので訪れました。が、セラピストさんの配慮もあり心配はありませんでした。この所の低気圧、梅雨のため足が浮腫んでいたのですが、スッキリ。行きは足が重かったのですが、帰りは足がスイスイと歩けました。片足終わった時点で、もう一方の足と全然形状が異なっているのが目で見て、感じてわかりました。痛過ぎず、流し過ぎずで、足裏マッサージのことを凄く心得たセラピストでした。辛い時に凄く頼りそうです。" },
+  { date: "2026年6月20日", text: "初めて利用させていただきました。\n強さも丁寧に調節してくださり、好み通りの痛気持ちよさでした。翌日は、裸足で歩くと足裏の地面の掴みが良い感じがしました。\nまた利用させていただきたいと思います。" },
+  { date: "2026年6月18日", text: "初めての足ツボでしたが気持ちよかったです。\n右足の途中から寝ました。" },
+];
+
 export default function Home() {
   return (
     <div style={{ background: "#fefdfa", color: "#1a1a1a", fontFamily: "'Noto Sans JP', system-ui, sans-serif", fontSize: "15px", lineHeight: "1.85", letterSpacing: "0.04em" }}>
@@ -137,30 +147,12 @@ export default function Home() {
           </summary>
           <div style={{ padding: "4px 0 32px" }}>
             <div className="voices-grid">
-              <figure style={{ margin: 0, paddingTop: "16px", borderTop: "1px solid #ebe9e4" }}>
-                <blockquote style={{ margin: "0 0 10px", fontFamily: "'Shippori Mincho', serif", fontSize: "15px", lineHeight: 1.95 }}>「初めての足ツボでしたが気持ちよかったです。右足の途中から寝ました。」</blockquote>
-                <figcaption style={{ fontSize: "11px", color: "#5c5c5c" }}>STORESレビューより（2026年6月）</figcaption>
-              </figure>
-              <figure style={{ margin: 0, paddingTop: "16px", borderTop: "1px solid #ebe9e4" }}>
-                <blockquote style={{ margin: "0 0 10px", fontFamily: "'Shippori Mincho', serif", fontSize: "15px", lineHeight: 1.95 }}>「強さも丁寧に調節してくださり、好み通りの痛気持ちよさでした。」</blockquote>
-                <figcaption style={{ fontSize: "11px", color: "#5c5c5c" }}>STORESレビューより（2026年6月）</figcaption>
-              </figure>
-              <figure style={{ margin: 0, paddingTop: "16px", borderTop: "1px solid #ebe9e4" }}>
-                <blockquote style={{ margin: "0 0 10px", fontFamily: "'Shippori Mincho', serif", fontSize: "15px", lineHeight: 1.95 }}>「行きは足が重かったのですが、帰りは足がスイスイと歩けました」</blockquote>
-                <figcaption style={{ fontSize: "11px", color: "#5c5c5c" }}>STORESレビューより（2026年6月）</figcaption>
-              </figure>
-              <figure style={{ margin: 0, paddingTop: "16px", borderTop: "1px solid #ebe9e4" }}>
-                <blockquote style={{ margin: "0 0 10px", fontFamily: "'Shippori Mincho', serif", fontSize: "15px", lineHeight: 1.95 }}>「歩き方や日常の過ごし方のヒントが頂けたり、身体全体を支えている足の大切さ、足ツボの奥深さを知れました。」</blockquote>
-                <figcaption style={{ fontSize: "11px", color: "#5c5c5c" }}>STORESレビューより（2026年7月）</figcaption>
-              </figure>
-              <figure style={{ margin: 0, paddingTop: "16px", borderTop: "1px solid #ebe9e4" }}>
-                <blockquote style={{ margin: "0 0 10px", fontFamily: "'Shippori Mincho', serif", fontSize: "15px", lineHeight: 1.95 }}>「右足と左足で同じ強さで施術いただいているのに感じ方が全く違うのも面白かったです。」</blockquote>
-                <figcaption style={{ fontSize: "11px", color: "#5c5c5c" }}>STORESレビューより（2026年8月）</figcaption>
-              </figure>
-              <figure style={{ margin: 0, paddingTop: "16px", borderTop: "1px solid #ebe9e4" }}>
-                <blockquote style={{ margin: "0 0 10px", fontFamily: "'Shippori Mincho', serif", fontSize: "15px", lineHeight: 1.95 }}>「絶妙な圧を痛気持ち良く感じながら施術を受けていると、足の状態が明確に変わっていくのが分かり、とても面白く、すっかりクセになりそうです。」</blockquote>
-                <figcaption style={{ fontSize: "11px", color: "#5c5c5c" }}>STORESレビューより（2026年8月）</figcaption>
-              </figure>
+              {storesReviews.map((r) => (
+                <figure key={r.date} style={{ margin: 0, paddingTop: "16px", borderTop: "1px solid #ebe9e4" }}>
+                  <blockquote style={{ margin: "0 0 10px", fontSize: "14px", lineHeight: 1.95, whiteSpace: "pre-line" }}>{r.text}</blockquote>
+                  <figcaption style={{ fontSize: "11px", color: "#5c5c5c" }}>STORESレビュー（{r.date}）</figcaption>
+                </figure>
+              ))}
             </div>
             <div style={{ marginTop: "20px", fontSize: "12px", color: "#5c5c5c" }}>
           <a href="https://share.google/hoX4rSA5QB2lNpmHH" style={{ color: "#1a1a1a", textUnderlineOffset: "5px", minHeight: "44px", display: "inline-flex", alignItems: "center" }}>Googleクチコミを見る</a>

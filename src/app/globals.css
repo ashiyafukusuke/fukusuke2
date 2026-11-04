@@ -398,12 +398,13 @@ details[open] > summary .tog svg { transform: rotate(180deg); }
 }
 
 /* クチコミ（6件） */
-.voices-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px 40px; }
+.voices-grid { column-count: 2; column-gap: 48px; }
+.voices-grid figure { break-inside: avoid; margin-bottom: 28px !important; }
 /* 店主の経歴 */
 .career { margin: 0 0 24px; padding-top: 16px; border-top: 1px solid rgba(254,253,250,0.18); font-size: 12.5px; line-height: 1.85; }
 .career div { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 12px; padding: 6px 0; }
 .career dt { color: #e07a63; font-weight: 500; }
 .career dd { margin: 0; color: #e7e2d8; }
 @media (max-width: 767px) {
-  .voices-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .voices-grid { column-count: 1; }
 }
