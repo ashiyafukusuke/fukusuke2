@@ -128,6 +128,7 @@ export default function Home() {
             <span style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: "6px 20px" }}>
               <span style={{ fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(22px, 2.6vw, 26px)", letterSpacing: "0.1em", color: "#1a1a1a" }}>足をお任せいただいた方の声</span>
               <span style={{ fontSize: "12px", color: "#5c5c5c" }}>Googleクチコミ <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "20px", color: "#1a1a1a" }}>5.0</span></span>
+              <span style={{ fontSize: "12px", color: "#5c5c5c" }}>STORESレビュー <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "20px", color: "#1a1a1a" }}>7</span>件</span>
             </span>
             <span className="tog" style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "13px", color: "#1a1a1a" }}>
               <span className="tog-o">開く</span><span className="tog-c">閉じる</span>
@@ -135,15 +136,31 @@ export default function Home() {
             </span>
           </summary>
           <div style={{ padding: "4px 0 32px" }}>
-            <div className="voices" style={{ display: "flex", flexWrap: "wrap", gap: "24px 0" }}>
-          <figure style={{ flex: "1 1 280px", minWidth: 0, margin: 0, padding: "4px 32px", borderLeft: "1px solid #ebe9e4" }}>
-            <blockquote style={{ margin: "0 0 10px", fontFamily: "'Shippori Mincho', serif", fontSize: "16px", lineHeight: 1.95 }}>「行きは足が重かったのですが、帰りは足がスイスイと歩けました」</blockquote>
-            <figcaption style={{ fontSize: "11px", color: "#5c5c5c" }}>STORESレビューより</figcaption>
-          </figure>
-          <figure style={{ flex: "1 1 280px", minWidth: 0, margin: 0, padding: "4px 32px", borderLeft: "1px solid #ebe9e4" }}>
-            <blockquote style={{ margin: "0 0 10px", fontFamily: "'Shippori Mincho', serif", fontSize: "16px", lineHeight: 1.95 }}>「帰り道の軽くなった身体が忘れられず、また行きたいと思いました」</blockquote>
-            <figcaption style={{ fontSize: "11px", color: "#5c5c5c" }}>STORESレビューより</figcaption>
-          </figure>
+            <div className="voices-grid">
+              <figure style={{ margin: 0, paddingTop: "16px", borderTop: "1px solid #ebe9e4" }}>
+                <blockquote style={{ margin: "0 0 10px", fontFamily: "'Shippori Mincho', serif", fontSize: "15px", lineHeight: 1.95 }}>「初めての足ツボでしたが気持ちよかったです。右足の途中から寝ました。」</blockquote>
+                <figcaption style={{ fontSize: "11px", color: "#5c5c5c" }}>STORESレビューより（2026年6月）</figcaption>
+              </figure>
+              <figure style={{ margin: 0, paddingTop: "16px", borderTop: "1px solid #ebe9e4" }}>
+                <blockquote style={{ margin: "0 0 10px", fontFamily: "'Shippori Mincho', serif", fontSize: "15px", lineHeight: 1.95 }}>「強さも丁寧に調節してくださり、好み通りの痛気持ちよさでした。」</blockquote>
+                <figcaption style={{ fontSize: "11px", color: "#5c5c5c" }}>STORESレビューより（2026年6月）</figcaption>
+              </figure>
+              <figure style={{ margin: 0, paddingTop: "16px", borderTop: "1px solid #ebe9e4" }}>
+                <blockquote style={{ margin: "0 0 10px", fontFamily: "'Shippori Mincho', serif", fontSize: "15px", lineHeight: 1.95 }}>「行きは足が重かったのですが、帰りは足がスイスイと歩けました」</blockquote>
+                <figcaption style={{ fontSize: "11px", color: "#5c5c5c" }}>STORESレビューより（2026年6月）</figcaption>
+              </figure>
+              <figure style={{ margin: 0, paddingTop: "16px", borderTop: "1px solid #ebe9e4" }}>
+                <blockquote style={{ margin: "0 0 10px", fontFamily: "'Shippori Mincho', serif", fontSize: "15px", lineHeight: 1.95 }}>「歩き方や日常の過ごし方のヒントが頂けたり、身体全体を支えている足の大切さ、足ツボの奥深さを知れました。」</blockquote>
+                <figcaption style={{ fontSize: "11px", color: "#5c5c5c" }}>STORESレビューより（2026年7月）</figcaption>
+              </figure>
+              <figure style={{ margin: 0, paddingTop: "16px", borderTop: "1px solid #ebe9e4" }}>
+                <blockquote style={{ margin: "0 0 10px", fontFamily: "'Shippori Mincho', serif", fontSize: "15px", lineHeight: 1.95 }}>「右足と左足で同じ強さで施術いただいているのに感じ方が全く違うのも面白かったです。」</blockquote>
+                <figcaption style={{ fontSize: "11px", color: "#5c5c5c" }}>STORESレビューより（2026年8月）</figcaption>
+              </figure>
+              <figure style={{ margin: 0, paddingTop: "16px", borderTop: "1px solid #ebe9e4" }}>
+                <blockquote style={{ margin: "0 0 10px", fontFamily: "'Shippori Mincho', serif", fontSize: "15px", lineHeight: 1.95 }}>「絶妙な圧を痛気持ち良く感じながら施術を受けていると、足の状態が明確に変わっていくのが分かり、とても面白く、すっかりクセになりそうです。」</blockquote>
+                <figcaption style={{ fontSize: "11px", color: "#5c5c5c" }}>STORESレビューより（2026年8月）</figcaption>
+              </figure>
             </div>
             <div style={{ marginTop: "20px", fontSize: "12px", color: "#5c5c5c" }}>
           <a href="https://share.google/hoX4rSA5QB2lNpmHH" style={{ color: "#1a1a1a", textUnderlineOffset: "5px", minHeight: "44px", display: "inline-flex", alignItems: "center" }}>Googleクチコミを見る</a>
@@ -196,6 +213,11 @@ export default function Home() {
             </div>
             <p style={{ margin: "0 0 16px", color: "#e7e2d8", lineHeight: 2.05 }}>毎日、足を揉んでいます。それでも飽きるどころか、毎日新しい発見があります。同じ足は一つもないからです。</p>
             <p style={{ margin: "0 0 24px", color: "#e7e2d8", lineHeight: 2.05 }}>足つぼにゴールはないと思っています。次にお会いするときは、今日より上手くなっていたい。そのために学び続けています。</p>
+            <dl className="career">
+              <div><dt>現在</dt><dd>都内の台湾式足つぼ専門店でも施術を担当。指名のない店なので、毎回はじめて会うお客様の足を、その場で読み取って揉んでいます。</dd></div>
+              <div><dt>これまで</dt><dd>THE CLASS（勝どき）、足つぼのソコヂカラ（茅場町）</dd></div>
+              <div><dt>2026年</dt><dd>足ツボグランプリ2026（日本足ツボ協会主催）本選出場</dd></div>
+            </dl>
             <p style={{ margin: "0 0 20px", fontSize: "13px", color: "#b8b3a8" }}>店主　福助</p>
             <Link className="lnk" href="/stance" style={{ color: "#fefdfa", fontSize: "13px" }}><span>イタキモの考え方を読む</span></Link>
           </div>
