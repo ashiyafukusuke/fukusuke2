@@ -146,7 +146,7 @@ export default function Home() {
             </span>
           </summary>
           <div style={{ padding: "4px 0 32px" }}>
-            <p style={{ margin: "0 0 24px", fontSize: "12px", color: "#5c5c5c", lineHeight: 1.9 }}>当店では、お客様に「クチコミを書いてください」とお願いすることはしていません。書いていただけたらとても嬉しいですが、書きたくないのに書くものではないと思っています。</p>
+            <p style={{ margin: "0 0 24px", fontSize: "12px", color: "#5c5c5c", lineHeight: 1.9 }}>当店では、お客様に「クチコミを書いてください」とお願いすることはしていません。書いていただけたらとても嬉しいですが、書きたくないのに書くものではないと思っています。予約システム（STORES）からレビューのご案内が自動で届くことがありますが、気にせず閉じていただいて大丈夫です。</p>
             <div className="voices-grid">
               {storesReviews.map((r) => (
                 <figure key={r.date} style={{ margin: 0, paddingTop: "16px", borderTop: "1px solid #ebe9e4" }}>
