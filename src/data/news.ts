@@ -5,6 +5,12 @@ export type NewsItem = { id: string; date: string; title: string; body: string }
 
 export const news: NewsItem[] = [
   {
+    id: "2026-11-renewal",
+    date: "2026-11-04",
+    title: "ロゴとサイトを新しくしました",
+    body: "ロゴとこのサイトを、新しくしました。\nご予約の前に知っておいていただきたいことは「初めての方へ」に、施術やルールについての考えは「イタキモの考え方」にまとめています。\nイタキモは、まだ始まったばかりのお店です。施術も、お店も、これからどんどん進化していきます。",
+  },
+  {
     id: "2026-11-grandprix",
     date: "2026-11-04",
     title: "足ツボグランプリ2026 決勝大会に出場します",
