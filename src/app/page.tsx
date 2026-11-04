@@ -49,7 +49,7 @@ export default function Home() {
         <img
           className="hero-img hero-sp"
           src="/images/hero-sp.jpg"
-          alt="腕を伸ばしてふくらはぎを揉む、イタキモの施術の様子"
+          alt="両手で足を包み込むように揉む、イタキモの施術の様子"
         />
         <div className="hero-veil"></div>
 
