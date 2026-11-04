@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { SiteNav, FooterNav } from "@/components/site/SiteNav";
 
 export const metadata: Metadata = {
   title: "イタキモの考え方｜足つぼ専門店 イタキモ",
@@ -40,7 +41,7 @@ export default function StancePage() {
           <Link href="/" style={{ display: "flex", alignItems: "center", textDecoration: "none", color: "#1a1a1a", minHeight: "44px" }}>
             <img src="/logo/logo-horizontal-web.svg" alt="足つぼ専門店 イタキモ" style={{ display: "block", height: "48px", width: "auto" }} />
           </Link>
-          <a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011" style={{ background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "10px 20px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.1em", fontSize: "13px", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>予約する</a>
+          <SiteNav current="stance" />
         </div>
       </header>
 
@@ -199,11 +200,7 @@ export default function StancePage() {
 
       {/* フッター */}
       <footer style={{ maxWidth: "1200px", margin: "0 auto", padding: "32px 24px 40px", fontSize: "12px", color: "#5c5c5c", lineHeight: 1.9 }}>
-        <p style={{ margin: "0 0 8px" }}>
-          <Link href="/" style={{ color: "#1a1a1a", minHeight: "44px", display: "inline-flex", alignItems: "center" }}>トップへ戻る</Link>
-          <span style={{ display: "inline-block", width: "16px" }}></span>
-          <Link href="/first" style={{ color: "#1a1a1a", minHeight: "44px", display: "inline-flex", alignItems: "center" }}>初めての方へ</Link>
-        </p>
+        <FooterNav />
         <p style={{ margin: 0 }}>当店の施術はリラクゼーションを目的としたものであり、医療行為・治療行為にはあたりません。疾病の診断・治療・予防を目的とするものではございません。体調に不安のある方は、事前に医師にご相談ください。</p>
       </footer>
     </div>

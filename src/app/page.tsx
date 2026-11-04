@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SiteNav, FooterNav } from "@/components/site/SiteNav";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -59,14 +60,7 @@ export default function Home() {
             <a href="#top" style={{ display: "flex", alignItems: "center", textDecoration: "none", color: "#1a1a1a", minHeight: "44px" }}>
               <img className="hdr-logo" src="/logo/logo-horizontal-web.svg" alt="足つぼ専門店 イタキモ" style={{ display: "block", height: "48px", width: "auto" }} />
             </a>
-            <nav aria-label="メイン" style={{ display: "flex", alignItems: "center", gap: "28px", fontSize: "13px" }}>
-              <span className="navlinks" style={{ gap: "28px" }}>
-                <a href="#menu" style={{ color: "#1a1a1a", textDecoration: "none", padding: "10px 0" }}>メニュー</a>
-                <a href="#first" style={{ color: "#1a1a1a", textDecoration: "none", padding: "10px 0" }}>初めての方へ</a>
-                <a href="#reserve" style={{ color: "#1a1a1a", textDecoration: "none", padding: "10px 0" }}>営業日・アクセス</a>
-              </span>
-              <a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011" style={{ background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "10px 20px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.1em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>予約する</a>
-            </nav>
+            <SiteNav current="top" />
           </div>
         </header>
 
@@ -97,8 +91,8 @@ export default function Home() {
               <span style={{ fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(22px, 2.6vw, 26px)", letterSpacing: "0.1em", color: "#1a1a1a" }}>初めての方へ</span>
               <span style={{ fontSize: "13px", fontStyle: "normal", fontWeight: 700, color: "#9b321f" }}>※初めての方は必ずご覧ください</span>
             </span>
-            <span style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "13px", color: "#1a1a1a" }}>
-              開く
+            <span className="tog" style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "13px", color: "#1a1a1a" }}>
+              <span className="tog-o">開く</span><span className="tog-c">閉じる</span>
               <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 5l4 4 4-4" fill="none" stroke="#1a1a1a" strokeWidth="1.4"></path></svg>
             </span>
           </summary>
@@ -121,20 +115,27 @@ export default function Home() {
               </div>
             </div>
             <p style={{ margin: "32px 0 0" }}>
-              <Link href="/first" style={{ color: "#1a1a1a", fontSize: "13px", textUnderlineOffset: "6px", minHeight: "44px", display: "inline-flex", alignItems: "center" }}>服装・流れ・アクセスを詳しく見る</Link>
+              <Link className="lnk" href="/first" style={{ color: "#1a1a1a", fontSize: "13px" }}><span>「初めての方へ」ページで詳しく見る</span></Link>
             </p>
           </div>
         </details>
       </section>
 
       {/* クチコミ（Voices） */}
-      <section style={{ borderBottom: "1px solid #ebe9e4" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "44px 24px 32px", display: "flex", flexWrap: "wrap", gap: "28px 0", alignItems: "center" }}>
-          <div style={{ flex: "1 1 280px", minWidth: 0, paddingRight: "40px" }}>
-            <p style={{ margin: "0 0 6px", fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "17px", color: "#9b321f" }}>Voices</p>
-            <h2 style={{ margin: "0 0 10px", fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "24px", letterSpacing: "0.1em", lineHeight: 1.6 }}>足をお任せいただいた<br />方の声</h2>
-            <p style={{ margin: 0, fontSize: "12px", color: "#5c5c5c" }}>Googleクチコミ <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "20px", color: "#1a1a1a" }}>5.0</span></p>
-          </div>
+      <section id="voices" style={{ borderBottom: "1px solid #ebe9e4" }}>
+        <details style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
+          <summary style={{ listStyle: "none", cursor: "pointer", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "12px 24px", padding: "20px 0", minHeight: "44px" }}>
+            <span style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: "6px 20px" }}>
+              <span style={{ fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(22px, 2.6vw, 26px)", letterSpacing: "0.1em", color: "#1a1a1a" }}>足をお任せいただいた方の声</span>
+              <span style={{ fontSize: "12px", color: "#5c5c5c" }}>Googleクチコミ <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "20px", color: "#1a1a1a" }}>5.0</span></span>
+            </span>
+            <span className="tog" style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "13px", color: "#1a1a1a" }}>
+              <span className="tog-o">開く</span><span className="tog-c">閉じる</span>
+              <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 5l4 4 4-4" fill="none" stroke="#1a1a1a" strokeWidth="1.4"></path></svg>
+            </span>
+          </summary>
+          <div style={{ padding: "4px 0 32px" }}>
+            <div className="voices" style={{ display: "flex", flexWrap: "wrap", gap: "24px 0" }}>
           <figure style={{ flex: "1 1 280px", minWidth: 0, margin: 0, padding: "4px 32px", borderLeft: "1px solid #ebe9e4" }}>
             <blockquote style={{ margin: "0 0 10px", fontFamily: "'Shippori Mincho', serif", fontSize: "16px", lineHeight: 1.95 }}>「行きは足が重かったのですが、帰りは足がスイスイと歩けました」</blockquote>
             <figcaption style={{ fontSize: "11px", color: "#5c5c5c" }}>STORESレビューより</figcaption>
@@ -143,11 +144,13 @@ export default function Home() {
             <blockquote style={{ margin: "0 0 10px", fontFamily: "'Shippori Mincho', serif", fontSize: "16px", lineHeight: 1.95 }}>「帰り道の軽くなった身体が忘れられず、また行きたいと思いました」</blockquote>
             <figcaption style={{ fontSize: "11px", color: "#5c5c5c" }}>STORESレビューより</figcaption>
           </figure>
-        </div>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px 36px", fontSize: "12px", color: "#5c5c5c" }}>
+            </div>
+            <div style={{ marginTop: "20px", fontSize: "12px", color: "#5c5c5c" }}>
           <a href="https://share.google/hoX4rSA5QB2lNpmHH" style={{ color: "#1a1a1a", textUnderlineOffset: "5px", minHeight: "44px", display: "inline-flex", alignItems: "center" }}>Googleクチコミを見る</a>
           <a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/reviews" style={{ color: "#1a1a1a", textUnderlineOffset: "5px", marginLeft: "20px", minHeight: "44px", display: "inline-flex", alignItems: "center" }}>STORESレビューを見る</a>
-        </div>
+            </div>
+          </div>
+        </details>
       </section>
 
       {/* 奥までしみわたる理由（Method） */}
@@ -157,7 +160,7 @@ export default function Home() {
             <p style={{ margin: "0 0 6px", fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "17px", color: "#9b321f" }}>Method</p>
             <h2 style={{ margin: "0 0 24px", fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(24px, 3vw, 30px)", letterSpacing: "0.1em" }}>奥までしみわたる理由</h2>
             <p style={{ margin: "0 0 28px", color: "#3d3a34", lineHeight: 2.1 }}>反射区を地図に、構造をたどる。足裏から膝裏まで、つながりごとほどく。台湾式の手技を土台に、解剖学と神経の働きの知見を重ねています。</p>
-            <Link href="/stance#technique" style={{ color: "#1a1a1a", fontSize: "13px", textUnderlineOffset: "6px", minHeight: "44px", display: "inline-flex", alignItems: "center" }}>施術の考え方を詳しく読む</Link>
+            <Link className="lnk" href="/stance#technique" style={{ color: "#1a1a1a", fontSize: "13px" }}><span>施術について詳しく読む</span></Link>
           </div>
           <div className="reasons" style={{ flex: "2 1 600px", minWidth: 0, display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: "32px 24px" }}>
             <div>
@@ -194,7 +197,7 @@ export default function Home() {
             <p style={{ margin: "0 0 16px", color: "#e7e2d8", lineHeight: 2.05 }}>毎日、足を揉んでいます。それでも飽きるどころか、毎日新しい発見があります。同じ足は一つもないからです。</p>
             <p style={{ margin: "0 0 24px", color: "#e7e2d8", lineHeight: 2.05 }}>足つぼにゴールはないと思っています。次にお会いするときは、今日より上手くなっていたい。そのために学び続けています。</p>
             <p style={{ margin: "0 0 20px", fontSize: "13px", color: "#b8b3a8" }}>店主　福助</p>
-            <Link href="/stance" style={{ color: "#fefdfa", fontSize: "13px", textUnderlineOffset: "6px", minHeight: "44px", display: "inline-flex", alignItems: "center" }}>イタキモの考え方を読む</Link>
+            <Link className="lnk" href="/stance" style={{ color: "#fefdfa", fontSize: "13px" }}><span>イタキモの考え方を読む</span></Link>
           </div>
         </div>
       </section>
@@ -260,18 +263,18 @@ export default function Home() {
               <p style={{ margin: "0 0 8px", fontWeight: 700 }}>営業時間</p>
               <p style={{ margin: 0, color: "#3d3a34" }}>水・木　9:00–22:40</p>
               <p style={{ margin: "0 0 10px", color: "#3d3a34" }}>その他の日　21:10–22:40（週により異なります）</p>
-              <Link href="/first#access" style={{ color: "#1a1a1a", textUnderlineOffset: "5px", minHeight: "44px", display: "inline-flex", alignItems: "center" }}>今月の営業カレンダー</Link>
+              <Link className="lnk" href="/first#hours" style={{ color: "#1a1a1a" }}><span>今月の営業カレンダー</span></Link>
             </div>
             <div style={{ borderTop: "1px solid #1a1a1a", paddingTop: "16px" }}>
               <p style={{ margin: "0 0 8px", fontWeight: 700 }}>場所</p>
               <p style={{ margin: 0, color: "#3d3a34" }}>西東京市ひばりが丘 HIBARIDO 2F R-09</p>
               <p style={{ margin: "0 0 10px", color: "#3d3a34" }}>西武バス「交番前」下車 徒歩1分</p>
-              <Link href="/first#access" style={{ color: "#1a1a1a", textUnderlineOffset: "5px", minHeight: "44px", display: "inline-flex", alignItems: "center" }}>アクセスを詳しく見る</Link>
+              <Link className="lnk" href="/first#access" style={{ color: "#1a1a1a" }}><span>アクセスを詳しく見る</span></Link>
             </div>
             <div style={{ borderTop: "1px solid #1a1a1a", paddingTop: "16px" }}>
               <p style={{ margin: "0 0 8px", fontWeight: 700 }}>初めての方</p>
               <p style={{ margin: "0 0 10px", color: "#3d3a34" }}>左足トライアル。合わなければ、お代は頂きません（60分・90分枠）。</p>
-              <Link href="/first" style={{ color: "#1a1a1a", textUnderlineOffset: "5px", minHeight: "44px", display: "inline-flex", alignItems: "center" }}>ご予約の前に読む</Link>
+              <Link className="lnk" href="/first" style={{ color: "#1a1a1a" }}><span>「初めての方へ」を読む</span></Link>
             </div>
           </div>
           <p style={{ margin: "28px 0 0", fontSize: "12px", color: "#5c5c5c" }}>
@@ -282,6 +285,7 @@ export default function Home() {
 
       {/* フッター */}
       <footer style={{ maxWidth: "1200px", margin: "0 auto", padding: "36px 24px 40px", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: "28px 48px", fontSize: "12px", color: "#5c5c5c" }}>
+        <FooterNav style={{ flex: "1 0 100%", margin: 0, paddingBottom: "20px", borderBottom: "1px solid #ebe9e4" }} />
         <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
           <img src="/logo/logo-horizontal-web.svg" alt="足つぼ専門店 イタキモ" style={{ display: "block", height: "52px", width: "auto", alignSelf: "flex-start" }} />
           <div>

@@ -363,3 +363,36 @@ summary {
 ::-webkit-scrollbar-thumb:hover {
   background: #842a1a;
 }
+
+/* サイト共通ナビ */
+.gnav { display: flex; align-items: center; gap: 24px; font-size: 13px; }
+.gnav-links { display: flex; gap: 24px; }
+.gnav-links a { color: #1a1a1a; text-decoration: none; padding: 10px 0; }
+.gnav-links a[aria-current="page"], .spnav-panel a[aria-current="page"] { color: #9b321f; }
+.spnav { display: none; position: relative; }
+.spnav summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 4px; font-size: 13px; color: #1a1a1a; }
+.spnav summary::-webkit-details-marker { display: none; }
+.spnav-panel { position: absolute; right: -108px; top: calc(100% + 10px); min-width: 230px; background: #fefdfa; border: 1px solid #ebe9e4; box-shadow: 0 10px 28px rgba(26,26,26,0.08); padding: 6px 0; display: flex; flex-direction: column; z-index: 30; }
+.spnav-panel a { color: #1a1a1a; text-decoration: none; padding: 13px 20px; font-size: 14px; border-bottom: 1px solid #f1efea; }
+.spnav-panel a:last-child { border-bottom: 0; }
+.fnav { display: flex; flex-wrap: wrap; gap: 4px 24px; margin: 0 0 16px; font-size: 12px; }
+.fnav a { color: #1a1a1a; text-decoration: none; padding: 6px 0; min-height: 32px; display: inline-flex; align-items: center; }
+
+/* 詳しく読む系リンク */
+a.lnk { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; text-decoration: none; }
+a.lnk span { text-decoration: underline; text-underline-offset: 6px; }
+a.lnk::after { content: ""; width: 6px; height: 6px; border-top: 1.3px solid currentColor; border-right: 1.3px solid currentColor; transform: rotate(45deg); }
+
+/* 折りたたみの開閉表示 */
+.tog-c { display: none; }
+details[open] > summary .tog-o { display: none; }
+details[open] > summary .tog-c { display: inline; }
+details[open] > summary .tog svg { transform: rotate(180deg); }
+.voices figure:first-child { border-left: 0 !important; padding-left: 0 !important; }
+
+@media (max-width: 767px) {
+  .gnav-links { display: none; }
+  .spnav { display: block; }
+  .gnav { gap: 12px; }
+  .voices figure { border-left: 0 !important; padding: 0 !important; }
+}
