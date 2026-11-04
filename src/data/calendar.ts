@@ -24,7 +24,7 @@ export const calendar = {
     29: "closed",
   } as Record<number, DayType>,
   notes: {
-    29: "足ツボグランプリ出場のため休業",
+    29: "足ツボグランプリ2026 決勝大会 出場のため休業",
   } as Record<number, string>,
 };
 

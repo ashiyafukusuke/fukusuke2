@@ -209,7 +209,7 @@ export default function Home() {
             <dl className="career">
               <div><dt>現在</dt><dd>都内の台湾式足つぼ専門店でも施術を担当。指名のない店なので、毎回はじめて会うお客様の足を、その場で読み取って揉んでいます。</dd></div>
               <div><dt>これまで</dt><dd>THE CLASS（勝どき）、足つぼのソコヂカラ（茅場町）</dd></div>
-              <div><dt>2026年</dt><dd>足ツボグランプリ2026（日本足ツボ協会主催）本選出場</dd></div>
+              <div><dt>2026年</dt><dd>足ツボグランプリ2026（日本足ツボ協会主催）決勝大会 出場</dd></div>
             </dl>
             <p style={{ margin: "0 0 20px", fontSize: "13px", color: "#b8b3a8" }}>店主　福助</p>
             <Link className="lnk" href="/stance" style={{ color: "#fefdfa", fontSize: "13px" }}><span>イタキモの考え方を読む</span></Link>
