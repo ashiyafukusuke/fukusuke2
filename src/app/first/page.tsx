@@ -138,6 +138,11 @@ export default function FirstPage() {
                 <p style={{ margin: 0, color: "#3d3a34" }}>専用駐車場はありません。西友隣接・コープ隣接のコインパーキング（徒歩約10分）をご利用ください。駐輪スペースは建物前にあります。</p>
               </div>
             </div>
+            <div style={{ marginTop: "28px" }}>
+              <p style={{ margin: "0 0 12px", fontSize: "13px", fontWeight: 700 }}>入口からお店までの道順（動画）</p>
+              <video src="/videos/access-route.mp4" poster="/videos/access-route-poster.jpg" controls muted playsInline preload="none" style={{ display: "block", width: "100%", maxWidth: "320px", aspectRatio: "9 / 16", background: "#f1efea" }} />
+              <p style={{ margin: "8px 0 0", fontSize: "12px", color: "#5c5c5c" }}>約25秒・音声はありません。</p>
+            </div>
           </div>
         </div>
       </section>
