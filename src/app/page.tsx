@@ -254,7 +254,7 @@ export default function Home() {
           <div style={{ marginTop: "28px", paddingTop: "22px", borderTop: "1px solid #ebe9e4", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: "20px 40px" }}>
             <div style={{ flex: "1 1 480px", minWidth: 0 }}>
               <p style={{ margin: "0 0 6px", fontFamily: "'Shippori Mincho', serif", fontSize: "17px" }}>通ってくださる方ほど安くなるのが、正しいと思っています。</p>
-              <p style={{ margin: 0, fontSize: "12px", color: "#5c5c5c" }}>2回目以降は、間隔が空いてもずっと継続料金です。さらに予約時にカード決済をされると、60分・90分は500円、30分は300円お安くなります。施術後のお会計もなく、そのままお帰りいただけます。</p>
+              <p style={{ margin: 0, fontSize: "12px", color: "#5c5c5c" }}>2回目以降は、間隔が空いてもずっと継続料金です。さらに2回目以降は、予約時にカード決済をされると、60分・90分は500円、30分は300円お安くなります（初回は割引の対象外です）。施術後のお会計もなく、そのままお帰りいただけます。</p>
             </div>
           </div>
         </div>
