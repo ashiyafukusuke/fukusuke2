@@ -3,7 +3,7 @@ import type { CSSProperties } from "react";
 
 const STORES = "https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011";
 
-type Current = "top" | "first" | "stance" | "news";
+type Current = "top" | "first" | "stance" | "news" | "blog";
 
 const items: { label: string; href: string; key?: Current }[] = [
   { label: "メニュー・料金", href: "/#menu" },
@@ -35,6 +35,7 @@ export function SiteNav({ current }: { current: Current }) {
             </Link>
           ))}
           <Link href="/news" aria-current={current === "news" ? "page" : undefined}>お知らせ</Link>
+          <Link href="/blog" aria-current={current === "blog" ? "page" : undefined}>読みもの</Link>
         </div>
       </details>
       <a
@@ -55,6 +56,7 @@ export function FooterNav({ style }: { style?: CSSProperties }) {
         <Link key={it.label} href={it.href}>{it.label}</Link>
       ))}
       <Link href="/news">お知らせ</Link>
+      <Link href="/blog">読みもの</Link>
       <a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/contact">お問い合わせ</a>
     </nav>
   );
