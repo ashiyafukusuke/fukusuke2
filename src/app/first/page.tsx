@@ -136,7 +136,7 @@ export default function FirstPage() {
               </div>
               <div style={{ padding: "14px 0", borderBottom: "1px solid #ebe9e4" }}>
                 <p style={{ margin: "0 0 2px", fontWeight: 700 }}>お車・自転車</p>
-                <p style={{ margin: 0, color: "#3d3a34" }}>専用駐車場はありません。西友隣接・コープ隣接のコインパーキング（徒歩約10分）をご利用ください。駐輪スペースは建物前にあります。</p>
+                <p style={{ margin: 0, color: "#3d3a34" }}>専用駐車場はありません。西友隣接・コープ隣接のコインパーキング（徒歩約10分）をご利用ください。駐輪スペースは建物前にあり、無料でご利用いただけます。イオンモール東久留米からは自転車で約6分です。</p>
               </div>
             </div>
             <div style={{ marginTop: "28px" }}>
