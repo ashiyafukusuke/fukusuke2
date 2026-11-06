@@ -17,6 +17,7 @@ const jsonLd = {
     addressLocality: "西東京市",
     streetAddress: "ひばりが丘3丁目2−51 HIBARIDO 2F R-09",
   },
+  areaServed: ["西東京市", "東久留米市"],
   priceRange: "¥3,300–¥9,000",
   sameAs: [
     "https://www.instagram.com/fukusuke.ashiya/",
