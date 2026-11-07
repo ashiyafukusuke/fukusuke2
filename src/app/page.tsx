@@ -271,7 +271,7 @@ export default function Home() {
               <h2 style={{ margin: "0 0 20px", fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(24px, 3vw, 30px)", letterSpacing: "0.1em" }}>ご予約</h2>
               <p style={{ margin: "0 0 6px", fontFamily: "'Shippori Mincho', serif", fontSize: "clamp(19px, 2.2vw, 22px)", letterSpacing: "0.1em" }}>足に、ご褒美を。</p>
               <p style={{ margin: "0 0 18px", fontSize: "13px", color: "#3d3a34", letterSpacing: "0.1em" }}>日々の一歩を、軽やかに。</p>
-              <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>営業日は週によって変わります。空いている枠は、予約ページでご確認ください。</p>
+              <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>営業日は週によって変わります。空いている枠は、予約ページでご確認ください。<br />当日のご予約も、空き枠があれば、開始1時間前までWebで承っています。</p>
             </div>
             <a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011" style={{ background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "16px 44px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.12em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>空き枠を見る</a>
           </div>
