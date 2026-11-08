@@ -187,6 +187,9 @@ export default function StancePage() {
             <div className="item">
               <h3><span className="n">16</span>足つぼ屋から、足揉み屋へ。</h3>
               <p>いずれは、反射区も、解剖学も、体の動きのつながりも取り込んだ「足揉み屋」になりたいと思っています。今はその途中です。まずは、一般的な足つぼより少しだけ先に進んだ足つぼ屋を目指しています。</p>
+              <p style={{ margin: "12px 0 0", fontSize: "13px" }}>
+                <Link href="/blog" className="lnk" style={{ color: "#9b321f" }}><span>読みものはこちら</span></Link>
+              </p>
             </div>
           </div>
         </div>

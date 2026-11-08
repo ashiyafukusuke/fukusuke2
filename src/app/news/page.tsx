@@ -53,6 +53,9 @@ export default function NewsPage() {
               </article>
             ))}
           </div>
+          <p style={{ margin: "24px 0 0", fontSize: "13px" }}>
+            <Link href="/blog" className="lnk" style={{ color: "#9b321f" }}><span>読みものはこちら</span></Link>
+          </p>
         </div>
       </section>
 
