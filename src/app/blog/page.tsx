@@ -42,7 +42,7 @@ export default function BlogPage() {
         <div style={{ maxWidth: "880px", margin: "0 auto", padding: "56px 24px 64px" }}>
           <p style={{ margin: "0 0 6px", fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "17px", color: "#9b321f" }}>Reading</p>
           <h1 style={{ margin: "0 0 36px", fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(28px, 4vw, 38px)", letterSpacing: "0.1em" }}>足を疑うはなし</h1>
-          <p style={{ margin: "-24px 0 36px", fontFamily: "'Shippori Mincho', serif", fontSize: "15px", color: "#3d3a34", letterSpacing: "0.12em" }}>信じるために、疑う。</p>
+          <p style={{ margin: "-24px 0 36px", fontFamily: "'Shippori Mincho', serif", fontSize: "15px", color: "#3d3a34", letterSpacing: "0.12em" }}>疑いは知の始まり</p>
           <div style={{ borderTop: "1px solid #1a1a1a" }}>
             {posts.map((p) => (
               <article key={p.slug} style={{ padding: "28px 0", borderBottom: "1px solid #ebe9e4" }}>
