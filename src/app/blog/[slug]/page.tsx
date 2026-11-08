@@ -86,7 +86,7 @@ export default function BlogPostPage({ params }: Props) {
         </section>
 
         <p style={{ margin: "32px 0 0", fontSize: "13px" }}>
-          <Link href="/blog" className="lnk" style={{ color: "#9b321f" }}><span>読みもの一覧へ</span></Link>
+          <Link href="/blog" className="lnk" style={{ color: "#9b321f" }}><span>記事の一覧へ</span></Link>
         </p>
       </article>
 

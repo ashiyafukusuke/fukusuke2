@@ -3,14 +3,14 @@ import Link from "next/link";
 import { SiteNav, FooterNav } from "@/components/site/SiteNav";
 import { posts, formatDate } from "@/data/blog";
 
-const desc = "足つぼ専門店イタキモの読みもの。足つぼの歴史や反射区の扱い方、足の骨や筋肉のことを、確かさを分けながら書いています。";
+const desc = "足つぼ専門店イタキモの「足を疑うはなし」。足つぼの歴史や反射区の扱い方、足の骨や筋肉のことを、確かさを分けながら書いています。";
 
 export const metadata: Metadata = {
-  title: "読みもの｜足つぼ専門店 イタキモ",
+  title: "足を疑うはなし｜足つぼ専門店 イタキモ",
   description: desc,
   alternates: { canonical: "/blog" },
   openGraph: {
-    title: "読みもの｜足つぼ専門店 イタキモ",
+    title: "足を疑うはなし｜足つぼ専門店 イタキモ",
     description: desc,
     url: "https://www.itakimo.net/blog",
     siteName: "足つぼ専門店 イタキモ",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "読みもの｜足つぼ専門店 イタキモ",
+    title: "足を疑うはなし｜足つぼ専門店 イタキモ",
     description: desc,
     images: ["https://www.itakimo.net/og-image.png"],
   },
@@ -41,7 +41,7 @@ export default function BlogPage() {
       <section style={{ borderBottom: "1px solid #ebe9e4" }}>
         <div style={{ maxWidth: "880px", margin: "0 auto", padding: "56px 24px 64px" }}>
           <p style={{ margin: "0 0 6px", fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "17px", color: "#9b321f" }}>Reading</p>
-          <h1 style={{ margin: "0 0 36px", fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(28px, 4vw, 38px)", letterSpacing: "0.1em" }}>読みもの</h1>
+          <h1 style={{ margin: "0 0 36px", fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(28px, 4vw, 38px)", letterSpacing: "0.1em" }}>足を疑うはなし</h1>
           <div style={{ borderTop: "1px solid #1a1a1a" }}>
             {posts.map((p) => (
               <article key={p.slug} style={{ padding: "28px 0", borderBottom: "1px solid #ebe9e4" }}>

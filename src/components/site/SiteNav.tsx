@@ -35,7 +35,7 @@ export function SiteNav({ current }: { current: Current }) {
             </Link>
           ))}
           <Link href="/news" aria-current={current === "news" ? "page" : undefined}>お知らせ</Link>
-          <Link href="/blog" aria-current={current === "blog" ? "page" : undefined}>読みもの</Link>
+          <Link href="/blog" aria-current={current === "blog" ? "page" : undefined}>足を疑うはなし</Link>
         </div>
       </details>
       <a
@@ -56,7 +56,7 @@ export function FooterNav({ style }: { style?: CSSProperties }) {
         <Link key={it.label} href={it.href}>{it.label}</Link>
       ))}
       <Link href="/news">お知らせ</Link>
-      <Link href="/blog">読みもの</Link>
+      <Link href="/blog">足を疑うはなし</Link>
       <a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/contact">お問い合わせ</a>
     </nav>
   );

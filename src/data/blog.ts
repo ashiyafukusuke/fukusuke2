@@ -1,4 +1,4 @@
-// 読みもの。新しいものを上に追加する。
+// 足を疑うはなし（/blog）。新しいものを上に追加する。
 // slug は URL に使う（英数字とハイフン）。date は "YYYY-MM-DD"。
 
 export type BlogBlock =

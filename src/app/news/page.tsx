@@ -54,7 +54,7 @@ export default function NewsPage() {
             ))}
           </div>
           <p style={{ margin: "24px 0 0", fontSize: "13px" }}>
-            <Link href="/blog" className="lnk" style={{ color: "#9b321f" }}><span>読みものはこちら</span></Link>
+            <Link href="/blog" className="lnk" style={{ color: "#9b321f" }}><span>「足を疑うはなし」を読む</span></Link>
           </p>
         </div>
       </section>
