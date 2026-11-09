@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SiteNav, FooterNav } from "@/components/site/SiteNav";
-import { BusinessCalendar } from "@/components/site/BusinessCalendar";
 
 export const metadata: Metadata = {
   title: "初めての方へ｜足つぼ専門店 イタキモ",
@@ -42,7 +40,7 @@ export default function FirstPage() {
           <Link href="/" style={{ display: "flex", alignItems: "center", textDecoration: "none", color: "#1a1a1a", minHeight: "44px" }}>
             <img src="/logo/logo-horizontal-web.svg" alt="足つぼ専門店 イタキモ" style={{ display: "block", height: "48px", width: "auto" }} />
           </Link>
-          <SiteNav current="first" />
+          <a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011" style={{ background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "10px 20px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.1em", fontSize: "13px", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>予約する</a>
         </div>
       </header>
 
@@ -103,25 +101,23 @@ export default function FirstPage() {
       </section>
 
       {/* 営業日・アクセス */}
-      <section id="hours" style={{ borderBottom: "1px solid #ebe9e4" }}>
+      <section id="access" style={{ borderBottom: "1px solid #ebe9e4" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "64px 24px", display: "flex", flexWrap: "wrap", gap: "56px 64px" }}>
           <div style={{ flex: "1 1 420px", minWidth: 0 }}>
             <p style={{ margin: "0 0 6px", fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "17px", color: "#9b321f" }}>Hours</p>
             <h2 style={{ margin: "0 0 24px", fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(24px, 3vw, 30px)", letterSpacing: "0.1em" }}>営業日</h2>
             <dl style={{ margin: "0 0 24px", display: "grid", gridTemplateColumns: "auto 1fr", gap: "10px 24px", fontSize: "14px", alignItems: "baseline" }}>
-              <dt style={{ fontWeight: 700 }}>通し営業</dt>
-              <dd style={{ margin: 0 }}><span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "22px" }}>9:00 – 22:40</span><span style={{ fontSize: "12px", color: "#5c5c5c", marginLeft: "12px" }}>日にちはカレンダーでご確認ください</span></dd>
-              <dt style={{ fontWeight: 700 }}>夜の特別枠</dt>
-              <dd style={{ margin: 0 }}><span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "22px" }}>21:10 – 22:40</span><span style={{ fontSize: "12px", color: "#5c5c5c", marginLeft: "12px" }}>それ以外の日</span></dd>
+              <dt style={{ fontWeight: 700 }}>水・木</dt>
+              <dd style={{ margin: 0 }}><span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "22px" }}>9:00 – 22:40</span></dd>
+              <dt style={{ fontWeight: 700 }}>その他</dt>
+              <dd style={{ margin: 0 }}><span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "22px" }}>21:10 – 22:40</span><span style={{ fontSize: "12px", color: "#5c5c5c", marginLeft: "12px" }}>週により異なります</span></dd>
             </dl>
-            <BusinessCalendar />
-            <p style={{ margin: "12px 0 0", fontSize: "13px", color: "#3d3a34" }}>当日のご予約も、空き枠があれば、開始1時間前までWebで承っています。</p>
+            <img src="/calendar.png" alt="イタキモ 今月の営業カレンダー" style={{ display: "block", width: "100%", height: "auto" }} />
           </div>
-          <div id="access" style={{ flex: "1 1 420px", minWidth: 0 }}>
+          <div style={{ flex: "1 1 420px", minWidth: 0 }}>
             <p style={{ margin: "0 0 6px", fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "17px", color: "#9b321f" }}>Access</p>
             <h2 style={{ margin: "0 0 24px", fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(24px, 3vw, 30px)", letterSpacing: "0.1em" }}>アクセス</h2>
-            <p style={{ margin: "0 0 8px", fontSize: "14px" }}>〒202-0001　東京都西東京市ひばりが丘3丁目2−51<br />HIBARIDO 2F R-09</p>
-            <p style={{ margin: "0 0 24px", fontSize: "13px", color: "#3d3a34" }}>ひばりヶ丘駅・田無駅・イオンモール東久留米のあいだにあります。</p>
+            <p style={{ margin: "0 0 24px", fontSize: "14px" }}>〒202-0001　東京都西東京市ひばりが丘3丁目2−51<br />HIBARIDO 2F R-09</p>
             <div style={{ borderTop: "1px solid #ebe9e4", fontSize: "13px" }}>
               <div style={{ padding: "14px 0", borderBottom: "1px solid #ebe9e4" }}>
                 <p style={{ margin: "0 0 2px", fontWeight: 700 }}>ひばりヶ丘駅（西武池袋線）</p>
@@ -137,13 +133,8 @@ export default function FirstPage() {
               </div>
               <div style={{ padding: "14px 0", borderBottom: "1px solid #ebe9e4" }}>
                 <p style={{ margin: "0 0 2px", fontWeight: 700 }}>お車・自転車</p>
-                <p style={{ margin: 0, color: "#3d3a34" }}>専用駐車場はありません。西友隣接・コープ隣接のコインパーキング（徒歩約10分）をご利用ください。駐輪スペースは建物前にあり、無料でご利用いただけます。イオンモール東久留米からは自転車で約6分です。</p>
+                <p style={{ margin: 0, color: "#3d3a34" }}>専用駐車場はありません。西友隣接・コープ隣接のコインパーキング（徒歩約10分）をご利用ください。駐輪スペースは建物前にあります。</p>
               </div>
-            </div>
-            <div style={{ marginTop: "28px" }}>
-              <p style={{ margin: "0 0 12px", fontSize: "13px", fontWeight: 700 }}>入口からお店までの道順（動画）</p>
-              <video src="/videos/access-route.mp4" poster="/videos/access-route-poster.jpg" controls muted playsInline preload="none" style={{ display: "block", width: "100%", maxWidth: "320px", aspectRatio: "9 / 16", background: "#f1efea" }} />
-              <p style={{ margin: "8px 0 0", fontSize: "12px", color: "#5c5c5c" }}>約25秒・音声はありません。</p>
             </div>
           </div>
         </div>
@@ -161,7 +152,7 @@ export default function FirstPage() {
             <dl style={{ margin: 0, fontSize: "13px", borderTop: "1px solid #ebe9e4" }}>
               <div style={{ display: "flex", flexWrap: "wrap", gap: "4px 24px", padding: "12px 0", borderBottom: "1px solid #ebe9e4" }}>
                 <dt style={{ flex: "0 0 200px", fontWeight: 700 }}>予約の変更</dt>
-                <dd style={{ margin: 0, flex: "1 1 260px", color: "#3d3a34" }}>メール（<a href="mailto:fukusuke@itakimo.net" style={{ color: "#3d3a34" }}>fukusuke@itakimo.net</a>）・Instagram DM・お問い合わせフォームからご連絡ください。</dd>
+                <dd style={{ margin: 0, flex: "1 1 260px", color: "#3d3a34" }}>メール・Instagram DM・お問い合わせフォームからご連絡ください。</dd>
               </div>
               <div style={{ display: "flex", flexWrap: "wrap", gap: "4px 24px", padding: "12px 0", borderBottom: "1px solid #ebe9e4" }}>
                 <dt style={{ flex: "0 0 200px", fontWeight: 700 }}>当日キャンセル（連絡あり）</dt>
@@ -187,7 +178,9 @@ export default function FirstPage() {
 
       {/* フッター */}
       <footer style={{ maxWidth: "1200px", margin: "0 auto", padding: "32px 24px 40px", fontSize: "12px", color: "#5c5c5c", lineHeight: 1.9 }}>
-        <FooterNav />
+        <p style={{ margin: "0 0 8px" }}>
+          <Link href="/" style={{ color: "#1a1a1a", minHeight: "44px", display: "inline-flex", alignItems: "center" }}>トップへ戻る</Link>
+        </p>
         <p style={{ margin: 0 }}>当店の施術はリラクゼーションを目的としたものであり、医療行為・治療行為にはあたりません。疾病の診断・治療・予防を目的とするものではございません。体調に不安のある方は、事前に医師にご相談ください。</p>
       </footer>
     </div>

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SiteNav, FooterNav } from "@/components/site/SiteNav";
 
 export const metadata: Metadata = {
   title: "イタキモの考え方｜足つぼ専門店 イタキモ",
@@ -41,7 +40,7 @@ export default function StancePage() {
           <Link href="/" style={{ display: "flex", alignItems: "center", textDecoration: "none", color: "#1a1a1a", minHeight: "44px" }}>
             <img src="/logo/logo-horizontal-web.svg" alt="足つぼ専門店 イタキモ" style={{ display: "block", height: "48px", width: "auto" }} />
           </Link>
-          <SiteNav current="stance" />
+          <a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011" style={{ background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "10px 20px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.1em", fontSize: "13px", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>予約する</a>
         </div>
       </header>
 
@@ -105,11 +104,6 @@ export default function StancePage() {
               <h3><span className="n">06</span>相性は、施術者が合わせるもの。</h3>
               <p>合う・合わないは、お客様ではなく施術者の側が合わせにいくことだと考えています。「もう少し強く」「弱めに」「そこは軽めで」。遠慮なくお伝えください。弱めにと言われたら、圧を抜くだけでなく、触れ方そのものを変えます。</p>
             </div>
-            <div className="item">
-              <h3><span className="n">07</span>お客様の感じ方は、直さない。</h3>
-              <p>痛い、気持ちいい、軽くなった。どう感じたか、それをどんな言葉で表すかは、お客様のものです。施術者が言い換えたり、正したりするものではないと思っています。</p>
-              <p>好みの強さを否定しないのと同じように、感じたことも、そのまま受け止めます。だからこのサイトのクチコミも、いただいた言葉をそのまま載せています。</p>
-            </div>
           </div>
         </div>
       </section>
@@ -123,15 +117,15 @@ export default function StancePage() {
           </div>
           <div className="chap-b">
             <div className="item">
-              <h3><span className="n">08</span>足を、3つの視点で見る。</h3>
+              <h3><span className="n">07</span>足を、3つの視点で見る。</h3>
               <p>反射区をきっかけに、足の構造や筋肉の働き、歩き方にも目を向ける。足つぼの気持ちよさから、自分の身体を知る面白さへ。足つぼには、まだまだ奥があるのです。</p>
             </div>
             <div className="item">
-              <h3><span className="n">09</span>つながりの地図を、因果の断定に使わない。</h3>
+              <h3><span className="n">08</span>つながりの地図を、因果の断定に使わない。</h3>
               <p>反射区も、筋膜のつながりも、体の「つながりの地図」だと考えています。地図は、どこに目を向けるかのきっかけになります。ただ、離れた場所の不調の原因を言い当てるものではありません。イタキモでは、反射区を因果の証明ではなく、相関の地図として扱います。</p>
             </div>
             <div className="item">
-              <h3><span className="n">10</span>確かさを、3つの棚に分ける。</h3>
+              <h3><span className="n">09</span>確かさを、3つの棚に分ける。</h3>
               <p>施術中にお話しすることは、どのくらい確かなことなのかを分けて考えています。</p>
               <dl className="shelf">
                 <div><dt>確認された知識</dt><dd>解剖学の教科書などで確かめられる内容。筋肉の位置や、基本的な働きなど。</dd></div>
@@ -140,7 +134,7 @@ export default function StancePage() {
               </dl>
             </div>
             <div className="item">
-              <h3><span className="n">11</span>硬い・柔らかいで、良し悪しを決めない。</h3>
+              <h3><span className="n">10</span>硬い・柔らかいで、良し悪しを決めない。</h3>
               <p>力を入れたときはしっかり硬くなり、力を抜いたときは柔らかすぎなくても、しなやかさが感じられる。そういう筋肉が、質のいい筋肉だと考えています。柔らかければ柔らかいほどいい、とは思っていません。</p>
             </div>
           </div>
@@ -156,20 +150,20 @@ export default function StancePage() {
           </div>
           <div className="chap-b">
             <div className="item">
-              <h3><span className="n">12</span>不利なことは、先に書く。</h3>
+              <h3><span className="n">11</span>不利なことは、先に書く。</h3>
               <p>予約のルールや、お受けできないことは、目立つところに先に書いています。キャンセルのルールも、はっきり決めています。ご予約は本名でなくてもかまいません。必要以上の個人情報は、お預かりしません。</p>
             </div>
             <div className="item">
-              <h3><span className="n">13</span>ルールは、守ってくださる方への礼儀。</h3>
+              <h3><span className="n">12</span>ルールは、守ってくださる方への礼儀。</h3>
               <p>ルールは罰ではありません。時間を作って、約束どおりに来てくださる方への礼儀だと思っています。だから、ルールに感情は置きません。遅れることは誰にでもあるので、予約枠の前後には余白を取っています。</p>
               <p>ルールを先に書いておくのは、あとからお客様のことを悪く言わずに済むようにするためでもあります。</p>
             </div>
             <div className="item">
-              <h3><span className="n">14</span>合うかどうかは、お客様が決める。</h3>
+              <h3><span className="n">13</span>合うかどうかは、お客様が決める。</h3>
               <p>初めての方は、まず左足から始めます。片足が終わった時点で「合わない」と感じたら、そこで終了。お代は頂きません。合うかどうかの判断は、お客様にお任せしています。</p>
             </div>
             <div className="item">
-              <h3><span className="n">15</span>通ってくださる方ほど、安く。</h3>
+              <h3><span className="n">14</span>通ってくださる方ほど、安く。</h3>
               <p>通ってくださる方ほど安くなるのが、正しいと思っています。2回目以降は、間隔が空いてもずっと継続料金です。次回のご予約を、こちらからお勧めすることもありません。また来たいと思ったときに、来てください。</p>
             </div>
           </div>
@@ -185,11 +179,8 @@ export default function StancePage() {
           </div>
           <div className="chap-b">
             <div className="item">
-              <h3><span className="n">16</span>足つぼ屋から、足揉み屋へ。</h3>
+              <h3><span className="n">15</span>足つぼ屋から、足揉み屋へ。</h3>
               <p>いずれは、反射区も、解剖学も、体の動きのつながりも取り込んだ「足揉み屋」になりたいと思っています。今はその途中です。まずは、一般的な足つぼより少しだけ先に進んだ足つぼ屋を目指しています。</p>
-              <p style={{ margin: "12px 0 0", fontSize: "13px" }}>
-                <Link href="/blog" className="lnk" style={{ color: "#9b321f" }}><span>「足を疑うはなし」を読む</span></Link>
-              </p>
             </div>
           </div>
         </div>
@@ -208,7 +199,11 @@ export default function StancePage() {
 
       {/* フッター */}
       <footer style={{ maxWidth: "1200px", margin: "0 auto", padding: "32px 24px 40px", fontSize: "12px", color: "#5c5c5c", lineHeight: 1.9 }}>
-        <FooterNav />
+        <p style={{ margin: "0 0 8px" }}>
+          <Link href="/" style={{ color: "#1a1a1a", minHeight: "44px", display: "inline-flex", alignItems: "center" }}>トップへ戻る</Link>
+          <span style={{ display: "inline-block", width: "16px" }}></span>
+          <Link href="/first" style={{ color: "#1a1a1a", minHeight: "44px", display: "inline-flex", alignItems: "center" }}>初めての方へ</Link>
+        </p>
         <p style={{ margin: 0 }}>当店の施術はリラクゼーションを目的としたものであり、医療行為・治療行為にはあたりません。疾病の診断・治療・予防を目的とするものではございません。体調に不安のある方は、事前に医師にご相談ください。</p>
       </footer>
     </div>
