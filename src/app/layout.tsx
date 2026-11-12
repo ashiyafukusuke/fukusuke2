@@ -71,6 +71,31 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             `,
           }}
         />
+        {/* 予約・問い合わせリンクのクリックを計測 */}
+        <Script
+          id="gtag-click-tracking"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              document.addEventListener('click', function (e) {
+                var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+                if (!a || typeof window.gtag !== 'function') return;
+                var href = a.getAttribute('href') || '';
+                var name = null;
+                if (href.indexOf('stores.jp/reserve') !== -1 && href.indexOf('/contact') === -1 && href.indexOf('/reviews') === -1) name = 'reserve_click';
+                else if (href.indexOf('mailto:') === 0 || href.indexOf('/contact') !== -1 || href.indexOf('instagram.com') !== -1) name = 'contact_click';
+                if (!name) return;
+                var area = a.closest('header') ? 'header' : a.closest('footer') ? 'footer' : (a.closest('section[id]') ? a.closest('section[id]').id : (a.closest('section') ? 'section' : 'other'));
+                window.gtag('event', name, {
+                  link_text: (a.innerText || '').trim().slice(0, 40),
+                  link_area: area,
+                  link_url: href,
+                  transport_type: 'beacon'
+                });
+              }, true);
+            `,
+          }}
+        />
       </body>
     </html>
   );
