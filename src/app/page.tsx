@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { SiteNav, FooterNav } from "@/components/site/SiteNav";
+import { news, formatDate } from "@/data/news";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -15,6 +17,7 @@ const jsonLd = {
     addressLocality: "西東京市",
     streetAddress: "ひばりが丘3丁目2−51 HIBARIDO 2F R-09",
   },
+  areaServed: ["西東京市", "東久留米市"],
   priceRange: "¥3,300–¥9,000",
   sameAs: [
     "https://www.instagram.com/fukusuke.ashiya/",
@@ -28,6 +31,16 @@ const jsonLd = {
     },
   ],
 };
+
+const storesReviews: { date: string; text: string }[] = [
+  { date: "2026年8月26日", text: "足裏マッサージは好きでたまに行きますが、寝ての施術になるところが多く、イタキモさんはリクライニングチェアーで座っての施術なので、なんでゴリゴリしたのが出るのかなど聞くことができてとても勉強になりました。右足と左足で同じ強さで施術いただいているのに感じ方が全く違うのも面白かったです。痛めにしてもらうのが好きなのですが、痛すぎるとすぐ根をあげるので、「もう少し強めに」→「やっぱりもう少しソフトに」と細やかに応えていただき足が喜んでいます。疲れた時のご褒美でまた伺えればと思います。ありがとうございました。" },
+  { date: "2026年8月17日", text: "2度目のお伺いでした。\n連日の座り仕事に加えて、慣れない庭仕事も重なり、「これは足にご褒美をあげなくては……」と伺いました。\n絶妙な圧を痛気持ち良く感じながら施術を受けていると、足の状態が明確に変わっていくのが分かり、とても面白く、すっかりクセになりそうです。\n翌日も足がポカポカしていて、柔らかい状態が続いているのがうれしく、今回も効果を実感しました。\n近場で当日でも駆け込みでお願いできること、事前決済ができるので身軽に行けることも、とてもありがたいです。\nまたよろしくお願いします。" },
+  { date: "2026年8月14日", text: "店名通りイタ気持ちいい強さで足裏とふくらはぎを丁寧にもんでいただきました。足が随分とほぐれた気がします。" },
+  { date: "2026年7月29日", text: "歩き方や日常の過ごし方のヒントが頂けたり、身体全体を支えている足の大切さ、足ツボの奥深さを知れました。痛気持ちいい施術も帰り道の軽くなった身体が忘れられず、また行きたいと思いました。ありがとうございました。" },
+  { date: "2026年6月24日", text: "今日偶然見つけて予約入れました。ちょっと場所と男性セラピストさんなので、心配しながら足が辛かったので訪れました。が、セラピストさんの配慮もあり心配はありませんでした。この所の低気圧、梅雨のため足が浮腫んでいたのですが、スッキリ。行きは足が重かったのですが、帰りは足がスイスイと歩けました。片足終わった時点で、もう一方の足と全然形状が異なっているのが目で見て、感じてわかりました。痛過ぎず、流し過ぎずで、足裏マッサージのことを凄く心得たセラピストでした。辛い時に凄く頼りそうです。" },
+  { date: "2026年6月20日", text: "初めて利用させていただきました。\n強さも丁寧に調節してくださり、好み通りの痛気持ちよさでした。翌日は、裸足で歩くと足裏の地面の掴みが良い感じがしました。\nまた利用させていただきたいと思います。" },
+  { date: "2026年6月18日", text: "初めての足ツボでしたが気持ちよかったです。\n右足の途中から寝ました。" },
+];
 
 export default function Home() {
   return (
@@ -49,7 +62,7 @@ export default function Home() {
         <img
           className="hero-img hero-sp"
           src="/images/hero-sp.jpg"
-          alt="腕を伸ばしてふくらはぎを揉む、イタキモの施術の様子"
+          alt="両手で足を包み込むように揉む、イタキモの施術の様子"
         />
         <div className="hero-veil"></div>
 
@@ -59,14 +72,7 @@ export default function Home() {
             <a href="#top" style={{ display: "flex", alignItems: "center", textDecoration: "none", color: "#1a1a1a", minHeight: "44px" }}>
               <img className="hdr-logo" src="/logo/logo-horizontal-web.svg" alt="足つぼ専門店 イタキモ" style={{ display: "block", height: "48px", width: "auto" }} />
             </a>
-            <nav aria-label="メイン" style={{ display: "flex", alignItems: "center", gap: "28px", fontSize: "13px" }}>
-              <span className="navlinks" style={{ gap: "28px" }}>
-                <a href="#menu" style={{ color: "#1a1a1a", textDecoration: "none", padding: "10px 0" }}>メニュー</a>
-                <a href="#first" style={{ color: "#1a1a1a", textDecoration: "none", padding: "10px 0" }}>初めての方へ</a>
-                <a href="#reserve" style={{ color: "#1a1a1a", textDecoration: "none", padding: "10px 0" }}>営業日・アクセス</a>
-              </span>
-              <a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011" style={{ background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "10px 20px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.1em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>予約する</a>
-            </nav>
+            <SiteNav current="top" />
           </div>
         </header>
 
@@ -83,7 +89,7 @@ export default function Home() {
             <div className="hero-cta">
               <a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011/book/course_type?courseCanonicalId=947238" style={{ background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "15px 40px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.12em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>予約する</a>
               <a href="#menu" style={{ color: "#1a1a1a", fontSize: "14px", textUnderlineOffset: "6px", minHeight: "44px", display: "inline-flex", alignItems: "center" }}>メニューと料金</a>
-              <p className="hero-note">初めての方は「左足トライアル」。合わなければ、お代は頂きません。</p>
+              <p className="hero-note">強さは、いつでも調整できます。<br />初めての方は「左足トライアル」。合わなければ、お代は頂きません。</p>
             </div>
           </div>
         </div>
@@ -97,8 +103,8 @@ export default function Home() {
               <span style={{ fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(22px, 2.6vw, 26px)", letterSpacing: "0.1em", color: "#1a1a1a" }}>初めての方へ</span>
               <span style={{ fontSize: "13px", fontStyle: "normal", fontWeight: 700, color: "#9b321f" }}>※初めての方は必ずご覧ください</span>
             </span>
-            <span style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "13px", color: "#1a1a1a" }}>
-              開く
+            <span className="tog" style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "13px", color: "#1a1a1a" }}>
+              <span className="tog-o">開く</span><span className="tog-c">閉じる</span>
               <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 5l4 4 4-4" fill="none" stroke="#1a1a1a" strokeWidth="1.4"></path></svg>
             </span>
           </summary>
@@ -121,33 +127,42 @@ export default function Home() {
               </div>
             </div>
             <p style={{ margin: "32px 0 0" }}>
-              <Link href="/first" style={{ color: "#1a1a1a", fontSize: "13px", textUnderlineOffset: "6px", minHeight: "44px", display: "inline-flex", alignItems: "center" }}>服装・流れ・アクセスを詳しく見る</Link>
+              <Link className="lnk" href="/first" style={{ color: "#1a1a1a", fontSize: "13px" }}><span>「初めての方へ」ページで詳しく見る</span></Link>
             </p>
           </div>
         </details>
       </section>
 
       {/* クチコミ（Voices） */}
-      <section style={{ borderBottom: "1px solid #ebe9e4" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "44px 24px 32px", display: "flex", flexWrap: "wrap", gap: "28px 0", alignItems: "center" }}>
-          <div style={{ flex: "1 1 280px", minWidth: 0, paddingRight: "40px" }}>
-            <p style={{ margin: "0 0 6px", fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "17px", color: "#9b321f" }}>Voices</p>
-            <h2 style={{ margin: "0 0 10px", fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "24px", letterSpacing: "0.1em", lineHeight: 1.6 }}>足をお任せいただいた<br />方の声</h2>
-            <p style={{ margin: 0, fontSize: "12px", color: "#5c5c5c" }}>Googleクチコミ <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "20px", color: "#1a1a1a" }}>5.0</span></p>
-          </div>
-          <figure style={{ flex: "1 1 280px", minWidth: 0, margin: 0, padding: "4px 32px", borderLeft: "1px solid #ebe9e4" }}>
-            <blockquote style={{ margin: "0 0 10px", fontFamily: "'Shippori Mincho', serif", fontSize: "16px", lineHeight: 1.95 }}>「行きは足が重かったのですが、帰りは足がスイスイと歩けました」</blockquote>
-            <figcaption style={{ fontSize: "11px", color: "#5c5c5c" }}>STORESレビューより</figcaption>
-          </figure>
-          <figure style={{ flex: "1 1 280px", minWidth: 0, margin: 0, padding: "4px 32px", borderLeft: "1px solid #ebe9e4" }}>
-            <blockquote style={{ margin: "0 0 10px", fontFamily: "'Shippori Mincho', serif", fontSize: "16px", lineHeight: 1.95 }}>「帰り道の軽くなった身体が忘れられず、また行きたいと思いました」</blockquote>
-            <figcaption style={{ fontSize: "11px", color: "#5c5c5c" }}>STORESレビューより</figcaption>
-          </figure>
-        </div>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px 36px", fontSize: "12px", color: "#5c5c5c" }}>
+      <section id="voices" style={{ borderBottom: "1px solid #ebe9e4" }}>
+        <details style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
+          <summary style={{ listStyle: "none", cursor: "pointer", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "12px 24px", padding: "20px 0", minHeight: "44px" }}>
+            <span style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: "6px 20px" }}>
+              <span style={{ fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(22px, 2.6vw, 26px)", letterSpacing: "0.1em", color: "#1a1a1a" }}>足をお任せいただいた方の声</span>
+              <span style={{ fontSize: "12px", color: "#5c5c5c" }}>Googleクチコミ <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "20px", color: "#1a1a1a" }}>5.0</span>（4件）</span>
+              <span style={{ fontSize: "12px", color: "#5c5c5c" }}>STORESレビュー <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "20px", color: "#1a1a1a" }}>7</span>件</span>
+            </span>
+            <span className="tog" style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "13px", color: "#1a1a1a" }}>
+              <span className="tog-o">開く</span><span className="tog-c">閉じる</span>
+              <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 5l4 4 4-4" fill="none" stroke="#1a1a1a" strokeWidth="1.4"></path></svg>
+            </span>
+          </summary>
+          <div style={{ padding: "4px 0 32px" }}>
+            <p style={{ margin: "0 0 24px", fontSize: "12px", color: "#5c5c5c", lineHeight: 1.9 }}>当店では、お客様に「クチコミを書いてください」とお願いすることはしていません。書いていただけたらとても嬉しいですが、書きたくないのに書くものではないと思っています。予約システム（STORES）からレビューのご案内が自動で届くことがありますが、気にせず閉じていただいて大丈夫です。……とはいえ、感想を聞かせていただけるのは、やっぱり嬉しいです（笑）</p>
+            <div className="voices-grid">
+              {storesReviews.map((r) => (
+                <figure key={r.date} style={{ margin: 0, paddingTop: "16px", borderTop: "1px solid #ebe9e4" }}>
+                  <blockquote style={{ margin: "0 0 10px", fontSize: "14px", lineHeight: 1.95, whiteSpace: "pre-line" }}>{r.text}</blockquote>
+                  <figcaption style={{ fontSize: "11px", color: "#5c5c5c" }}>STORESレビュー（{r.date}）</figcaption>
+                </figure>
+              ))}
+            </div>
+            <div style={{ marginTop: "20px", fontSize: "12px", color: "#5c5c5c" }}>
           <a href="https://share.google/hoX4rSA5QB2lNpmHH" style={{ color: "#1a1a1a", textUnderlineOffset: "5px", minHeight: "44px", display: "inline-flex", alignItems: "center" }}>Googleクチコミを見る</a>
           <a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/reviews" style={{ color: "#1a1a1a", textUnderlineOffset: "5px", marginLeft: "20px", minHeight: "44px", display: "inline-flex", alignItems: "center" }}>STORESレビューを見る</a>
-        </div>
+            </div>
+          </div>
+        </details>
       </section>
 
       {/* 奥までしみわたる理由（Method） */}
@@ -157,7 +172,7 @@ export default function Home() {
             <p style={{ margin: "0 0 6px", fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "17px", color: "#9b321f" }}>Method</p>
             <h2 style={{ margin: "0 0 24px", fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(24px, 3vw, 30px)", letterSpacing: "0.1em" }}>奥までしみわたる理由</h2>
             <p style={{ margin: "0 0 28px", color: "#3d3a34", lineHeight: 2.1 }}>反射区を地図に、構造をたどる。足裏から膝裏まで、つながりごとほどく。台湾式の手技を土台に、解剖学と神経の働きの知見を重ねています。</p>
-            <Link href="/stance#technique" style={{ color: "#1a1a1a", fontSize: "13px", textUnderlineOffset: "6px", minHeight: "44px", display: "inline-flex", alignItems: "center" }}>施術の考え方を詳しく読む</Link>
+            <Link className="lnk" href="/stance#technique" style={{ color: "#1a1a1a", fontSize: "13px" }}><span>施術について詳しく読む</span></Link>
           </div>
           <div className="reasons" style={{ flex: "2 1 600px", minWidth: 0, display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: "32px 24px" }}>
             <div>
@@ -193,8 +208,13 @@ export default function Home() {
             </div>
             <p style={{ margin: "0 0 16px", color: "#e7e2d8", lineHeight: 2.05 }}>毎日、足を揉んでいます。それでも飽きるどころか、毎日新しい発見があります。同じ足は一つもないからです。</p>
             <p style={{ margin: "0 0 24px", color: "#e7e2d8", lineHeight: 2.05 }}>足つぼにゴールはないと思っています。次にお会いするときは、今日より上手くなっていたい。そのために学び続けています。</p>
+            <dl className="career">
+              <div><dt>現在</dt><dd>都内の台湾式足つぼ専門店でも施術を担当。指名のない店なので、毎回はじめて会うお客様の足を、その場で読み取って揉んでいます。</dd></div>
+              <div><dt>これまで</dt><dd>THE CLASS（勝どき）、足つぼのソコヂカラ（茅場町）</dd></div>
+              <div><dt>2026年</dt><dd>足ツボグランプリ2026（日本足ツボ協会主催）決勝大会 出場</dd></div>
+            </dl>
             <p style={{ margin: "0 0 20px", fontSize: "13px", color: "#b8b3a8" }}>店主　福助</p>
-            <Link href="/stance" style={{ color: "#fefdfa", fontSize: "13px", textUnderlineOffset: "6px", minHeight: "44px", display: "inline-flex", alignItems: "center" }}>イタキモの考え方を読む</Link>
+            <Link className="lnk" href="/stance" style={{ color: "#fefdfa", fontSize: "13px" }}><span>イタキモの考え方を読む</span></Link>
           </div>
         </div>
       </section>
@@ -235,7 +255,7 @@ export default function Home() {
           <div style={{ marginTop: "28px", paddingTop: "22px", borderTop: "1px solid #ebe9e4", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: "20px 40px" }}>
             <div style={{ flex: "1 1 480px", minWidth: 0 }}>
               <p style={{ margin: "0 0 6px", fontFamily: "'Shippori Mincho', serif", fontSize: "17px" }}>通ってくださる方ほど安くなるのが、正しいと思っています。</p>
-              <p style={{ margin: 0, fontSize: "12px", color: "#5c5c5c" }}>2回目以降は、間隔が空いてもずっと継続料金です。さらに予約時にカード決済をされると、60分・90分は500円、30分は300円お安くなります。施術後のお会計もなく、そのままお帰りいただけます。</p>
+              <p style={{ margin: 0, fontSize: "12px", color: "#5c5c5c" }}>2回目以降は、間隔が空いてもずっと継続料金です。さらに2回目以降は、予約時にカード決済をされると、60分・90分は500円、30分は300円お安くなります（初回は割引の対象外です）。施術後のお会計もなく、そのままお帰りいただけます。</p>
             </div>
           </div>
         </div>
@@ -251,7 +271,7 @@ export default function Home() {
               <h2 style={{ margin: "0 0 20px", fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(24px, 3vw, 30px)", letterSpacing: "0.1em" }}>ご予約</h2>
               <p style={{ margin: "0 0 6px", fontFamily: "'Shippori Mincho', serif", fontSize: "clamp(19px, 2.2vw, 22px)", letterSpacing: "0.1em" }}>足に、ご褒美を。</p>
               <p style={{ margin: "0 0 18px", fontSize: "13px", color: "#3d3a34", letterSpacing: "0.1em" }}>日々の一歩を、軽やかに。</p>
-              <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>営業日は週によって変わります。空いている枠は、予約ページでご確認ください。</p>
+              <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>営業日は週によって変わります。空いている枠は、予約ページでご確認ください。<br />当日のご予約も、空き枠があれば、開始1時間前までWebで承っています。</p>
             </div>
             <a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011" style={{ background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "16px 44px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.12em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>空き枠を見る</a>
           </div>
@@ -260,33 +280,59 @@ export default function Home() {
               <p style={{ margin: "0 0 8px", fontWeight: 700 }}>営業時間</p>
               <p style={{ margin: 0, color: "#3d3a34" }}>水・木　9:00–22:40</p>
               <p style={{ margin: "0 0 10px", color: "#3d3a34" }}>その他の日　21:10–22:40（週により異なります）</p>
-              <Link href="/first#access" style={{ color: "#1a1a1a", textUnderlineOffset: "5px", minHeight: "44px", display: "inline-flex", alignItems: "center" }}>今月の営業カレンダー</Link>
+              <Link className="lnk" href="/first#hours" style={{ color: "#1a1a1a" }}><span>今月の営業カレンダー</span></Link>
             </div>
             <div style={{ borderTop: "1px solid #1a1a1a", paddingTop: "16px" }}>
               <p style={{ margin: "0 0 8px", fontWeight: 700 }}>場所</p>
               <p style={{ margin: 0, color: "#3d3a34" }}>西東京市ひばりが丘 HIBARIDO 2F R-09</p>
               <p style={{ margin: "0 0 10px", color: "#3d3a34" }}>西武バス「交番前」下車 徒歩1分</p>
-              <Link href="/first#access" style={{ color: "#1a1a1a", textUnderlineOffset: "5px", minHeight: "44px", display: "inline-flex", alignItems: "center" }}>アクセスを詳しく見る</Link>
+              <Link className="lnk" href="/first#access" style={{ color: "#1a1a1a" }}><span>アクセスを詳しく見る</span></Link>
             </div>
             <div style={{ borderTop: "1px solid #1a1a1a", paddingTop: "16px" }}>
               <p style={{ margin: "0 0 8px", fontWeight: 700 }}>初めての方</p>
               <p style={{ margin: "0 0 10px", color: "#3d3a34" }}>左足トライアル。合わなければ、お代は頂きません（60分・90分枠）。</p>
-              <Link href="/first" style={{ color: "#1a1a1a", textUnderlineOffset: "5px", minHeight: "44px", display: "inline-flex", alignItems: "center" }}>ご予約の前に読む</Link>
+              <Link className="lnk" href="/first" style={{ color: "#1a1a1a" }}><span>「初めての方へ」を読む</span></Link>
             </div>
           </div>
           <p style={{ margin: "28px 0 0", fontSize: "12px", color: "#5c5c5c" }}>
-            ご予約の変更やご質問は、<a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/contact" style={{ color: "#5c5c5c" }}>お問い合わせ</a>またはInstagramのDMからどうぞ。
+            ご予約の変更やご質問は、メール（<a href="mailto:fukusuke@itakimo.net" style={{ color: "#5c5c5c" }}>fukusuke@itakimo.net</a>）、<a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/contact" style={{ color: "#5c5c5c" }}>お問い合わせフォーム</a>、InstagramのDMからどうぞ。
           </p>
+        </div>
+      </section>
+
+      {/* お知らせ */}
+      <section id="news" style={{ borderBottom: "1px solid #ebe9e4" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "52px 24px", display: "flex", flexWrap: "wrap", gap: "20px 48px" }}>
+          <div style={{ flex: "1 1 220px", minWidth: 0 }}>
+            <p style={{ margin: "0 0 6px", fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "17px", color: "#9b321f" }}>News</p>
+            <h2 style={{ margin: 0, fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(22px, 2.6vw, 26px)", letterSpacing: "0.1em" }}>お知らせ</h2>
+          </div>
+          <div style={{ flex: "3 1 640px", minWidth: 0 }}>
+            <ul style={{ listStyle: "none", margin: 0, padding: 0, borderTop: "1px solid #ebe9e4" }}>
+              {news.slice(0, 3).map((n) => (
+                <li key={n.id} style={{ borderBottom: "1px solid #ebe9e4" }}>
+                  <Link href={`/news#${n.id}`} className="news-row">
+                    <time dateTime={n.date}>{formatDate(n.date)}</time>
+                    <span>{n.title}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <p style={{ margin: "12px 0 0" }}>
+              <Link className="lnk" href="/news" style={{ color: "#1a1a1a", fontSize: "13px" }}><span>お知らせ一覧</span></Link>
+            </p>
+          </div>
         </div>
       </section>
 
       {/* フッター */}
       <footer style={{ maxWidth: "1200px", margin: "0 auto", padding: "36px 24px 40px", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: "28px 48px", fontSize: "12px", color: "#5c5c5c" }}>
+        <FooterNav style={{ flex: "1 0 100%", margin: 0, paddingBottom: "20px", borderBottom: "1px solid #ebe9e4" }} />
         <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
           <img src="/logo/logo-horizontal-web.svg" alt="足つぼ専門店 イタキモ" style={{ display: "block", height: "52px", width: "auto", alignSelf: "flex-start" }} />
           <div>
             <p style={{ margin: 0 }}>東京都西東京市ひばりが丘3丁目2−51 HIBARIDO 2F R-09（<Link href="/first#access" style={{ color: "#5c5c5c" }}>アクセス</Link>）</p>
-            <p style={{ margin: 0 }}>fukusuke@itakimo.net　／　<a href="https://www.instagram.com/fukusuke.ashiya/" style={{ color: "#5c5c5c" }}>Instagram</a>　／　<a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/contact" style={{ color: "#5c5c5c" }}>お問い合わせ</a></p>
+            <p style={{ margin: 0 }}><a href="mailto:fukusuke@itakimo.net" style={{ color: "#5c5c5c" }}>fukusuke@itakimo.net</a>　／　<a href="https://www.instagram.com/fukusuke.ashiya/" style={{ color: "#5c5c5c" }}>Instagram</a>　／　<a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/contact" style={{ color: "#5c5c5c" }}>お問い合わせ</a></p>
           </div>
         </div>
         <p style={{ flex: "1 1 360px", minWidth: 0, margin: 0, lineHeight: 1.9 }}>当店の施術はリラクゼーションを目的としたものであり、医療行為・治療行為にはあたりません。疾病の診断・治療・予防を目的とするものではございません。体調に不安のある方は、事前に医師にご相談ください。</p>
