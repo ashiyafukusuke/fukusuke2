@@ -438,3 +438,12 @@ details[open] > summary .tog svg { transform: rotate(180deg); }
 .news-row span { flex: 1 1 280px; min-width: 0; }
 .news-row:hover span { text-decoration: underline; text-underline-offset: 5px; }
 @media (max-width: 767px) { .news-row { padding: 14px 0; } .news-row time { flex-basis: 100%; } }
+
+/* こんなときに（トップ） */
+.scenes { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 40px; font-size: 15px; color: #1a1a1a; }
+.scenes li { position: relative; padding: 12px 0 12px 20px; border-top: 1px solid #ebe9e4; line-height: 1.8; }
+.scenes li::before { content: ""; position: absolute; left: 2px; top: 23px; width: 7px; height: 7px; border-radius: 50%; background: #9b321f; }
+.scenes li span { font-size: 12px; color: #5c5c5c; }
+@media (max-width: 767px) {
+  .scenes { grid-template-columns: 1fr; font-size: 14px; }
+}

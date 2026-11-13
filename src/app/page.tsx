@@ -165,6 +165,20 @@ export default function Home() {
         </details>
       </section>
 
+      {/* こんなときに（Scenes） */}
+      <section style={{ borderBottom: "1px solid #ebe9e4" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "48px 24px" }}>
+          <p style={{ margin: "0 0 6px", fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "17px", color: "#9b321f" }}>Scenes</p>
+          <h2 style={{ margin: "0 0 20px", fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(22px, 2.6vw, 26px)", letterSpacing: "0.1em" }}>こんなときに</h2>
+          <ul className="scenes">
+            <li>立ち仕事や外回りのあと、足をしっかり揉んでほしいとき</li>
+            <li>強めの足つぼが好きで、奥まで届く圧を探しているとき</li>
+            <li>足つぼは初めてで、痛すぎないか不安なとき<span>（強さはいつでも調整できます）</span></li>
+            <li>仕事帰りの遅い時間に、ひとりで静かに過ごしたいとき</li>
+          </ul>
+        </div>
+      </section>
+
       {/* 奥までしみわたる理由（Method） */}
       <section>
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "64px 24px", display: "flex", flexWrap: "wrap", gap: "48px" }}>
