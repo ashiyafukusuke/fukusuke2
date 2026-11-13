@@ -278,8 +278,9 @@ export default function Home() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "28px 40px", fontSize: "13px" }}>
             <div style={{ borderTop: "1px solid #1a1a1a", paddingTop: "16px" }}>
               <p style={{ margin: "0 0 8px", fontWeight: 700 }}>営業時間</p>
-              <p style={{ margin: 0, color: "#3d3a34" }}>水・木　9:00–22:40</p>
-              <p style={{ margin: "0 0 10px", color: "#3d3a34" }}>その他の日　21:10–22:40（週により異なります）</p>
+              <p style={{ margin: 0, color: "#3d3a34" }}>通し営業　9:00–22:40（主に水・木）</p>
+              <p style={{ margin: "0 0 6px", color: "#3d3a34" }}>夜の特別枠　21:10–22:40（それ以外の日）</p>
+              <p style={{ margin: "0 0 10px", fontSize: "12px", color: "#5c5c5c" }}>店主は都内の足つぼ専門店でも施術を担当しているため、日中に開けられる日が限られています。</p>
               <Link className="lnk" href="/first#hours" style={{ color: "#1a1a1a" }}><span>今月の営業カレンダー</span></Link>
             </div>
             <div style={{ borderTop: "1px solid #1a1a1a", paddingTop: "16px" }}>

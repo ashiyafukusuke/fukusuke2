@@ -114,6 +114,7 @@ export default function FirstPage() {
               <dt style={{ fontWeight: 700 }}>夜の特別枠</dt>
               <dd style={{ margin: 0 }}><span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "22px" }}>21:10 – 22:40</span><span style={{ fontSize: "12px", color: "#5c5c5c", marginLeft: "12px" }}>それ以外の日</span></dd>
             </dl>
+            <p style={{ margin: "-8px 0 20px", fontSize: "13px", color: "#3d3a34" }}>店主は都内の足つぼ専門店でも施術を担当しているため、日中に開けられる日が限られています。そのぶん、夜の特別枠をできるだけ多くの日に開けています。</p>
             <BusinessCalendar />
             <p style={{ margin: "12px 0 0", fontSize: "13px", color: "#3d3a34" }}>当日のご予約も、空き枠があれば、開始1時間前までWebで承っています。</p>
           </div>
