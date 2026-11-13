@@ -85,8 +85,8 @@ export default function FirstPage() {
                 <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>施術・お着替え・お会計まで、ご予約の枠の中で終わります。延長のご案内もしていません。</p>
               </div>
               <div>
-                <h3 style={{ margin: "0 0 6px", fontSize: "14px", fontWeight: 700 }}>膝上まで出せる服装で</h3>
-                <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>足元にクリームを使います。膝上までめくれない服装の場合は、ひざ掛けをお貸しします。</p>
+                <h3 style={{ margin: "0 0 6px", fontSize: "14px", fontWeight: 700 }}>服装は、そのままで大丈夫です</h3>
+                <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>足元にクリームを使います。膝上までめくれない服装の場合は、ハーフパンツをご用意しています。ひざ掛けもお使いいただけます。</p>
               </div>
               <div>
                 <h3 style={{ margin: "0 0 6px", fontSize: "14px", fontWeight: 700 }}>到着は10分前ごろに</h3>
