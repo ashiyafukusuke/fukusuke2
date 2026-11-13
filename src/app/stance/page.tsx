@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     type: "article",
     images: [
       {
-        url: "https://www.itakimo.net/og-image.png",
+        url: "https://www.itakimo.net/og-image.png?v=4",
         width: 1200,
         height: 630,
         alt: "足つぼ専門店 イタキモ",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "イタキモの考え方｜足つぼ専門店 イタキモ",
     description: "足つぼ専門店イタキモの考え方。施術のやり方、反射区や解剖学の知識の扱い方、予約のルールと料金の考え方を、店主の言葉でまとめています。",
-    images: ["https://www.itakimo.net/og-image.png"],
+    images: ["https://www.itakimo.net/og-image.png?v=4"],
   },
 };
 

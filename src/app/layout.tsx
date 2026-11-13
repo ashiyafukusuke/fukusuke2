@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://www.itakimo.net/og-image.png",
+        url: "https://www.itakimo.net/og-image.png?v=4",
         width: 1200,
         height: 630,
         alt: "足つぼ専門店 イタキモ",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "足つぼ専門店 イタキモ｜ひばりが丘",
     description: "西東京市ひばりが丘の足つぼ専門店「イタキモ」。痛いのに、気持ちいい。帰り道は、足が軽い。台湾式をベースに、足裏から膝裏まで深く、ゆっくり揉む完全予約制の一人店です。強さはいつでも調整できます。初めての方は「左足トライアル」（60分・90分）で、合わなければお代は頂きません。",
-    images: ["https://www.itakimo.net/og-image.png"],
+    images: ["https://www.itakimo.net/og-image.png?v=4"],
   },
 };
 
@@ -46,8 +46,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ja" className="scroll-smooth">
       <head>
-        <link rel="icon" type="image/png" href="/favicon.png?v=3" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3" />
+        <link rel="icon" type="image/png" href="/favicon.png?v=4" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=4" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet" />

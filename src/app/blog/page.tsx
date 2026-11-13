@@ -16,13 +16,13 @@ export const metadata: Metadata = {
     siteName: "足つぼ専門店 イタキモ",
     locale: "ja_JP",
     type: "website",
-    images: [{ url: "https://www.itakimo.net/og-image.png", width: 1200, height: 630, alt: "足つぼ専門店 イタキモ" }],
+    images: [{ url: "https://www.itakimo.net/og-image.png?v=4", width: 1200, height: 630, alt: "足つぼ専門店 イタキモ" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "足を疑うはなし｜足つぼ専門店 イタキモ",
     description: desc,
-    images: ["https://www.itakimo.net/og-image.png"],
+    images: ["https://www.itakimo.net/og-image.png?v=4"],
   },
 };
 

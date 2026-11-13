@@ -8,7 +8,7 @@ const jsonLd = {
   name: "足つぼ専門店 イタキモ",
   url: "https://www.itakimo.net/",
   logo: "https://www.itakimo.net/logo.png",
-  image: "https://www.itakimo.net/og-image.png",
+  image: "https://www.itakimo.net/og-image.png?v=4",
   address: {
     "@type": "PostalAddress",
     postalCode: "202-0001",

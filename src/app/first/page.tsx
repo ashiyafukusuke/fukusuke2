@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     type: "article",
     images: [
       {
-        url: "https://www.itakimo.net/og-image.png",
+        url: "https://www.itakimo.net/og-image.png?v=4",
         width: 1200,
         height: 630,
         alt: "足つぼ専門店 イタキモ",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "初めての方へ｜足つぼ専門店 イタキモ",
     description: "足つぼ専門店イタキモにご予約の前に。左足トライアル、服装、営業日、アクセス、キャンセルのお約束をまとめています。",
-    images: ["https://www.itakimo.net/og-image.png"],
+    images: ["https://www.itakimo.net/og-image.png?v=4"],
   },
 };
 
