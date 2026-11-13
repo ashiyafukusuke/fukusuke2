@@ -86,7 +86,7 @@ export default function FirstPage() {
               </div>
               <div>
                 <h3 style={{ margin: "0 0 6px", fontSize: "14px", fontWeight: 700 }}>服装は、そのままで大丈夫です</h3>
-                <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>足元にクリームを使います。膝上までめくれない服装の場合は、ハーフパンツをご用意しています。ひざ掛けもお使いいただけます。</p>
+                <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>膝まわり（膝上・膝裏）までクリームを使います。膝上までめくれない服装の場合は、ハーフパンツをご用意しています。ひざ掛けもお使いいただけます。</p>
               </div>
               <div>
                 <h3 style={{ margin: "0 0 6px", fontSize: "14px", fontWeight: 700 }}>到着は10分前ごろに</h3>
