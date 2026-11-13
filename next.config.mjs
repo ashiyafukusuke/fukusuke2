@@ -18,6 +18,16 @@ const nextConfig = {
   env: {
     NEXT_PUBLIC_CALENDAR_HASH: calendarHash,
   },
+  // 旧サイト（WordPress時代）のURLに来た人を、今のページへ案内する
+  async redirects() {
+    return [
+      { source: "/archives/:path*", destination: "/news", permanent: true },
+      { source: "/blhttps-itakimo-net-archives-:slug", destination: "/news", permanent: true },
+      { source: "/contact", destination: "https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/contact", permanent: true },
+      { source: "/checkout/:path*", destination: "/", permanent: true },
+      { source: "/checkout", destination: "/", permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;
