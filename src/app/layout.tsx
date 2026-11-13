@@ -12,6 +12,7 @@ const notoSans = Noto_Sans_JP({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.itakimo.net"),
+  verification: { google: "1SoLbcK8fyjkemeqImgNI5lY7K1jQrcM9a2zGZ0NXEw" },
   title: "足つぼ専門店 イタキモ｜ひばりが丘",
   description: "西東京市ひばりが丘の足つぼ専門店「イタキモ」。痛いのに、気持ちいい。帰り道は、足が軽い。台湾式をベースに、足裏から膝裏まで深く、ゆっくり揉む完全予約制の一人店です。強さはいつでも調整できます。初めての方は「左足トライアル」（60分・90分）で、合わなければお代は頂きません。",
   alternates: {
