@@ -26,6 +26,15 @@ const nextConfig = {
       { source: "/contact", destination: "https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/contact", permanent: true },
       { source: "/checkout/:path*", destination: "/", permanent: true },
       { source: "/checkout", destination: "/", permanent: true },
+
+      // 流入元の目印つき短縮URL（どこから来たかをGA4で見分けるため）
+      { source: "/ig", destination: "/?utm_source=instagram&utm_medium=social&utm_campaign=profile", permanent: false },
+      { source: "/th", destination: "/?utm_source=threads&utm_medium=social&utm_campaign=profile", permanent: false },
+      { source: "/g", destination: "/?utm_source=google&utm_medium=organic&utm_campaign=gbp", permanent: false },
+      { source: "/ek", destination: "/?utm_source=ekiten&utm_medium=referral&utm_campaign=profile", permanent: false },
+      { source: "/st", destination: "/?utm_source=stores&utm_medium=referral&utm_campaign=profile", permanent: false },
+      { source: "/hb", destination: "/?utm_source=hibarido&utm_medium=referral&utm_campaign=profile", permanent: false },
+      { source: "/qr", destination: "/?utm_source=card&utm_medium=offline&utm_campaign=shopcard", permanent: false },
     ];
   },
 };
