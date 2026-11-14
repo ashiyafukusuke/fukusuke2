@@ -61,6 +61,13 @@ export default function BlogPostPage({ params }: Props) {
           if (b.t === "h2") {
             return <h2 key={i} style={{ margin: "44px 0 14px", fontFamily: "'Shippori Mincho', serif", fontWeight: 600, fontSize: "20px", letterSpacing: "0.06em", lineHeight: 1.6 }}>{b.text}</h2>;
           }
+          if (b.t === "ul") {
+            return (
+              <ul key={i} style={{ margin: "0 0 18px", paddingLeft: "1.4em", fontSize: "15px", lineHeight: 2.1 }}>
+                {b.items.map((it) => <li key={it}>{it}</li>)}
+              </ul>
+            );
+          }
           if (b.t === "shelves") {
             return (
               <dl key={i} style={{ margin: "0 0 24px", borderTop: "1px solid #1a1a1a" }}>

@@ -4,6 +4,7 @@
 export type BlogBlock =
   | { t: "h2"; text: string }
   | { t: "p"; text: string }
+  | { t: "ul"; items: string[] }
   | { t: "shelves"; rows: { label: string; text: string }[] };
 
 export type BlogSource = { title: string; url: string };
@@ -18,6 +19,85 @@ export type BlogPost = {
 };
 
 export const posts: BlogPost[] = [
+  {
+    slug: "who-made-the-reflex-map",
+    date: "2026-11-14",
+    title: "反射区の地図は、誰がどうやって作ったのか",
+    description: "足の裏に内臓や背骨が描かれた反射区の地図は、最初からあの形だったわけではありません。縦の線から横の線、点、そして描き直しへ。地図が足されてきた流れを、確かさで分けて整理しました。",
+    blocks: [
+      { t: "p", text: "前回は、台湾式の源流にいた人たちの話でした。今回は、その人たちが使ってきた「反射区の地図」そのものの話です。" },
+      { t: "p", text: "足の裏に内臓や背骨が描かれた、あの色とりどりの図。店の壁やサイトでよく見かけますが、最初からあの形だったわけではありません。" },
+      { t: "h2", text: "最初は、地図ではなく「線」だった" },
+      { t: "p", text: "1917年、アメリカの医師ウィリアム・フィッツジェラルドらが出した『Zone Therapy』。そこにあったのは、体を頭からつま先まで縦に10本の帯（ゾーン）に分ける考え方でした。" },
+      { t: "p", text: "たとえるなら、体に縦のストライプ模様を描くイメージです。体の真ん中を境に左右それぞれ5本ずつ。頭のてっぺんから下へ帯が通っていて、手と足の指の1本1本が、それぞれの帯の終点にあたります。" },
+      { t: "p", text: "フィッツジェラルドの考えは、「同じ帯の上にあるものは、離れていてもつながっている」というものでした。だから、ある帯の上で痛む場所があれば、同じ帯の終点にある指先を押さえることで、その痛みを和らげられるのではないか。実際に本の中では、アルミのくしで指先を押したり、洗濯ばさみや輪ゴムで指を挟んだりする方法が紹介されています。" },
+      { t: "p", text: "この段階では、まだ「足のここが胃」といった地図はありません。あるのは、体を縦に区切る10本の線だけでした。" },
+      { t: "h2", text: "経絡との関係は？" },
+      { t: "p", text: "体を縦に走る線と聞くと、鍼灸の経絡（ツボを結ぶ道筋）を思い浮かべる方もいると思います。実際、ドイツのハンネ・マルクァルトは自著の中で、フィッツジェラルドはヨーロッパで暮らしていたころに鍼の考え方に触れ、12本の経絡を10本のゾーンに単純化したのかもしれない、と推測しています。" },
+      { t: "p", text: "ただ、同じ本の中でマルクァルト自身が書いているとおり、フィッツジェラルドの本にも、元同僚たちの話にも、ゾーンの元になったものは書かれていません。何から着想したのかは、分からないというのが今のところの答えです。" },
+      { t: "p", text: "形もそっくりではありません。経絡は12本で、それぞれに決まった道筋と、結びつく臓器があります。ゾーンは、指の本数に合わせて体を縦に10本に分けた、もっと単純な線です。似ているようで、体の分け方の発想はかなり違います。" },
+      { t: "h2", text: "横の線が引かれる" },
+      { t: "p", text: "1919年、ジョー・シェルビー・ライリーが『Zone Therapy Simplified』を出し、手と足のゾーンに、横の線を8本加えました。縦と横の線で、手や足は格子状に区切られたことになります。ライリーは足と手のゾーンの図も発表しています。" },
+      { t: "h2", text: "線が「点」になる" },
+      { t: "p", text: "1930年代、そのライリーのもとで働いていたのが、理学療法士のユーニス・インガムです。" },
+      { t: "p", text: "インガムは、足に的を絞りました。そして、ゾーンという「帯」よりも細かい「点」として、臓器や体の部位を足の上に描き込んでいきます。1938年の著書『Stories the Feet Can Tell』には、足の反射点の地図が載せられました。この本は7か国語に訳されています。" },
+      { t: "p", text: "では、どの点を、なぜそこに置いたのか。" },
+      { t: "p", text: "ここがいちばん知りたいところですが、百科事典などの資料に書かれているのは、インガムが足に反射の決まった並びを「見つけた」ということまでです。" },
+      { t: "p", text: "「患者の足を押して、痛みや硬さの反応を確かめながら経験的にまとめた」という話もよく聞きます。理学療法士として多くの足に触れていた人なので、話としては自然です。" },
+      { t: "p", text: "ただ、どうやって見つけたのか、なぜその場所なのか。これらはいずれも、裏付ける当時の記録や資料が見つかっていません。" },
+      { t: "h2", text: "海を渡り、描き直される" },
+      { t: "p", text: "インガムの方法は、やがてヨーロッパへ渡ります。1960年代のはじめにはイギリスへ。ドイツではハンネ・マルクァルトが、1958年にアメリカ人の患者からインガムの本を教えられたのが始まりだと、本人が書いています。1967年にはインガム本人にも会い、1975年に本を出して、医療資格を持つ人に向けて教えました。なお、インガムに直接学んだ時期は、資料によって1958年、1967年、1970年と分かれていて、どれが正しいかは確かめられませんでした。" },
+      { t: "p", text: "スイス人看護師ヘディ・マサフレットも、その流れの中で1975年ごろに本を出しました。中国で働いたあとに書いたとされ、インガムの教え子だったとする資料もあります。ただ、どちらも資料は限られていて、インガムの地図をどう受け継いだのかは分かっていません。" },
+      { t: "p", text: "その本が1970年代に台湾のオイグスター神父の手に渡り、地図はまた描き直されます。" },
+      {
+        t: "ul",
+        items: [
+          "本では足の裏にあった生殖器官の反射区を、「繊細な臓器は力のかかりにくい場所で守られているはずだ」と、踵の内側へ移した（神父の話）",
+          "中国の陰陽五行の考え方を組み合わせた",
+          "範囲を、足の裏から膝下まで広げた",
+        ],
+      },
+      { t: "p", text: "ただ、いま出ているマサフレットの本の反射区表を見ると、踵の内側にはすでに子宮・前立腺が、踵の裏と外側には生殖腺が描かれています。神父の話と、表が食い違っているのです。初版のあとの改訂で図が変わったのか、20年以上前のことを振り返るなかで神父の話が整理されたのか。初版の図を確かめられていないので、どちらなのかはまだ分かりません。" },
+      { t: "p", text: "台湾の修士論文によると、神父の方法の反射区は、はじめは足の裏だけの59か所でした。それが83か所に増え、のちの本では89か所になっています。" },
+      { t: "h2", text: "地図は、足されてきた" },
+      { t: "p", text: "こうして並べると、反射区の地図は、一度に発見されたものではないことが分かります。" },
+      { t: "p", text: "縦の線が引かれ、横の線が加わり、点が描き込まれ、海を渡って移され、数が増えていく。そのたびに、誰かの観察と解釈が重ねられてきました。" },
+      { t: "p", text: "だからいまも、流派によって地図は同じではありません。リフレクソロジーの研究者自身が、地図が一致しないことを課題として挙げているほどです。" },
+      { t: "p", text: "そして、そのズレに、私自身がつまずいた場所があります。次回は、そこから疑いを始めます。" },
+      { t: "h2", text: "確かさで分けると" },
+      {
+        t: "shelves",
+        rows: [
+          { label: "確認された知識", text: "1917年『Zone Therapy』の縦の10ゾーン。ゾーンが左右各5本で、指に対応すること（原著）。1919年、ライリーが手と足に横の線を8本追加。1938年、インガム『Stories the Feet Can Tell』。インガムの方法がイギリス・ドイツへ広がったこと。神父が、生殖器官の反射区を踵の内側へ移したと語っていること（2002年の台湾の雑誌記事の原文）。現在のマサフレットの本の表で、生殖腺が踵の裏と外側、子宮・前立腺が踵の内側にあること。反射区が59か所から83か所へ増えたこと（修士論文）、のちの本では89か所であること（本の副題）。" },
+          { label: "伝統的な考え方", text: "足は全身の縮図で、足の点が臓器や体の部位に対応する、という反射区の地図。" },
+          { label: "仮説・未確認", text: "インガムが患者の足で確かめながら点を決めた、という説（裏付けが見つからない）。マサフレットが中国で働いていたこと、インガムの教え子だったこと（資料が少ない）。マサフレットの本の初版で、生殖器官の反射区がどこにあったか。フィッツジェラルドが経絡をもとにゾーンを作ったという説（マルクァルトの推測。本人の資料に記述なし）。" },
+        ],
+      },
+    ],
+    sources: [
+      { title: "Zone Therapy（Fitzgerald・Bowers、1917年。Project Gutenberg）", url: "https://gutenberg.org/cache/epub/54553/pg54553-images.html" },
+      { title: "Reflexology Resources：History 1915–1950", url: "https://www.reflexologyresources.com/history-1915-1950" },
+      { title: "Reflexology Resources：History 1950–1990", url: "https://www.reflexologyresources.com/history-1950-1990" },
+      { title: "Reflexology Resources：reflexology history - europe", url: "https://www.reflexologyresources.com/history-europe" },
+      { title: "Reflexology Resources：Publications 1917–1969", url: "https://www.reflexologyresources.com/publications1917-1969" },
+      { title: "Reflexology（EBSCO Research Starters）", url: "https://www.ebsco.com/research-starters/complementary-and-alternative-medicine/reflexology/" },
+      { title: "Reflexology（Gale Encyclopedia of Alternative Medicine、Encyclopedia.com）", url: "https://www.encyclopedia.com/medicine/divisions-diagnostics-and-procedures/medicine/reflexology" },
+      { title: "A Brief History of Reflexology（Integrative Massage Concepts、ABMP）", url: "https://imc.abmp.com/a-brief-history-of-reflexology" },
+      { title: "Historical Development of Foot Treatments（マルクァルト『Reflexotherapy of the Feet』の章、Musculoskeletal Key）", url: "https://musculoskeletalkey.com/historical-development-of-foot-treatments/" },
+      { title: "The Twelve Primary Qi Channels（Chiro.org）", url: "https://chiro.org/acupuncture/FULL/Twelve_Primary_Qi_Channels.html" },
+      { title: "Lyth Reflexology：History", url: "https://www.lythreflexology.co.uk/history.php" },
+      { title: "Hanne Marquardt（本人の教室 fussreflex.de）", url: "https://www.fussreflex.de/hanne-marquardt/" },
+      { title: "Hanne Marquardt zum 90. Geburtstag（HBB、ドイツのハイルプラクティカー団体）", url: "https://www.hbb-heilpraktiker.de/aktuelles/hanne-marquardt-zum-90-geburtstag.html" },
+      { title: "ICR 2011 Conference Speakers（International Council of Reflexologists）", url: "https://www.icr-reflexology.org/conferences/docs/ICR%202011%20Conference%20Speakers.pdf" },
+      { title: "Fußreflexzonentherapie nach Hanne Marquardt（ars medica Köln）", url: "https://www.arsmedica-koeln.de/heilpraktik/fu%C3%9Freflexzonentherapie-nach-hanne-marquardt/" },
+      { title: "Geschichte der Fußreflexzonenmassage（fullbalance）", url: "https://fullbalance.com/fussreflexzonenmassage/geschichte/" },
+      { title: "Reflexzonen-Tabelle（『Gesund in die Zukunft』からの抜粋、TREMA）", url: "https://www.trema-tt.ch/downloads/Reflexzonen-Tabelle.pdf" },
+      { title: "知「足」常樂──吳神父的新腳底按摩論（台灣光華雜誌、2002年12月）", url: "https://www.taiwan-panorama.com/Articles/Details?Guid=7c8d0641-7938-49e5-953e-7df20f93a341" },
+      { title: "吳若石神父足部健康法在台灣發展之研究（林進登、國立臺東大學、2005年）", url: "https://ndltd.ncl.edu.tw/cgi-bin/gs32/gsweb.cgi?o=dnclcdr&s=id=%22093NTTTC567002%22.&searchmode=basic" },
+      { title: "最新圖解FJM吳若石神父足部反射健康法（三民網路書店）", url: "https://www.sanmin.com.tw/product/index/008028602" },
+      { title: "Jones J ほか. inconsistent reflexology maps（J Altern Complement Med、2013年）", url: "https://dspace.stir.ac.uk/handle/1893/16430" },
+    ],
+  },
   {
     slug: "taiwan-style-origin",
     date: "2026-11-08",
