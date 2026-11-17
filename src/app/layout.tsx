@@ -97,6 +97,39 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             `,
           }}
         />
+        {/* data-ga-view を付けた場所まで読まれたかを計測（ページ表示ごとに1回） */}
+        <Script
+          id="gtag-view-tracking"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function () {
+                if (!('IntersectionObserver' in window)) return;
+                var sent = {};
+                var lastPath = location.pathname;
+                var io = new IntersectionObserver(function (entries) {
+                  entries.forEach(function (en) {
+                    if (!en.isIntersecting) return;
+                    var name = en.target.getAttribute('data-ga-view');
+                    io.unobserve(en.target);
+                    if (!name || sent[name] || typeof window.gtag !== 'function') return;
+                    sent[name] = true;
+                    window.gtag('event', name, { page_path: location.pathname });
+                  });
+                }, { threshold: 0.6 });
+                function scan() {
+                  if (location.pathname !== lastPath) { sent = {}; lastPath = location.pathname; }
+                  document.querySelectorAll('[data-ga-view]:not([data-ga-observed])').forEach(function (el) {
+                    el.setAttribute('data-ga-observed', '1');
+                    io.observe(el);
+                  });
+                }
+                scan();
+                new MutationObserver(scan).observe(document.body, { childList: true, subtree: true });
+              })();
+            `,
+          }}
+        />
       </body>
     </html>
   );

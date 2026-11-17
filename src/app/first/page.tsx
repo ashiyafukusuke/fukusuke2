@@ -74,7 +74,7 @@ export default function FirstPage() {
               <h3 style={{ margin: "0 0 8px", fontFamily: "'Shippori Mincho', serif", fontWeight: 600, fontSize: "22px", letterSpacing: "0.08em" }}>左足トライアル</h3>
               <p style={{ margin: "0 0 10px", fontWeight: 700 }}>合わなければ、お代は頂きません。</p>
               <p style={{ margin: 0, fontSize: "14px", color: "#3d3a34" }}>60分・90分枠が対象です。まず左足から始めます。片足が終わった時点で「合わない」と感じたら、そこで終了。足つぼが初めての方こそ、気負わず使ってください。</p>
-              <dl style={{ margin: "20px 0 0", display: "grid", gridTemplateColumns: "auto 1fr", gap: "6px 20px", fontSize: "14px", alignItems: "baseline", maxWidth: "360px" }}>
+              <dl data-ga-view="first_view_price" style={{ margin: "20px 0 0", display: "grid", gridTemplateColumns: "auto 1fr", gap: "6px 20px", fontSize: "14px", alignItems: "baseline", maxWidth: "360px" }}>
                 <dt style={{ gridColumn: "1 / -1", fontSize: "13px", fontWeight: 700, marginBottom: "2px" }}>初回の料金</dt>
                 <dt>30分</dt>
                 <dd style={{ margin: 0 }}>3,500円</dd>
@@ -126,12 +126,12 @@ export default function FirstPage() {
             </dl>
             <p style={{ margin: "-8px 0 20px", fontSize: "13px", color: "#3d3a34" }}>店主は都内の足つぼ専門店でも施術を担当しているため、日中に開けられる日が限られています。そのぶん、夜の特別枠をできるだけ多くの日に開けています。</p>
             <BusinessCalendar />
-            <p style={{ margin: "12px 0 0", fontSize: "13px", color: "#3d3a34" }}>当日のご予約も、空き枠があれば、開始1時間前までWebで承っています。</p>
+            <p data-ga-view="first_view_calendar" style={{ margin: "12px 0 0", fontSize: "13px", color: "#3d3a34" }}>当日のご予約も、空き枠があれば、開始1時間前までWebで承っています。</p>
             <a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011" style={{ marginTop: "20px", background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "15px 44px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.12em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>空き時間を見て予約する</a>
           </div>
           <div id="access" style={{ flex: "1 1 420px", minWidth: 0 }}>
             <p style={{ margin: "0 0 6px", fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "17px", color: "#9b321f" }}>Access</p>
-            <h2 style={{ margin: "0 0 24px", fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(24px, 3vw, 30px)", letterSpacing: "0.1em" }}>アクセス</h2>
+            <h2 data-ga-view="first_view_access" style={{ margin: "0 0 24px", fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(24px, 3vw, 30px)", letterSpacing: "0.1em" }}>アクセス</h2>
             <p style={{ margin: "0 0 8px", fontSize: "14px" }}>〒202-0001　東京都西東京市ひばりが丘3丁目2−51<br />HIBARIDO 2F R-09</p>
             <p style={{ margin: "0 0 24px", fontSize: "13px", color: "#3d3a34" }}>ひばりヶ丘駅・田無駅・イオンモール東久留米のあいだにあります。</p>
             <div style={{ borderTop: "1px solid #ebe9e4", fontSize: "13px" }}>
@@ -192,7 +192,7 @@ export default function FirstPage() {
       {/* 予約導線（墨色帯） */}
       <section style={{ background: "#2d2c28", color: "#fefdfa" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "48px 24px", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: "24px" }}>
-          <p style={{ margin: 0, fontFamily: "'Shippori Mincho', serif", fontSize: "clamp(22px, 3vw, 30px)", letterSpacing: "0.1em" }}>気負わず、まずは左足から。</p>
+          <p style={{ margin: 0, fontFamily: "'Shippori Mincho', serif", fontSize: "clamp(22px, 3vw, 30px)", letterSpacing: "0.1em" }} data-ga-view="first_view_end">気負わず、まずは左足から。</p>
           <a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011" style={{ background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "15px 44px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.12em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>予約する</a>
         </div>
       </section>
