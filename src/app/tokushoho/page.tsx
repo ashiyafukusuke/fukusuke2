@@ -19,7 +19,7 @@ const rows: { label: string; body: ReactNode }[] = [
     label: "電話番号",
     body: (
       <>
-        070-7476-7602
+        080-6264-6460
         <br />
         <span style={{ fontSize: "12px", color: "#5c5c5c" }}>施術中はお電話に出られないことがあります。メールでのご連絡が確実です。</span>
       </>
