@@ -33,6 +33,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.6,
     },
+    {
+      url: "https://www.itakimo.net/tokushoho",
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
     ...posts.map((p) => ({
       url: `https://www.itakimo.net/blog/${p.slug}`,
       lastModified: new Date(p.date),

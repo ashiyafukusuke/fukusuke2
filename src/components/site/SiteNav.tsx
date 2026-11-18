@@ -58,6 +58,7 @@ export function FooterNav({ style }: { style?: CSSProperties }) {
       <Link href="/news">お知らせ</Link>
       <Link href="/blog">足を疑うはなし</Link>
       <a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/contact">お問い合わせ</a>
+      <Link href="/tokushoho">特定商取引法に基づく表記</Link>
     </nav>
   );
 }
