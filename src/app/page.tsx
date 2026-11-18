@@ -33,6 +33,7 @@ const jsonLd = {
 };
 
 const storesReviews: { date: string; text: string }[] = [
+  { date: "2026年11月16日", text: "歩く事が辛かったのですが、施術後は軽く歩けるようになりました。また軽く歩けるようになった為、歩く事がこんなにも楽しいものなのだと思わされました。時期をみて再度施術をお願いしようと考えておりますので、何卒よろしくお願いいたします。" },
   { date: "2026年8月26日", text: "足裏マッサージは好きでたまに行きますが、寝ての施術になるところが多く、イタキモさんはリクライニングチェアーで座っての施術なので、なんでゴリゴリしたのが出るのかなど聞くことができてとても勉強になりました。右足と左足で同じ強さで施術いただいているのに感じ方が全く違うのも面白かったです。痛めにしてもらうのが好きなのですが、痛すぎるとすぐ根をあげるので、「もう少し強めに」→「やっぱりもう少しソフトに」と細やかに応えていただき足が喜んでいます。疲れた時のご褒美でまた伺えればと思います。ありがとうございました。" },
   { date: "2026年8月17日", text: "2度目のお伺いでした。\n連日の座り仕事に加えて、慣れない庭仕事も重なり、「これは足にご褒美をあげなくては……」と伺いました。\n絶妙な圧を痛気持ち良く感じながら施術を受けていると、足の状態が明確に変わっていくのが分かり、とても面白く、すっかりクセになりそうです。\n翌日も足がポカポカしていて、柔らかい状態が続いているのがうれしく、今回も効果を実感しました。\n近場で当日でも駆け込みでお願いできること、事前決済ができるので身軽に行けることも、とてもありがたいです。\nまたよろしくお願いします。" },
   { date: "2026年8月14日", text: "店名通りイタ気持ちいい強さで足裏とふくらはぎを丁寧にもんでいただきました。足が随分とほぐれた気がします。" },
@@ -139,8 +140,8 @@ export default function Home() {
           <summary style={{ listStyle: "none", cursor: "pointer", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "12px 24px", padding: "20px 0", minHeight: "44px" }}>
             <span style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: "6px 20px" }}>
               <span style={{ fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(22px, 2.6vw, 26px)", letterSpacing: "0.1em", color: "#1a1a1a" }}>足をお任せいただいた方の声</span>
-              <span style={{ fontSize: "12px", color: "#5c5c5c" }}>Googleクチコミ <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "20px", color: "#1a1a1a" }}>5.0</span>（4件）</span>
-              <span style={{ fontSize: "12px", color: "#5c5c5c" }}>STORESレビュー <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "20px", color: "#1a1a1a" }}>7</span>件</span>
+              <span style={{ fontSize: "12px", color: "#5c5c5c" }}>Googleクチコミ <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "20px", color: "#1a1a1a" }}>5.0</span>（5件）</span>
+              <span style={{ fontSize: "12px", color: "#5c5c5c" }}>STORESレビュー <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "20px", color: "#1a1a1a" }}>8</span>件</span>
             </span>
             <span className="tog" style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "13px", color: "#1a1a1a" }}>
               <span className="tog-o">開く</span><span className="tog-c">閉じる</span>
