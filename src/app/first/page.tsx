@@ -3,6 +3,9 @@ import Link from "next/link";
 import { SiteNav, FooterNav } from "@/components/site/SiteNav";
 import { BusinessCalendar } from "@/components/site/BusinessCalendar";
 
+// 営業カレンダーの「終わった月」を外すため、1時間ごとに作り直す
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "初めての方へ｜足つぼ専門店 イタキモ",
   description: "足つぼ専門店イタキモにご予約の前に。左足トライアル、服装、営業日、アクセス、キャンセルのお約束をまとめています。",

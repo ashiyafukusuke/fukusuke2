@@ -1,9 +1,9 @@
-import { calendar, dayTypeLabel, type DayType } from "@/data/calendar";
+import { upcomingMonths, dayTypeLabel, type DayType, type MonthCalendar } from "@/data/calendar";
 
 const WEEK = ["月", "火", "水", "木", "金", "土", "日"];
 
-export function BusinessCalendar() {
-  const { year, month, days, defaultType, holidays, notes } = calendar;
+function MonthTable({ cal }: { cal: MonthCalendar }) {
+  const { year, month, days, defaultType, holidays, notes, footnote } = cal;
   const first = new Date(year, month - 1, 1);
   const last = new Date(year, month, 0).getDate();
   const offset = (first.getDay() + 6) % 7; // 月曜始まり
@@ -11,8 +11,9 @@ export function BusinessCalendar() {
   while (cells.length % 7) cells.push(null);
   const typeOf = (d: number): DayType => days[d] ?? defaultType;
   const wd = (d: number) => WEEK[(new Date(year, month - 1, d).getDay() + 6) % 7];
-  const fullDays = Array.from({ length: last }, (_, i) => i + 1).filter((d) => typeOf(d) === "full");
-  const closedDays = Array.from({ length: last }, (_, i) => i + 1).filter((d) => typeOf(d) === "closed");
+  const all = Array.from({ length: last }, (_, i) => i + 1);
+  const fullDays = all.filter((d) => typeOf(d) === "full");
+  const closedDays = all.filter((d) => typeOf(d) === "closed");
 
   return (
     <div className="bcal">
@@ -47,7 +48,17 @@ export function BusinessCalendar() {
         通し営業（9:00–22:40）：{fullDays.map((d) => `${d}日（${wd(d)}${holidays.includes(d) ? "・祝" : ""}）`).join("、")}。
         {closedDays.length ? `休業：${closedDays.map((d) => `${d}日（${wd(d)}）${notes[d] ? `　${notes[d]}` : ""}`).join("、")}。` : ""}
         それ以外の日は、夜の特別枠（21:10–22:40）です。
+        {footnote ? <><br />{footnote}</> : null}
       </p>
+    </div>
+  );
+}
+
+export function BusinessCalendar() {
+  const list = upcomingMonths();
+  return (
+    <div style={{ display: "grid", gap: "32px" }}>
+      {list.map((c) => <MonthTable key={`${c.year}-${c.month}`} cal={c} />)}
     </div>
   );
 }

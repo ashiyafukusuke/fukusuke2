@@ -5,6 +5,12 @@ export type NewsItem = { id: string; date: string; title: string; body: string }
 
 export const news: NewsItem[] = [
   {
+    id: "2026-12-schedule",
+    date: "2026-11-18",
+    title: "12月の営業日と、年末年始の営業について",
+    body: "12月の営業日を「初めての方へ」の営業カレンダーに載せました。\n12月19日（土）はお休みをいただきます。\n年末年始も営業します。12月30日（水）・31日（木）と、1月1日（金・祝）〜3日（日）は、通し営業（9:00〜22:40）です。",
+  },
+  {
     id: "2026-11-renewal",
     date: "2026-11-04",
     title: "ロゴとサイトを新しくしました",
