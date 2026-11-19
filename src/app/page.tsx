@@ -186,7 +186,7 @@ export default function Home() {
           <div style={{ flex: "1 1 300px", minWidth: 0 }}>
             <p style={{ margin: "0 0 6px", fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "17px", color: "#9b321f" }}>Method</p>
             <h2 style={{ margin: "0 0 24px", fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(24px, 3vw, 30px)", letterSpacing: "0.1em" }}>奥までしみわたる理由</h2>
-            <p style={{ margin: "0 0 28px", color: "#3d3a34", lineHeight: 2.1 }}>反射区を地図に、構造をたどる。足裏から膝裏まで、つながりごとほどく。台湾式の手技を土台に、解剖学と神経の働きの知見を重ねています。</p>
+            <p style={{ margin: "0 0 28px", color: "#3d3a34", lineHeight: 2.1 }}>反射区を手がかりに、構造をたどる。足裏から膝裏まで、つながりごとほどく。台湾式の手技を土台に、解剖学と神経の働きの知見を重ねています。</p>
             <Link className="lnk" href="/stance#technique" style={{ color: "#1a1a1a", fontSize: "13px" }}><span>施術について詳しく読む</span></Link>
           </div>
           <div className="reasons" style={{ flex: "2 1 600px", minWidth: 0, display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: "32px 24px" }}>
