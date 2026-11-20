@@ -99,7 +99,7 @@ export default function FirstPage() {
               </div>
               <div>
                 <h3 style={{ margin: "0 0 6px", fontSize: "14px", fontWeight: 700 }}>到着は5分前ごろに</h3>
-                <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>5分前からお迎えできるよう準備しています。一人で営業しているため、前のご予約が続いているときは、早く着くと外でお待たせする時間が長くなってしまいます。待合スペースもないので、早く着いた場合は近くで少し時間を調整してからお越しください。</p>
+                <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>5分前からお迎えできるよう準備しています。一人で営業しているため、前のご予約が続いているときは、早く着くとお待たせする時間が長くなってしまいます。時間まで建物の中でお待ちいただくこともできますが、施設内はほとんどがレンタルワークスペースで、お待ちいただける場所は限られています。あまりくつろげる場所ではないので、早く着いた場合は、近くで少し時間を調整してからお越しいただくのがおすすめです。</p>
               </div>
               <div>
                 <h3 style={{ margin: "0 0 6px", fontSize: "14px", fontWeight: 700 }}>妊娠中の方・お子さま</h3>
@@ -125,7 +125,7 @@ export default function FirstPage() {
               <li><div><strong>キャンセル料は頂きません。</strong><span>当日のキャンセルでも同じです。わかった時点で、ひと言ご連絡ください。</span></div></li>
               <li><div><strong>無断キャンセルの方からは、以降のご予約をお受けしていません。</strong><span>連絡のないまま枠が空くと、その時間を必要としていた別の方が予約できなくなってしまうためです。</span></div></li>
               <li><div><strong>直前のキャンセルが続く場合も、お受けしないことがあります。</strong><span>ただし、体調不良やご家族の事情、足のけが・炎症などでのキャンセルは、ご連絡があれば基本的に対象にしません。足が痛むときは、無理をせずキャンセルや日程変更をしてください。</span></div></li>
-              <li><div><strong>変更・キャンセルの方法</strong><span>キャンセルは、予約確認メールのリンクからお手続きください。日時の変更は、メール（<a href="mailto:fukusuke@itakimo.net" style={{ color: "#3d3a34" }}>fukusuke@itakimo.net</a>）・Instagram DM・<a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/contact" style={{ color: "#3d3a34" }}>お問い合わせフォーム</a>からご連絡ください。</span></div></li>
+              <li><div><strong>変更・キャンセルの方法</strong><span>どちらも、メール（<a href="mailto:fukusuke@itakimo.net" style={{ color: "#3d3a34" }}>fukusuke@itakimo.net</a>）・Instagram DM・<a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/contact" style={{ color: "#3d3a34" }}>お問い合わせフォーム</a>からご連絡ください。</span></div></li>
             </ol>
             <p style={{ margin: "14px 0 0", fontSize: "12px", color: "#5c5c5c" }}>ルールを決めている理由は、<Link href="/stance" style={{ color: "#9b321f" }}>イタキモの考え方</Link>に書いています。</p>
           </div>
