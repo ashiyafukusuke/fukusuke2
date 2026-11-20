@@ -451,7 +451,7 @@ details[open] > summary .tog svg { transform: rotate(180deg); }
 /* プライバシーポリシー本文 */
 .pp p { margin: 0 0 8px; }
 .pp p:last-child { margin-bottom: 0; }
-.pp ul { margin: 0 0 8px; padding-left: 1.4em; }
+.pp ul { margin: 0 0 8px; padding-left: 1.4em; list-style: disc; }
 .pp li { margin: 2px 0; }
 
 /* ご予約のルール（初めての方へ） */
