@@ -8,13 +8,13 @@ export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "初めての方へ｜足つぼ専門店 イタキモ",
-  description: "足つぼ専門店イタキモにご予約の前に。左足トライアル、服装、営業日、アクセス、キャンセルのお約束をまとめています。",
+  description: "足つぼ専門店イタキモにご予約の前に。左足トライアル、ご予約のルール、服装、営業日、アクセスをまとめています。",
   alternates: {
     canonical: "/first",
   },
   openGraph: {
     title: "初めての方へ｜足つぼ専門店 イタキモ",
-    description: "足つぼ専門店イタキモにご予約の前に。左足トライアル、服装、営業日、アクセス、キャンセルのお約束をまとめています。",
+    description: "足つぼ専門店イタキモにご予約の前に。左足トライアル、ご予約のルール、服装、営業日、アクセスをまとめています。",
     url: "https://www.itakimo.net/first",
     siteName: "足つぼ専門店 イタキモ",
     locale: "ja_JP",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "初めての方へ｜足つぼ専門店 イタキモ",
-    description: "足つぼ専門店イタキモにご予約の前に。左足トライアル、服装、営業日、アクセス、キャンセルのお約束をまとめています。",
+    description: "足つぼ専門店イタキモにご予約の前に。左足トライアル、ご予約のルール、服装、営業日、アクセスをまとめています。",
     images: ["https://www.itakimo.net/og-image.png?v=4"],
   },
 };
@@ -94,16 +94,12 @@ export default function FirstPage() {
                 <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>強く押すほど深く届くわけではありません。筋肉が圧に慣れてきたとき、はじめて指は奥に入っていきます。「もう少し強く」「弱めに」は、遠慮なくお伝えください。</p>
               </div>
               <div>
-                <h3 style={{ margin: "0 0 6px", fontSize: "14px", fontWeight: 700 }}>枠の中ですべて完結</h3>
-                <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>施術・お着替え・お会計まで、ご予約の枠の中で終わります。延長のご案内もしていません。</p>
-              </div>
-              <div>
                 <h3 style={{ margin: "0 0 6px", fontSize: "14px", fontWeight: 700 }}>服装は、そのままで大丈夫です</h3>
                 <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>膝まわり（膝上・膝裏）までクリームを使います。膝上までめくれない服装の場合は、ハーフパンツをご用意しています。ひざ掛けもお使いいただけます。</p>
               </div>
               <div>
                 <h3 style={{ margin: "0 0 6px", fontSize: "14px", fontWeight: 700 }}>到着は10分前ごろに</h3>
-                <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>待合スペースがないため、早く着いた場合は近くで少し時間を調整してからお越しください。遅れた場合も終了時間は変わりませんので、焦らず安全第一でお越しください。</p>
+                <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>待合スペースがないため、早く着いた場合は近くで少し時間を調整してからお越しください。</p>
               </div>
               <div>
                 <h3 style={{ margin: "0 0 6px", fontSize: "14px", fontWeight: 700 }}>妊娠中の方・お子さま</h3>
@@ -111,6 +107,27 @@ export default function FirstPage() {
               </div>
             </div>
             <p style={{ margin: "32px 0 0", fontSize: "12px", color: "#5c5c5c" }}>足の硬さや左右の違いなど、気づいたことは施術中にお伝えします。痛みやしびれが続く場合は、整形外科（足の外科）の受診をおすすめします。</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ご予約のルール */}
+      <section id="rules" style={{ borderBottom: "1px solid #ebe9e4", background: "#f8f6f1" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "56px 24px", display: "flex", flexWrap: "wrap", gap: "32px 48px" }}>
+          <div style={{ flex: "1 1 260px", minWidth: 0 }}>
+            <p style={{ margin: "0 0 6px", fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "17px", color: "#9b321f" }}>Rules</p>
+            <h2 style={{ margin: "0 0 12px", fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(24px, 3vw, 30px)", letterSpacing: "0.1em" }}>ご予約のルール</h2>
+            <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>限られた枠を大切にしたいので、先にお伝えしておきます。お互いの時間を誠実に扱うためのお約束です。</p>
+          </div>
+          <div style={{ flex: "3 1 640px", minWidth: 0 }}>
+            <ol className="rules">
+              <li><div><strong>遅れても、終了時間は変わりません。</strong><span>施術・お着替え・お会計まで、ご予約の枠の中で終わります。延長のご案内もしていません。遅れそうなときも、焦らず安全第一でお越しください。</span></div></li>
+              <li><div><strong>キャンセル料は頂きません。</strong><span>当日のキャンセルでも同じです。わかった時点で、ひと言ご連絡ください。</span></div></li>
+              <li><div><strong>無断キャンセルの方からは、以降のご予約をお受けしていません。</strong><span>連絡のないまま枠が空くと、その時間を必要としていた別の方が予約できなくなってしまうためです。</span></div></li>
+              <li><div><strong>直前のキャンセルが続く場合も、お受けしないことがあります。</strong><span>ただし、体調不良やご家族の事情、足のけが・炎症などでのキャンセルは、ご連絡があれば基本的に対象にしません。足が痛むときは、無理をせずキャンセルや日程変更をしてください。</span></div></li>
+              <li><div><strong>変更・キャンセルの方法</strong><span>キャンセルは、予約確認メールのリンクからお手続きください。日時の変更は、メール（<a href="mailto:fukusuke@itakimo.net" style={{ color: "#3d3a34" }}>fukusuke@itakimo.net</a>）・Instagram DM・<a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/contact" style={{ color: "#3d3a34" }}>お問い合わせフォーム</a>からご連絡ください。</span></div></li>
+            </ol>
+            <p style={{ margin: "14px 0 0", fontSize: "12px", color: "#5c5c5c" }}>ルールを決めている理由は、<Link href="/stance" style={{ color: "#9b321f" }}>イタキモの考え方</Link>に書いています。</p>
           </div>
         </div>
       </section>
@@ -160,34 +177,6 @@ export default function FirstPage() {
               <video src="/videos/access-route.mp4" poster="/videos/access-route-poster.jpg" controls muted playsInline preload="none" style={{ display: "block", width: "100%", maxWidth: "320px", aspectRatio: "9 / 16", background: "#f1efea" }} />
               <p style={{ margin: "8px 0 0", fontSize: "12px", color: "#5c5c5c" }}>約25秒・音声はありません。</p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 予約の変更・キャンセル */}
-      <section>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "52px 24px", display: "flex", flexWrap: "wrap", gap: "32px 48px" }}>
-          <div style={{ flex: "1 1 260px", minWidth: 0 }}>
-            <p style={{ margin: "0 0 6px", fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "17px", color: "#9b321f" }}>Policy</p>
-            <h2 style={{ margin: 0, fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "22px", letterSpacing: "0.1em" }}>予約の変更・キャンセル</h2>
-          </div>
-          <div style={{ flex: "3 1 640px", minWidth: 0 }}>
-            <p style={{ margin: "0 0 16px", fontSize: "13px", color: "#3d3a34" }}>限られた枠を大切にしたいと思っています。お互いの時間を誠実に扱うためのお約束です。</p>
-            <dl style={{ margin: 0, fontSize: "13px", borderTop: "1px solid #ebe9e4" }}>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "4px 24px", padding: "12px 0", borderBottom: "1px solid #ebe9e4" }}>
-                <dt style={{ flex: "0 0 200px", fontWeight: 700 }}>予約の変更</dt>
-                <dd style={{ margin: 0, flex: "1 1 260px", color: "#3d3a34" }}>メール（<a href="mailto:fukusuke@itakimo.net" style={{ color: "#3d3a34" }}>fukusuke@itakimo.net</a>）・Instagram DM・お問い合わせフォームからご連絡ください。</dd>
-              </div>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "4px 24px", padding: "12px 0", borderBottom: "1px solid #ebe9e4" }}>
-                <dt style={{ flex: "0 0 200px", fontWeight: 700 }}>当日キャンセル（連絡あり）</dt>
-                <dd style={{ margin: 0, flex: "1 1 260px", color: "#3d3a34" }}>キャンセル料は頂きません。ただし、直前のキャンセルが続く場合は、以降のご予約をお受けしないことがあります。</dd>
-              </div>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "4px 24px", padding: "12px 0", borderBottom: "1px solid #ebe9e4" }}>
-                <dt style={{ flex: "0 0 200px", fontWeight: 700 }}>無断キャンセル</dt>
-                <dd style={{ margin: 0, flex: "1 1 260px", color: "#3d3a34" }}>以降のご予約はお受けしていません。</dd>
-              </div>
-            </dl>
-            <p style={{ margin: "14px 0 0", fontSize: "12px", color: "#5c5c5c" }}>このルールを設けているのは、枠を押さえたまま来られない方がいると、その時間を必要としている別の方が機会を失ってしまうからです。キャンセルは予約確認メールのリンクからお手続きください。</p>
           </div>
         </div>
       </section>

@@ -447,3 +447,16 @@ details[open] > summary .tog svg { transform: rotate(180deg); }
 @media (max-width: 767px) {
   .scenes { grid-template-columns: 1fr; font-size: 14px; }
 }
+
+/* プライバシーポリシー本文 */
+.pp p { margin: 0 0 8px; }
+.pp p:last-child { margin-bottom: 0; }
+.pp ul { margin: 0 0 8px; padding-left: 1.4em; }
+.pp li { margin: 2px 0; }
+
+/* ご予約のルール（初めての方へ） */
+.rules { list-style: none; margin: 0; padding: 0; border-top: 1px solid #ebe9e4; counter-reset: rule; }
+.rules li { counter-increment: rule; display: grid; grid-template-columns: 36px 1fr; gap: 0 12px; padding: 16px 0; border-bottom: 1px solid #ebe9e4; }
+.rules li::before { content: counter(rule, decimal-leading-zero); font-family: 'Cormorant Garamond', serif; font-size: 22px; line-height: 1.3; color: #9b321f; }
+.rules strong { display: block; font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 2px; }
+.rules span { display: block; font-size: 13px; color: #3d3a34; }
