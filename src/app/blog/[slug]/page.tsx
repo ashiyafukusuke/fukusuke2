@@ -87,7 +87,7 @@ export default function BlogPostPage({ params }: Props) {
           <h2 style={{ margin: "0 0 10px", fontSize: "13px", fontWeight: 500, color: "#3d3a34" }}>出典</h2>
           <ul style={{ margin: 0, paddingLeft: "18px", fontSize: "12px", color: "#5c5c5c", lineHeight: 1.9, overflowWrap: "anywhere" }}>
             {post.sources.map((s) => (
-              <li key={s.url}><a href={s.url} rel="noopener noreferrer" target="_blank" style={{ color: "#5c5c5c" }}>{s.title}</a></li>
+              <li key={s.title}>{s.url ? <a href={s.url} rel="noopener noreferrer" target="_blank" style={{ color: "#5c5c5c" }}>{s.title}</a> : s.title}</li>
             ))}
           </ul>
         </section>
