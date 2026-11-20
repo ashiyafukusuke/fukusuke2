@@ -79,8 +79,6 @@ export default function FirstPage() {
               <p style={{ margin: 0, fontSize: "14px", color: "#3d3a34" }}>60分・90分枠が対象です。まず左足から始めます。片足が終わった時点で「合わない」と感じたら、そこで終了。足つぼが初めての方こそ、気負わず使ってください。</p>
               <dl data-ga-view="first_view_price" style={{ margin: "20px 0 0", display: "grid", gridTemplateColumns: "auto 1fr", gap: "6px 20px", fontSize: "14px", alignItems: "baseline", maxWidth: "360px" }}>
                 <dt style={{ gridColumn: "1 / -1", fontSize: "13px", fontWeight: 700, marginBottom: "2px" }}>初回の料金</dt>
-                <dt>30分</dt>
-                <dd style={{ margin: 0 }}>3,500円</dd>
                 <dt>60分</dt>
                 <dd style={{ margin: 0 }}>6,500円<span style={{ fontSize: "12px", color: "#5c5c5c", marginLeft: "8px" }}>左足トライアル対象</span></dd>
                 <dt>90分</dt>

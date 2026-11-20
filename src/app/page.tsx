@@ -246,12 +246,6 @@ export default function Home() {
             </div>
             <div className="menu-grid" style={{ flex: "3 1 640px", minWidth: 0, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(190px, 1fr))", gap: 0 }}>
               <div style={{ padding: "0 28px 28px", borderLeft: "1px solid #ebe9e4" }}>
-                <p style={{ margin: "0 0 4px", fontSize: "13px", fontWeight: 700 }}>30分</p>
-                <p style={{ margin: "0 0 12px", fontSize: "12px", color: "#5c5c5c" }}>短時間で足をリセット</p>
-                <p style={{ margin: 0, fontSize: "12px", color: "#5c5c5c" }}>初回 <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "30px", color: "#1a1a1a" }}>3,500</span>円</p>
-                <p style={{ margin: 0, fontSize: "12px", color: "#5c5c5c" }}>2回目以降 3,300円</p>
-              </div>
-              <div style={{ padding: "0 28px 28px", borderLeft: "1px solid #ebe9e4" }}>
                 <p style={{ margin: "0 0 4px", fontSize: "13px", fontWeight: 700 }}>
                   60分 <span style={{ marginLeft: "6px", fontSize: "10px", fontWeight: 500, color: "#9b321f", border: "1px solid #9b321f", borderRadius: "2px", padding: "1px 6px" }}>初めての方に</span>
                 </p>
@@ -270,7 +264,7 @@ export default function Home() {
           <div style={{ marginTop: "28px", paddingTop: "22px", borderTop: "1px solid #ebe9e4", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: "20px 40px" }}>
             <div style={{ flex: "1 1 480px", minWidth: 0 }}>
               <p style={{ margin: "0 0 6px", fontFamily: "'Shippori Mincho', serif", fontSize: "17px" }}>通ってくださる方ほど安くなるのが、正しいと思っています。</p>
-              <p style={{ margin: 0, fontSize: "12px", color: "#5c5c5c" }}>2回目以降は、間隔が空いてもずっと継続料金です。さらに2回目以降は、予約時にカード決済をされると、60分・90分は500円、30分は300円お安くなります（初回は割引の対象外です）。施術後のお会計もなく、そのままお帰りいただけます。</p>
+              <p style={{ margin: 0, fontSize: "12px", color: "#5c5c5c" }}>2回目以降は、間隔が空いてもずっと継続料金です。さらに2回目以降は、予約時にカード決済をされると、500円お安くなります（初回は割引の対象外です）。施術後のお会計もなく、そのままお帰りいただけます。</p>
             </div>
           </div>
         </div>
