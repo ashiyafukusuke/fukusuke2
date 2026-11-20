@@ -122,9 +122,7 @@ export default function FirstPage() {
           <div style={{ flex: "3 1 640px", minWidth: 0 }}>
             <ol className="rules">
               <li><div><strong>遅れても、終了時間は変わりません。</strong><span>施術・お着替え・お会計まで、ご予約の枠の中で終わります。延長のご案内もしていません。遅れそうなときも、焦らず安全第一でお越しください。</span></div></li>
-              <li><div><strong>キャンセル料は頂きません。</strong><span>当日のキャンセルでも同じです。わかった時点で、ひと言ご連絡ください。</span></div></li>
-              <li><div><strong>無断キャンセルの方からは、以降のご予約をお受けしていません。</strong><span>連絡のないまま枠が空くと、その時間を必要としていた別の方が予約できなくなってしまうためです。</span></div></li>
-              <li><div><strong>直前のキャンセルが続く場合も、お受けしないことがあります。</strong><span>ただし、体調不良やご家族の事情、足のけが・炎症などでのキャンセルは、ご連絡があれば基本的に対象にしません。足が痛むときは、無理をせずキャンセルや日程変更をしてください。</span></div></li>
+              <li><div><strong>キャンセル料は頂きません。</strong><span>ただし、無断キャンセルの方からは、以降のご予約をお受けしていません。直前のキャンセルが続く場合も、お受けしないことがあります。体調やご家族の事情、足のけがなどでのキャンセルは、ご連絡があれば対象にしません。</span></div></li>
               <li><div><strong>変更・キャンセルの方法</strong><span>どちらも、メール（<a href="mailto:fukusuke@itakimo.net" style={{ color: "#3d3a34" }}>fukusuke@itakimo.net</a>）・Instagram DM・<a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/contact" style={{ color: "#3d3a34" }}>お問い合わせフォーム</a>からご連絡ください。</span></div></li>
             </ol>
             <p style={{ margin: "14px 0 0", fontSize: "12px", color: "#5c5c5c" }}>ルールを決めている理由は、<Link href="/stance" style={{ color: "#9b321f" }}>イタキモの考え方</Link>に書いています。</p>
