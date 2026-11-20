@@ -18,6 +18,10 @@ const nextConfig = {
   env: {
     NEXT_PUBLIC_CALENDAR_HASH: calendarHash,
   },
+  // 自前予約ページ（public/yoyaku/index.html）を /yoyaku で開く
+  async rewrites() {
+    return [{ source: "/yoyaku", destination: "/yoyaku/index.html" }];
+  },
   // 旧サイト（WordPress時代）のURLに来た人を、今のページへ案内する
   async redirects() {
     return [

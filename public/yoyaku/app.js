@@ -1,0 +1,284 @@
+(function(){
+const WD = ["日","月","火","水","木","金","土"];
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const pad = n => String(n).padStart(2,"0");
+const hm = m => `${Math.floor(m/60)}:${pad(m%60)}`;
+const yen = n => "¥" + Number(n).toLocaleString("ja-JP");
+// 日付はすべて "YYYY-MM-DD" の文字列で扱う（日本時間。サーバーの今日を基準にする）
+const D = s => new Date(s + "T00:00:00Z");
+const ks = d => d.toISOString().slice(0,10);
+const addD = (s, n) => ks(new Date(D(s).getTime() + n*864e5));
+const wd = s => D(s).getUTCDay();
+const fmt = s => { const d = D(s); return `${d.getUTCMonth()+1}月${d.getUTCDate()}日（${WD[d.getUTCDay()]}）`; };
+
+const GAP = 15, CUTOFF = 60, HORIZON = 60;
+const COURSES = [
+  { id:"c60", min:60, label:"初めての方に", desc:"足裏からふくらはぎ・膝裏まで", trial:true, first:6500, repeat:5500, prepayOff:500, cap:1000 },
+  { id:"c90", min:90, label:"最近1番選ばれています", hot:true, desc:"60分よりゆったりした流れで", trial:true, first:9000, repeat:8000, prepayOff:500, cap:1500 }
+];
+const EB = [ { days:7, off:1000, label:"7日以上前" }, { days:1, off:500, label:"前日まで" } ];
+
+let av = null;          // サーバーから届いた空き状況
+let loadErr = "";
+const today = () => av.today;
+const ahead = s => Math.round((D(s) - D(today())) / 864e5);
+const kindOf = s => (av && av.days[s]) || "closed";
+const hoursOf = k => k === "full" ? { s:9*60, e:22*60+40, step:30, last:22*60+40 } : { s:21*60+10, e:22*60+40, step:10, last:21*60+40 };
+
+function price(c, visit, pay, a) {
+  const base = visit === "first" ? c.first : c.repeat;
+  const prepay = (visit === "repeat" && pay === "card") ? c.prepayOff : 0;
+  let eb = 0, ebLabel = "";
+  if (a > 0) { const h = EB.find(x => a >= x.days); if (h) { eb = h.off; ebLabel = h.label; } }
+  const raw = prepay + eb, off = Math.min(raw, c.cap);
+  return { base, prepay, eb, ebLabel, capped: raw > off, off, total: base - off };
+}
+
+function slots(s, c) {
+  const a = ahead(s), k = kindOf(s); if (k === "closed" || a < 0 || a > HORIZON) return [];
+  const h = hoursOf(k), res = av.booked.filter(b => b.date === s);
+  if (k === "night" && res.length) return [];
+  const out = [];
+  for (let m = h.s; m + c.min <= h.e && m <= h.last; m += h.step) {
+    if (a === 0 && m < av.nowMin + CUTOFF) continue;
+    const e = m + c.min + GAP;
+    out.push({ m, taken: res.some(b => m < b.e + GAP && b.s < e) });
+  }
+  return out;
+}
+function capacity(s, c) {
+  let n = 0, next = -1; for (const x of slots(s, c).filter(x => !x.taken)) if (x.m >= next) { n++; next = x.m + c.min + GAP; } return n;
+}
+
+const blank = () => ({ step:1, visit:null, cid:null, pay:"onsite", date:null, time:null, mo:0, f:{ name:"", tel:"", mail:"", memo:"", agree:false }, q:{ first:null, stay:null, hurt:null }, err:"", done:null, busy:false, info:"" });
+const ui = blank();
+
+function rulesHtml() {
+  return `<section class="rules" aria-labelledby="rt">
+    <h2 id="rt">ご予約の前に</h2>
+    <ol>
+      <li><div><strong>遅れても、終了時間は変わりません。</strong><span>施術・お着替え・お会計まで、ご予約の枠の中で終わります。到着は5分前ごろを目安にお越しください。</span></div></li>
+      <li><div><strong>キャンセル料は頂きません。</strong><span>ただし、無断キャンセルの方からは、以降のご予約をお受けしていません。直前のキャンセルが続く場合も、お受けしないことがあります。体調やご家族の事情、足のけがなどでのキャンセルは、ご連絡があれば対象にしません。</span></div></li>
+      <li><div><strong>変更・キャンセルの方法</strong><span>どちらも、メール（fukusuke@itakimo.net）・Instagram DM・お問い合わせフォームからご連絡ください。</span></div></li>
+    </ol>
+    <p class="more">個人情報を守るため、ご予約名は本名でなくてもかまいません。お手数でなければ、ニックネームなど本名以外のお名前をおすすめします。<br>お預かりする情報の扱いは、<a href="/privacy" target="_blank" rel="noopener" style="color:var(--brand);">プライバシーポリシー</a>をご覧ください。</p>
+  </section>`;
+}
+
+const Q = [
+  { k:"first", t:"イタキモ以外も含めて、足つぼ専門店は初めてですか？", req:true, o:["はい","いいえ"] },
+  { k:"hurt",  t:"足にけが・痛み・腫れはありますか？", req:true, o:["ない","ある（下の欄で教えてください）"] },
+  { k:"stay",  t:"施術中の過ごし方（任意）", o:["静かに受けたい","おまかせ"] }
+];
+function qHtml() {
+  return `<div class="qbox"><p>施術の時間は、できるだけ足を揉むことに使いたいと思っています。お手数ですが、この場をお借りして、施術前のご質問をさせてください。</p>
+    ${Q.map(q => `<div class="q"><span>${q.t}${q.req ? `<em style="font-style:normal;color:var(--brand);font-size:11px;margin-left:6px;">必須</em>` : ""}</span><div class="chips">${q.o.map(o =>
+      `<button type="button" class="chip" data-qk="${q.k}" data-qo="${esc(o)}" aria-pressed="${ui.q[q.k] === o}">${esc(o)}</button>`).join("")}</div></div>`).join("")}
+  </div>`;
+}
+
+function doneHtml(b) {
+  return `<h2>${b.paid || b.pay !== "事前決済" ? "ご予約を受け付けました" : "お支払いを確認しています"}</h2>
+    <div class="sheet">
+      <div class="row"><span>ご予約名</span><span>${esc(b.name)} 様</span></div>
+      <div class="row"><span>日時</span><span>${esc(b.when)}</span></div>
+      <div class="row"><span>コース</span><span>${esc(b.course)}</span></div>
+      <div class="row"><span>お支払い</span><span>${esc(b.pay)}</span></div>
+      <div class="row total"><span>${b.paid ? "お支払い済み" : "当日のお支払い"}</span><span>${yen(b.total)}</span></div>
+    </div>
+    <p class="note">この画面を控えておいてください。<br>場所：西東京市ひばりが丘 HIBARIDO 2F R-09<br>到着は5分前ごろを目安にお越しください。</p>`;
+}
+
+function render() {
+  const app = document.getElementById("app");
+  const head = `<header class="top"><img class="logoimg" src="/logo/logo-horizontal-web.svg" alt="足つぼ専門店 イタキモ"><span class="badge">完全予約制</span></header>`;
+  if (!av) {
+    app.innerHTML = `<div class="wrap">${head}${loadErr ? `<div class="err" role="alert">${esc(loadErr)}</div>` : `<p class="note">空き状況を読み込んでいます…</p>`}</div>`;
+    return;
+  }
+  const c = COURSES.find(x => x.id === ui.cid) || null;
+  const a = ui.date ? ahead(ui.date) : 0;
+  const steps = `<nav class="steps" aria-label="進み具合">${["コース","日時","確認・入力","完了"].map((n,i) => `<span class="${i+1===ui.step?"on":i+1<ui.step?"done":""}">${i+1}. ${n}</span>`).join("")}</nav>`;
+  let main = ui.info ? `<div class="err" role="alert">${esc(ui.info)}</div>` : "";
+
+  if (ui.step === 1) {
+    main += `<h2>コースを選ぶ</h2>
+      <div class="visit${ui.visit===null?" wait":""}" role="radiogroup" aria-label="イタキモのご利用">
+        <button type="button" role="radio" data-v="first" aria-checked="${ui.visit==="first"}"><i aria-hidden="true"></i>はじめての利用</button>
+        <button type="button" role="radio" data-v="repeat" aria-checked="${ui.visit==="repeat"}"><i aria-hidden="true"></i>2回目以降の利用</button>
+      </div>`;
+    if (ui.visit !== null) {
+      main += `<div class="opts courses${ui.cid===null?" wait":""}" role="radiogroup" aria-label="コース">${COURSES.map(x => {
+        const p = price(x, ui.visit, "onsite", 0);
+        return `<button type="button" role="radio" class="course" data-c="${x.id}" aria-checked="${ui.cid===x.id}">
+          <i class="rd" aria-hidden="true"></i><span class="min">${x.min}<small>分</small></span>
+          <span class="desc"><strong>${x.min}分コース</strong>${x.label ? `<span class="lbl${x.hot?" hot":""}">${x.label}</span>` : ""}${esc(x.desc)}${ui.visit==="first" && x.trial ? `<br><span class="tag">左足トライアルつき</span>` : ""}</span>
+          <span class="price"><b>${yen(p.base)}</b><small>早割あり</small></span>
+        </button>`; }).join("")}</div>`;
+      if (ui.visit === "first") main += `<div class="box"><h3>左足トライアル</h3><div class="sub">合わなければ、お代は頂きません。</div>片足が終わった時点で合わないと感じたら、そこで終了します。事前にお支払いの場合は、全額お返しします。</div>`;
+      main += `<div class="label">お支払い方法</div>
+        <div class="opts" role="radiogroup" aria-label="お支払い方法">
+          <label class="opt"><input type="radio" name="pay" value="onsite" ${ui.pay==="onsite"?"checked":""}><span><strong>当日、お店でお支払い</strong><small>現金・クレジットカード・電子マネー・QR決済</small></span></label>
+          <label class="opt"><input type="radio" name="pay" value="card" ${ui.pay==="card"?"checked":""}><span><strong>事前決済（クレジットカード・PayPay）</strong><small>${ui.visit==="repeat" ? "500円お安くなります。施術後のお会計なしでお帰りいただけます" : "施術後のお会計なしでお帰りいただけます（はじめての方は割引の対象外です）"}</small></span></label>
+        </div>
+        <table class="eb"><caption>早割</caption>
+          <tr><th>前日までのご予約</th><td>−500円</td></tr>
+          <tr><th>7日以上前のご予約</th><td>−1,000円</td></tr>
+        </table>
+        <p class="note" style="margin-top:-14px;">はじめての方も2回目以降の方も、同じ条件で使えます。事前決済の割引と合わせて、60分は1,000円・90分は1,500円までお安くなります。</p>`;
+    }
+  }
+
+  if (ui.step === 2) {
+    const t = D(today());
+    const base = new Date(Date.UTC(t.getUTCFullYear(), t.getUTCMonth() + ui.mo, 1)), y = base.getUTCFullYear(), mo = base.getUTCMonth();
+    const last = D(addD(today(), HORIZON));
+    const maxMo = (last.getUTCFullYear()-t.getUTCFullYear())*12 + last.getUTCMonth()-t.getUTCMonth();
+    let cells = WD.map((w,i) => `<div class="wd ${i===0?"sun":""}">${w}</div>`).join("");
+    for (let i = 0; i < base.getUTCDay(); i++) cells += `<div></div>`;
+    const days = new Date(Date.UTC(y, mo+1, 0)).getUTCDate();
+    for (let n = 1; n <= days; n++) {
+      const s = `${y}-${pad(mo+1)}-${pad(n)}`, ok = slots(s,c).some(x => !x.taken), cap = ok ? capacity(s,c) : 0;
+      const p = ok ? price(c, ui.visit, ui.pay, ahead(s)) : null;
+      const st = !ok ? "" : kindOf(s) === "night" ? `<span class="nt">夜</span>` : cap >= 4 ? "◎" : cap >= 2 ? "▲" : "残1";
+      const o = ok && p.eb ? `−${p.eb.toLocaleString()}円` : ok && ahead(s) === 0 ? "当日" : "";
+      cells += `<button type="button" class="day" data-d="${s}" ${ok?"":"disabled"} aria-pressed="${ui.date === s}" aria-label="${fmt(s)}${ok?"":"、予約できません"}"><span class="n">${n}</span><span class="s">${st}</span><span class="o">${o}</span></button>`;
+    }
+    main += `<h2>日時を選ぶ</h2>
+      <p class="lead">当日のご予約は、開始1時間前まで受け付けています。日付の下の数字が早割の金額です。</p>
+      <div class="cal">
+        <div class="cal-head"><button type="button" id="pm" ${ui.mo<=0?"disabled":""}>前の月</button><strong>${y}年${mo+1}月</strong><button type="button" id="nm" ${ui.mo>=maxMo?"disabled":""}>次の月</button></div>
+        <div class="grid">${cells}</div>
+        <div class="legend"><span>◎ 空きあり</span><span>▲ 空き少なめ</span><span>残1 残り1枠</span><span><span class="nt">夜</span> 夜の特別枠（1日1組）</span><span><b>−500円</b> 前日まで</span><span><b>−1,000円</b> 7日以上前</span></div>
+      </div>`;
+    if (ui.date) {
+      const sl = slots(ui.date, c);
+      main += `${kindOf(ui.date) === "night" ? `<div class="night"><strong>夜の特別枠</strong>21:10〜21:40のあいだで、10分単位で開始時間を選べます。1日1組だけの枠です。</div>` : ""}
+        <h3>${fmt(ui.date)}の開始時間</h3>
+        <div class="slots">${sl.map(x => `<button type="button" class="slot" data-t="${x.m}" ${x.taken?"disabled":""} aria-pressed="${ui.time===x.m}">${hm(x.m)}</button>`).join("")}</div>`;
+    }
+  }
+
+  if (ui.step === 3) {
+    const p = price(c, ui.visit, ui.pay, a);
+    main += `<h2>内容の確認</h2>
+      <div class="sheet">
+        <div class="row"><span>日時</span><span>${fmt(ui.date)} ${hm(ui.time)}〜${hm(ui.time + c.min)}</span></div>
+        <div class="row"><span>コース</span><span>${c.min}分（${ui.visit==="first"?"はじめて":"2回目以降"}）</span></div>
+        ${ui.visit==="first" && c.trial ? `<div class="row"><span>左足トライアル</span><span>対象</span></div>` : ""}
+        <div class="row"><span>お支払い</span><span>${ui.pay==="card"?"事前決済":"当日、お店で"}</span></div>
+        <div class="row"><span>${ui.visit==="first"?"料金":"継続料金"}</span><span>${yen(p.base)}</span></div>
+        ${p.prepay ? `<div class="row minus"><span>事前決済の割引</span><span>−${yen(p.prepay)}</span></div>` : ""}
+        ${p.eb ? `<div class="row minus"><span>早割（${p.ebLabel}）</span><span>−${yen(p.eb)}</span></div>` : ""}
+        ${p.capped ? `<div class="row minus"><span>割引の上限による調整</span><span>+${yen(p.prepay + p.eb - p.off)}</span></div>` : ""}
+        <div class="row total"><span>お支払い金額</span><span>${yen(p.total)}</span></div>
+        ${p.capped ? `<p class="capnote">割引は${c.min}分で合計${yen(c.cap)}までです</p>` : ""}
+      </div>
+      <h2>お客様情報</h2>
+      <form class="form" id="fm" novalidate>
+        <label class="field">ご予約名（本名でなくてもかまいません）<input id="fn" maxlength="40" autocomplete="nickname" placeholder="例：ふくすけ" value="${esc(ui.f.name)}"></label>
+        <p class="note" style="margin:0;">連絡先は、電話番号かメールアドレスの<strong>どちらか一方</strong>で大丈夫です。予約の確認と、変更があったときのご連絡にだけ使います。</p>
+        <label class="field">電話番号<input id="ft" type="tel" maxlength="20" autocomplete="tel" placeholder="090-1234-5678" value="${esc(ui.f.tel)}"></label>
+        <label class="field">メールアドレス<input id="fe" type="email" maxlength="120" autocomplete="email" placeholder="example@email.com" value="${esc(ui.f.mail)}"></label>
+        ${ui.visit === "first" ? qHtml() : ""}
+        <label class="field">足や身体のお疲れで気になっていること（任意）<textarea id="fo" maxlength="400" placeholder="疲れた、立ち仕事でふくらはぎが張りやすい、強めが好き、など">${esc(ui.f.memo)}</textarea></label>
+        <details class="reread"><summary>「ご予約の前に」をもう一度読む</summary>${rulesHtml()}</details>
+        <label class="check"><input type="checkbox" id="fa" ${ui.f.agree?"checked":""}><span>「ご予約の前に」を確認しました。</span></label>
+        ${ui.err ? `<div class="err" role="alert">${esc(ui.err)}</div>` : ""}
+        ${ui.pay === "card" ? `<p class="note" style="margin:0;">次の画面で、決済会社（Stripe）のお支払い画面に移ります。カード番号は決済会社が直接お預かりし、お店がカード番号を見ることはありません。</p>` : ""}
+      </form>`;
+  }
+
+  if (ui.step === 4 && ui.done) main += doneHtml(ui.done);
+
+  const p = c && ui.step < 4 ? price(c, ui.visit, ui.pay, a) : null;
+  const sum = ui.step === 4 ? "" : c ? `${c.min}分・${ui.pay==="card"?"事前決済":"当日払い"}${ui.date?`・${fmt(ui.date)}`:""}${ui.time!=null?` ${hm(ui.time)}`:""}` : "コースを選んでください";
+  const can = !ui.busy && { 1: !!c && ui.visit !== null, 2: !!(ui.date && ui.time != null), 3: true, 4: true }[ui.step];
+  const nextLabel = ui.busy ? "送信しています…" : ui.step === 1 ? "日時を選ぶ" : ui.step === 2 ? "確認へ進む" : ui.step === 3 ? (ui.pay === "card" ? "お支払いへ進む" : "予約する") : "サイトに戻る";
+
+  app.innerHTML = `
+    <div class="wrap">${head}${ui.step === 1 ? rulesHtml() : ""}${steps}${main}</div>
+    <div class="bar"><div class="bar-in">
+      <div class="sum">${sum}${p ? `<b>${yen(p.total)}</b>` : ""}</div>
+      ${ui.step > 1 && ui.step < 4 ? `<button type="button" class="btn ghost" id="back" ${ui.busy?"disabled":""}>戻る</button>` : ""}
+      <button type="button" class="btn" id="next" ${can?"":"disabled"}>${nextLabel}</button>
+    </div></div>`;
+
+  document.querySelectorAll("[data-v]").forEach(b => b.onclick = () => { ui.visit = b.dataset.v; ui.info = ""; render(); });
+  document.querySelectorAll("[data-c]").forEach(b => b.onclick = () => { ui.cid = b.dataset.c; ui.date = null; ui.time = null; render(); });
+  document.querySelectorAll("input[name=pay]").forEach(r => r.onchange = () => { ui.pay = r.value; render(); });
+  const pm = document.getElementById("pm"), nm = document.getElementById("nm");
+  if (pm) pm.onclick = () => { ui.mo--; render(); };
+  if (nm) nm.onclick = () => { ui.mo++; render(); };
+  document.querySelectorAll("[data-d]").forEach(b => b.onclick = () => { ui.date = b.dataset.d; ui.time = null; render(); });
+  document.querySelectorAll("[data-t]").forEach(b => b.onclick = () => { ui.time = Number(b.dataset.t); render(); });
+  if (ui.step === 3) {
+    const g = id => document.getElementById(id);
+    g("fn").oninput = e => ui.f.name = e.target.value; g("ft").oninput = e => ui.f.tel = e.target.value;
+    g("fe").oninput = e => ui.f.mail = e.target.value; g("fo").oninput = e => ui.f.memo = e.target.value;
+    g("fa").onchange = e => ui.f.agree = e.target.checked; g("fm").onsubmit = e => e.preventDefault();
+    document.querySelectorAll("[data-qk]").forEach(b => b.onclick = () => {
+      const k = b.dataset.qk, o = b.dataset.qo;
+      ui.q[k] = ui.q[k] === o ? null : o;
+      const yy = scrollY; render(); scrollTo(0, yy);
+    });
+  }
+  const back = document.getElementById("back");
+  if (back) back.onclick = () => { ui.step--; ui.err = ""; render(); scrollTo(0,0); };
+  document.getElementById("next").onclick = () => {
+    if (ui.step === 3) return submit(c);
+    if (ui.step === 4) { location.href = "/"; return; }
+    ui.info = ""; ui.step++; render(); scrollTo(0,0);
+  };
+}
+
+async function submit(c) {
+  if (!ui.f.name.trim()) { ui.err = "ご予約名を入力してください。"; return render(); }
+  if (!ui.f.tel.trim() && !ui.f.mail.trim()) { ui.err = "電話番号かメールアドレスのどちらかを入力してください。"; return render(); }
+  if (ui.visit === "first" && (!ui.q.first || !ui.q.hurt)) { ui.err = "必須のご質問にお答えください。"; return render(); }
+  if (!ui.f.agree) { ui.err = "「ご予約の前に」の確認にチェックを入れてください。"; return render(); }
+  ui.err = ""; ui.busy = true; render();
+  try {
+    const res = await fetch("/api/yoyaku/book", { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify({
+      visit: ui.visit, cid: ui.cid, pay: ui.pay, date: ui.date, time: ui.time,
+      name: ui.f.name, tel: ui.f.tel, mail: ui.f.mail, memo: ui.f.memo, q: ui.q, agree: ui.f.agree
+    }) });
+    const j = await res.json().catch(() => ({}));
+    if (j.checkoutUrl) { location.href = j.checkoutUrl; return; }
+    ui.busy = false;
+    if (j.ok && j.booking) { ui.done = j.booking; ui.step = 4; render(); scrollTo(0,0); return; }
+    if (j.code === "taken") { await load(); ui.time = null; ui.step = 2; ui.info = j.error; render(); scrollTo(0,0); return; }
+    ui.err = j.error || "ご予約を受け付けられませんでした。時間をおいてもう一度お試しください。"; render();
+  } catch {
+    ui.busy = false; ui.err = "通信がうまくいきませんでした。電波の良い場所でもう一度お試しください。"; render();
+  }
+}
+
+async function load() {
+  const res = await fetch("/api/yoyaku/availability", { cache:"no-store" });
+  const j = await res.json();
+  if (!res.ok) throw new Error(j.error || "load");
+  av = j;
+}
+
+(async () => {
+  render();
+  const qs = new URLSearchParams(location.search);
+  const paid = qs.get("paid"), canceled = qs.get("canceled");
+  if (paid || canceled) history.replaceState(null, "", "/yoyaku");
+  try {
+    if (canceled) await fetch("/api/yoyaku/release", { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify({ id: canceled }) }).catch(() => {});
+    await load();
+  } catch (e) { loadErr = "空き状況を読み込めませんでした。時間をおいて、ページを開き直してください。"; render(); return; }
+  if (canceled) ui.info = "お支払いが完了していないため、ご予約はまだ確定していません。もう一度お選びください。";
+  if (paid) {
+    try {
+      const r = await fetch("/api/yoyaku/confirm?session_id=" + encodeURIComponent(paid), { cache:"no-store" });
+      const j = await r.json();
+      if (j.booking) { ui.done = j.booking; ui.step = 4; if (!j.ok) ui.info = "お支払いの確認がまだ取れていません。少し時間をおいて、このページを開き直してください。"; }
+      else ui.info = j.error || "お支払いの確認ができませんでした。";
+    } catch { ui.info = "お支払いの確認ができませんでした。"; }
+  }
+  render();
+})();
+})();

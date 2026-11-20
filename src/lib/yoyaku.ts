@@ -1,0 +1,198 @@
+// イタキモ自前予約：料金・枠・データベースの共通処理（サーバー側）
+// 料金と空き枠は必ずここで計算し直す。画面から届いた金額は信用しない。
+
+export const GAP = 15; // 施術と施術の間の余白（分）
+export const CUTOFF = 60; // 当日予約は開始の何分前まで
+export const HORIZON = 60; // 何日先まで予約できるか
+
+export type Course = {
+  id: "c60" | "c90";
+  min: number;
+  first: number;
+  repeat: number;
+  prepayOff: number;
+  cap: number;
+};
+
+export const COURSES: Course[] = [
+  { id: "c60", min: 60, first: 6500, repeat: 5500, prepayOff: 500, cap: 1000 },
+  { id: "c90", min: 90, first: 9000, repeat: 8000, prepayOff: 500, cap: 1500 },
+];
+
+const EB = [
+  { days: 7, off: 1000, label: "7日以上前" },
+  { days: 1, off: 500, label: "前日まで" },
+];
+
+export function price(c: Course, visit: "first" | "repeat", pay: "onsite" | "card", ahead: number) {
+  const base = visit === "first" ? c.first : c.repeat;
+  const prepay = visit === "repeat" && pay === "card" ? c.prepayOff : 0;
+  let eb = 0;
+  let ebLabel = "";
+  if (ahead > 0) {
+    const h = EB.find((x) => ahead >= x.days);
+    if (h) {
+      eb = h.off;
+      ebLabel = h.label;
+    }
+  }
+  const off = Math.min(prepay + eb, c.cap);
+  return { base, prepay, eb, ebLabel, off, total: base - off };
+}
+
+// ---- 日本時間の日付 ----
+export function jstNow() {
+  const d = new Date(Date.now() + 9 * 3600 * 1000);
+  return { date: d.toISOString().slice(0, 10), min: d.getUTCHours() * 60 + d.getUTCMinutes() };
+}
+export function daysBetween(a: string, b: string) {
+  return Math.round((Date.parse(b + "T00:00:00Z") - Date.parse(a + "T00:00:00Z")) / 864e5);
+}
+export function addDays(a: string, n: number) {
+  return new Date(Date.parse(a + "T00:00:00Z") + n * 864e5).toISOString().slice(0, 10);
+}
+export function weekday(a: string) {
+  return new Date(a + "T00:00:00Z").getUTCDay();
+}
+
+// 営業日の種類。登録がない日は、水・木を通し営業、それ以外を休みとする（試験運用の初期値）
+export type DayKind = "full" | "night" | "closed";
+export function defaultKind(date: string): DayKind {
+  const w = weekday(date);
+  return w === 3 || w === 4 ? "full" : "closed";
+}
+
+export function hoursOf(kind: DayKind) {
+  if (kind === "full") return { s: 9 * 60, e: 22 * 60 + 40, step: 30, last: 22 * 60 + 40 };
+  return { s: 21 * 60 + 10, e: 22 * 60 + 40, step: 10, last: 21 * 60 + 40 };
+}
+
+export type Booked = { s: number; e: number };
+
+// 指定の開始時刻が予約できるかどうか
+export function slotOk(kind: DayKind, c: Course, start: number, booked: Booked[], ahead: number, nowMin: number) {
+  if (kind === "closed") return false;
+  if (ahead < 0 || ahead > HORIZON) return false;
+  const h = hoursOf(kind);
+  if (start < h.s || start > h.last || start + c.min > h.e) return false;
+  if ((start - h.s) % h.step !== 0) return false;
+  if (ahead === 0 && start < nowMin + CUTOFF) return false;
+  if (kind === "night" && booked.length) return false; // 夜の特別枠は1日1組
+  const e = start + c.min + GAP;
+  return !booked.some((b) => start < b.e + GAP && b.s < e);
+}
+
+// ---- データベース（Neon の HTTP 経由。追加のライブラリは使わない） ----
+function dbUrl() {
+  const u = process.env.DATABASE_URL || process.env.POSTGRES_URL || process.env.STORAGE_URL;
+  if (!u) throw new Error("DATABASE_URL is not set");
+  return u;
+}
+
+export async function sql<T = Record<string, string | null>>(query: string, params: unknown[] = []): Promise<T[]> {
+  const url = dbUrl();
+  const host = new URL(url).hostname;
+  const endpoints = [`https://${host}/sql`, `https://${host.replace(/^[^.]+\./, "api.")}/sql`];
+  let lastErr = "";
+  for (const ep of endpoints) {
+    const res = await fetch(ep, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Neon-Connection-String": url,
+        "Neon-Raw-Text-Output": "true",
+        "Neon-Array-Mode": "false",
+      },
+      body: JSON.stringify({ query, params: params.map((p) => (p === null || p === undefined ? null : typeof p === "object" ? JSON.stringify(p) : String(p))) }),
+      cache: "no-store",
+    });
+    const text = await res.text();
+    if (res.ok) {
+      const j = JSON.parse(text);
+      return (j.rows || []) as T[];
+    }
+    lastErr = `${res.status} ${text.slice(0, 300)}`;
+    if (res.status < 500 && !/not found|unknown|endpoint/i.test(text)) break;
+  }
+  throw new Error("DB error: " + lastErr);
+}
+
+let ready: Promise<void> | null = null;
+export function ensureTables() {
+  if (!ready) {
+    ready = (async () => {
+      await sql(`CREATE TABLE IF NOT EXISTS open_days (
+        date text PRIMARY KEY,
+        kind text NOT NULL
+      )`);
+      await sql(`CREATE TABLE IF NOT EXISTS bookings (
+        id text PRIMARY KEY,
+        created_at timestamptz NOT NULL DEFAULT now(),
+        date text NOT NULL,
+        start_min int NOT NULL,
+        end_min int NOT NULL,
+        course text NOT NULL,
+        visit text NOT NULL,
+        pay text NOT NULL,
+        base int NOT NULL,
+        discount int NOT NULL,
+        total int NOT NULL,
+        name text NOT NULL,
+        tel text,
+        mail text,
+        memo text,
+        answers text,
+        status text NOT NULL,
+        stripe_session text,
+        paid_at timestamptz,
+        hold_until timestamptz
+      )`);
+      await sql(`CREATE INDEX IF NOT EXISTS bookings_date ON bookings (date)`);
+    })().catch((e) => {
+      ready = null;
+      throw e;
+    });
+  }
+  return ready;
+}
+
+// 有効な予約（確定済み、または決済待ちで保留時間内）
+export const ACTIVE = `(status = 'confirmed' OR (status = 'pending' AND hold_until > now()))`;
+
+export async function kindsFor(from: string, to: string) {
+  const rows = await sql<{ date: string; kind: string }>(`SELECT date, kind FROM open_days WHERE date >= $1 AND date <= $2`, [from, to]);
+  const m = new Map(rows.map((r) => [r.date, r.kind as DayKind]));
+  return (d: string): DayKind => m.get(d) ?? defaultKind(d);
+}
+
+export async function bookedFor(from: string, to: string) {
+  const rows = await sql<{ date: string; start_min: string; end_min: string }>(
+    `SELECT date, start_min, end_min FROM bookings WHERE date >= $1 AND date <= $2 AND ${ACTIVE}`,
+    [from, to],
+  );
+  return rows.map((r) => ({ date: r.date, s: Number(r.start_min), e: Number(r.end_min) }));
+}
+
+// ---- Stripe（REST API を直接呼ぶ） ----
+export async function stripe(path: string, method: "GET" | "POST", form?: Record<string, string>) {
+  const key = process.env.STRIPE_SECRET_KEY;
+  if (!key) throw new Error("STRIPE_SECRET_KEY is not set");
+  const res = await fetch("https://api.stripe.com/v1/" + path, {
+    method,
+    headers: { Authorization: "Bearer " + key, "Content-Type": "application/x-www-form-urlencoded" },
+    body: form ? new URLSearchParams(form).toString() : undefined,
+    cache: "no-store",
+  });
+  const j = await res.json();
+  if (!res.ok) throw new Error("Stripe error: " + (j?.error?.message || res.status));
+  return j;
+}
+
+export function hm(m: number) {
+  return `${Math.floor(m / 60)}:${String(m % 60).padStart(2, "0")}`;
+}
+export function fmtDate(d: string) {
+  const W = ["日", "月", "火", "水", "木", "金", "土"];
+  const [, mo, da] = d.split("-").map(Number);
+  return `${mo}月${da}日（${W[weekday(d)]}）`;
+}
