@@ -304,7 +304,7 @@ export default function Home() {
             <div style={{ borderTop: "1px solid #1a1a1a", paddingTop: "16px" }}>
               <p style={{ margin: "0 0 8px", fontWeight: 700 }}>場所</p>
               <p style={{ margin: 0, color: "#3d3a34" }}>西東京市ひばりが丘 HIBARIDO 2F R-09</p>
-              <p style={{ margin: "0 0 10px", color: "#3d3a34" }}>西武バス「交番前」下車 徒歩1分</p>
+              <p style={{ margin: "0 0 10px", color: "#3d3a34" }}>ひばりヶ丘駅・田無駅から西武バス「交番前」下車 徒歩1分</p>
               <Link className="lnk" href="/first#access" style={{ color: "#1a1a1a" }}><span>アクセスを詳しく見る</span></Link>
             </div>
             <div style={{ borderTop: "1px solid #1a1a1a", paddingTop: "16px" }}>
