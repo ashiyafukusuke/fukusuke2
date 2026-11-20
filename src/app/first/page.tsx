@@ -94,12 +94,12 @@ export default function FirstPage() {
                 <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>強く押すほど深く届くわけではありません。筋肉が圧に慣れてきたとき、はじめて指は奥に入っていきます。「もう少し強く」「弱めに」は、遠慮なくお伝えください。</p>
               </div>
               <div>
-                <h3 style={{ margin: "0 0 6px", fontSize: "14px", fontWeight: 700 }}>服装は、そのままで大丈夫です</h3>
+                <h3 style={{ margin: "0 0 6px", fontSize: "14px", fontWeight: 700 }}>服装は、そのままでも大丈夫です</h3>
                 <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>膝まわり（膝上・膝裏）までクリームを使います。膝上までめくれない服装の場合は、ハーフパンツをご用意しています。ひざ掛けもお使いいただけます。</p>
               </div>
               <div>
-                <h3 style={{ margin: "0 0 6px", fontSize: "14px", fontWeight: 700 }}>到着は10分前ごろに</h3>
-                <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>待合スペースがないため、早く着いた場合は近くで少し時間を調整してからお越しください。</p>
+                <h3 style={{ margin: "0 0 6px", fontSize: "14px", fontWeight: 700 }}>到着は5分前ごろに</h3>
+                <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>5分前からお迎えできるよう準備しています。一人で営業しているため、前のご予約が続いているときは、早く着くと外でお待たせする時間が長くなってしまいます。待合スペースもないので、早く着いた場合は近くで少し時間を調整してからお越しください。</p>
               </div>
               <div>
                 <h3 style={{ margin: "0 0 6px", fontSize: "14px", fontWeight: 700 }}>妊娠中の方・お子さま</h3>
