@@ -254,7 +254,9 @@ export default function Home() {
                 <p style={{ margin: 0, fontSize: "12px", color: "#5c5c5c" }}>2回目以降 5,500円</p>
               </div>
               <div style={{ padding: "0 28px 28px", borderLeft: "1px solid #ebe9e4" }}>
-                <p style={{ margin: "0 0 4px", fontSize: "13px", fontWeight: 700 }}>90分</p>
+                <p style={{ margin: "0 0 4px", fontSize: "13px", fontWeight: 700 }}>
+                  90分 <span style={{ marginLeft: "6px", fontSize: "10px", fontWeight: 500, color: "#ffffff", background: "#9b321f", border: "1px solid #9b321f", borderRadius: "2px", padding: "1px 6px" }}>最近1番選ばれています</span>
+                </p>
                 <p style={{ margin: "0 0 12px", fontSize: "12px", color: "#5c5c5c" }}>60分よりゆったりした流れで</p>
                 <p style={{ margin: 0, fontSize: "12px", color: "#5c5c5c" }}>初回 <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "30px", color: "#1a1a1a" }}>9,000</span>円</p>
                 <p style={{ margin: 0, fontSize: "12px", color: "#5c5c5c" }}>2回目以降 8,000円</p>
