@@ -36,7 +36,7 @@ export default function StancePage() {
   return (
     <div style={{ background: "#fefdfa", color: "#1a1a1a", fontFamily: "'Noto Sans JP', system-ui, sans-serif", fontSize: "15px", lineHeight: "1.85", letterSpacing: "0.04em" }}>
       {/* ヘッダー（上部固定） */}
-      <header style={{ position: "sticky", top: 0, zIndex: 20, background: "rgba(254,253,250,0.94)", borderBottom: "1px solid #ebe9e4" }}>
+      <header style={{ position: "sticky", top: 0, zIndex: 20, background: "#fefdfa", borderBottom: "1px solid #ebe9e4" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "16px 24px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "16px" }}>
           <Link href="/" style={{ display: "flex", alignItems: "center", textDecoration: "none", color: "#1a1a1a", minHeight: "44px" }}>
             <img src="/logo/logo-horizontal-web.svg" alt="足つぼ専門店 イタキモ" style={{ display: "block", height: "48px", width: "auto" }} />
@@ -104,7 +104,7 @@ export default function StancePage() {
             </div>
             <div className="item">
               <h3><span className="n">06</span>感じ方は、刺激の強さだけでは決まらない。</h3>
-              <p>足底への刺激に対する反応は、刺激の強さだけでなく、経験や事前の期待、そのときの心理状態によっても変わる。心地よく施術を受けられることがリラックスにつながり、自律神経活動にも影響する可能性がある。</p>
+              <p>足裏への刺激の感じ方は、強さだけで決まるわけではありません。これまでの経験や、受ける前の期待、そのときの気持ちによっても変わります。たとえ痛みがあっても、安心して身を委ねられていれば、それがリラックスにつながり、自律神経の働きにも影響するかもしれません。</p>
             </div>
             <div className="item">
               <h3><span className="n">07</span>治療ではなく、リラクゼーションとして。</h3>
@@ -240,12 +240,14 @@ export default function StancePage() {
                 <Link href="/blog" className="lnk" style={{ color: "#9b321f" }}><span>「足を疑うはなし」を読む</span></Link>
               </p>
             </div>
+            {/*
             <div className="item" id="kuchikomi">
               <h3><span className="n">26</span>クチコミは、営業日を増やす力になる。</h3>
               <p>イタキモは広告を出していません。お店を知っていただく手段は、来てくださった方の言葉が中心です。</p>
               <p>クチコミで知ってくださる方が増えれば、お客様が増える。お客様が増えれば、一緒に働く人を迎えられる。人が増えれば、今は限られている営業日を増やせる。イタキモは、そういう順番で育てていきたいと思っています。</p>
               <p>だからといって、「書いてください」とお願いすることはしません。書いてもいいかな、と思っていただけたときに、感じたままを書いていただけたら嬉しいです。</p>
             </div>
+            */}
           </div>
         </div>
       </section>

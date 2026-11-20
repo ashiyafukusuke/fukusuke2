@@ -68,7 +68,7 @@ export default function Home() {
         <div className="hero-veil"></div>
 
         {/* 固定ヘッダー */}
-        <header className="hdr" style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 20, background: "rgba(254,253,250,0.94)", borderBottom: "1px solid rgba(235,233,228,0.9)" }}>
+        <header className="hdr" style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 20, background: "#fefdfa", borderBottom: "1px solid rgba(235,233,228,0.9)" }}>
           <div className="hdr-in" style={{ maxWidth: "1200px", margin: "0 auto", padding: "18px 24px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "16px" }}>
             <a href="#top" style={{ display: "flex", alignItems: "center", textDecoration: "none", color: "#1a1a1a", minHeight: "44px" }}>
               <img className="hdr-logo" src="/logo/logo-horizontal-web.svg" alt="足つぼ専門店 イタキモ" style={{ display: "block", height: "48px", width: "auto" }} />
@@ -127,7 +127,10 @@ export default function Home() {
                 <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>ただし、無断キャンセルの場合と、直前のキャンセルが続く場合は、以降のご予約をお受けしないことがあります。</p>
               </div>
             </div>
-            <p style={{ margin: "32px 0 0" }}>
+            <p style={{ margin: "24px 0 0", fontSize: "13px", color: "#3d3a34", lineHeight: 1.85 }}>
+              施術はベッドで横になるのではなく、リクライニングチェアに座ったまま、膝まわりまで行います。お着替え用のハーフパンツとひざ掛けもご用意しています。
+            </p>
+            <p style={{ margin: "20px 0 0" }}>
               <Link className="lnk" href="/first" style={{ color: "#1a1a1a", fontSize: "13px" }}><span>「初めての方へ」ページで詳しく見る</span></Link>
             </p>
           </div>
@@ -294,7 +297,7 @@ export default function Home() {
               <p style={{ margin: "0 0 8px", fontWeight: 700 }}>営業時間</p>
               <p style={{ margin: 0, color: "#3d3a34" }}>通し営業　9:00–22:40（主に水・木）</p>
               <p style={{ margin: "0 0 6px", color: "#3d3a34" }}>夜の特別枠　21:10–22:40（それ以外の日）</p>
-              <p style={{ margin: "0 0 10px", fontSize: "12px", color: "#5c5c5c" }}>店主は都内の足つぼ専門店でも施術を担当しているため、日中に開けられる日が限られています。</p>
+              <p style={{ margin: "0 0 10px", fontSize: "12px", color: "#5c5c5c" }}>仕事帰りに、足を軽くしてそのまま帰れる夜の枠です。日中に営業できる日が限られるぶん、夜も開けています。</p>
               <Link className="lnk" href="/first#hours" style={{ color: "#1a1a1a" }}><span>今月の営業カレンダー</span></Link>
             </div>
             <div style={{ borderTop: "1px solid #1a1a1a", paddingTop: "16px" }}>
