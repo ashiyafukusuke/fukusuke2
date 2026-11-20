@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>予約の管理｜イタキモ</title>
+<style>
+:root { --paper:#fefdfa; --ink:#1a1a1a; --muted:#5c5c5c; --brand:#9b321f; --night:#2d2c28; --tint:#f3eae5; --line:#ebe9e4; --soft:#f8f6f1; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--paper); color:var(--ink); font-family:"Noto Sans JP",system-ui,sans-serif; font-size:15px; line-height:1.7; }
+.wrap { max-width:720px; margin:0 auto; padding:16px; display:flex; flex-direction:column; gap:20px; }
+h1 { font-size:20px; margin:0; }
+h2 { font-size:17px; margin:0 0 8px; border-bottom:1px solid var(--line); padding-bottom:4px; }
+input, button { font:inherit; }
+.login { display:flex; gap:8px; flex-wrap:wrap; }
+.login input { flex:1 1 200px; padding:10px; border:1px solid var(--line); border-radius:4px; font-size:16px; }
+.btn { border:1px solid var(--brand); background:var(--brand); color:#fff; border-radius:4px; padding:8px 16px; cursor:pointer; font-weight:700; }
+.btn.ghost { background:#fff; color:var(--ink); border-color:var(--line); font-weight:400; }
+.err { color:var(--brand); font-weight:700; }
+.day { border:1px solid var(--line); border-radius:6px; background:#fff; margin-bottom:10px; }
+.day > h3 { margin:0; font-size:15px; padding:8px 12px; background:var(--soft); border-bottom:1px solid var(--line); }
+.bk { padding:10px 12px; border-top:1px solid var(--line); display:grid; grid-template-columns:auto 1fr; gap:2px 12px; font-size:14px; }
+.bk:first-of-type { border-top:0; }
+.bk .t { font-weight:700; font-size:16px; }
+.bk .m { color:var(--muted); font-size:13px; }
+.st { display:inline-block; font-size:11px; padding:0 6px; border-radius:3px; border:1px solid currentColor; margin-left:6px; }
+.st.pend { color:#a26b00; }
+.st.paid { color:#2f6b3a; }
+.cal { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:4px; }
+.cal .wd { text-align:center; font-size:11px; color:var(--muted); }
+.cal button { border:1px solid var(--line); background:#fff; border-radius:4px; min-height:54px; padding:4px 0; cursor:pointer; display:flex; flex-direction:column; align-items:center; font-size:12px; }
+.cal button b { font-size:15px; }
+.cal button.full { background:var(--brand); color:#fff; border-color:var(--brand); }
+.cal button.night { background:var(--night); color:#fff; border-color:var(--night); }
+.cal button.custom { outline:2px dashed var(--brand); outline-offset:-4px; }
+.legend { font-size:12px; color:var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<script>
+(function(){
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const pad = n => String(n).padStart(2,"0");
+const hm = m => `${Math.floor(m/60)}:${pad(m%60)}`;
+const WD = ["日","月","火","水","木","金","土"];
+const fmt = s => { const d = new Date(s+"T00:00:00Z"); return `${d.getUTCMonth()+1}/${d.getUTCDate()}（${WD[d.getUTCDay()]}）`; };
+const KIND = { closed:"休み", full:"通し", night:"夜" };
+const NEXT = { closed:"full", full:"night", night:"closed" };
+let pass = ""; try { pass = localStorage.getItem("itakimo-admin") || ""; } catch {}
+let data = null, err = "";
+
+async function api(method, body) {
+  const r = await fetch("/api/yoyaku/admin", { method, headers:{ "x-admin-pass":pass, "Content-Type":"application/json" }, body: body ? JSON.stringify(body) : undefined, cache:"no-store" });
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(j.error || "エラー");
+  return j;
+}
+async function load() {
+  try { data = await api("GET"); err = ""; try { localStorage.setItem("itakimo-admin", pass); } catch {} }
+  catch (e) { data = null; err = e.message; }
+  render();
+}
+
+function render() {
+  const app = document.getElementById("app");
+  if (!data) {
+    app.innerHTML = `<h1>予約の管理</h1>
+      <form class="login" id="lg"><input type="password" id="pw" placeholder="管理用パスワード" autocomplete="current-password" value="${esc(pass)}"><button class="btn">開く</button></form>
+      ${err ? `<p class="err">${esc(err)}</p>` : ""}`;
+    document.getElementById("lg").onsubmit = e => { e.preventDefault(); pass = document.getElementById("pw").value; load(); };
+    return;
+  }
+  const byDate = {};
+  for (const b of data.bookings) (byDate[b.date] ||= []).push(b);
+  const list = Object.keys(byDate).sort().map(d => `<div class="day"><h3>${fmt(d)}${d === data.today ? "　今日" : ""}</h3>${byDate[d].map(b => {
+    const a = (() => { try { return JSON.parse(b.answers || "{}"); } catch { return {}; } })();
+    const qa = [a.first && `足つぼ専門店は初めて：${a.first}`, a.hurt && `けが・痛み：${a.hurt}`, a.stay && `過ごし方：${a.stay}`].filter(Boolean).join("／");
+    return `<div class="bk">
+      <span class="t">${hm(+b.start_min)}</span>
+      <span><b>${esc(b.name)}</b> 様　${b.course === "c90" ? "90分" : "60分"}・${b.visit === "first" ? "はじめて" : "2回目以降"}
+        ${b.status === "pending" ? `<span class="st pend">決済待ち</span>` : b.pay === "card" ? `<span class="st paid">事前決済済み</span>` : `<span class="st">当日払い</span>`}</span>
+      <span></span><span class="m">¥${Number(b.total).toLocaleString()}　${esc(b.tel || "")} ${esc(b.mail || "")}</span>
+      ${qa ? `<span></span><span class="m">${esc(qa)}</span>` : ""}
+      ${b.memo ? `<span></span><span class="m">メモ：${esc(b.memo)}</span>` : ""}
+      <span></span><span><button class="btn ghost" data-cancel="${esc(b.id)}" data-name="${esc(b.name)}">取り消す</button></span>
+    </div>`; }).join("")}</div>`).join("") || `<p class="legend">これからの予約はありません。</p>`;
+
+  const first = new Date(data.days[0].date+"T00:00:00Z").getUTCDay();
+  const cal = WD.map(w => `<div class="wd">${w}</div>`).join("") + "<div></div>".repeat(first) + data.days.map(d =>
+    `<button type="button" class="${d.kind}${d.custom ? " custom" : ""}" data-d="${d.date}" data-k="${d.kind}"><b>${+d.date.slice(8)}</b>${KIND[d.kind]}</button>`).join("");
+
+  app.innerHTML = `<h1>予約の管理</h1>
+    <section><h2>これからの予約</h2>${list}</section>
+    <section><h2>営業日（タップで 休み → 通し → 夜 と切り替わります）</h2>
+      <div class="cal">${cal}</div>
+      <p class="legend">通し＝9:00〜22:40　夜＝21:10〜21:40開始の1日1組。点線の枠は初期設定（水・木が通し）から変えた日です。予約が入っている日を休みにしても、その予約は消えません。</p>
+    </section>
+    <p><button class="btn ghost" id="rl">読み込み直す</button></p>`;
+
+  document.getElementById("rl").onclick = load;
+  document.querySelectorAll("[data-d]").forEach(b => b.onclick = async () => {
+    b.disabled = true;
+    try { await api("POST", { date:b.dataset.d, kind:NEXT[b.dataset.k] }); } catch (e) { alert(e.message); }
+    load();
+  });
+  document.querySelectorAll("[data-cancel]").forEach(b => b.onclick = async () => {
+    if (!confirm(`${b.dataset.name} 様の予約を取り消します。よろしいですか？（返金はStripeの画面で行います）`)) return;
+    try { await api("POST", { cancel:b.dataset.cancel }); } catch (e) { alert(e.message); }
+    load();
+  });
+}
+pass ? load() : render();
+})();
+</script>
+</body>
+</html>

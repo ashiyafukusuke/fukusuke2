@@ -78,15 +78,18 @@ function qHtml() {
 }
 
 function doneHtml(b) {
-  return `<h2>${b.paid || b.pay !== "事前決済" ? "ご予約を受け付けました" : "お支払いを確認しています"}</h2>
+  const ok = b.paid || b.pay !== "事前決済";
+  return `<div class="okbox${ok ? "" : " wait"}" role="status"><span class="mark" aria-hidden="true">${ok ? "✓" : "…"}</span><div><strong>${ok ? "ご予約が確定しました" : "お支払いを確認しています"}</strong><small>${ok ? (b.pay === "事前決済" ? "お支払いも完了しています。当日はそのままお越しください。" : "お支払いは当日、お店でお願いします。") : "少し時間をおいて、このページを開き直してください。"}</small></div></div>
+    <p class="note" style="margin:0;">念のため、この画面をスクリーンショットで残しておいてください。</p>
     <div class="sheet">
+      <div class="row"><span>予約番号</span><span>${esc(String(b.id || "").slice(0,6).toUpperCase())}</span></div>
       <div class="row"><span>ご予約名</span><span>${esc(b.name)} 様</span></div>
       <div class="row"><span>日時</span><span>${esc(b.when)}</span></div>
       <div class="row"><span>コース</span><span>${esc(b.course)}</span></div>
       <div class="row"><span>お支払い</span><span>${esc(b.pay)}</span></div>
       <div class="row total"><span>${b.paid ? "お支払い済み" : "当日のお支払い"}</span><span>${yen(b.total)}</span></div>
     </div>
-    <p class="note">この画面を控えておいてください。<br>場所：西東京市ひばりが丘 HIBARIDO 2F R-09<br>到着は5分前ごろを目安にお越しください。</p>`;
+    <p class="note">場所：西東京市ひばりが丘 HIBARIDO 2F R-09<br>到着は5分前ごろを目安にお越しください。</p>`;
 }
 
 function render() {
@@ -178,12 +181,12 @@ function render() {
       <form class="form" id="fm" novalidate>
         <label class="field">ご予約名（本名でなくてもかまいません）<input id="fn" maxlength="40" autocomplete="nickname" placeholder="例：ふくすけ" value="${esc(ui.f.name)}"></label>
         <p class="note" style="margin:0;">連絡先は、電話番号かメールアドレスの<strong>どちらか一方</strong>で大丈夫です。予約の確認と、変更があったときのご連絡にだけ使います。</p>
-        <label class="field">電話番号<input id="ft" type="tel" maxlength="20" autocomplete="tel" placeholder="090-1234-5678" value="${esc(ui.f.tel)}"></label>
+        <label class="field">電話番号<input id="ft" type="tel" maxlength="20" autocomplete="tel" placeholder="09012345678" value="${esc(ui.f.tel)}"></label>
         <label class="field">メールアドレス<input id="fe" type="email" maxlength="120" autocomplete="email" placeholder="example@email.com" value="${esc(ui.f.mail)}"></label>
         ${ui.visit === "first" ? qHtml() : ""}
         <label class="field">足や身体のお疲れで気になっていること（任意）<textarea id="fo" maxlength="400" placeholder="疲れた、立ち仕事でふくらはぎが張りやすい、強めが好き、など">${esc(ui.f.memo)}</textarea></label>
         <details class="reread"><summary>「ご予約の前に」をもう一度読む</summary>${rulesHtml()}</details>
-        <label class="check"><input type="checkbox" id="fa" ${ui.f.agree?"checked":""}><span>「ご予約の前に」を確認しました。</span></label>
+        <label class="agree"><input type="checkbox" id="fa" ${ui.f.agree?"checked":""}><span>「ご予約の前に」を確認しました。<small>チェックを入れると予約できます</small></span></label>
         ${ui.err ? `<div class="err" role="alert">${esc(ui.err)}</div>` : ""}
         ${ui.pay === "card" ? `<p class="note" style="margin:0;">次の画面で、決済会社（Stripe）のお支払い画面に移ります。カード番号は決済会社が直接お預かりし、お店がカード番号を見ることはありません。</p>` : ""}
       </form>`;
@@ -198,11 +201,11 @@ function render() {
 
   app.innerHTML = `
     <div class="wrap">${head}${ui.step === 1 ? rulesHtml() : ""}${steps}${main}</div>
-    <div class="bar"><div class="bar-in">
+    ${ui.step === 4 ? `<p style="text-align:center;margin:8px 0 24px;"><a href="/" style="color:var(--muted);font-size:13px;">イタキモのサイトへ</a></p>` : `<div class="bar"><div class="bar-in">
       <div class="sum">${sum}${p ? `<b>${yen(p.total)}</b>` : ""}</div>
       ${ui.step > 1 && ui.step < 4 ? `<button type="button" class="btn ghost" id="back" ${ui.busy?"disabled":""}>戻る</button>` : ""}
       <button type="button" class="btn" id="next" ${can?"":"disabled"}>${nextLabel}</button>
-    </div></div>`;
+    </div></div>`}`;
 
   document.querySelectorAll("[data-v]").forEach(b => b.onclick = () => { ui.visit = b.dataset.v; ui.info = ""; render(); });
   document.querySelectorAll("[data-c]").forEach(b => b.onclick = () => { ui.cid = b.dataset.c; ui.date = null; ui.time = null; render(); });
@@ -225,7 +228,8 @@ function render() {
   }
   const back = document.getElementById("back");
   if (back) back.onclick = () => { ui.step--; ui.err = ""; render(); scrollTo(0,0); };
-  document.getElementById("next").onclick = () => {
+  const nx = document.getElementById("next");
+  if (nx) nx.onclick = () => {
     if (ui.step === 3) return submit(c);
     if (ui.step === 4) { location.href = "/"; return; }
     ui.info = ""; ui.step++; render(); scrollTo(0,0);
@@ -265,7 +269,7 @@ async function load() {
   render();
   const qs = new URLSearchParams(location.search);
   const paid = qs.get("paid"), canceled = qs.get("canceled");
-  if (paid || canceled) history.replaceState(null, "", "/yoyaku");
+  if (canceled) history.replaceState(null, "", "/yoyaku");
   try {
     if (canceled) await fetch("/api/yoyaku/release", { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify({ id: canceled }) }).catch(() => {});
     await load();

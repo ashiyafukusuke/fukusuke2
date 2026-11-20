@@ -22,7 +22,7 @@ export async function POST(req: Request) {
   const date = typeof b.date === "string" && /^\d{4}-\d{2}-\d{2}$/.test(b.date) ? b.date : null;
   const start = Number.isInteger(b.time) ? (b.time as number) : NaN;
   const name = str(b.name, 40);
-  const tel = str(b.tel, 20);
+  const tel = str(b.tel, 20).replace(/[０-９]/g, (d) => String.fromCharCode(d.charCodeAt(0) - 0xfee0)).replace(/[^\d+]/g, "");
   const mail = str(b.mail, 120);
   const memo = str(b.memo, 400);
   const q = (b.q && typeof b.q === "object" ? b.q : {}) as Record<string, unknown>;
