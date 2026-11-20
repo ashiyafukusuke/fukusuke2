@@ -5,18 +5,20 @@ import { addDays, defaultKind, ensureTables, HORIZON, jstNow, kindsFor, sql } fr
 export const dynamic = "force-dynamic";
 
 // 管理画面用。Vercel の環境変数 YOYAKU_ADMIN_PASSWORD と一致したときだけ使える
-function authed(req: Request) {
-  const want = process.env.YOYAKU_ADMIN_PASSWORD || "";
-  const got = req.headers.get("x-admin-pass") || "";
-  if (want.length < 8) return false;
+function check(req: Request): string | null {
+  const want = (process.env.YOYAKU_ADMIN_PASSWORD || "").trim();
+  if (!want) return "管理用パスワードがサーバーにまだ届いていません（設定の反映待ち）。";
+  if (want.length < 8) return "管理用パスワードが8文字未満です。Vercelで8文字以上に設定し直してください。";
+  const got = (req.headers.get("x-admin-pass") || "").trim();
   const a = crypto.createHash("sha256").update(want).digest();
   const b = crypto.createHash("sha256").update(got).digest();
-  return crypto.timingSafeEqual(a, b);
+  return crypto.timingSafeEqual(a, b) ? null : "パスワードが違います。";
 }
-const deny = () => NextResponse.json({ error: "パスワードが違います。" }, { status: 401 });
+const deny = (msg: string) => NextResponse.json({ error: msg }, { status: 401 });
 
 export async function GET(req: Request) {
-  if (!authed(req)) return deny();
+  const ng = check(req);
+  if (ng) return deny(ng);
   try {
     await ensureTables();
     const now = jstNow();
@@ -41,7 +43,8 @@ export async function GET(req: Request) {
 }
 
 export async function POST(req: Request) {
-  if (!authed(req)) return deny();
+  const ng = check(req);
+  if (ng) return deny(ng);
   try {
     await ensureTables();
     const b = await req.json();
