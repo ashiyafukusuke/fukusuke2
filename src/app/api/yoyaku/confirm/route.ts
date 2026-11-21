@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { notifyConfirmed } from "@/lib/notify";
 import { ensureTables, fmtDate, hm, sql, stripe } from "@/lib/yoyaku";
 
 export const dynamic = "force-dynamic";
@@ -14,6 +15,7 @@ export async function GET(req: Request) {
     if (!id) return NextResponse.json({ error: "決済の情報が見つかりません。" }, { status: 404 });
     if (s.payment_status === "paid") {
       await sql(`UPDATE bookings SET status = 'confirmed', paid_at = COALESCE(paid_at, now()), hold_until = NULL WHERE id = $1 AND stripe_session = $2 AND status IN ('pending','confirmed')`, [id, sid]);
+      await notifyConfirmed(id, new URL(req.url).origin);
     }
     const rows = await sql(`SELECT * FROM bookings WHERE id = $1 AND stripe_session = $2`, [id, sid]);
     const r = rows[0];

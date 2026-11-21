@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { notifyConfirmed } from "@/lib/notify";
 import crypto from "node:crypto";
 import {
   ACTIVE, COURSES, daysBetween, ensureTables, fmtDate, hm, jstNow, kindsFor, price, slotOk, sql, stripe, bookedFor,
@@ -81,9 +82,11 @@ export async function POST(req: Request) {
       mail: !!mail,
     };
 
-    if (pay === "onsite") return NextResponse.json({ ok: true, booking: summary });
-
     const origin = new URL(req.url).origin;
+    if (pay === "onsite") {
+      await notifyConfirmed(id, origin);
+      return NextResponse.json({ ok: true, booking: summary });
+    }
     try {
       const form: Record<string, string> = {
         mode: "payment",

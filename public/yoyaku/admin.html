@@ -97,7 +97,14 @@ function render() {
       <div class="cal">${cal}</div>
       <p class="legend">通し＝9:00〜22:40　夜＝21:10〜21:40開始の1日1組。点線の枠は初期設定（水・木が通し）から変えた日です。予約が入っている日を休みにしても、その予約は消えません。</p>
     </section>
+    <section><h2>スマホ通知（ntfy）</h2>
+      <p class="legend">スマホに「ntfy」アプリを入れ、下の合言葉を登録（Subscribe to topic）すると、予約が入ったときに通知が届きます。通知には日時とコースだけを載せ、お客様の名前や連絡先は載せません。</p>
+      <div class="login"><input id="nt" value="${esc(data.ntfy || "")}" placeholder="合言葉（半角英数字）" autocomplete="off"><button class="btn ghost" id="ntgen" type="button">合言葉を作る</button><button class="btn" id="ntsave" type="button">保存</button><button class="btn ghost" id="nttest" type="button">テスト通知</button></div>
+    </section>
     <p><button class="btn ghost" id="rl">読み込み直す</button></p>`;
+  document.getElementById("ntgen").onclick = () => { const a = new Uint8Array(12); crypto.getRandomValues(a); document.getElementById("nt").value = "itakimo-" + [...a].map(x => "abcdefghijkmnpqrstuvwxyz23456789"[x % 32]).join(""); };
+  document.getElementById("ntsave").onclick = async () => { try { await api("POST", { ntfy: document.getElementById("nt").value }); alert("保存しました。"); } catch (e) { alert(e.message); } load(); };
+  document.getElementById("nttest").onclick = async () => { try { await api("POST", { testPush: true }); alert("送りました。スマホを確認してください。"); } catch (e) { alert(e.message); } };
 
   document.getElementById("rl").onclick = load;
   document.querySelectorAll("[data-d]").forEach(b => b.onclick = async () => {
