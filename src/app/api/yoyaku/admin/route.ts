@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import crypto from "node:crypto";
 import { getSetting, push, setSetting } from "@/lib/notify";
-import { addDays, defaultKind, ensureTables, HORIZON, jstNow, kindsFor, sql } from "@/lib/yoyaku";
+import { REBOOKED, addDays, defaultKind, ensureTables, HORIZON, jstNow, kindsFor, sql } from "@/lib/yoyaku";
 
 export const dynamic = "force-dynamic";
 
@@ -41,8 +41,9 @@ export async function GET(req: Request) {
     const blocked = await sql(`SELECT id, tel, mail, name, created_at FROM blocked ORDER BY id DESC`);
     // お客様ごとの、これまでのキャンセル回数（電話番号かメールが一致）
     const stats = await sql<{ id: string; cancels: string }>(
-      `SELECT b.id, (SELECT count(*) FROM bookings x WHERE x.status = 'cancelled' AND x.cancelled_by IN ('customer','admin') AND x.id <> b.id
-         AND ((b.tel IS NOT NULL AND x.tel = b.tel) OR (b.mail IS NOT NULL AND lower(x.mail) = lower(b.mail)))) AS cancels
+      `SELECT b.id, (SELECT count(*) FROM bookings c WHERE c.status = 'cancelled' AND c.cancelled_by IN ('customer','admin') AND c.id <> b.id
+         AND ((b.tel IS NOT NULL AND c.tel = b.tel) OR (b.mail IS NOT NULL AND lower(c.mail) = lower(b.mail)))
+         AND NOT (c.cancelled_by = 'customer' AND ${REBOOKED("c", "(c.tel IS NOT NULL AND x.tel = c.tel) OR (c.mail IS NOT NULL AND lower(x.mail) = lower(c.mail))")})) AS cancels
        FROM bookings b WHERE b.date >= $1 AND b.status IN ('confirmed','pending')`,
       [addDays(now.date, -7)],
     );

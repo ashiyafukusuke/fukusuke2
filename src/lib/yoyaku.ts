@@ -232,12 +232,20 @@ export const MAX_CHANGES = 2;
 export const MAX_SELF_CANCELS = 2; // 直近90日で、お客様が自分でキャンセルできる回数
 export const CANCEL_WINDOW_DAYS = 90;
 
-// 同じお客様（電話番号かメールが一致）が、直近90日に自分でキャンセルした回数
+// キャンセルした日と同じ日（日本時間）に、同じ連絡先で予約を取り直していれば、コース変更のためのキャンセルとみなす
+export const REBOOKED = (c: string, match: string) => `EXISTS (
+  SELECT 1 FROM bookings x WHERE x.id <> ${c}.id AND (${match})
+  AND x.created_at >= ${c}.cancelled_at
+  AND (x.created_at AT TIME ZONE 'Asia/Tokyo')::date = (${c}.cancelled_at AT TIME ZONE 'Asia/Tokyo')::date
+  AND (x.status = 'confirmed' OR x.cancelled_by IN ('customer','admin')))`;
+
+// 同じお客様（電話番号かメールが一致）が、直近90日に自分でキャンセルした回数（同じ日に取り直した分は数えない）
 export async function selfCancelCount(tel: string | null, mail: string | null) {
   if (!tel && !mail) return 0;
+  const m = (t: string) => `((($1::text) IS NOT NULL AND ${t}.tel = $1) OR (($2::text) IS NOT NULL AND lower(${t}.mail) = lower($2)))`;
   const r = await sql<{ n: string }>(
-    `SELECT count(*) AS n FROM bookings WHERE cancelled_by = 'customer' AND cancelled_at > now() - interval '${CANCEL_WINDOW_DAYS} days'
-     AND ((($1::text) IS NOT NULL AND tel = $1) OR (($2::text) IS NOT NULL AND lower(mail) = lower($2)))`,
+    `SELECT count(*) AS n FROM bookings c WHERE c.cancelled_by = 'customer' AND c.cancelled_at > now() - interval '${CANCEL_WINDOW_DAYS} days'
+     AND ${m("c")} AND NOT ${REBOOKED("c", m("x"))}`,
     [tel || null, mail || null],
   );
   return Number(r[0]?.n || 0);
