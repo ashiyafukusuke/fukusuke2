@@ -67,7 +67,7 @@ export function hoursOf(kind: DayKind) {
   return { s: 21 * 60 + 10, e: 22 * 60 + 40, step: 10, last: 21 * 60 + 40 };
 }
 
-export type Booked = { s: number; e: number };
+export type Booked = { s: number; e: number; blk?: boolean };
 
 // 指定の開始時刻が予約できるかどうか
 export function slotOk(kind: DayKind, c: Course, start: number, booked: Booked[], ahead: number, nowMin: number) {
@@ -77,7 +77,7 @@ export function slotOk(kind: DayKind, c: Course, start: number, booked: Booked[]
   if (start < h.s || start > h.last || start + c.min > h.e) return false;
   if ((start - h.s) % h.step !== 0) return false;
   if (ahead === 0 && start < nowMin + CUTOFF) return false;
-  if (kind === "night" && booked.length) return false; // 夜の特別枠は1日1組
+  if (kind === "night" && booked.some((b) => !b.blk)) return false; // 夜の特別枠は1日1組
   const e = start + c.min + GAP;
   return !booked.some((b) => start < b.e + GAP && b.s < e);
 }
@@ -155,6 +155,13 @@ export function ensureTables() {
       await sql(`CREATE UNIQUE INDEX IF NOT EXISTS bookings_token ON bookings (token)`);
       await sql(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS cancelled_by text`);
       await sql(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS cancelled_at timestamptz`);
+      await sql(`CREATE TABLE IF NOT EXISTS time_blocks (
+        id serial PRIMARY KEY,
+        date text NOT NULL,
+        start_min int NOT NULL,
+        end_min int NOT NULL,
+        note text
+      )`);
       await sql(`CREATE TABLE IF NOT EXISTS blocked (
         id serial PRIMARY KEY,
         tel text,
@@ -184,7 +191,17 @@ export async function bookedFor(from: string, to: string) {
     `SELECT date, start_min, end_min FROM bookings WHERE date >= $1 AND date <= $2 AND ${ACTIVE}`,
     [from, to],
   );
-  return rows.map((r) => ({ date: r.date, s: Number(r.start_min), e: Number(r.end_min) }));
+  const list: { date: string; s: number; e: number; blk?: boolean }[] = rows.map((r) => ({ date: r.date, s: Number(r.start_min), e: Number(r.end_min) }));
+  return list.concat(await blocksFor(from, to));
+}
+
+// 予約ブロック（休憩・外出など）。施術の間の余白は要らないので、重なり判定で余白が打ち消されるように前後を詰めて返す
+export async function blocksFor(from: string, to: string) {
+  const rows = await sql<{ date: string; start_min: string; end_min: string }>(
+    `SELECT date, start_min, end_min FROM time_blocks WHERE date >= $1 AND date <= $2`,
+    [from, to],
+  );
+  return rows.map((r) => ({ date: r.date, s: Number(r.start_min) + GAP, e: Number(r.end_min) - GAP, blk: true }));
 }
 
 // ---- Stripe（REST API を直接呼ぶ） ----

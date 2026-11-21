@@ -35,6 +35,7 @@ input, button { font:inherit; }
 .cal button.night { background:var(--night); color:#fff; border-color:var(--night); }
 .cal button.custom { outline:2px dashed var(--brand); outline-offset:-4px; }
 .legend { font-size:12px; color:var(--muted); }
+select { font:inherit; font-size:15px; padding:8px; border:1px solid var(--line); border-radius:4px; background:#fff; }
 .cal button.off { opacity:.35; }
 .cal button.off::after { content:"非公開"; font-size:9px; }
 .pub { background:var(--soft); border:1px solid var(--line); border-radius:6px; padding:12px; display:flex; flex-direction:column; gap:8px; margin-bottom:10px; }
@@ -93,12 +94,26 @@ function render() {
       <span></span><span style="display:flex;gap:6px;flex-wrap:wrap;"><button class="btn ghost" data-cancel="${esc(b.id)}" data-name="${esc(b.name)}">取り消す</button><button class="btn ghost" data-block="${esc(b.id)}" data-name="${esc(b.name)}">以降お断り</button></span>
     </div>`; }).join("")}</div>`).join("") || `<p class="legend">これからの予約はありません。</p>`;
 
+  const times = []; for (let m = 6 * 60; m <= 23 * 60; m += 10) times.push(m);
   const first = new Date(data.days[0].date+"T00:00:00Z").getUTCDay();
   const cal = WD.map(w => `<div class="wd">${w}</div>`).join("") + "<div></div>".repeat(first) + data.days.map(d =>
     `<button type="button" class="${d.kind}${d.custom ? " custom" : ""}${data.published && d.date > data.published ? " off" : ""}" data-d="${d.date}" data-k="${d.kind}"><b>${+d.date.slice(8)}</b>${KIND[d.kind]}</button>`).join("");
 
   app.innerHTML = `<h1>予約の管理</h1>
     <section><h2>これからの予約</h2>${list}</section>
+    <section><h2>予約ブロック（休憩・外出など）</h2>
+      <div class="pub">
+        <div class="row">
+          <select id="bkd">${data.days.filter(d => d.kind !== "closed").map(d => `<option value="${d.date}">${fmt(d.date)}${d.kind === "night" ? " 夜" : ""}</option>`).join("")}</select>
+          <select id="bks">${times.map(m => `<option value="${m}" ${m === 720 ? "selected" : ""}>${hm(m)}</option>`).join("")}</select>
+          <span>〜</span>
+          <select id="bke">${times.map(m => `<option value="${m}" ${m === 780 ? "selected" : ""}>${hm(m)}</option>`).join("")}</select>
+        </div>
+        <div class="row"><input id="bkn" maxlength="40" placeholder="メモ（任意）例：休憩" style="flex:1 1 160px;padding:8px;border:1px solid var(--line);border-radius:4px;"><button class="btn" id="bkadd" type="button">ブロックする</button></div>
+        <p class="legend" style="margin:0;">この時間にかかる施術は予約できなくなります。施術と施術の間の余白（15分）は、ブロックの前後には付きません。</p>
+      </div>
+      ${(data.blocks || []).length ? data.blocks.map(x => `<div class="bk" style="border:1px solid var(--line);border-radius:6px;margin-bottom:6px;background:#fff;"><span class="t" style="font-size:14px;">${fmt(x.date)}</span><span><b>${hm(+x.start_min)}〜${hm(+x.end_min)}</b>　${esc(x.note || "")}</span><span></span><span><button class="btn ghost" data-delblock="${x.id}">ブロックを外す</button></span></div>`).join("") : `<p class="legend">ブロックはありません。</p>`}
+    </section>
     <section><h2>予約の公開（週ごと）</h2>
       <div class="pub">
         <strong>${data.published ? `お客様が予約できるのは ${fmt(data.published)} まで` : "60日先まですべて公開中"}</strong>
@@ -143,6 +158,15 @@ function render() {
   document.querySelectorAll("[data-block]").forEach(b => b.onclick = async () => {
     if (!confirm(`${b.dataset.name} 様の電話番号・メールアドレスでは、今後の予約を受け付けないようにします。よろしいですか？（この予約自体は残ります）`)) return;
     try { await api("POST", { block:b.dataset.block }); } catch (e) { alert(e.message); }
+    load();
+  });
+  document.getElementById("bkadd").onclick = async () => {
+    const v = id => document.getElementById(id).value;
+    try { await api("POST", { addBlock: { date: v("bkd"), s: Number(v("bks")), e: Number(v("bke")), note: v("bkn") } }); } catch (e) { alert(e.message); }
+    load();
+  };
+  document.querySelectorAll("[data-delblock]").forEach(b => b.onclick = async () => {
+    try { await api("POST", { delBlock: Number(b.dataset.delblock) }); } catch (e) { alert(e.message); }
     load();
   });
   document.querySelectorAll("[data-unblock]").forEach(b => b.onclick = async () => {

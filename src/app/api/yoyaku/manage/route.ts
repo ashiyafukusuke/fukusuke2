@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import {
-  ACTIVE, COURSES, daysBetween, MAX_SELF_CANCELS, selfCancelCount, ensureTables, fmtDate, hm, jstNow, kindsFor, MAX_CHANGES, price, selfServiceOk, slotOk, sql, stripe,
+  ACTIVE, blocksFor, COURSES, daysBetween, MAX_SELF_CANCELS, selfCancelCount, ensureTables, fmtDate, hm, jstNow, kindsFor, MAX_CHANGES, price, selfServiceOk, slotOk, sql, stripe,
 } from "@/lib/yoyaku";
 import { getSetting, notifyChange } from "@/lib/notify";
 
@@ -98,7 +98,7 @@ export async function POST(req: Request) {
       const others = await sql<{ start_min: string; end_min: string }>(
         `SELECT start_min, end_min FROM bookings WHERE date = $1 AND id <> $2 AND ${ACTIVE}`, [date, r.id],
       );
-      const booked = others.map((o) => ({ s: Number(o.start_min), e: Number(o.end_min) }));
+      const booked = [...others.map((o) => ({ s: Number(o.start_min), e: Number(o.end_min), blk: false })), ...(await blocksFor(date, date))];
       if (!slotOk(kind, c, start, booked, ahead, now.min)) {
         return NextResponse.json({ error: "この時間はご予約いただけません。別の時間をお選びください。", code: "taken" }, { status: 409 });
       }

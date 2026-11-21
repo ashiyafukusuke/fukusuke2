@@ -48,7 +48,8 @@ export async function GET(req: Request) {
     );
     const cmap = Object.fromEntries(stats.map((s) => [s.id, Number(s.cancels)]));
     for (const b of bookings) (b as Record<string, unknown>).cancels = cmap[b.id as string] || 0;
-    return NextResponse.json({ today: now.date, days, bookings, ntfy, published, blocked });
+    const blocks = await sql(`SELECT id, date, start_min, end_min, note FROM time_blocks WHERE date >= $1 ORDER BY date, start_min`, [now.date]);
+    return NextResponse.json({ today: now.date, days, bookings, ntfy, published, blocked, blocks });
   } catch (e) {
     console.error(e);
     return NextResponse.json({ error: "読み込めませんでした。" }, { status: 500 });
@@ -86,6 +87,19 @@ export async function POST(req: Request) {
       const r = (await sql(`SELECT tel, mail, name FROM bookings WHERE id = $1`, [b.block]))[0];
       if (!r) return NextResponse.json({ error: "予約が見つかりません。" }, { status: 404 });
       await sql(`INSERT INTO blocked (tel, mail, name) VALUES ($1, $2, $3)`, [r.tel, r.mail, r.name]);
+      return NextResponse.json({ ok: true });
+    }
+    if (b.addBlock && typeof b.addBlock === "object") {
+      const x = b.addBlock as Record<string, unknown>;
+      const s = Number(x.s), e = Number(x.e);
+      if (typeof x.date !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(x.date) || !Number.isInteger(s) || !Number.isInteger(e) || s < 0 || e > 24 * 60 || e <= s) {
+        return NextResponse.json({ error: "日付と時間を確認してください（終わりは始まりより後に）。" }, { status: 400 });
+      }
+      await sql(`INSERT INTO time_blocks (date, start_min, end_min, note) VALUES ($1, $2, $3, $4)`, [x.date, s, e, typeof x.note === "string" ? x.note.slice(0, 40) : null]);
+      return NextResponse.json({ ok: true });
+    }
+    if (Number.isInteger(b.delBlock)) {
+      await sql(`DELETE FROM time_blocks WHERE id = $1`, [b.delBlock]);
       return NextResponse.json({ ok: true });
     }
     if (Number.isInteger(b.unblock)) {

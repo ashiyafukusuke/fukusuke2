@@ -37,7 +37,7 @@ function price(c, visit, pay, a) {
 function slots(s, c) {
   const a = ahead(s), k = kindOf(s); if (k === "closed" || a < 0 || a > HORIZON) return [];
   const h = hoursOf(k), res = av.booked.filter(b => b.date === s && !(ui.mb && b.date === ui.mb.date && b.s === ui.mb.s && b.e === ui.mb.e));
-  if (k === "night" && res.length) return [];
+  if (k === "night" && res.some(b => !b.blk)) return [];
   const out = [];
   for (let m = h.s; m + c.min <= h.e && m <= h.last; m += h.step) {
     if (a === 0 && m < av.nowMin + CUTOFF) continue;
