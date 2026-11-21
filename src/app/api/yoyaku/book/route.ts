@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { notifyConfirmed } from "@/lib/notify";
+import { getSetting, notifyConfirmed } from "@/lib/notify";
 import crypto from "node:crypto";
 import {
   ACTIVE, COURSES, daysBetween, ensureTables, fmtDate, hm, jstNow, kindsFor, price, slotOk, sql, stripe, bookedFor,
@@ -44,7 +44,8 @@ export async function POST(req: Request) {
     await ensureTables();
     const now = jstNow();
     const ahead = daysBetween(now.date, date);
-    const kind = (await kindsFor(date, date))(date);
+    const pub = await getSetting("published_until");
+    const kind = pub && date > pub ? "closed" : (await kindsFor(date, date))(date);
     const booked = (await bookedFor(date, date)).map(({ s, e }) => ({ s, e }));
     if (!slotOk(kind, c, start, booked, ahead, now.min)) {
       return NextResponse.json({ error: "この時間はご予約いただけなくなりました。別の時間をお選びください。", code: "taken" }, { status: 409 });

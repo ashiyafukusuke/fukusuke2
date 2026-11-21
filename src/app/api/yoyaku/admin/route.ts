@@ -37,7 +37,8 @@ export async function GET(req: Request) {
       [addDays(now.date, -7)],
     );
     const ntfy = await getSetting("ntfy_topic");
-    return NextResponse.json({ today: now.date, days, bookings, ntfy });
+    const published = await getSetting("published_until");
+    return NextResponse.json({ today: now.date, days, bookings, ntfy, published });
   } catch (e) {
     console.error(e);
     return NextResponse.json({ error: "読み込めませんでした。" }, { status: 500 });
@@ -59,6 +60,10 @@ export async function POST(req: Request) {
       const t = b.ntfy.trim();
       if (t && !/^[A-Za-z0-9_-]{8,64}$/.test(t)) return NextResponse.json({ error: "合言葉は半角英数字8文字以上にしてください。" }, { status: 400 });
       await setSetting("ntfy_topic", t);
+      return NextResponse.json({ ok: true });
+    }
+    if (typeof b.publish === "string" && (b.publish === "" || /^\d{4}-\d{2}-\d{2}$/.test(b.publish))) {
+      await setSetting("published_until", b.publish);
       return NextResponse.json({ ok: true });
     }
     if (b.testPush === true) {

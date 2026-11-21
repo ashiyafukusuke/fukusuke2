@@ -35,6 +35,11 @@ input, button { font:inherit; }
 .cal button.night { background:var(--night); color:#fff; border-color:var(--night); }
 .cal button.custom { outline:2px dashed var(--brand); outline-offset:-4px; }
 .legend { font-size:12px; color:var(--muted); }
+.cal button.off { opacity:.35; }
+.cal button.off::after { content:"非公開"; font-size:9px; }
+.pub { background:var(--soft); border:1px solid var(--line); border-radius:6px; padding:12px; display:flex; flex-direction:column; gap:8px; margin-bottom:10px; }
+.pub strong { font-size:16px; }
+.pub .row { display:flex; flex-wrap:wrap; gap:8px; }
 </style>
 </head>
 <body>
@@ -89,10 +94,21 @@ function render() {
 
   const first = new Date(data.days[0].date+"T00:00:00Z").getUTCDay();
   const cal = WD.map(w => `<div class="wd">${w}</div>`).join("") + "<div></div>".repeat(first) + data.days.map(d =>
-    `<button type="button" class="${d.kind}${d.custom ? " custom" : ""}" data-d="${d.date}" data-k="${d.kind}"><b>${+d.date.slice(8)}</b>${KIND[d.kind]}</button>`).join("");
+    `<button type="button" class="${d.kind}${d.custom ? " custom" : ""}${data.published && d.date > data.published ? " off" : ""}" data-d="${d.date}" data-k="${d.kind}"><b>${+d.date.slice(8)}</b>${KIND[d.kind]}</button>`).join("");
 
   app.innerHTML = `<h1>予約の管理</h1>
     <section><h2>これからの予約</h2>${list}</section>
+    <section><h2>予約の公開（週ごと）</h2>
+      <div class="pub">
+        <strong>${data.published ? `お客様が予約できるのは ${fmt(data.published)} まで` : "60日先まですべて公開中"}</strong>
+        <div class="row">
+          <button class="btn" id="pubplus" type="button">次の1週間を公開</button>
+          <button class="btn ghost" id="pubminus" type="button">最後の1週間を閉じる</button>
+          ${data.published ? `<button class="btn ghost" id="puball" type="button">60日先まですべて公開</button>` : ""}
+        </div>
+        <p class="legend" style="margin:0;">週は日曜〜土曜で区切ります。閉じた週は、下のカレンダーで薄く「非公開」と表示されます。すでに入っている予約は消えません。</p>
+      </div>
+    </section>
     <section><h2>営業日（タップで 休み → 通し → 夜 と切り替わります）</h2>
       <div class="cal">${cal}</div>
       <p class="legend">通し＝9:00〜22:40　夜＝21:10〜21:40開始の1日1組。点線の枠は初期設定（水・木が通し）から変えた日です。予約が入っている日を休みにしても、その予約は消えません。</p>
@@ -107,6 +123,13 @@ function render() {
   document.getElementById("nttest").onclick = async () => { try { await api("POST", { testPush: true }); alert("送りました。スマホを確認してください。"); } catch (e) { alert(e.message); } };
 
   document.getElementById("rl").onclick = load;
+  const addD = (s, n) => new Date(Date.parse(s + "T00:00:00Z") + n * 864e5).toISOString().slice(0, 10);
+  const satOf = s => addD(s, 6 - new Date(s + "T00:00:00Z").getUTCDay());
+  const thisSat = satOf(data.today);
+  const setPub = async v => { try { await api("POST", { publish: v }); } catch (e) { alert(e.message); } load(); };
+  document.getElementById("pubplus").onclick = () => { const cur = data.published && data.published >= thisSat ? satOf(data.published) : addD(thisSat, -7); setPub(addD(cur, 7)); };
+  document.getElementById("pubminus").onclick = () => { const cur = data.published ? satOf(data.published) : satOf(data.days[data.days.length - 1].date); setPub(addD(cur, -7) < thisSat ? thisSat : addD(cur, -7)); };
+  const pa = document.getElementById("puball"); if (pa) pa.onclick = () => setPub("");
   document.querySelectorAll("[data-d]").forEach(b => b.onclick = async () => {
     b.disabled = true;
     try { await api("POST", { date:b.dataset.d, kind:NEXT[b.dataset.k] }); } catch (e) { alert(e.message); }
