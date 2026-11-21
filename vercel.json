@@ -1,3 +1,4 @@
 {
-  "regions": ["sin1"]
+  "regions": ["sin1"],
+  "crons": [{ "path": "/api/yoyaku/remind", "schedule": "0 9 * * *" }]
 }

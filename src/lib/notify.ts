@@ -132,3 +132,35 @@ export async function notifyConfirmed(id: string, origin: string) {
     console.error("notify error", e);
   }
 }
+
+// 前日のリマインドメール
+export async function sendReminder(id: string) {
+  try {
+    const rows = await sql<Row>(`SELECT * FROM bookings WHERE id = $1 AND status = 'confirmed'`, [id]);
+    const r = rows[0];
+    if (!r || !r.mail) return;
+    const d = details(r);
+    const text = [
+      `${r.name} 様`,
+      ``,
+      `足つぼ専門店イタキモです。明日のご予約のご案内です。`,
+      ``,
+      `予約番号：${d.no}`,
+      `日時：${d.when}`,
+      `コース：${d.course}`,
+      `お支払い：${d.pay}`,
+      `金額：${d.total}`,
+      ``,
+      `場所：${ADDRESS}`,
+      `到着は5分前ごろを目安にお越しください。遅れた場合も、終了時間は変わりません。`,
+      ``,
+      `ご都合が悪くなった場合は、このメールへの返信でお知らせください。キャンセル料は頂きません。`,
+      ``,
+      `足つぼ専門店 イタキモ　福助`,
+      `https://www.itakimo.net/`,
+    ].join("\n");
+    await withTimeout(sendMail(r.mail, `【イタキモ】明日のご予約のご案内（${d.short}）`, text));
+  } catch (e) {
+    console.error("reminder error", e);
+  }
+}
