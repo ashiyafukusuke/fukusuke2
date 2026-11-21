@@ -36,7 +36,7 @@ function price(c, visit, pay, a) {
 
 function slots(s, c) {
   const a = ahead(s), k = kindOf(s); if (k === "closed" || a < 0 || a > HORIZON) return [];
-  const h = hoursOf(k), res = av.booked.filter(b => b.date === s);
+  const h = hoursOf(k), res = av.booked.filter(b => b.date === s && !(ui.mb && b.date === ui.mb.date && b.s === ui.mb.s && b.e === ui.mb.e));
   if (k === "night" && res.length) return [];
   const out = [];
   for (let m = h.s; m + c.min <= h.e && m <= h.last; m += h.step) {
@@ -89,6 +89,7 @@ function doneHtml(b) {
       <div class="row"><span>お支払い</span><span>${esc(b.pay)}</span></div>
       <div class="row total"><span>${b.paid ? "お支払い済み" : "当日のお支払い"}</span><span>${yen(b.total)}</span></div>
     </div>
+    ${b.manage ? `<p class="note" style="margin:0;">前日の23:59までは、<a href="${esc(b.manage)}" style="color:var(--brand);font-weight:700;">こちらのページ</a>からご自分で日時の変更（2回まで）とキャンセルができます。${b.mail ? "確認メールにも同じリンクを載せています。" : "メールアドレスの登録がないため、このページのURLを控えておいてください。"}</p>` : ""}
     <p class="note">場所：西東京市ひばりが丘 HIBARIDO 2F R-09<br>到着は5分前ごろを目安にお越しください。</p>`;
 }
 
@@ -102,7 +103,7 @@ function render() {
   const c = COURSES.find(x => x.id === ui.cid) || null;
   const a = ui.date ? ahead(ui.date) : 0;
   const steps = `<nav class="steps" aria-label="進み具合">${["コース","日時","確認・入力","完了"].map((n,i) => `<span class="${i+1===ui.step?"on":i+1<ui.step?"done":""}">${i+1}. ${n}</span>`).join("")}</nav>`;
-  let main = ui.info ? `<div class="err" role="alert">${esc(ui.info)}</div>` : "";
+  let main = ui.info && ui.mode !== "manage" ? `<div class="err" role="alert">${esc(ui.info)}</div>` : "";
 
   if (ui.step === 1) {
     main += `<h2>コースを選ぶ</h2>
@@ -132,7 +133,7 @@ function render() {
     }
   }
 
-  if (ui.step === 2) {
+  if (ui.step === 2 || ui.mstep === "cal") {
     const t = D(today());
     const base = new Date(Date.UTC(t.getUTCFullYear(), t.getUTCMonth() + ui.mo, 1)), y = base.getUTCFullYear(), mo = base.getUTCMonth();
     const last = D(addD(today(), HORIZON));
@@ -147,7 +148,7 @@ function render() {
       const o = ok && p.eb ? `−${p.eb.toLocaleString()}円` : ok && ahead(s) === 0 ? "当日" : "";
       cells += `<button type="button" class="day" data-d="${s}" ${ok?"":"disabled"} aria-pressed="${ui.date === s}" aria-label="${fmt(s)}${ok?"":"、予約できません"}"><span class="n">${n}</span><span class="s">${st}</span><span class="o">${o}</span></button>`;
     }
-    main += `<h2>日時を選ぶ</h2>
+    main += `<h2>${ui.mstep === "cal" ? "新しい日時を選ぶ" : "日時を選ぶ"}</h2>
       <p class="lead">当日のご予約は、開始1時間前まで受け付けています。日付の下の数字が早割の金額です。</p>
       <div class="cal">
         <div class="cal-head"><button type="button" id="pm" ${ui.mo<=0?"disabled":""}>前の月</button><strong>${y}年${mo+1}月</strong><button type="button" id="nm" ${ui.mo>=maxMo?"disabled":""}>次の月</button></div>
@@ -161,6 +162,8 @@ function render() {
         <div class="slots">${sl.map(x => `<button type="button" class="slot" data-t="${x.m}" ${x.taken?"disabled":""} aria-pressed="${ui.time===x.m}">${hm(x.m)}</button>`).join("")}</div>`;
     }
   }
+
+  if (ui.mode === "manage") main = manageMain(main);
 
   if (ui.step === 3) {
     const p = price(c, ui.visit, ui.pay, a);
@@ -200,8 +203,8 @@ function render() {
   const nextLabel = ui.busy ? "送信しています…" : ui.step === 1 ? "日時を選ぶ" : ui.step === 2 ? "確認へ進む" : ui.step === 3 ? (ui.pay === "card" ? "お支払いへ進む" : "予約する") : "サイトに戻る";
 
   app.innerHTML = `
-    <div class="wrap">${head}${ui.step === 1 ? rulesHtml() : ""}${steps}${main}</div>
-    ${ui.step === 4 ? `<p style="text-align:center;margin:8px 0 24px;"><a href="/" style="color:var(--muted);font-size:13px;">イタキモのサイトへ</a></p>` : `<div class="bar"><div class="bar-in">
+    <div class="wrap">${head}${ui.step === 1 ? rulesHtml() : ""}${ui.mode === "manage" ? "" : steps}${main}</div>
+    ${ui.mode === "manage" ? manageBar() : ui.step === 4 ? `<p style="text-align:center;margin:8px 0 24px;"><a href="/" style="color:var(--muted);font-size:13px;">イタキモのサイトへ</a></p>` : `<div class="bar"><div class="bar-in">
       <div class="sum">${sum}${p ? `<b>${yen(p.total)}</b>` : ""}</div>
       ${ui.step > 1 && ui.step < 4 ? `<button type="button" class="btn ghost" id="back" ${ui.busy?"disabled":""}>戻る</button>` : ""}
       <button type="button" class="btn" id="next" ${can?"":"disabled"}>${nextLabel}</button>
@@ -227,8 +230,9 @@ function render() {
     });
   }
   const back = document.getElementById("back");
-  if (back) back.onclick = () => { ui.step--; ui.err = ""; render(); scrollTo(0,0); };
-  const nx = document.getElementById("next");
+  if (back && ui.mode !== "manage") back.onclick = () => { ui.step--; ui.err = ""; render(); scrollTo(0,0); };
+  if (ui.mode === "manage") bindManage();
+  const nx = ui.mode === "manage" ? null : document.getElementById("next");
   if (nx) nx.onclick = () => {
     if (ui.step === 3) return submit(c);
     if (ui.step === 4) { location.href = "/"; return; }
@@ -258,6 +262,89 @@ async function submit(c) {
   }
 }
 
+
+function manageMain(calHtml) {
+  const b = ui.mb;
+  if (!b) return `<div class="err" role="alert">${esc(ui.merr || "ご予約が見つかりません。")}</div>`;
+  const info = ui.info ? `<div class="err" role="alert">${esc(ui.info)}</div>` : "";
+  const sheet = `<div class="sheet">
+      <div class="row"><span>予約番号</span><span>${esc(b.no)}</span></div>
+      <div class="row"><span>ご予約名</span><span>${esc(b.name)} 様</span></div>
+      <div class="row"><span>日時</span><span>${esc(b.when)}</span></div>
+      <div class="row"><span>コース</span><span>${b.min}分（${b.visit === "first" ? "はじめて" : "2回目以降"}）</span></div>
+      <div class="row"><span>お支払い</span><span>${b.pay === "card" ? "事前決済" : "当日、お店で"}</span></div>
+      <div class="row total"><span>${b.paid ? "お支払い済み" : "当日のお支払い"}</span><span>${yen(b.total)}</span></div>
+    </div>`;
+  if (ui.mstep === "done") return info + `<div class="okbox" role="status"><span class="mark" aria-hidden="true">✓</span><div><strong>${esc(ui.mdone.title)}</strong><small>${esc(ui.mdone.text)}</small></div></div>` + (b.status === "confirmed" ? sheet : "");
+  if (b.status === "cancelled") return `<h2>ご予約の確認</h2><div class="err">このご予約はキャンセル済みです。</div>`;
+  if (ui.mstep === "cal") return info + `<p class="note" style="margin:0;">今のご予約：${esc(b.when)}（${b.min}分）<br>料金は、変更後の日付で計算し直します。</p>` + calHtml;
+  if (ui.mstep === "confirm") {
+    const v = ui.mprev;
+    return info + `<h2>変更の確認</h2>
+      <div class="sheet">
+        <div class="row"><span>変更前</span><span>${esc(b.when)}</span></div>
+        <div class="row"><span>変更後</span><span>${esc(v.when)}</span></div>
+        <div class="row"><span>コース</span><span>${b.min}分</span></div>
+        <div class="row total"><span>変更後の金額</span><span>${yen(v.total)}</span></div>
+        ${v.total !== v.before ? `<p class="capnote">変更前は${yen(v.before)}でした（早割の条件が変わるため）</p>` : ""}
+        ${v.refund > 0 ? `<div class="row minus"><span>差額の返金</span><span>${yen(v.refund)}</span></div>` : ""}
+      </div>
+      <p class="note" style="margin:0;">ご自分での変更は、あと${b.changesLeft}回できます（この変更を含む）。</p>`;
+  }
+  if (ui.mstep === "cancel") return info + `<h2>キャンセルの確認</h2>${sheet}<p class="note" style="margin:0;">このご予約をキャンセルします。キャンセル料は頂きません。${b.paid ? `お支払い済みの${yen(b.total)}は全額お返しします（カード会社によって、反映まで数日〜数週間かかります）。` : ""}</p>`;
+  const why = b.canCancel ? "" : `<p class="note" style="margin:0;">前日の23:59を過ぎたため、ここからは変更・キャンセルできません。メール（fukusuke@itakimo.net）かInstagram DMでご連絡ください。</p>`;
+  return info + `<h2>ご予約の確認</h2>${sheet}${why}${b.canCancel && !b.canChange ? `<p class="note" style="margin:0;">ご自分での日時の変更は2回までです。これ以上の変更は、メールかInstagram DMでご連絡ください。</p>` : ""}
+    ${b.canChange || b.canCancel ? `<p class="note" style="margin:0;">前日の23:59まで、日時の変更（あと${b.changesLeft}回）とキャンセルができます。</p>` : ""}`;
+}
+
+function manageBar() {
+  const b = ui.mb;
+  if (!b || b.status === "cancelled" || ui.mstep === "done") return `<p style="text-align:center;margin:8px 0 24px;"><a href="/" style="color:var(--muted);font-size:13px;">イタキモのサイトへ</a></p>`;
+  let btns = "";
+  if (ui.mstep === "view") btns = `${b.canCancel ? `<button type="button" class="btn ghost" id="mcancel">キャンセルする</button>` : ""}${b.canChange ? `<button type="button" class="btn" id="mchange">日時を変更する</button>` : ""}`;
+  if (ui.mstep === "cal") btns = `<button type="button" class="btn ghost" id="mback">戻る</button><button type="button" class="btn" id="mnext" ${ui.date && ui.time != null && !ui.busy ? "" : "disabled"}>${ui.busy ? "確認しています…" : "確認へ進む"}</button>`;
+  if (ui.mstep === "confirm") btns = `<button type="button" class="btn ghost" id="mback">戻る</button><button type="button" class="btn" id="mdo" ${ui.busy ? "disabled" : ""}>${ui.busy ? "変更しています…" : "この日時に変更する"}</button>`;
+  if (ui.mstep === "cancel") btns = `<button type="button" class="btn ghost" id="mback">戻る</button><button type="button" class="btn" id="mdo" ${ui.busy ? "disabled" : ""}>${ui.busy ? "キャンセルしています…" : "キャンセルを確定する"}</button>`;
+  if (!btns) return "";
+  return `<div class="bar"><div class="bar-in"><div class="sum">${ui.mstep === "cal" && ui.date && ui.time != null ? `${fmt(ui.date)} ${hm(ui.time)}<b>${yen(price(COURSES.find(x => x.id === b.cid), b.visit, b.pay, ahead(ui.date)).total)}</b>` : `予約番号 ${esc(b.no)}`}</div>${btns}</div></div>`;
+}
+
+async function mpost(body) {
+  const r = await fetch("/api/yoyaku/manage", { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify({ t: ui.mt, ...body }) });
+  return r.json().catch(() => ({ error: "通信がうまくいきませんでした。" }));
+}
+
+function bindManage() {
+  const g = id => document.getElementById(id);
+  const top = () => { render(); scrollTo(0,0); };
+  if (g("mchange")) g("mchange").onclick = () => { ui.mstep = "cal"; ui.date = null; ui.time = null; ui.mo = 0; ui.info = ""; top(); };
+  if (g("mcancel")) g("mcancel").onclick = () => { ui.mstep = "cancel"; ui.info = ""; top(); };
+  if (g("mback")) g("mback").onclick = () => { ui.mstep = ui.mstep === "confirm" ? "cal" : "view"; ui.info = ""; top(); };
+  if (g("mnext")) g("mnext").onclick = async () => {
+    ui.busy = true; render();
+    const j = await mpost({ action:"change", date: ui.date, time: ui.time });
+    ui.busy = false;
+    if (j.preview) { ui.mprev = j.preview; ui.mstep = "confirm"; ui.info = ""; return top(); }
+    ui.info = j.error || "変更できませんでした。"; if (j.code === "taken") { await load(); ui.time = null; } top();
+  };
+  if (g("mdo")) g("mdo").onclick = async () => {
+    ui.busy = true; render();
+    const cancel = ui.mstep === "cancel";
+    const j = await mpost(cancel ? { action:"cancel" } : { action:"change", date: ui.date, time: ui.time, confirm: true });
+    ui.busy = false;
+    if (!j.ok) { ui.info = j.error || "うまく処理できませんでした。"; if (j.code === "taken") { await load(); ui.mstep = "cal"; ui.time = null; } return top(); }
+    if (cancel) {
+      ui.mb = { ...ui.mb, status: "cancelled" };
+      ui.mdone = { title: "キャンセルを承りました", text: j.refundFailed ? "返金の手続きがうまくいかなかったため、お店から改めてご連絡します。" : j.refunded ? `${yen(j.refunded)}をお返しします。カード会社によって、反映まで数日〜数週間かかります。` : "またのご予約をお待ちしています。" };
+    } else {
+      ui.mb = j.booking || ui.mb;
+      ui.mdone = { title: "日時を変更しました", text: (j.refunded ? `差額の${yen(j.refunded)}をお返しします。` : "") + (ui.mb && ui.mb.total != null ? "新しい内容は下の通りです。" : "") };
+      await load();
+    }
+    ui.info = ""; ui.mstep = "done"; top();
+  };
+}
+
 async function load() {
   const res = await fetch("/api/yoyaku/availability", { cache:"no-store" });
   const j = await res.json();
@@ -268,7 +355,18 @@ async function load() {
 (async () => {
   render();
   const qs = new URLSearchParams(location.search);
-  const paid = qs.get("paid"), canceled = qs.get("canceled");
+  const paid = qs.get("paid"), canceled = qs.get("canceled"), mt = qs.get("m");
+  if (mt) {
+    Object.assign(ui, { mode:"manage", mstep:"view", mt, step:0 });
+    try {
+      await load();
+      const r = await fetch("/api/yoyaku/manage?t=" + encodeURIComponent(mt), { cache:"no-store" });
+      const j = await r.json();
+      if (j.booking) { ui.mb = j.booking; ui.cid = j.booking.cid; ui.visit = j.booking.visit; ui.pay = j.booking.pay; }
+      else ui.merr = j.error;
+    } catch { loadErr = "読み込めませんでした。時間をおいて、ページを開き直してください。"; }
+    return render();
+  }
   if (canceled) history.replaceState(null, "", "/yoyaku");
   try {
     if (canceled) await fetch("/api/yoyaku/release", { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify({ id: canceled }) }).catch(() => {});

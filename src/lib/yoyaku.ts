@@ -148,6 +148,11 @@ export function ensureTables() {
         hold_until timestamptz
       )`);
       await sql(`CREATE INDEX IF NOT EXISTS bookings_date ON bookings (date)`);
+      await sql(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS token text`);
+      await sql(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS change_count int NOT NULL DEFAULT 0`);
+      await sql(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS notified_at timestamptz`);
+      await sql(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS reminded_at timestamptz`);
+      await sql(`CREATE UNIQUE INDEX IF NOT EXISTS bookings_token ON bookings (token)`);
     })().catch((e) => {
       ready = null;
       throw e;
@@ -195,4 +200,17 @@ export function fmtDate(d: string) {
   const W = ["日", "月", "火", "水", "木", "金", "土"];
   const [, mo, da] = d.split("-").map(Number);
   return `${mo}月${da}日（${W[weekday(d)]}）`;
+}
+
+export const MAX_CHANGES = 2;
+// 予約の変更・キャンセルの専用リンク
+export function site(origin: string) {
+  return process.env.VERCEL_ENV === "production" ? "https://www.itakimo.net" : origin;
+}
+export function manageUrl(origin: string, token: string | null) {
+  return token ? `${site(origin)}/yoyaku?m=${token}` : "";
+}
+// 前日の23:59までなら、お客様が自分で変更・キャンセルできる
+export function selfServiceOk(date: string) {
+  return date > jstNow().date;
 }

@@ -1,5 +1,5 @@
 // 予約が確定したときの連絡：お客様への確認メール・店主へのメール・店主のスマホ通知（ntfy）
-import { fmtDate, hm, sql } from "@/lib/yoyaku";
+import { fmtDate, hm, manageUrl, MAX_CHANGES, site, sql } from "@/lib/yoyaku";
 
 const OWNER = "fukusuke@itakimo.net";
 // 店主への予約メールの送り先（届かなかったときの控えに Gmail にも送る）
@@ -93,7 +93,9 @@ export async function notifyConfirmed(id: string, origin: string) {
         `■ ご予約の前に`,
         `・遅れても、終了時間は変わりません。`,
         `・キャンセル料は頂きません。無断キャンセルの方からは、以降のご予約をお受けしていません。`,
-        `・変更・キャンセルは、このメールへの返信、Instagram DM、サイトのお問い合わせフォームからご連絡ください。`,
+        `・前日の23:59までは、下のリンクからご自分で日時の変更（${MAX_CHANGES}回まで）とキャンセルができます。`,
+        `　${manageUrl(origin, r.token)}`,
+        `・当日の変更・キャンセルは、このメールへの返信、Instagram DM、サイトのお問い合わせフォームからご連絡ください。`,
         ``,
         `当日お会いできるのを楽しみにしています。`,
         ``,
@@ -120,12 +122,12 @@ export async function notifyConfirmed(id: string, origin: string) {
       answers.stay ? `過ごし方：${answers.stay}` : null,
       r.memo ? `気になっていること：${r.memo}` : null,
       ``,
-      `管理画面：${origin}/yoyaku/admin`,
+      `管理画面：${site(origin)}/yoyaku/admin`,
     ].filter((l) => l !== null).join("\n");
     tasks.push(sendMail(OWNER_TO, `【予約】${d.short} ${d.min}分 ${r.name} 様`, ownerText));
 
     const topic = await getSetting("ntfy_topic");
-    if (topic) tasks.push(push(topic, "イタキモ 予約が入りました", `${d.short}　${d.min}分　${r.pay === "card" ? "事前決済" : "当日払い"}`, `${origin}/yoyaku/admin`));
+    if (topic) tasks.push(push(topic, "イタキモ 予約が入りました", `${d.short}　${d.min}分　${r.pay === "card" ? "事前決済" : "当日払い"}`, `${site(origin)}/yoyaku/admin`));
 
     await withTimeout(Promise.allSettled(tasks));
   } catch (e) {
@@ -134,7 +136,7 @@ export async function notifyConfirmed(id: string, origin: string) {
 }
 
 // 前日のリマインドメール
-export async function sendReminder(id: string) {
+export async function sendReminder(id: string, origin: string) {
   try {
     const rows = await sql<Row>(`SELECT * FROM bookings WHERE id = $1 AND status = 'confirmed'`, [id]);
     const r = rows[0];
@@ -154,7 +156,9 @@ export async function sendReminder(id: string) {
       `場所：${ADDRESS}`,
       `到着は5分前ごろを目安にお越しください。遅れた場合も、終了時間は変わりません。`,
       ``,
-      `ご都合が悪くなった場合は、このメールへの返信でお知らせください。キャンセル料は頂きません。`,
+      `本日23:59までは、こちらからご自分で変更・キャンセルができます。`,
+      manageUrl(origin, r.token),
+      `明日になってからは、このメールへの返信でお知らせください。キャンセル料は頂きません。`,
       ``,
       `足つぼ専門店 イタキモ　福助`,
       `https://www.itakimo.net/`,
@@ -162,5 +166,44 @@ export async function sendReminder(id: string) {
     await withTimeout(sendMail(r.mail, `【イタキモ】明日のご予約のご案内（${d.short}）`, text));
   } catch (e) {
     console.error("reminder error", e);
+  }
+}
+
+// お客様が自分で変更・キャンセルしたときの連絡
+export async function notifyChange(id: string, origin: string, kind: "change" | "cancel", before: string, refund: number) {
+  try {
+    const rows = await sql<Row>(`SELECT * FROM bookings WHERE id = $1`, [id]);
+    const r = rows[0];
+    if (!r) return;
+    const d = details(r);
+    const tasks: Promise<unknown>[] = [];
+    const refundLine = refund > 0 ? `返金：¥${refund.toLocaleString("ja-JP")}（カード会社によって、反映まで数日〜数週間かかります）` : null;
+    if (r.mail) {
+      const text = (kind === "change"
+        ? [`${r.name} 様`, ``, `足つぼ専門店イタキモです。ご予約の日時を変更しました。`, ``, `予約番号：${d.no}`, `変更前：${before}`, `変更後：${d.when}`, `コース：${d.course}`, `お支払い：${d.pay}`, `金額：${d.total}`, refundLine,
+           ``, `場所：${ADDRESS}`, `到着は5分前ごろを目安にお越しください。`, ``, `変更・キャンセル：${manageUrl(origin, r.token)}`, ``, `足つぼ専門店 イタキモ　福助`]
+        : [`${r.name} 様`, ``, `足つぼ専門店イタキモです。ご予約のキャンセルを承りました。`, ``, `予約番号：${d.no}`, `日時：${before}`, refundLine, ``, `またのご予約をお待ちしています。`, ``, `足つぼ専門店 イタキモ　福助`, `https://www.itakimo.net/`]
+      ).filter((l) => l !== null).join("\n");
+      tasks.push(sendMail(r.mail, kind === "change" ? `【イタキモ】ご予約の日時を変更しました（${d.short}）` : `【イタキモ】ご予約のキャンセルを承りました`, text));
+    }
+    const ownerText = [
+      kind === "change" ? `お客様がご予約の日時を変更しました。` : `お客様がご予約をキャンセルしました。`,
+      ``,
+      `ご予約名：${r.name} 様（予約番号 ${d.no}）`,
+      kind === "change" ? `変更前：${before}` : `日時：${before}`,
+      kind === "change" ? `変更後：${d.when}` : null,
+      `コース：${d.course}`,
+      kind === "change" ? `金額：${d.total}（${d.pay}）` : null,
+      refundLine,
+      kind === "change" ? `変更回数：${r.change_count}回目` : null,
+      ``,
+      `管理画面：${site(origin)}/yoyaku/admin`,
+    ].filter((l) => l !== null).join("\n");
+    tasks.push(sendMail(OWNER_TO, kind === "change" ? `【予約変更】${before} → ${d.short} ${r.name} 様` : `【キャンセル】${before} ${r.name} 様`, ownerText));
+    const topic = await getSetting("ntfy_topic");
+    if (topic) tasks.push(push(topic, kind === "change" ? "イタキモ 予約の変更" : "イタキモ キャンセル", kind === "change" ? `${before} → ${d.short}` : `${before}　${d.min}分`, `${site(origin)}/yoyaku/admin`));
+    await withTimeout(Promise.allSettled(tasks));
+  } catch (e) {
+    console.error("notifyChange error", e);
   }
 }

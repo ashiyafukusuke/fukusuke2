@@ -20,7 +20,8 @@ export async function GET(req: Request) {
       `UPDATE bookings SET reminded_at = now() WHERE date = $1 AND status = 'confirmed' AND mail IS NOT NULL AND reminded_at IS NULL RETURNING id`,
       [tomorrow],
     );
-    for (const r of rows) await sendReminder(r.id);
+    const origin = new URL(req.url).origin;
+    for (const r of rows) await sendReminder(r.id, origin);
     return NextResponse.json({ ok: true, sent: rows.length });
   } catch (e) {
     console.error(e);
