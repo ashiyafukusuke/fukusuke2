@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import {
-  ACTIVE, COURSES, daysBetween, ensureTables, fmtDate, hm, jstNow, kindsFor, MAX_CHANGES, price, selfServiceOk, slotOk, sql, stripe,
+  ACTIVE, COURSES, daysBetween, MAX_SELF_CANCELS, selfCancelCount, ensureTables, fmtDate, hm, jstNow, kindsFor, MAX_CHANGES, price, selfServiceOk, slotOk, sql, stripe,
 } from "@/lib/yoyaku";
 import { getSetting, notifyChange } from "@/lib/notify";
 
@@ -16,7 +16,7 @@ async function find(token: unknown) {
   return rows[0] || null;
 }
 
-function view(r: Row) {
+function view(r: Row, cancels = 0) {
   const c = COURSES.find((x) => x.id === r.course)!;
   const date = r.date!;
   const open = r.status === "confirmed" && selfServiceOk(date);
@@ -36,7 +36,9 @@ function view(r: Row) {
     paid: r.pay === "card" && !!r.paid_at,
     changesLeft: Math.max(0, MAX_CHANGES - Number(r.change_count || 0)),
     canChange: open && Number(r.change_count || 0) < MAX_CHANGES,
-    canCancel: open,
+    canCancel: open && cancels < MAX_SELF_CANCELS,
+    cancelLimited: open && cancels >= MAX_SELF_CANCELS,
+    cancelsLeft: Math.max(0, MAX_SELF_CANCELS - cancels),
   };
 }
 
@@ -52,7 +54,7 @@ export async function GET(req: Request) {
   try {
     const r = await find(new URL(req.url).searchParams.get("t"));
     if (!r) return NextResponse.json({ error: "ご予約が見つかりません。リンクをもう一度ご確認ください。" }, { status: 404 });
-    return NextResponse.json({ booking: view(r) });
+    return NextResponse.json({ booking: view(r, await selfCancelCount(r.tel, r.mail)) });
   } catch (e) {
     console.error(e);
     return NextResponse.json({ error: "読み込めませんでした。" }, { status: 500 });
@@ -65,13 +67,13 @@ export async function POST(req: Request) {
   try {
     const r = await find(b.t);
     if (!r) return NextResponse.json({ error: "ご予約が見つかりません。" }, { status: 404 });
-    const v = view(r);
+    const v = view(r, await selfCancelCount(r.tel, r.mail));
     const origin = new URL(req.url).origin;
     const late = "前日の23:59を過ぎたため、ここからは変更・キャンセルできません。メール（fukusuke@itakimo.net）かInstagram DMでご連絡ください。";
 
     if (b.action === "cancel") {
-      if (!v.canCancel) return NextResponse.json({ error: r.status === "cancelled" ? "このご予約はキャンセル済みです。" : late }, { status: 409 });
-      const done = await sql(`UPDATE bookings SET status = 'cancelled' WHERE id = $1 AND status = 'confirmed' RETURNING id`, [r.id]);
+      if (!v.canCancel) return NextResponse.json({ error: r.status === "cancelled" ? "このご予約はキャンセル済みです。" : v.cancelLimited ? `ご自分でのキャンセルは、直近3か月で${MAX_SELF_CANCELS}回までです。お手数ですが、メールかInstagram DMでご連絡ください。` : late }, { status: 409 });
+      const done = await sql(`UPDATE bookings SET status = 'cancelled', cancelled_by = 'customer', cancelled_at = now() WHERE id = $1 AND status = 'confirmed' RETURNING id`, [r.id]);
       if (!done.length) return NextResponse.json({ error: "このご予約はキャンセル済みです。" }, { status: 409 });
       let refunded = 0;
       if (r.pay === "card" && r.paid_at) {
@@ -125,7 +127,7 @@ export async function POST(req: Request) {
       }
       await notifyChange(r.id!, origin, "change", v.when, refunded);
       const after = await find(b.t);
-      return NextResponse.json({ ok: true, booking: after ? view(after) : null, refunded });
+      return NextResponse.json({ ok: true, booking: after ? view(after, await selfCancelCount(after.tel, after.mail)) : null, refunded });
     }
 
     return NextResponse.json({ error: "内容が正しくありません。" }, { status: 400 });

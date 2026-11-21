@@ -59,7 +59,9 @@ function rulesHtml() {
     <ol>
       <li><div><strong>遅れても、終了時間は変わりません。</strong><span>施術・お着替え・お会計まで、ご予約の枠の中で終わります。到着は5分前ごろを目安にお越しください。</span></div></li>
       <li><div><strong>キャンセル料は頂きません。</strong><span>ただし、無断キャンセルの方からは、以降のご予約をお受けしていません。直前のキャンセルが続く場合も、お受けしないことがあります。体調やご家族の事情、足のけがなどでのキャンセルは、ご連絡があれば対象にしません。</span></div></li>
-      <li><div><strong>変更・キャンセルの方法</strong><span>どちらも、メール（fukusuke@itakimo.net）・Instagram DM・お問い合わせフォームからご連絡ください。</span></div></li>
+      <li><div><strong>変更・キャンセルの方法</strong><span>前日の23:59までは、確認メールの専用リンクからご自分でできます。</span>
+        <ul class="mini"><li>日時の変更：1つのご予約につき2回まで（料金は変更後の日付で計算し直します）</li><li>キャンセル：直近3か月で2回まで</li></ul>
+        <span>当日の場合や、回数を超える場合は、メール（fukusuke@itakimo.net）・Instagram DM・お問い合わせフォームからご連絡ください。</span></div></li>
     </ol>
     <p class="more">個人情報を守るため、ご予約名は本名でなくてもかまいません。お手数でなければ、ニックネームなど本名以外のお名前をおすすめします。<br>お預かりする情報の扱いは、<a href="/privacy" target="_blank" rel="noopener" style="color:var(--brand);">プライバシーポリシー</a>をご覧ください。</p>
   </section>`;
@@ -185,6 +187,7 @@ function render() {
         <label class="field">ご予約名（本名でなくてもかまいません）<input id="fn" maxlength="40" autocomplete="nickname" placeholder="例：ふくすけ" value="${esc(ui.f.name)}"></label>
         <p class="note" style="margin:0;">連絡先は、電話番号かメールアドレスの<strong>どちらか一方</strong>で大丈夫です。予約の確認と、変更があったときのご連絡にだけ使います。</p>
         <label class="field">電話番号<input id="ft" type="tel" maxlength="20" autocomplete="tel" placeholder="09012345678" value="${esc(ui.f.tel)}"></label>
+        <p class="note" style="margin:0;border-color:var(--brand);background:var(--tint);">ご自分で日時の変更・キャンセルをしたい方は、<strong>メールアドレスを入れてください</strong>。予約ごとの専用リンクをお送りします。メールアドレスがない場合、変更・キャンセルはお店へご連絡ください。</p>
         <label class="field">メールアドレス<input id="fe" type="email" maxlength="120" autocomplete="email" placeholder="example@email.com" value="${esc(ui.f.mail)}"></label>
         ${ui.visit === "first" ? qHtml() : ""}
         <label class="field">足や身体のお疲れで気になっていること（任意）<textarea id="fo" maxlength="400" placeholder="疲れた、立ち仕事でふくらはぎが張りやすい、強めが好き、など">${esc(ui.f.memo)}</textarea></label>
@@ -294,7 +297,11 @@ function manageMain(calHtml) {
   if (ui.mstep === "cancel") return info + `<h2>キャンセルの確認</h2>${sheet}<p class="note" style="margin:0;">このご予約をキャンセルします。キャンセル料は頂きません。${b.paid ? `お支払い済みの${yen(b.total)}は全額お返しします（カード会社によって、反映まで数日〜数週間かかります）。` : ""}</p>`;
   const why = b.canCancel ? "" : `<p class="note" style="margin:0;">前日の23:59を過ぎたため、ここからは変更・キャンセルできません。メール（fukusuke@itakimo.net）かInstagram DMでご連絡ください。</p>`;
   return info + `<h2>ご予約の確認</h2>${sheet}${why}${b.canCancel && !b.canChange ? `<p class="note" style="margin:0;">ご自分での日時の変更は2回までです。これ以上の変更は、メールかInstagram DMでご連絡ください。</p>` : ""}
-    ${b.canChange || b.canCancel ? `<p class="note" style="margin:0;">前日の23:59まで、日時の変更（あと${b.changesLeft}回）とキャンセルができます。</p>` : ""}`;
+    ${b.cancelLimited ? `<p class="note" style="margin:0;">ご自分でのキャンセルは、直近3か月で2回までです。キャンセルの場合は、メールかInstagram DMでご連絡ください。</p>` : ""}
+    ${b.canChange || b.canCancel ? `<div class="rules"><h2 style="font-size:15px;margin-bottom:6px;">ご自分でできること（前日の23:59まで）</h2>
+      <ul class="mini" style="margin:0;"><li>日時の変更：あと${b.changesLeft}回（1つのご予約につき2回まで）。料金は変更後の日付で計算し直します。</li>
+      <li>キャンセル：${b.cancelLimited ? "回数の上限に達しています" : `あと${b.cancelsLeft}回（直近3か月で2回まで）`}。キャンセル料は頂きません。${b.paid ? "お支払い済みの分は全額お返しします。" : ""}</li>
+      <li>当日の場合や回数を超える場合は、メール・Instagram DMでご連絡ください。</li></ul></div>` : ""}`;
 }
 
 function manageBar() {

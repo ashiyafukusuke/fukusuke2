@@ -182,12 +182,15 @@ h3 { font-family:var(--mincho); font-weight:500; font-size:18px; margin:0; }
 .okbox strong { display:block; font-family:var(--mincho); font-weight:700; font-size:21px; letter-spacing:.06em; }
 .okbox small { display:block; font-size:13px; opacity:.9; line-height:1.6; }
 .okbox.wait .mark { background:var(--muted); }
+.mini { margin:4px 0; padding-left:1.2em; font-size:12px; color:var(--sub); line-height:1.7; }
+.rules .mini li, .mini li { display:list-item; list-style:disc; padding:0; border:0; counter-increment:none; }
+.rules .mini li::before { content:none; }
 </style>
 </head>
 <body>
 <div class="demo" id="testbar" hidden>テスト環境です。お金は動きません（Stripeのテストカードを使います）。</div>
 <div id="app"></div>
 <script>if (location.hostname !== "www.itakimo.net" && location.hostname !== "itakimo.net") document.getElementById("testbar").hidden = false;</script>
-<script src="/yoyaku/app.js?v=3"></script>
+<script src="/yoyaku/app.js?v=4"></script>
 </body>
 </html>

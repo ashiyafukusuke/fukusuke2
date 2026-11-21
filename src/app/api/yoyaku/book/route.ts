@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { getSetting, notifyConfirmed } from "@/lib/notify";
 import crypto from "node:crypto";
 import {
-  ACTIVE, COURSES, daysBetween, ensureTables, fmtDate, hm, jstNow, kindsFor, price, slotOk, sql, stripe, bookedFor,
+  ACTIVE, COURSES, daysBetween, isBlocked, ensureTables, fmtDate, hm, jstNow, kindsFor, price, slotOk, sql, stripe, bookedFor,
 } from "@/lib/yoyaku";
 
 export const dynamic = "force-dynamic";
@@ -42,6 +42,9 @@ export async function POST(req: Request) {
 
   try {
     await ensureTables();
+    if (await isBlocked(tel || null, mail || null)) {
+      return NextResponse.json({ error: "申し訳ありませんが、このご連絡先ではご予約をお受けできません。お手数ですが、お問い合わせフォームからご連絡ください。" }, { status: 403 });
+    }
     const now = jstNow();
     const ahead = daysBetween(now.date, date);
     const pub = await getSetting("published_until");

@@ -38,7 +38,17 @@ export async function GET(req: Request) {
     );
     const ntfy = await getSetting("ntfy_topic");
     const published = await getSetting("published_until");
-    return NextResponse.json({ today: now.date, days, bookings, ntfy, published });
+    const blocked = await sql(`SELECT id, tel, mail, name, created_at FROM blocked ORDER BY id DESC`);
+    // お客様ごとの、これまでのキャンセル回数（電話番号かメールが一致）
+    const stats = await sql<{ id: string; cancels: string }>(
+      `SELECT b.id, (SELECT count(*) FROM bookings x WHERE x.status = 'cancelled' AND x.cancelled_by IN ('customer','admin') AND x.id <> b.id
+         AND ((b.tel IS NOT NULL AND x.tel = b.tel) OR (b.mail IS NOT NULL AND lower(x.mail) = lower(b.mail)))) AS cancels
+       FROM bookings b WHERE b.date >= $1 AND b.status IN ('confirmed','pending')`,
+      [addDays(now.date, -7)],
+    );
+    const cmap = Object.fromEntries(stats.map((s) => [s.id, Number(s.cancels)]));
+    for (const b of bookings) (b as Record<string, unknown>).cancels = cmap[b.id as string] || 0;
+    return NextResponse.json({ today: now.date, days, bookings, ntfy, published, blocked });
   } catch (e) {
     console.error(e);
     return NextResponse.json({ error: "読み込めませんでした。" }, { status: 500 });
@@ -72,8 +82,18 @@ export async function POST(req: Request) {
       const ok = await push(t, "イタキモ 通知テスト", "予約が入ると、このように届きます。");
       return ok ? NextResponse.json({ ok: true }) : NextResponse.json({ error: "送れませんでした。" }, { status: 500 });
     }
+    if (typeof b.block === "string" && /^[A-Za-z0-9_-]{6,30}$/.test(b.block)) {
+      const r = (await sql(`SELECT tel, mail, name FROM bookings WHERE id = $1`, [b.block]))[0];
+      if (!r) return NextResponse.json({ error: "予約が見つかりません。" }, { status: 404 });
+      await sql(`INSERT INTO blocked (tel, mail, name) VALUES ($1, $2, $3)`, [r.tel, r.mail, r.name]);
+      return NextResponse.json({ ok: true });
+    }
+    if (Number.isInteger(b.unblock)) {
+      await sql(`DELETE FROM blocked WHERE id = $1`, [b.unblock]);
+      return NextResponse.json({ ok: true });
+    }
     if (typeof b.cancel === "string" && /^[A-Za-z0-9_-]{6,30}$/.test(b.cancel)) {
-      await sql(`UPDATE bookings SET status = 'cancelled' WHERE id = $1`, [b.cancel]);
+      await sql(`UPDATE bookings SET status = 'cancelled', cancelled_by = 'admin', cancelled_at = now() WHERE id = $1`, [b.cancel]);
       return NextResponse.json({ ok: true });
     }
     return NextResponse.json({ error: "内容が正しくありません。" }, { status: 400 });

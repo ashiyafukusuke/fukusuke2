@@ -153,6 +153,15 @@ export function ensureTables() {
       await sql(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS notified_at timestamptz`);
       await sql(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS reminded_at timestamptz`);
       await sql(`CREATE UNIQUE INDEX IF NOT EXISTS bookings_token ON bookings (token)`);
+      await sql(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS cancelled_by text`);
+      await sql(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS cancelled_at timestamptz`);
+      await sql(`CREATE TABLE IF NOT EXISTS blocked (
+        id serial PRIMARY KEY,
+        tel text,
+        mail text,
+        name text,
+        created_at timestamptz NOT NULL DEFAULT now()
+      )`);
     })().catch((e) => {
       ready = null;
       throw e;
@@ -203,6 +212,29 @@ export function fmtDate(d: string) {
 }
 
 export const MAX_CHANGES = 2;
+export const MAX_SELF_CANCELS = 2; // 直近90日で、お客様が自分でキャンセルできる回数
+export const CANCEL_WINDOW_DAYS = 90;
+
+// 同じお客様（電話番号かメールが一致）が、直近90日に自分でキャンセルした回数
+export async function selfCancelCount(tel: string | null, mail: string | null) {
+  if (!tel && !mail) return 0;
+  const r = await sql<{ n: string }>(
+    `SELECT count(*) AS n FROM bookings WHERE cancelled_by = 'customer' AND cancelled_at > now() - interval '${CANCEL_WINDOW_DAYS} days'
+     AND ((($1::text) IS NOT NULL AND tel = $1) OR (($2::text) IS NOT NULL AND lower(mail) = lower($2)))`,
+    [tel || null, mail || null],
+  );
+  return Number(r[0]?.n || 0);
+}
+
+// 店主が「以降お断り」にした電話番号・メールかどうか
+export async function isBlocked(tel: string | null, mail: string | null) {
+  if (!tel && !mail) return false;
+  const r = await sql(
+    `SELECT 1 FROM blocked WHERE (($1::text) IS NOT NULL AND tel = $1) OR (($2::text) IS NOT NULL AND lower(mail) = lower($2)) LIMIT 1`,
+    [tel || null, mail || null],
+  );
+  return r.length > 0;
+}
 // 予約の変更・キャンセルの専用リンク
 export function site(origin: string) {
   return process.env.VERCEL_ENV === "production" ? "https://www.itakimo.net" : origin;

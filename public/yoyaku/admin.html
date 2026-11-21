@@ -89,7 +89,8 @@ function render() {
       <span></span><span class="m">¥${Number(b.total).toLocaleString()}　${esc(b.tel || "")} ${esc(b.mail || "")}</span>
       ${qa ? `<span></span><span class="m">${esc(qa)}</span>` : ""}
       ${b.memo ? `<span></span><span class="m">メモ：${esc(b.memo)}</span>` : ""}
-      <span></span><span><button class="btn ghost" data-cancel="${esc(b.id)}" data-name="${esc(b.name)}">取り消す</button></span>
+      ${b.cancels ? `<span></span><span class="m" style="color:var(--brand);font-weight:700;">この方の過去のキャンセル：${b.cancels}回</span>` : ""}
+      <span></span><span style="display:flex;gap:6px;flex-wrap:wrap;"><button class="btn ghost" data-cancel="${esc(b.id)}" data-name="${esc(b.name)}">取り消す</button><button class="btn ghost" data-block="${esc(b.id)}" data-name="${esc(b.name)}">以降お断り</button></span>
     </div>`; }).join("")}</div>`).join("") || `<p class="legend">これからの予約はありません。</p>`;
 
   const first = new Date(data.days[0].date+"T00:00:00Z").getUTCDay();
@@ -116,6 +117,10 @@ function render() {
       <p class="legend">スマホに「ntfy」アプリを入れ、下の合言葉を登録（Subscribe to topic）すると、予約が入ったときに通知が届きます。通知には日時とコースだけを載せ、お客様の名前や連絡先は載せません。</p>
       <div class="login"><input id="nt" value="${esc(data.ntfy || "")}" placeholder="合言葉（半角英数字）" autocomplete="off"><button class="btn ghost" id="ntgen" type="button">合言葉を作る</button><button class="btn" id="ntsave" type="button">保存</button><button class="btn ghost" id="nttest" type="button">テスト通知</button></div>
     </section>
+    <section><h2>お断りしている連絡先</h2>
+      ${(data.blocked || []).length ? data.blocked.map(x => `<div class="bk" style="border:1px solid var(--line);border-radius:6px;margin-bottom:6px;"><span class="t" style="font-size:13px;">${esc((x.created_at || "").slice(0,10))}</span><span>${esc(x.name || "")}　${esc(x.tel || "")} ${esc(x.mail || "")}</span><span></span><span><button class="btn ghost" data-unblock="${x.id}">解除</button></span></div>`).join("") : `<p class="legend">ありません。</p>`}
+      <p class="legend">ここにある電話番号・メールアドレスでは、新しい予約を受け付けません（お客様には「お問い合わせフォームからご連絡ください」と表示）。</p>
+    </section>
     <p><button class="btn ghost" id="rl">読み込み直す</button></p>`;
   document.getElementById("ntgen").onclick = () => { const a = new Uint8Array(12); crypto.getRandomValues(a); document.getElementById("nt").value = "itakimo-" + [...a].map(x => "abcdefghijkmnpqrstuvwxyz23456789"[x % 32]).join(""); };
   document.getElementById("ntsave").onclick = async () => { try { await api("POST", { ntfy: document.getElementById("nt").value }); alert("保存しました。"); } catch (e) { alert(e.message); } load(); };
@@ -133,6 +138,15 @@ function render() {
   document.querySelectorAll("[data-d]").forEach(b => b.onclick = async () => {
     b.disabled = true;
     try { await api("POST", { date:b.dataset.d, kind:NEXT[b.dataset.k] }); } catch (e) { alert(e.message); }
+    load();
+  });
+  document.querySelectorAll("[data-block]").forEach(b => b.onclick = async () => {
+    if (!confirm(`${b.dataset.name} 様の電話番号・メールアドレスでは、今後の予約を受け付けないようにします。よろしいですか？（この予約自体は残ります）`)) return;
+    try { await api("POST", { block:b.dataset.block }); } catch (e) { alert(e.message); }
+    load();
+  });
+  document.querySelectorAll("[data-unblock]").forEach(b => b.onclick = async () => {
+    try { await api("POST", { unblock:Number(b.dataset.unblock) }); } catch (e) { alert(e.message); }
     load();
   });
   document.querySelectorAll("[data-cancel]").forEach(b => b.onclick = async () => {
