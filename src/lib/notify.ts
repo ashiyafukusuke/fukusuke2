@@ -2,6 +2,8 @@
 import { fmtDate, hm, sql } from "@/lib/yoyaku";
 
 const OWNER = "fukusuke@itakimo.net";
+// 店主への予約メールの送り先（届かなかったときの控えに Gmail にも送る）
+const OWNER_TO = [OWNER, "snapcall.odds@gmail.com"];
 const FROM = "足つぼ専門店 イタキモ <yoyaku@itakimo.net>";
 const ADDRESS = "西東京市ひばりが丘 HIBARIDO 2F R-09";
 
@@ -11,13 +13,13 @@ async function withTimeout<T>(p: Promise<T>, ms = 8000): Promise<T | null> {
   return Promise.race([p, new Promise<null>((r) => setTimeout(() => r(null), ms))]);
 }
 
-async function sendMail(to: string, subject: string, text: string) {
+async function sendMail(to: string | string[], subject: string, text: string) {
   const key = process.env.RESEND_API_KEY;
   if (!key) return false;
   const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: { Authorization: "Bearer " + key, "Content-Type": "application/json" },
-    body: JSON.stringify({ from: FROM, to: [to], reply_to: OWNER, subject, text }),
+    body: JSON.stringify({ from: FROM, to: Array.isArray(to) ? to : [to], reply_to: OWNER, subject, text }),
   });
   if (!res.ok) console.error("mail error", res.status, await res.text());
   return res.ok;
@@ -120,7 +122,7 @@ export async function notifyConfirmed(id: string, origin: string) {
       ``,
       `管理画面：${origin}/yoyaku/admin`,
     ].filter((l) => l !== null).join("\n");
-    tasks.push(sendMail(OWNER, `【予約】${d.short} ${d.min}分 ${r.name} 様`, ownerText));
+    tasks.push(sendMail(OWNER_TO, `【予約】${d.short} ${d.min}分 ${r.name} 様`, ownerText));
 
     const topic = await getSetting("ntfy_topic");
     if (topic) tasks.push(push(topic, "イタキモ 予約が入りました", `${d.short}　${d.min}分　${r.pay === "card" ? "事前決済" : "当日払い"}`, `${origin}/yoyaku/admin`));
