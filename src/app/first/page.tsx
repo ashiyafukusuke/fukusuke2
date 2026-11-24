@@ -40,7 +40,7 @@ export default function FirstPage() {
   return (
     <div style={{ background: "#fefdfa", color: "#1a1a1a", fontFamily: "'Noto Sans JP', system-ui, sans-serif", fontSize: "15px", lineHeight: "1.85", letterSpacing: "0.04em" }}>
       {/* ヘッダー（上部固定） */}
-      <header style={{ position: "sticky", top: 0, zIndex: 20, background: "rgba(254,253,250,0.94)", borderBottom: "1px solid #ebe9e4" }}>
+      <header style={{ position: "sticky", top: 0, zIndex: 20, background: "#fefdfa", borderBottom: "1px solid #ebe9e4" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "16px 24px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "16px" }}>
           <Link href="/" style={{ display: "flex", alignItems: "center", textDecoration: "none", color: "#1a1a1a", minHeight: "44px" }}>
             <img src="/logo/logo-horizontal-web.svg" alt="足つぼ専門店 イタキモ" style={{ display: "block", height: "48px", width: "auto" }} />
@@ -56,6 +56,14 @@ export default function FirstPage() {
           <p style={{ margin: "0 0 6px", fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "17px", color: "#9b321f" }}>For first-timers</p>
           <h1 style={{ margin: "0 0 16px", fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(30px, 4.4vw, 44px)", letterSpacing: "0.1em" }}>初めての方へ</h1>
           <p style={{ margin: 0, color: "#3d3a34" }}>ご予約の前に知っておいていただきたいことを、まとめました。</p>
+          {/* 先に結論（料金・左足トライアル・予約） */}
+          <div style={{ marginTop: "24px", maxWidth: "720px", padding: "18px 20px", background: "#f8f6f1", border: "1px solid #ebe9e4", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "14px 24px" }}>
+            <div style={{ minWidth: 0 }}>
+              <p style={{ margin: "0 0 4px", fontSize: "14px", fontWeight: 700 }}>初回　60分 6,500円／90分 9,000円</p>
+              <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>合わなければ、左足が終わった時点で終了。お代は頂きません。</p>
+            </div>
+            <a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011" style={{ background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "12px 28px", borderRadius: "3px", fontWeight: 500, fontSize: "14px", letterSpacing: "0.1em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>空き時間を見る</a>
+          </div>
           <div style={{ marginTop: "28px", maxWidth: "720px" }}>
             <figure style={{ margin: 0 }}>
               <img src="/images/first-chair.jpg" alt="リクライニングチェアと、クリームを置いた木の棚" style={{ display: "block", width: "100%", aspectRatio: "4 / 3", objectFit: "cover", background: "#f1efea" }} />
@@ -140,7 +148,7 @@ export default function FirstPage() {
               <dt style={{ fontWeight: 700 }}>夜の特別枠</dt>
               <dd style={{ margin: 0 }}><span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "22px" }}>21:10 – 22:40</span><span style={{ fontSize: "12px", color: "#5c5c5c", marginLeft: "12px" }}>それ以外の日</span></dd>
             </dl>
-            <p style={{ margin: "-8px 0 20px", fontSize: "13px", color: "#3d3a34" }}>店主は都内の足つぼ専門店でも施術を担当しているため、日中に開けられる日が限られています。そのぶん、夜の特別枠をできるだけ多くの日に開けています。</p>
+            <p style={{ margin: "-8px 0 20px", fontSize: "13px", color: "#3d3a34" }}>仕事帰りに、足を軽くしてそのまま帰れる夜の枠です。日中に営業できる日が限られるぶん、夜も開けています。</p>
             <BusinessCalendar />
             <p data-ga-view="first_view_calendar" style={{ margin: "12px 0 0", fontSize: "13px", color: "#3d3a34" }}>当日のご予約も、空き枠があれば、開始1時間前までWebで承っています。</p>
             <a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011" style={{ marginTop: "20px", background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "15px 44px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.12em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>空き時間を見て予約する</a>
@@ -181,7 +189,7 @@ export default function FirstPage() {
       <section style={{ background: "#2d2c28", color: "#fefdfa" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "48px 24px", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: "24px" }}>
           <p style={{ margin: 0, fontFamily: "'Shippori Mincho', serif", fontSize: "clamp(22px, 3vw, 30px)", letterSpacing: "0.1em" }} data-ga-view="first_view_end">気負わず、まずは左足から。</p>
-          <a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011" style={{ background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "15px 44px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.12em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>予約する</a>
+          <a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011" style={{ background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "15px 44px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.12em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>空き状況を見る</a>
         </div>
       </section>
 
