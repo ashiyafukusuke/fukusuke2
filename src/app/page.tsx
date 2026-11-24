@@ -88,7 +88,7 @@ export default function Home() {
             </p>
             <p className="hero-loc" style={{ margin: "0 0 32px", fontSize: "12px", color: "#5c5c5c", letterSpacing: "0.12em" }}>西東京市ひばりが丘｜完全予約制の一人店</p>
             <div className="hero-cta">
-              <a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011/book/course_type?courseCanonicalId=947238" style={{ background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "15px 40px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.12em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>予約する</a>
+              <a href="/yoyaku" style={{ background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "15px 40px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.12em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>予約する</a>
               <a href="#menu" style={{ color: "#1a1a1a", fontSize: "14px", textUnderlineOffset: "6px", minHeight: "44px", display: "inline-flex", alignItems: "center" }}>メニューと料金</a>
               <p className="hero-note">強さは、いつでも調整できます。<br />初めての方は「左足トライアル」。合わなければ、お代は頂きません。</p>
             </div>
@@ -152,7 +152,7 @@ export default function Home() {
             </span>
           </summary>
           <div style={{ padding: "4px 0 32px" }}>
-            <p style={{ margin: "0 0 24px", fontSize: "12px", color: "#5c5c5c", lineHeight: 1.9 }}>当店では、お客様に「クチコミを書いてください」とお願いすることはしていません。書いていただけたらとても嬉しいですが、書きたくないのに書くものではないと思っています。予約システム（STORES）からレビューのご案内が自動で届くことがありますが、気にせず閉じていただいて大丈夫です。ただ、クチコミでイタキモを知ってくださる方が増えれば、いずれ人を迎えて、営業日を増やすことにもつながります（<Link href="/stance#kuchikomi" style={{ color: "#9b321f" }}>考え方</Link>）。……とはいえ、感想を聞かせていただけるのは、やっぱり嬉しいです（笑）</p>
+            <p style={{ margin: "0 0 24px", fontSize: "12px", color: "#5c5c5c", lineHeight: 1.9 }}>当店では、お客様に「クチコミを書いてください」とお願いすることはしていません。書いていただけたらとても嬉しいですが、書きたくないのに書くものではないと思っています。以前の予約システム（STORES）でご予約いただいた方には、STORESからレビューのご案内が自動で届くことがありますが、気にせず閉じていただいて大丈夫です。ただ、クチコミでイタキモを知ってくださる方が増えれば、いずれ人を迎えて、営業日を増やすことにもつながります（<Link href="/stance#kuchikomi" style={{ color: "#9b321f" }}>考え方</Link>）。……とはいえ、感想を聞かせていただけるのは、やっぱり嬉しいです（笑）</p>
             <div className="voices-grid">
               {storesReviews.map((r) => (
                 <figure key={r.date} style={{ margin: 0, paddingTop: "16px", borderTop: "1px solid #ebe9e4" }}>
@@ -290,7 +290,7 @@ export default function Home() {
                 <p style={{ margin: 0 }}>「今日は足が重いな」「少し限界かも」「ぐっすり眠りたい」と思った日が、ちょうどいいタイミングです。<br />まずは、空いている枠をのぞいてみてください。<br />当日でも、空きがあれば開始1時間前までWebからそのまま確保できます。</p>
               </div>
             </div>
-            <a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011" style={{ background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "16px 44px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.12em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>空き枠を見る</a>
+            <a href="/yoyaku" style={{ background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "16px 44px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.12em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>空き枠を見る</a>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "28px 40px", fontSize: "13px" }}>
             <div style={{ borderTop: "1px solid #1a1a1a", paddingTop: "16px" }}>

@@ -62,7 +62,7 @@ export default function FirstPage() {
               <p style={{ margin: "0 0 4px", fontSize: "14px", fontWeight: 700 }}>初回　60分 6,500円／90分 9,000円</p>
               <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>合わなければ、左足が終わった時点で終了。お代は頂きません。</p>
             </div>
-            <a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011" style={{ background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "12px 28px", borderRadius: "3px", fontWeight: 500, fontSize: "14px", letterSpacing: "0.1em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>空き時間を見る</a>
+            <a href="/yoyaku" style={{ background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "12px 28px", borderRadius: "3px", fontWeight: 500, fontSize: "14px", letterSpacing: "0.1em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>空き時間を見る</a>
           </div>
           <div style={{ marginTop: "28px", maxWidth: "720px" }}>
             <figure style={{ margin: 0 }}>
@@ -129,7 +129,7 @@ export default function FirstPage() {
             <ol className="rules">
               <li><div><strong>遅れても、終了時間は変わりません。</strong><span>施術・お着替え・お会計まで、ご予約の枠の中で終わります。延長のご案内もしていません。遅れそうなときも、焦らず安全第一でお越しください。早く着いても大丈夫ですが、前のご予約があるときなどは、開始を早められません。あらかじめご了承ください。早めに始められるときは、次のどちらかをお選びいただけます。</span><ul style={{ margin: "6px 0", paddingLeft: "1.2em" }}><li>早めに始めて、そのぶん早めに終わる（施術は60分なら60分、90分なら90分）</li><li>ご予約の時間に始めて、ご予約どおりの時間に終わる</li></ul><span>施術時間には、最後のクリームの拭き取りまで含みます。</span></div></li>
               <li><div><strong>キャンセル料は頂きません。</strong><span>ただし、無断キャンセルの方からは、以降のご予約をお受けしていません。直前のキャンセルが続く場合も、お受けしないことがあります。体調やご家族の事情、足のけがなどでのキャンセルは、ご連絡があれば対象にしません。</span></div></li>
-              <li><div><strong>変更・キャンセルの方法</strong><span>どちらも、メール（<a href="mailto:fukusuke@itakimo.net" style={{ color: "#3d3a34" }}>fukusuke@itakimo.net</a>）・Instagram DM・<a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/contact" style={{ color: "#3d3a34" }}>お問い合わせフォーム</a>からご連絡ください。</span></div></li>
+              <li><div><strong>変更・キャンセルの方法</strong><span>どちらも、メール（<a href="mailto:fukusuke@itakimo.net" style={{ color: "#3d3a34" }}>fukusuke@itakimo.net</a>）・Instagram DM・<a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/contact" style={{ color: "#3d3a34" }}>お問い合わせフォーム</a>からご連絡ください。ご予約日の前日までは、確認メールの専用リンクからご自身で変更・キャンセルすることもできます。</span></div></li>
             </ol>
             <p style={{ margin: "14px 0 0", fontSize: "12px", color: "#5c5c5c" }}>ルールを決めている理由は、<Link href="/stance" style={{ color: "#9b321f" }}>イタキモの考え方</Link>に書いています。</p>
           </div>
@@ -151,7 +151,7 @@ export default function FirstPage() {
             <p style={{ margin: "-8px 0 20px", fontSize: "13px", color: "#3d3a34" }}>仕事帰りに、足を軽くしてそのまま帰れる夜の枠です。日中に営業できる日が限られるぶん、夜も開けています。</p>
             <BusinessCalendar />
             <p data-ga-view="first_view_calendar" style={{ margin: "12px 0 0", fontSize: "13px", color: "#3d3a34" }}>当日のご予約も、空き枠があれば、開始1時間前までWebで承っています。</p>
-            <a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011" style={{ marginTop: "20px", background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "15px 44px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.12em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>空き時間を見て予約する</a>
+            <a href="/yoyaku" style={{ marginTop: "20px", background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "15px 44px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.12em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>空き時間を見て予約する</a>
           </div>
           <div id="access" style={{ flex: "1 1 420px", minWidth: 0 }}>
             <p style={{ margin: "0 0 6px", fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "17px", color: "#9b321f" }}>Access</p>
@@ -195,7 +195,7 @@ export default function FirstPage() {
       <section style={{ background: "#2d2c28", color: "#fefdfa" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "48px 24px", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: "24px" }}>
           <p style={{ margin: 0, fontFamily: "'Shippori Mincho', serif", fontSize: "clamp(22px, 3vw, 30px)", letterSpacing: "0.1em" }} data-ga-view="first_view_end">気負わず、まずは左足から。</p>
-          <a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011" style={{ background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "15px 44px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.12em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>空き状況を見る</a>
+          <a href="/yoyaku" style={{ background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "15px 44px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.12em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>空き状況を見る</a>
         </div>
       </section>
 

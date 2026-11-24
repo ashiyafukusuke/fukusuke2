@@ -55,7 +55,10 @@ const sections: { title: string; body: ReactNode }[] = [
       <>
         <p>ご予約やお支払い、サイトの改善のために、次の外部サービスを使っています。これらのサービスでの情報の扱いは、各社の方針に従います。</p>
         <ul>
-          <li>予約・決済：STORES（STORES 株式会社）</li>
+          <li>オンライン決済：Stripe（Stripe, Inc.）</li>
+          <li>予約確認メールの送信：Resend（Resend, Inc.）</li>
+          <li>店主のスマートフォンへの予約通知：ntfy（ntfy.sh）。通知には予約の日時・コース・支払い方法だけを載せ、お名前や連絡先は載せません。</li>
+          <li>以前の予約・決済：STORES（STORES 株式会社）</li>
           <li>アクセス解析：Google アナリティクス（Google LLC）</li>
         </ul>
         <p>オンライン決済のカード情報は、決済会社が直接お預かりします。当店がカード番号を見たり、保存したりすることはありません。</p>
@@ -125,7 +128,7 @@ export default function PrivacyPage() {
             </section>
           ))}
         </div>
-        <p style={{ margin: "20px 0 0", fontSize: "12px", color: "#5c5c5c" }}>制定：2026年11月20日</p>
+        <p style={{ margin: "20px 0 0", fontSize: "12px", color: "#5c5c5c" }}>制定：2026年11月20日　改定：2026年11月25日</p>
       </main>
 
       {/* フッター */}

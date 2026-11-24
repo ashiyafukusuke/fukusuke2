@@ -260,7 +260,7 @@ export default function StancePage() {
             <p style={{ margin: 0, fontSize: "13px", color: "#b8b3a8" }}>店主　福助</p>
           </div>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "12px" }}>
-            <a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011" style={{ background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "15px 44px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.12em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>予約する</a>
+            <a href="/yoyaku" style={{ background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "15px 44px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.12em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>予約する</a>
             <Link href="/first" style={{ color: "#fefdfa", fontSize: "13px" }}>初めての方へ（料金・左足トライアル）</Link>
           </div>
         </div>

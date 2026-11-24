@@ -83,7 +83,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 if (!a || typeof window.gtag !== 'function') return;
                 var href = a.getAttribute('href') || '';
                 var name = null;
-                if (href.indexOf('stores.jp/reserve') !== -1 && href.indexOf('/contact') === -1 && href.indexOf('/reviews') === -1) name = 'reserve_click';
+                if ((href === '/yoyaku' || href.indexOf('/yoyaku?') === 0) || (href.indexOf('stores.jp/reserve') !== -1 && href.indexOf('/contact') === -1 && href.indexOf('/reviews') === -1)) name = 'reserve_click';
                 else if (href.indexOf('mailto:') === 0 || href.indexOf('/contact') !== -1 || href.indexOf('instagram.com') !== -1) name = 'contact_click';
                 if (!name) return;
                 var area = a.closest('header') ? 'header' : a.closest('footer') ? 'footer' : (a.closest('section[id]') ? a.closest('section[id]').id : (a.closest('section') ? 'section' : 'other'));

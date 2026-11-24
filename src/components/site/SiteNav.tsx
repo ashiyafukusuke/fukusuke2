@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { CSSProperties } from "react";
 
-const STORES = "https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011";
+const RESERVE = "/yoyaku";
 
 type Current = "top" | "first" | "stance" | "news" | "blog";
 
@@ -39,7 +39,7 @@ export function SiteNav({ current }: { current: Current }) {
         </div>
       </details>
       <a
-        href={STORES}
+        href={RESERVE}
         style={{ background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "10px 20px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.1em", fontSize: "13px", whiteSpace: "nowrap", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}
       >
         予約する
