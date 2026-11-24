@@ -56,6 +56,14 @@ export default function FirstPage() {
           <p style={{ margin: "0 0 6px", fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "17px", color: "#9b321f" }}>For first-timers</p>
           <h1 style={{ margin: "0 0 16px", fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(30px, 4.4vw, 44px)", letterSpacing: "0.1em" }}>初めての方へ</h1>
           <p style={{ margin: 0, color: "#3d3a34" }}>ご予約の前に知っておいていただきたいことを、まとめました。</p>
+          {/* 先に結論（料金・左足トライアル・予約） */}
+          <div style={{ marginTop: "24px", maxWidth: "720px", padding: "18px 20px", background: "#f8f6f1", border: "1px solid #ebe9e4", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "14px 24px" }}>
+            <div style={{ minWidth: 0 }}>
+              <p style={{ margin: "0 0 4px", fontSize: "14px", fontWeight: 700 }}>初回　60分 6,500円／90分 9,000円</p>
+              <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>合わなければ、左足が終わった時点で終了。お代は頂きません。</p>
+            </div>
+            <a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011" style={{ background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "12px 28px", borderRadius: "3px", fontWeight: 500, fontSize: "14px", letterSpacing: "0.1em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>空き時間を見る</a>
+          </div>
           <div style={{ marginTop: "28px", maxWidth: "720px" }}>
             <figure style={{ margin: 0 }}>
               <img src="/images/first-chair.jpg" alt="リクライニングチェアと、クリームを置いた木の棚" style={{ display: "block", width: "100%", aspectRatio: "4 / 3", objectFit: "cover", background: "#f1efea" }} />

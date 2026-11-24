@@ -83,6 +83,16 @@ export default function BlogPostPage({ params }: Props) {
           return <p key={i} style={{ margin: "0 0 18px", fontSize: "15px", lineHeight: 2.1 }}>{b.text}</p>;
         })}
 
+        {/* 読み終えた方への案内 */}
+        <aside style={{ marginTop: "44px", padding: "22px 22px", background: "#f8f6f1", border: "1px solid #ebe9e4" }}>
+          <p style={{ margin: "0 0 6px", fontFamily: "'Shippori Mincho', serif", fontWeight: 600, fontSize: "16px", letterSpacing: "0.06em" }}>イタキモでは、こう考えながら足を揉んでいます。</p>
+          <p style={{ margin: "0 0 16px", fontSize: "13px", color: "#3d3a34" }}>初回は60分 6,500円／90分 9,000円。合わなければ、左足が終わった時点で終了。お代は頂きません。</p>
+          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "12px 24px" }}>
+            <a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011" style={{ background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "12px 28px", borderRadius: "3px", fontWeight: 500, fontSize: "14px", letterSpacing: "0.1em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>空き時間を見る</a>
+            <Link href="/first" className="lnk" style={{ color: "#9b321f", fontSize: "13px" }}><span>初めての方へ</span></Link>
+          </div>
+        </aside>
+
         <section style={{ marginTop: "48px", paddingTop: "24px", borderTop: "1px solid #ebe9e4" }}>
           <h2 style={{ margin: "0 0 10px", fontSize: "13px", fontWeight: 500, color: "#3d3a34" }}>出典</h2>
           <ul style={{ margin: 0, paddingLeft: "18px", fontSize: "12px", color: "#5c5c5c", lineHeight: 1.9, overflowWrap: "anywhere" }}>
