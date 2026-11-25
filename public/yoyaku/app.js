@@ -174,7 +174,7 @@ function render() {
       main += `<div class="label">お支払い方法</div>
         <div class="opts" role="radiogroup" aria-label="お支払い方法">
           <label class="opt"><input type="radio" name="pay" value="onsite" ${ui.pay==="onsite"?"checked":""}><span><strong>当日、お店でお支払い</strong><small>現金・クレジットカード・電子マネー・QR決済</small></span></label>
-          <label class="opt"><input type="radio" name="pay" value="card" ${ui.pay==="card"?"checked":""}><span><strong>事前決済（クレジットカード・PayPay）</strong><small>${ui.visit==="repeat" ? "500円お安くなります。施術後のお会計なしでお帰りいただけます" : "施術後のお会計なしでお帰りいただけます（はじめての方は割引の対象外です）"}</small></span></label>
+          <label class="opt"><input type="radio" name="pay" value="card" ${ui.pay==="card"?"checked":""}><span><strong>事前決済（クレジットカードなど）</strong><small>${ui.visit==="repeat" ? "500円お安くなります。施術後のお会計なしでお帰りいただけます" : "施術後のお会計なしでお帰りいただけます（はじめての方は割引の対象外です）"}<br>使えるもの：クレジットカード（Visa・Mastercard・JCB・American Express など）、Apple Pay、Google Pay<br>PayPayは現在、審査待ちです（使えるようになり次第、ここでお知らせします）</small></span></label>
         </div>
         <table class="eb"><caption>早割</caption>
           <tr><th>前日までのご予約</th><td>−500円</td></tr>

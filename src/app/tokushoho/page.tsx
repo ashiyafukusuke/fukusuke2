@@ -39,7 +39,7 @@ const rows: { label: string; body: ReactNode }[] = [
   { label: "料金以外にかかる費用", body: <>ありません。</> },
   {
     label: "お支払い方法",
-    body: <>当日、店頭でのお支払い。または、ご予約時のクレジットカードによる事前決済（決済代行：Stripe）。</>,
+    body: <>当日、店頭でのお支払い。または、ご予約時の事前決済（クレジットカード・Apple Pay・Google Pay。決済代行：Stripe）。</>,
   },
   {
     label: "お支払いの時期",
