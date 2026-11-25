@@ -16,7 +16,8 @@ const GAP = 15, CUTOFF = 60, HORIZON = 60;
 // どこから予約ページに来たか（予約に「経由」として残す）
 const SRC_LABEL = { instagram:"Instagram", threads:"Threads", google:"Googleビジネスプロフィール", ekiten:"エキテン", stores:"STORES", hibarido:"HIBARIDO", card:"ショップカード", line:"LINE" };
 const SOURCE = (() => {
-  const lab = (s, c) => (SRC_LABEL[s] || s) + (c && c !== "profile" && c !== "gbp" && c !== "shopcard" ? `（${c}）` : "");
+  const CAMP_LABEL = { moved:"旧予約ページから", hindo:"頻度カード" };
+  const lab = (s, c) => (SRC_LABEL[s] || s) + (c && c !== "profile" && c !== "gbp" && c !== "shopcard" ? `（${CAMP_LABEL[c] || c}）` : "");
   try {
     const q = new URLSearchParams(location.search);
     if (q.get("utm_source")) return lab(q.get("utm_source"), q.get("utm_campaign"));
