@@ -228,7 +228,7 @@ export async function notifyChange(id: string, origin: string, kind: "change" | 
 }
 
 // Google クチコミを書けるページ（Googleビジネスプロフィールの「クチコミを依頼」のリンクに差し替え可）
-const REVIEW_URL = "https://share.google/hoX4rSA5QB2lNpmHH";
+const REVIEW_URL = "https://g.page/r/CaoAg3nozhsxEAE/review";
 
 // 初めてご来店いただいた方へ、翌日に一度だけ送るお礼のメール
 export async function sendThanks(id: string) {
