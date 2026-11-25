@@ -377,10 +377,10 @@ function bindManage() {
     if (!j.ok) { ui.info = j.error || "うまく処理できませんでした。"; if (j.code === "taken") { await load(); ui.mstep = "cal"; ui.time = null; } return top(); }
     if (cancel) {
       ui.mb = { ...ui.mb, status: "cancelled" };
-      ui.mdone = { title: "キャンセルを承りました", text: j.refundFailed ? "返金の手続きがうまくいかなかったため、お店から改めてご連絡します。" : j.refunded ? `${yen(j.refunded)}をお返しします。カード会社によって、反映まで数日〜数週間かかります。` : "またのご予約をお待ちしています。" };
+      ui.mdone = { title: "キャンセルを承りました", text: j.refundFailed ? "返金の手続きがうまくいかなかったため、お店から改めてご連絡します。" : j.refunded ? `${yen(j.refunded)}の返金手続きをしました。返金そのものは即時ですが、カードの明細に表示されるまではカード会社側の処理になるため、通常5〜10営業日ほどかかります。` : "またのご予約をお待ちしています。" };
     } else {
       ui.mb = j.booking || ui.mb;
-      ui.mdone = { title: "日時を変更しました", text: (j.refunded ? `差額の${yen(j.refunded)}をお返しします。` : "") + (ui.mb && ui.mb.total != null ? "新しい内容は下の通りです。" : "") };
+      ui.mdone = { title: "日時を変更しました", text: (j.refunded ? `差額の${yen(j.refunded)}の返金手続きをしました（カードの明細に表示されるまで、通常5〜10営業日ほどかかります）。` : "") + (ui.mb && ui.mb.total != null ? "新しい内容は下の通りです。" : "") };
       await load();
     }
     ui.info = ""; ui.mstep = "done"; top();
