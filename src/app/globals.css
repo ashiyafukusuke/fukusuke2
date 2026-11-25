@@ -462,3 +462,7 @@ details[open] > summary .tog svg { transform: rotate(180deg); }
 .rules span { display: block; font-size: 13px; color: #3d3a34; }
 .rules li li { counter-increment: none; display: list-item; list-style: disc; padding: 2px 0; border-bottom: none; font-size: 13px; color: #3d3a34; }
 .rules li li::before { content: none; }
+
+.news-month > summary::-webkit-details-marker { display: none; }
+.news-month > summary > span:first-child::after { content: "＋"; margin-left: 12px; font-size: 14px; color: #9b321f; }
+.news-month[open] > summary > span:first-child::after { content: "－"; }
