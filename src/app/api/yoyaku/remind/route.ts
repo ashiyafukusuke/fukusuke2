@@ -1,10 +1,11 @@
 import { NextResponse } from "next/server";
 import { addDays, ensureTables, jstNow, sql } from "@/lib/yoyaku";
-import { sendReminder } from "@/lib/notify";
+import { sendReminder, sendThanks } from "@/lib/notify";
 
 export const dynamic = "force-dynamic";
 
 // 毎日夕方に Vercel の定期実行から呼ばれ、翌日のご予約の方へリマインドメールを送る（1件につき1回だけ）
+// あわせて、前日に初めてご来店いただいた方へ、お礼のメールを一度だけ送る
 export async function GET(req: Request) {
   const secret = process.env.CRON_SECRET;
   const auth = req.headers.get("authorization") || "";
@@ -22,7 +23,15 @@ export async function GET(req: Request) {
     );
     const origin = new URL(req.url).origin;
     for (const r of rows) await sendReminder(r.id, origin);
-    return NextResponse.json({ ok: true, sent: rows.length });
+
+    await sql(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS thanked_at timestamptz`);
+    const yesterday = addDays(jstNow().date, -1);
+    const visited = await sql<{ id: string }>(
+      `UPDATE bookings SET thanked_at = now() WHERE date = $1 AND status = 'confirmed' AND visit = 'first' AND mail IS NOT NULL AND thanked_at IS NULL RETURNING id`,
+      [yesterday],
+    );
+    for (const r of visited) await sendThanks(r.id);
+    return NextResponse.json({ ok: true, sent: rows.length, thanked: visited.length });
   } catch (e) {
     console.error(e);
     return NextResponse.json({ error: "failed" }, { status: 500 });

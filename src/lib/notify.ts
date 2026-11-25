@@ -226,3 +226,38 @@ export async function notifyChange(id: string, origin: string, kind: "change" | 
     console.error("notifyChange error", e);
   }
 }
+
+// Google クチコミを書けるページ（Googleビジネスプロフィールの「クチコミを依頼」のリンクに差し替え可）
+const REVIEW_URL = "https://share.google/hoX4rSA5QB2lNpmHH";
+
+// 初めてご来店いただいた方へ、翌日に一度だけ送るお礼のメール
+export async function sendThanks(id: string) {
+  try {
+    const rows = await sql<Row>(`SELECT * FROM bookings WHERE id = $1 AND status = 'confirmed'`, [id]);
+    const r = rows[0];
+    if (!r || !r.mail) return;
+    const text = [
+      `${r.name} 様`,
+      ``,
+      `足つぼ専門店イタキモの福助です。`,
+      `昨日はご来店いただき、ありがとうございました。`,
+      ``,
+      `その後、足の具合はいかがでしょうか。気になることがあれば、このメールへの返信でいつでもお知らせください。`,
+      ``,
+      `ひとつだけ、ご案内させてください。`,
+      `イタキモでは、「クチコミを書いてください」とお願いすることはしていません。書きたくないのに書くものではないと思っています。`,
+      `ただ、もし感想を残してもいいと思っていただけたら、こちらから書いていただけます。`,
+      REVIEW_URL,
+      `クチコミでイタキモを知ってくださる方が増えれば、いずれ人を迎えて、営業日を増やすことにもつながります。`,
+      ``,
+      `このご案内は、初めてご来店いただいたあとに一度だけお送りしています。`,
+      `またお会いできるのを楽しみにしています。`,
+      ``,
+      `足つぼ専門店 イタキモ　福助`,
+      `https://www.itakimo.net/`,
+    ].join("\n");
+    await withTimeout(sendMail(r.mail, `【イタキモ】昨日はありがとうございました`, text));
+  } catch (e) {
+    console.error("thanks error", e);
+  }
+}
