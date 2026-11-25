@@ -154,6 +154,7 @@ export function ensureTables() {
       await sql(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS reminded_at timestamptz`);
       await sql(`CREATE UNIQUE INDEX IF NOT EXISTS bookings_token ON bookings (token)`);
       await sql(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS cancelled_by text`);
+      await sql(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS source text`);
       await sql(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS cancelled_at timestamptz`);
       await sql(`CREATE TABLE IF NOT EXISTS time_blocks (
         id serial PRIMARY KEY,

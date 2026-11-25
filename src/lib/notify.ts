@@ -139,6 +139,7 @@ export async function notifyConfirmed(id: string, origin: string) {
       answers.hurt ? `けが・痛み・腫れ：${answers.hurt}` : null,
       answers.stay ? `過ごし方：${answers.stay}` : null,
       r.memo ? `気になっていること：${r.memo}` : null,
+      r.source ? `経由：${r.source}` : null,
       ``,
       `管理画面：${site(origin)}/yoyaku/admin`,
     ].filter((l) => l !== null).join("\n");

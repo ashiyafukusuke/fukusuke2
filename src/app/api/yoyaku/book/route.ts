@@ -26,6 +26,7 @@ export async function POST(req: Request) {
   const tel = str(b.tel, 20).replace(/[０-９]/g, (d) => String.fromCharCode(d.charCodeAt(0) - 0xfee0)).replace(/[^\d+]/g, "");
   const mail = str(b.mail, 120);
   const memo = str(b.memo, 400);
+  const source = str(b.src, 60);
   const q = (b.q && typeof b.q === "object" ? b.q : {}) as Record<string, unknown>;
   const answers = {
     first: str(q.first, 40),
@@ -66,14 +67,14 @@ export async function POST(req: Request) {
     // 同時に同じ枠が押された場合に備え、入れる直前にもう一度重なりを確かめる
     const night = kind === "night";
     const inserted = await sql<{ id: string }>(
-      `INSERT INTO bookings (id, date, start_min, end_min, course, visit, pay, base, discount, total, name, tel, mail, memo, answers, status, hold_until, token)
-       SELECT $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, CASE WHEN $16 = 'pending' THEN now() + interval '35 minutes' ELSE NULL END, $18
+      `INSERT INTO bookings (id, date, start_min, end_min, course, visit, pay, base, discount, total, name, tel, mail, memo, answers, status, hold_until, token, source)
+       SELECT $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, CASE WHEN $16 = 'pending' THEN now() + interval '35 minutes' ELSE NULL END, $18, $19
        WHERE NOT EXISTS (
          SELECT 1 FROM bookings WHERE date = $2 AND ${ACTIVE}
          AND ($17 = 'true' OR ($3::int < end_min + 15 AND start_min < $4::int + 15))
        )
        RETURNING id`,
-      [id, date, start, end, c.id, visit, pay, p.base, p.off, p.total, name, tel || null, mail || null, memo || null, answers, status, night ? "true" : "false", token],
+      [id, date, start, end, c.id, visit, pay, p.base, p.off, p.total, name, tel || null, mail || null, memo || null, answers, status, night ? "true" : "false", token, source || null],
     );
     if (!inserted.length) {
       return NextResponse.json({ error: "この時間はご予約いただけなくなりました。別の時間をお選びください。", code: "taken" }, { status: 409 });

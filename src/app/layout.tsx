@@ -69,6 +69,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               gtag('config', 'G-HHQGT4N5TQ');
+              try {
+                var q = new URLSearchParams(location.search);
+                if (q.get('utm_source')) sessionStorage.setItem('itk_src', JSON.stringify({ s: q.get('utm_source'), c: q.get('utm_campaign') || '' }));
+                else if (!sessionStorage.getItem('itk_src') && document.referrer && document.referrer.indexOf('itakimo.net') === -1) {
+                  var h = new URL(document.referrer).hostname;
+                  sessionStorage.setItem('itk_src', JSON.stringify({ ref: /google\./.test(h) ? 'Google検索・マップ' : /instagram/.test(h) ? 'Instagram' : h }));
+                }
+              } catch (e) {}
             `,
           }}
         />

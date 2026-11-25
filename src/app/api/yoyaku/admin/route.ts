@@ -32,7 +32,7 @@ export async function GET(req: Request) {
       days.push({ date: d, kind: k, custom: k !== defaultKind(d) });
     }
     const bookings = await sql(
-      `SELECT id, created_at, date, start_min, end_min, course, visit, pay, total, name, tel, mail, memo, answers, status, paid_at
+      `SELECT id, created_at, date, start_min, end_min, course, visit, pay, total, name, tel, mail, memo, answers, status, paid_at, source
        FROM bookings WHERE date >= $1 AND status IN ('confirmed','pending') ORDER BY date, start_min`,
       [addDays(now.date, -7)],
     );

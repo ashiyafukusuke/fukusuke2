@@ -12,6 +12,24 @@ const wd = s => D(s).getUTCDay();
 const fmt = s => { const d = D(s); return `${d.getUTCMonth()+1}月${d.getUTCDate()}日（${WD[d.getUTCDay()]}）`; };
 
 const GAP = 15, CUTOFF = 60, HORIZON = 60;
+
+// どこから予約ページに来たか（予約に「経由」として残す）
+const SRC_LABEL = { instagram:"Instagram", threads:"Threads", google:"Googleビジネスプロフィール", ekiten:"エキテン", stores:"STORES", hibarido:"HIBARIDO", card:"ショップカード", line:"LINE" };
+const SOURCE = (() => {
+  const lab = (s, c) => (SRC_LABEL[s] || s) + (c && c !== "profile" && c !== "gbp" && c !== "shopcard" ? `（${c}）` : "");
+  try {
+    const q = new URLSearchParams(location.search);
+    if (q.get("utm_source")) return lab(q.get("utm_source"), q.get("utm_campaign"));
+    const st = JSON.parse(sessionStorage.getItem("itk_src") || "null");
+    if (st && st.s) return lab(st.s, st.c);
+    if (st && st.ref) return st.ref;
+  } catch {}
+  const r = document.referrer;
+  if (r && !/itakimo\.net/.test(r)) {
+    try { const h = new URL(r).hostname; return /google\./.test(h) ? "Google検索・マップ" : /instagram/.test(h) ? "Instagram" : h; } catch {}
+  }
+  return r ? "サイト内（入口は不明）" : "直接（URL・ブックマークなど）";
+})();
 const COURSES = [
   { id:"c60", min:60, label:"初めての方に", desc:"足裏からふくらはぎ・膝裏まで", trial:true, first:6500, repeat:5500, prepayOff:500, cap:1000 },
   { id:"c90", min:90, label:"最近1番選ばれています", hot:true, desc:"60分よりゆったりした流れで", trial:true, first:9000, repeat:8000, prepayOff:500, cap:1500 }
@@ -284,13 +302,13 @@ async function submit(c) {
   try {
     const res = await fetch("/api/yoyaku/book", { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify({
       visit: ui.visit, cid: ui.cid, pay: ui.pay, date: ui.date, time: ui.time,
-      name: ui.f.name, tel: ui.f.tel, mail: ui.f.mail, memo: ui.f.memo, q: ui.q, agree: ui.f.agree,
+      name: ui.f.name, tel: ui.f.tel, mail: ui.f.mail, memo: ui.f.memo, q: ui.q, agree: ui.f.agree, src: SOURCE,
       expect: (() => { const c = COURSES.find(x => x.id === ui.cid); return c && ui.date ? price(c, ui.visit, ui.pay, ahead(ui.date)).total : null; })()
     }) });
     const j = await res.json().catch(() => ({}));
     if (j.checkoutUrl) { location.href = j.checkoutUrl; return; }
     ui.busy = false;
-    if (j.ok && j.booking) { ui.done = j.booking; ui.step = 4; render(); scrollTo(0,0); return; }
+    if (j.ok && j.booking) { ui.done = j.booking; ui.step = 4; try { window.gtag && gtag("event", "yoyaku_complete", { pay: ui.pay, course: ui.cid, value: j.booking.total, currency: "JPY", yoyaku_source: SOURCE }); } catch {} render(); scrollTo(0,0); return; }
     if (j.code === "price") { await load(); ui.step = 3; ui.info = j.error; render(); scrollTo(0,0); return; }
     if (j.code === "taken") { await load(); ui.time = null; ui.step = 2; ui.info = j.error; render(); scrollTo(0,0); return; }
     ui.err = j.error || "ご予約を受け付けられませんでした。時間をおいてもう一度お試しください。"; render();

@@ -42,6 +42,13 @@ const nextConfig = {
       { source: "/st", destination: "/?utm_source=stores&utm_medium=referral&utm_campaign=profile", permanent: false },
       { source: "/hb", destination: "/?utm_source=hibarido&utm_medium=referral&utm_campaign=profile", permanent: false },
       { source: "/qr", destination: "/?utm_source=card&utm_medium=offline&utm_campaign=shopcard", permanent: false },
+      // 予約ページへ直接（どこから来たかを予約に残す）
+      { source: "/y/ig", destination: "/yoyaku?utm_source=instagram&utm_medium=social&utm_campaign=profile", permanent: false },
+      { source: "/y/th", destination: "/yoyaku?utm_source=threads&utm_medium=social&utm_campaign=profile", permanent: false },
+      { source: "/y/g", destination: "/yoyaku?utm_source=google&utm_medium=organic&utm_campaign=gbp", permanent: false },
+      { source: "/y/ek", destination: "/yoyaku?utm_source=ekiten&utm_medium=referral&utm_campaign=profile", permanent: false },
+      { source: "/y/hb", destination: "/yoyaku?utm_source=hibarido&utm_medium=referral&utm_campaign=profile", permanent: false },
+      { source: "/y/qr", destination: "/yoyaku?utm_source=card&utm_medium=offline&utm_campaign=shopcard", permanent: false },
       // お土産カード「どれくらいの頻度で通えばいい？」のQR
       { source: "/qr/hindo", destination: "/hindo?utm_source=card&utm_medium=offline&utm_campaign=hindo", permanent: false },
     ];
