@@ -152,7 +152,7 @@ export default function Home() {
             </span>
           </summary>
           <div style={{ padding: "4px 0 32px" }}>
-            <p style={{ margin: "0 0 24px", fontSize: "12px", color: "#5c5c5c", lineHeight: 1.9 }}>当店では、お客様に「クチコミを書いてください」とお願いすることはしていません。書いていただけたらとても嬉しいですが、書きたくないのに書くものではないと思っています。初めてご来店いただいた方には、翌日のお礼のメールで、クチコミを書ける場所を一度だけご案内しています。書かなくてもまったく問題ありませんので、気にせず閉じていただいて大丈夫です。ただ、クチコミでイタキモを知ってくださる方が増えれば、いずれ人を迎えて、営業日を増やすことにもつながります（<Link href="/stance#kuchikomi" style={{ color: "#9b321f" }}>考え方</Link>）。……とはいえ、感想を聞かせていただけるのは、やっぱり嬉しいです（笑）</p>
+            <p style={{ margin: "0 0 24px", fontSize: "12px", color: "#5c5c5c", lineHeight: 1.9 }}>初めてご来店いただいた方には、翌日のお礼メールにて、感想を残せる場所を一度だけご案内しています。<br />営業のようなお願いはしていませんので、書かなくてもまったく問題ありません。ただ、時間やタイミングの都合で頻繁には通えなくても、「応援してもいいな」と思っていただけたとき、感想を残していただけると嬉しいです。</p>
             <div className="voices-grid">
               {storesReviews.map((r) => (
                 <figure key={r.date} style={{ margin: 0, paddingTop: "16px", borderTop: "1px solid #ebe9e4" }}>
