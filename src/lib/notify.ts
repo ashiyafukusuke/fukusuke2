@@ -20,6 +20,7 @@ const PLACE = [
   `・2階の入り口ドアを入って右側のお部屋（R-09）がイタキモです`,
   `入り口からの道順の動画（約25秒）：${ROUTE_VIDEO}`,
   `場所がわかりにくい場合は、遠慮なくお電話ください（${SHOP_TEL}）。`,
+  `お手洗いは、HIBARIDO 1階の共用トイレをご利用ください。`,
 ];
 
 type Row = Record<string, string | null>;
