@@ -95,6 +95,9 @@ function placeHtml() {
 }
 
 function doneHtml(b) {
+  // 当日のご予約は、リンクからの変更・キャンセルの期限（前日23:59）を過ぎているので案内しない
+  const sameDay = av && b.date && b.date <= av.today;
+  if (sameDay) b = Object.assign({}, b, { manage: "" });
   const ok = b.paid || b.pay !== "事前決済";
   const cal = calUrl(b);
   const manageAbs = b.manage ? location.origin + b.manage : "";
@@ -111,6 +114,7 @@ function doneHtml(b) {
   if (b.mail) {
     return head + `<p class="note" style="margin:0;">確認メールをお送りしました。前日の18時ごろにも、ご案内のメールをお送りします。届かない場合は、迷惑メールのフォルダもご確認ください。</p>`
       + sheet + calBtn
+      + (sameDay ? `<p class="note" style="margin:0;">本日のご予約のため、変更・キャンセルは確認メールへの返信・Instagram DM・お問い合わせフォームからご連絡ください。</p>` : "")
       + (b.manage ? `<p class="note" style="margin:0;">前日の23:59までは、<a href="${esc(b.manage)}" style="color:var(--brand);font-weight:700;">こちらのページ</a>からご自分で日時の変更（2回まで）とキャンセルができます。確認メールにも同じリンクを載せています。</p>` : "")
       + placeHtml();
   }
