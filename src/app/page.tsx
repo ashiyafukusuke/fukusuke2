@@ -176,7 +176,7 @@ export default function Home() {
           <h2 style={{ margin: "0 0 20px", fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(22px, 2.6vw, 26px)", letterSpacing: "0.1em" }}>こんなときに</h2>
           <ul className="scenes">
             <li>立ち仕事や外回りのあと、足をしっかり揉んでほしいとき</li>
-            <li>強めの足つぼが好きで、奥まで届く圧を探しているとき</li>
+            <li>強めが好き</li>
             <li>足つぼは初めて。自分に合う強さを確かめたいとき</li>
             <li>一日の疲れや、溜まった疲れをとって、ぐっすり眠りたいとき</li>
           </ul>
