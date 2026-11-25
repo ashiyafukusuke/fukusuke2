@@ -48,6 +48,7 @@ const nextConfig = {
       { source: "/y/g", destination: "/yoyaku?utm_source=google&utm_medium=organic&utm_campaign=gbp", permanent: false },
       { source: "/y/ek", destination: "/yoyaku?utm_source=ekiten&utm_medium=referral&utm_campaign=profile", permanent: false },
       { source: "/y/hb", destination: "/yoyaku?utm_source=hibarido&utm_medium=referral&utm_campaign=profile", permanent: false },
+      { source: "/y/st", destination: "/yoyaku?utm_source=stores&utm_medium=referral&utm_campaign=moved", permanent: false },
       { source: "/y/qr", destination: "/yoyaku?utm_source=card&utm_medium=offline&utm_campaign=shopcard", permanent: false },
       // お土産カード「どれくらいの頻度で通えばいい？」のQR
       { source: "/qr/hindo", destination: "/hindo?utm_source=card&utm_medium=offline&utm_campaign=hindo", permanent: false },
