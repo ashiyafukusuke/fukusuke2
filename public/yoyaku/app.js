@@ -280,12 +280,14 @@ async function submit(c) {
   try {
     const res = await fetch("/api/yoyaku/book", { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify({
       visit: ui.visit, cid: ui.cid, pay: ui.pay, date: ui.date, time: ui.time,
-      name: ui.f.name, tel: ui.f.tel, mail: ui.f.mail, memo: ui.f.memo, q: ui.q, agree: ui.f.agree
+      name: ui.f.name, tel: ui.f.tel, mail: ui.f.mail, memo: ui.f.memo, q: ui.q, agree: ui.f.agree,
+      expect: (() => { const c = COURSES.find(x => x.id === ui.cid); return c && ui.date ? price(c, ui.visit, ui.pay, ahead(ui.date)).total : null; })()
     }) });
     const j = await res.json().catch(() => ({}));
     if (j.checkoutUrl) { location.href = j.checkoutUrl; return; }
     ui.busy = false;
     if (j.ok && j.booking) { ui.done = j.booking; ui.step = 4; render(); scrollTo(0,0); return; }
+    if (j.code === "price") { await load(); ui.step = 3; ui.info = j.error; render(); scrollTo(0,0); return; }
     if (j.code === "taken") { await load(); ui.time = null; ui.step = 2; ui.info = j.error; render(); scrollTo(0,0); return; }
     ui.err = j.error || "ご予約を受け付けられませんでした。時間をおいてもう一度お試しください。"; render();
   } catch {
@@ -380,6 +382,20 @@ function bindManage() {
     ui.info = ""; ui.mstep = "done"; top();
   };
 }
+
+// ページを開いたまま日付（日本時間）が変わったら、空き状況と早割を取り直す
+const jstToday = () => new Date(Date.now() + 9 * 3600e3).toISOString().slice(0, 10);
+async function refreshIfNewDay() {
+  if (!av || ui.mode === "manage" || ui.step === 4 || ui.busy || jstToday() === av.today) return;
+  try {
+    await load();
+    if (ui.date && (ahead(ui.date) < 0 || kindOf(ui.date) === "closed")) { ui.date = null; ui.time = null; if (ui.step > 2) ui.step = 2; }
+    ui.info = "日付が変わったため、空き状況と早割の金額を更新しました。";
+    render();
+  } catch {}
+}
+setInterval(refreshIfNewDay, 60000);
+document.addEventListener("visibilitychange", () => { if (!document.hidden) refreshIfNewDay(); });
 
 async function load() {
   const res = await fetch("/api/yoyaku/availability", { cache:"no-store" });

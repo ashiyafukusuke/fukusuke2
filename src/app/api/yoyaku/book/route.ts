@@ -55,6 +55,9 @@ export async function POST(req: Request) {
     }
 
     const p = price(c, visit, pay, ahead);
+    if (typeof b.expect === "number" && b.expect !== p.total) {
+      return NextResponse.json({ error: `日付が変わったため、料金が ¥${p.total.toLocaleString("ja-JP")} になりました。内容をご確認のうえ、もう一度お進みください。`, code: "price" }, { status: 409 });
+    }
     const id = crypto.randomBytes(9).toString("base64url");
     const token = crypto.randomBytes(18).toString("base64url");
     const end = start + c.min;
