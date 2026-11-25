@@ -33,6 +33,7 @@ export async function GET(req: Request) {
         paid: r.status === "confirmed",
         total: Number(r.total),
         mail: !!r.mail,
+        date: r.date, start: Number(r.start_min), end: Number(r.end_min),
         manage: r.token ? `/yoyaku?m=${r.token}` : "",
       },
     });

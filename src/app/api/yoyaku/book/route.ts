@@ -85,6 +85,7 @@ export async function POST(req: Request) {
       paid: false,
       total: p.total,
       mail: !!mail,
+      date, start, end,
       manage: `/yoyaku?m=${token}`,
     };
 

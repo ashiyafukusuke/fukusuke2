@@ -79,20 +79,46 @@ function qHtml() {
   </div>`;
 }
 
+function calUrl(b) {
+  if (!b.date || b.start == null) return "";
+  const t = (m) => b.date.replace(/-/g, "") + "T" + String(Math.floor(m / 60)).padStart(2, "0") + String(m % 60).padStart(2, "0") + "00";
+  const q = new URLSearchParams({ action: "TEMPLATE", text: "イタキモ 足つぼ", dates: t(b.start) + "/" + t(b.end), ctz: "Asia/Tokyo",
+    location: "東京都西東京市ひばりが丘3丁目2-51 HIBARIDO 2F R-09",
+    details: "予約番号：" + String(b.id || "").slice(0,6).toUpperCase() + "\n変更・キャンセル：" + location.origin + (b.manage || "") });
+  return "https://calendar.google.com/calendar/render?" + q.toString();
+}
+
+function placeHtml() {
+  return `<div class="rules" style="margin:0;"><h2 style="font-size:15px;margin-bottom:6px;">場所</h2>
+    <p class="note" style="margin:0 0 8px;border:none;padding:0;background:none;">〒202-0001 東京都西東京市ひばりが丘3丁目2-51<br>HIBARIDO 2F R-09<br><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent("東京都西東京市ひばりが丘3丁目2-51 HIBARIDO")}" target="_blank" rel="noopener" style="color:var(--brand);font-weight:700;">地図を開く</a></p>
+    <ul class="mini" style="margin:0;"><li>HIBARIDOの入り口から入り、右手奥の階段で2階へ</li><li>2階の入り口ドアを入って右側のお部屋（R-09）がイタキモです（看板は出していません）</li><li><a href="/videos/access-route.mp4" target="_blank" rel="noopener" style="color:var(--brand);">入り口からの道順の動画（約25秒）</a></li><li>わかりにくい場合は、お電話ください（<a href="tel:08062646460" style="color:var(--brand);">080-6264-6460</a>）</li><li>お手洗いは、HIBARIDO 1階の共用トイレをご利用ください</li><li>到着は5分前ごろを目安にお越しください</li></ul></div>`;
+}
+
 function doneHtml(b) {
   const ok = b.paid || b.pay !== "事前決済";
-  return `<div class="okbox${ok ? "" : " wait"}" role="status"><span class="mark" aria-hidden="true">${ok ? "✓" : "…"}</span><div><strong>${ok ? "ご予約が確定しました" : "お支払いを確認しています"}</strong><small>${ok ? (b.pay === "事前決済" ? "お支払いも完了しています。当日はそのままお越しください。" : "お支払いは当日、お店でお願いします。") : "少し時間をおいて、このページを開き直してください。"}</small></div></div>
-    <p class="note" style="margin:0;">念のため、この画面をスクリーンショットで残しておいてください。</p>
-    <div class="sheet">
+  const cal = calUrl(b);
+  const manageAbs = b.manage ? location.origin + b.manage : "";
+  const head = `<div class="okbox${ok ? "" : " wait"}" role="status"><span class="mark" aria-hidden="true">${ok ? "✓" : "…"}</span><div><strong>${ok ? "ご予約が確定しました" : "お支払いを確認しています"}</strong><small>${ok ? (b.pay === "事前決済" ? "お支払いも完了しています。当日はそのままお越しください。" : "お支払いは当日、お店でお願いします。") : "少し時間をおいて、このページを開き直してください。"}</small></div></div>`;
+  const sheet = `<div class="sheet">
       <div class="row"><span>予約番号</span><span>${esc(String(b.id || "").slice(0,6).toUpperCase())}</span></div>
       <div class="row"><span>ご予約名</span><span>${esc(b.name)} 様</span></div>
       <div class="row"><span>日時</span><span>${esc(b.when)}</span></div>
       <div class="row"><span>コース</span><span>${esc(b.course)}</span></div>
       <div class="row"><span>お支払い</span><span>${esc(b.pay)}</span></div>
       <div class="row total"><span>${b.paid ? "お支払い済み" : "当日のお支払い"}</span><span>${yen(b.total)}</span></div>
-    </div>
-    ${b.manage ? `<p class="note" style="margin:0;">前日の23:59までは、<a href="${esc(b.manage)}" style="color:var(--brand);font-weight:700;">こちらのページ</a>からご自分で日時の変更（2回まで）とキャンセルができます。${b.mail ? "確認メールにも同じリンクを載せています。" : "メールアドレスの登録がないため、このページのURLを控えておいてください。"}</p>` : ""}
-    <p class="note">場所：西東京市ひばりが丘 HIBARIDO 2F R-09<br>到着は5分前ごろを目安にお越しください。</p>`;
+    </div>`;
+  const calBtn = cal ? `<a class="btn ghost" href="${esc(cal)}" target="_blank" rel="noopener" style="display:flex;justify-content:center;text-decoration:none;">カレンダーに登録する</a>` : "";
+  if (b.mail) {
+    return head + `<p class="note" style="margin:0;">確認メールをお送りしました。前日の18時ごろにも、ご案内のメールをお送りします。届かない場合は、迷惑メールのフォルダもご確認ください。</p>`
+      + sheet + calBtn
+      + (b.manage ? `<p class="note" style="margin:0;">前日の23:59までは、<a href="${esc(b.manage)}" style="color:var(--brand);font-weight:700;">こちらのページ</a>からご自分で日時の変更（2回まで）とキャンセルができます。確認メールにも同じリンクを載せています。</p>` : "")
+      + placeHtml();
+  }
+  return head + `<div class="note" style="margin:0;border-color:var(--brand);background:var(--tint);"><strong>この画面を、スクリーンショットで残してください。</strong><br>メールアドレスのご登録がないため、確認メールと前日のご案内メールは届きません。ご予約の内容は、この画面でのご案内だけになります。</div>`
+    + sheet + calBtn
+    + (manageAbs ? `<div class="note" style="margin:0;"><strong>変更・キャンセル用のページ</strong>（前日の23:59まで）<br>日時の変更（2回まで）とキャンセルは、下のページからご自分でできます。このページはメールでお送りできないので、ブックマークするか、URLを控えておいてください。<br><a href="${esc(b.manage)}" style="color:var(--brand);font-weight:700;word-break:break-all;">${esc(manageAbs)}</a><br><button type="button" class="btn ghost" id="copyManage" style="margin-top:8px;">URLをコピー</button></div>` : "")
+    + `<p class="note" style="margin:0;">当日の変更・キャンセルは、メール（fukusuke@itakimo.net）・Instagram DM・お問い合わせフォームからご連絡ください。</p>`
+    + placeHtml();
 }
 
 function render() {
@@ -213,6 +239,8 @@ function render() {
       <button type="button" class="btn" id="next" ${can?"":"disabled"}>${nextLabel}</button>
     </div></div>`}`;
 
+  const cm = document.getElementById("copyManage");
+  if (cm) cm.onclick = async () => { const u = location.origin + (ui.done && ui.done.manage || ""); try { await navigator.clipboard.writeText(u); cm.textContent = "コピーしました"; } catch { prompt("このURLを控えてください", u); } };
   document.querySelectorAll("[data-v]").forEach(b => b.onclick = () => { ui.visit = b.dataset.v; ui.info = ""; render(); });
   document.querySelectorAll("[data-c]").forEach(b => b.onclick = () => { ui.cid = b.dataset.c; ui.date = null; ui.time = null; render(); });
   document.querySelectorAll("input[name=pay]").forEach(r => r.onchange = () => { ui.pay = r.value; render(); });
