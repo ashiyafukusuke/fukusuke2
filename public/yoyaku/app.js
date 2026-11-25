@@ -312,7 +312,7 @@ function manageMain(calHtml) {
       <div class="row"><span>お支払い</span><span>${b.pay === "card" ? "事前決済" : "当日、お店で"}</span></div>
       <div class="row total"><span>${b.paid ? "お支払い済み" : "当日のお支払い"}</span><span>${yen(b.total)}</span></div>
     </div>`;
-  if (ui.mstep === "done") return info + `<div class="okbox" role="status"><span class="mark" aria-hidden="true">✓</span><div><strong>${esc(ui.mdone.title)}</strong><small>${esc(ui.mdone.text)}</small></div></div>` + (b.status === "confirmed" ? sheet : "");
+  if (ui.mstep === "done") return info + `<div class="okbox" role="status"><span class="mark" aria-hidden="true">✓</span><div><strong>${esc(ui.mdone.title)}</strong><small>${esc(ui.mdone.text)}</small></div></div>` + (b.status === "confirmed" ? sheet + `<p style="text-align:center;margin:0;"><a href="${esc(location.pathname + location.search)}" style="color:var(--brand);font-size:14px;font-weight:700;">ご予約の確認に戻る</a></p>` : "");
   if (b.status === "cancelled") return `<h2>ご予約の確認</h2><div class="err">このご予約はキャンセル済みです。</div>`;
   if (ui.mstep === "cal") return info + `<p class="note" style="margin:0;">今のご予約：${esc(b.when)}（${b.min}分）<br>料金は、変更後の日付で計算し直します。</p>` + calHtml;
   if (ui.mstep === "confirm") {
@@ -333,10 +333,10 @@ function manageMain(calHtml) {
   return info + `<h2>ご予約の確認</h2>${sheet}${why}${b.canCancel && !b.canChange ? `<p class="note" style="margin:0;">ご自分での日時の変更は2回までです。これ以上の変更は、メールかInstagram DMでご連絡ください。</p>` : ""}
     ${b.cancelLimited ? `<p class="note" style="margin:0;">ご自分でのキャンセルは、直近3か月で2回までです（キャンセルのあとにご来店いただければ、回数はリセットされます）。キャンセルの場合は、メールかInstagram DMでご連絡ください。</p>` : ""}
     ${b.canChange || b.canCancel ? `<div class="rules"><h2 style="font-size:15px;margin-bottom:6px;">ご自分でできること（前日の23:59まで）</h2>
-      <ul class="mini" style="margin:0;"><li>日時の変更：あと${b.changesLeft}回（1つのご予約につき2回まで）。料金は変更後の日付で計算し直します。</li>
+      <ul class="mini" style="margin:0;"><li>日時の変更：あと${b.changesLeft}回（1つのご予約につき2回まで）。料金は変更後の日付で計算し直します（早割の条件も変更後の日付で決まります）。事前決済のご予約で料金が高くなる場合は、一度キャンセルしてから改めてご予約ください（同じ日のうちに取り直せば、キャンセルの回数には数えません）。</li>
       <li>キャンセル：${b.cancelLimited ? "回数の上限に達しています" : `あと${b.cancelsLeft}回（直近3か月で2回まで。キャンセルのあとにご来店いただければ、回数はリセットされます）`}。キャンセル料は頂きません。${b.paid ? "お支払い済みの分は全額お返しします。" : ""}</li>
       <li>コース（60分・90分）は変更できません。変えたい場合は、一度キャンセルしてから、改めてご予約ください。同じ日のうちに取り直せば、キャンセルの回数には数えません。</li>
-      <li>当日の場合や回数を超える場合は、メール・Instagram DMでご連絡ください。</li></ul></div>` : ""}`;
+      <li>当日の場合や回数を超える場合は、メール（fukusuke@itakimo.net）・Instagram DM・お問い合わせフォームからご連絡ください。</li></ul></div>` : ""}`;
 }
 
 function manageBar() {
