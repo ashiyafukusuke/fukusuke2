@@ -42,16 +42,16 @@ export default function NewsPage() {
         <div style={{ maxWidth: "880px", margin: "0 auto", padding: "56px 24px 64px" }}>
           <p style={{ margin: "0 0 6px", fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "17px", color: "#9b321f" }}>News</p>
           <h1 style={{ margin: "0 0 36px", fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(28px, 4vw, 38px)", letterSpacing: "0.1em" }}>お知らせ</h1>
-          {/* 1か月ごとにまとめる。いちばん新しい月だけ開いておく */}
+          {/* 1か月ごとにまとめる。どの月も閉じた状態で、押すと開く */}
           {Object.entries(
             news.reduce<Record<string, typeof news>>((acc, n) => {
               const k = n.date.slice(0, 7);
               (acc[k] = acc[k] || []).push(n);
               return acc;
             }, {}),
-          ).map(([ym, items], gi) => (
-            <details key={ym} className={gi === 0 ? "news-month news-latest" : "news-month"} {...(gi === 0 ? { open: true } : {})} style={{ borderTop: "1px solid #1a1a1a", marginBottom: "28px" }}>
-              <summary style={{ cursor: gi === 0 ? "default" : "pointer", padding: "16px 0", fontFamily: "'Shippori Mincho', serif", fontWeight: 600, fontSize: "18px", letterSpacing: "0.08em", listStyle: "none", display: "flex", justifyContent: "space-between", alignItems: "center", minHeight: "44px" }}>
+          ).map(([ym, items]) => (
+            <details key={ym} className="news-month" style={{ borderTop: "1px solid #1a1a1a", marginBottom: "28px" }}>
+              <summary style={{ cursor: "pointer", padding: "16px 0", fontFamily: "'Shippori Mincho', serif", fontWeight: 600, fontSize: "18px", letterSpacing: "0.08em", listStyle: "none", display: "flex", justifyContent: "space-between", alignItems: "center", minHeight: "44px" }}>
                 <span>{`${Number(ym.slice(0, 4))}年${Number(ym.slice(5, 7))}月`}</span>
                 <span style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 400, fontSize: "12px", color: "#5c5c5c" }}>{items.length}件</span>
               </summary>
@@ -67,7 +67,7 @@ export default function NewsPage() {
             </details>
           ))}
           {/* リンク（#id）で開いたお知らせが閉じた月にあるときは、その月を開く */}
-          <script dangerouslySetInnerHTML={{ __html: "(function(){var L=document.querySelector('.news-latest');if(L)L.open=true;function o(){var h=decodeURIComponent(location.hash.slice(1));if(!h)return;var e=document.getElementById(h);if(!e)return;var d=e.closest('details');if(d&&!d.open){d.open=true;}e.scrollIntoView();}o();window.addEventListener('hashchange',o);})();" }} />
+          <script dangerouslySetInnerHTML={{ __html: "(function(){function o(){var h=decodeURIComponent(location.hash.slice(1));if(!h)return;var e=document.getElementById(h);if(!e)return;var d=e.closest('details');if(d&&!d.open){d.open=true;}e.scrollIntoView();}o();window.addEventListener('hashchange',o);})();" }} />
           <p style={{ margin: "24px 0 0", fontSize: "13px" }}>
             <Link href="/yoyaku" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", minHeight: "48px", background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "12px 36px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.1em", fontSize: "15px" }}>空き状況を見る</Link>
           </p>
