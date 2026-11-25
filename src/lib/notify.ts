@@ -5,7 +5,22 @@ const OWNER = "fukusuke@itakimo.net";
 // 店主への予約メールの送り先（届かなかったときの控えに Gmail にも送る）
 const OWNER_TO = [OWNER, "snapcall.odds@gmail.com"];
 const FROM = "足つぼ専門店 イタキモ <yoyaku@itakimo.net>";
-const ADDRESS = "西東京市ひばりが丘 HIBARIDO 2F R-09";
+const ADDRESS = "〒202-0001 東京都西東京市ひばりが丘3丁目2-51 HIBARIDO 2F R-09";
+const MAP_URL = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("東京都西東京市ひばりが丘3丁目2-51 HIBARIDO");
+const ROUTE_VIDEO = "https://www.itakimo.net/videos/access-route.mp4";
+const SHOP_TEL = "080-6264-6460";
+// 場所の案内（住所・地図・建物の中の道順）
+const PLACE = [
+  `場所：${ADDRESS}`,
+  `地図：${MAP_URL}`,
+  ``,
+  `■ お店までの道順`,
+  `当店は「HIBARIDO」という施設の2階にある小さなサロンです。看板やウインドウサインは出していないため、初めての方は少しわかりにくいかもしれません。以下の順でお越しください。`,
+  `・HIBARIDOの入り口から入り、右手奥の階段で2階へ`,
+  `・2階の入り口ドアを入って右側のお部屋（R-09）がイタキモです`,
+  `入り口からの道順の動画（約25秒）：${ROUTE_VIDEO}`,
+  `場所がわかりにくい場合は、遠慮なくお電話ください（${SHOP_TEL}）。`,
+];
 
 type Row = Record<string, string | null>;
 
@@ -87,7 +102,8 @@ export async function notifyConfirmed(id: string, origin: string) {
         `お支払い：${d.pay}`,
         `金額：${d.total}`,
         ``,
-        `場所：${ADDRESS}`,
+        ...PLACE,
+        ``,
         `到着は5分前ごろを目安にお越しください。`,
         ``,
         `■ ご予約の前に`,
@@ -154,7 +170,8 @@ export async function sendReminder(id: string, origin: string) {
       `お支払い：${d.pay}`,
       `金額：${d.total}`,
       ``,
-      `場所：${ADDRESS}`,
+      ...PLACE,
+      ``,
       `到着は5分前ごろを目安にお越しください。遅れた場合も、終了時間は変わりません。`,
       ``,
       `本日23:59までは、こちらからご自分で変更・キャンセルができます。`,
@@ -178,11 +195,11 @@ export async function notifyChange(id: string, origin: string, kind: "change" | 
     if (!r) return;
     const d = details(r);
     const tasks: Promise<unknown>[] = [];
-    const refundLine = refund > 0 ? `返金：¥${refund.toLocaleString("ja-JP")}（カード会社によって、反映まで数日〜数週間かかります）` : null;
+    const refundLine = refund > 0 ? `返金：¥${refund.toLocaleString("ja-JP")}（返金の手続きは済んでいます。カードの明細に表示されるまでは、カード会社側の処理で通常5〜10営業日ほどかかります）` : null;
     if (r.mail) {
       const text = (kind === "change"
         ? [`${r.name} 様`, ``, `足つぼ専門店イタキモです。ご予約の日時を変更しました。`, ``, `予約番号：${d.no}`, `変更前：${before}`, `変更後：${d.when}`, `コース：${d.course}`, `お支払い：${d.pay}`, `金額：${d.total}`, refundLine,
-           ``, `場所：${ADDRESS}`, `到着は5分前ごろを目安にお越しください。`, ``, `変更・キャンセル：${manageUrl(origin, r.token)}`, ``, `足つぼ専門店 イタキモ　福助`]
+           ``, ...PLACE, ``, `到着は5分前ごろを目安にお越しください。`, ``, `変更・キャンセル：${manageUrl(origin, r.token)}`, ``, `足つぼ専門店 イタキモ　福助`]
         : [`${r.name} 様`, ``, `足つぼ専門店イタキモです。ご予約のキャンセルを承りました。`, ``, `予約番号：${d.no}`, `日時：${before}`, refundLine, ``, `またのご予約をお待ちしています。`, ``, `足つぼ専門店 イタキモ　福助`, `https://www.itakimo.net/`]
       ).filter((l) => l !== null).join("\n");
       tasks.push(sendMail(r.mail, kind === "change" ? `【イタキモ】ご予約の日時を変更しました（${d.short}）` : `【イタキモ】ご予約のキャンセルを承りました`, text));

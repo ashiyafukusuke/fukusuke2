@@ -177,7 +177,13 @@ export default function FirstPage() {
               </div>
             </div>
             <div style={{ marginTop: "28px" }}>
-              <p style={{ margin: "0 0 12px", fontSize: "13px", fontWeight: 700 }}>入口からお店までの道順（動画）</p>
+              <p style={{ margin: "0 0 8px", fontSize: "13px", fontWeight: 700 }}>入口からお店までの道順</p>
+              <p style={{ margin: "0 0 8px", fontSize: "13px", color: "#3d3a34" }}>当店は「HIBARIDO」という施設の2階にある小さなサロンです。看板やウインドウサインは出していないため、初めての方は少しわかりにくいかもしれません。以下の順でお越しください。</p>
+              <ul style={{ margin: "0 0 8px", paddingLeft: "1.2em", fontSize: "13px", color: "#3d3a34" }}>
+                <li>HIBARIDOの入り口から入り、右手奥の階段で2階へ</li>
+                <li>2階の入り口ドアを入って右側のお部屋（R-09）がイタキモです</li>
+              </ul>
+              <p style={{ margin: "0 0 12px", fontSize: "13px", color: "#3d3a34" }}>場所がわかりにくい場合は、遠慮なくお電話ください（<a href="tel:08062646460" style={{ color: "#3d3a34" }}>080-6264-6460</a>）。</p>
               <video src="/videos/access-route.mp4" poster="/videos/access-route-poster.jpg" controls muted playsInline preload="none" style={{ display: "block", width: "100%", maxWidth: "320px", aspectRatio: "9 / 16", background: "#f1efea" }} />
               <p style={{ margin: "8px 0 0", fontSize: "12px", color: "#5c5c5c" }}>約25秒・音声はありません。</p>
             </div>
