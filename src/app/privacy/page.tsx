@@ -19,8 +19,8 @@ const sections: { title: string; body: ReactNode }[] = [
         <p>ご予約やお問い合わせのときに、次の情報をお預かりします。</p>
         <ul>
           <li>ご予約名（本名でなくてもかまいません）</li>
-          <li>電話番号</li>
-          <li>メールアドレス</li>
+          <li>電話番号（ご予約の際は必須）</li>
+          <li>メールアドレス（ご予約の際は任意）</li>
           <li>ご予約の内容（日時・コース・ご来店の回数など）</li>
           <li>お問い合わせやメッセージでお伝えいただいた内容</li>
         </ul>
@@ -38,7 +38,7 @@ const sections: { title: string; body: ReactNode }[] = [
           <li>料金のお支払いと返金の手続き</li>
           <li>ご来店後のご連絡</li>
           <li>お問い合わせへのお返事</li>
-          <li>ご予約のルールを守っていただけなかった場合の、以降のご予約の判断</li>
+          <li>同じ方のご予約かどうかの確認と、ご予約のルールを守っていただけなかった場合の、以降のご予約の判断</li>
         </ul>
       </>
     ),
@@ -128,7 +128,7 @@ export default function PrivacyPage() {
             </section>
           ))}
         </div>
-        <p style={{ margin: "20px 0 0", fontSize: "12px", color: "#5c5c5c" }}>制定：2026年11月20日　改定：2026年11月25日</p>
+        <p style={{ margin: "20px 0 0", fontSize: "12px", color: "#5c5c5c" }}>制定：2026年11月20日　改定：2026年11月26日</p>
       </main>
 
       {/* フッター */}

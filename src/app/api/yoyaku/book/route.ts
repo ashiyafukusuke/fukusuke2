@@ -36,7 +36,8 @@ export async function POST(req: Request) {
 
   if (!c || !visit || !pay || !date || Number.isNaN(start)) return NextResponse.json({ error: "ご予約の内容が足りません。" }, { status: 400 });
   if (!name) return NextResponse.json({ error: "ご予約名を入力してください。" }, { status: 400 });
-  if (!tel && !mail) return NextResponse.json({ error: "電話番号かメールアドレスのどちらかを入力してください。" }, { status: 400 });
+  if (!tel) return NextResponse.json({ error: "電話番号を入力してください。" }, { status: 400 });
+  if (!/^(\+?81|0)\d{9,10}$/.test(tel)) return NextResponse.json({ error: "電話番号をご確認ください（例：09012345678）。" }, { status: 400 });
   if (mail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) return NextResponse.json({ error: "メールアドレスの形を確認してください。" }, { status: 400 });
   if (visit === "first" && (!answers.first || !answers.hurt)) return NextResponse.json({ error: "必須のご質問にお答えください。" }, { status: 400 });
   if (b.agree !== true) return NextResponse.json({ error: "「ご予約の前に」の確認にチェックを入れてください。" }, { status: 400 });

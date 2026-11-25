@@ -234,10 +234,10 @@ function render() {
       <h2>お客様情報</h2>
       <form class="form" id="fm" novalidate>
         <label class="field">ご予約名（本名でなくてもかまいません）<input id="fn" maxlength="40" autocomplete="nickname" placeholder="例：ふくすけ" value="${esc(ui.f.name)}"></label>
-        <p class="note" style="margin:0;">連絡先は、電話番号かメールアドレスの<strong>どちらか一方</strong>で大丈夫です。予約の確認と、変更があったときのご連絡にだけ使います。</p>
-        <label class="field">電話番号<input id="ft" type="tel" maxlength="20" autocomplete="tel" placeholder="09012345678" value="${esc(ui.f.tel)}"></label>
-        <p class="note" style="margin:0;border-color:var(--brand);background:var(--tint);">ご自分で日時の変更・キャンセルをしたい方は、<strong>メールアドレスを入れてください</strong>。予約ごとの専用リンクをお送りします。メールアドレスがない場合、変更・キャンセルはお店へご連絡ください。</p>
-        <label class="field">メールアドレス<input id="fe" type="email" maxlength="120" autocomplete="email" placeholder="example@email.com" value="${esc(ui.f.mail)}"></label>
+        <p class="note" style="margin:0;">電話番号は、ご本人の確認と、当日の急なご連絡のために<strong>必ず</strong>お預かりしています。メールアドレスは任意です。どちらも、ご予約に関するご連絡にだけ使います。</p>
+        <label class="field">電話番号（必須）<input id="ft" type="tel" maxlength="20" autocomplete="tel" placeholder="09012345678" value="${esc(ui.f.tel)}"></label>
+        <p class="note" style="margin:0;border-color:var(--brand);background:var(--tint);">メールアドレスを入れていただくと、<strong>確認メールと前日のご案内</strong>、ご自分で日時の変更・キャンセルができる専用リンクをお送りします。メールアドレスがない場合は、予約完了の画面に出るリンクを控えておいてください。</p>
+        <label class="field">メールアドレス（任意）<input id="fe" type="email" maxlength="120" autocomplete="email" placeholder="example@email.com" value="${esc(ui.f.mail)}"></label>
         ${ui.visit === "first" ? qHtml() : ""}
         <label class="field">足や身体のお疲れで気になっていること（任意）<textarea id="fo" maxlength="400" placeholder="疲れた、立ち仕事でふくらはぎが張りやすい、強めが好き、など">${esc(ui.f.memo)}</textarea></label>
         <details class="reread"><summary>「ご予約の前に」をもう一度読む</summary>${rulesHtml()}</details>
@@ -304,7 +304,9 @@ function render() {
 
 async function submit(c) {
   if (!ui.f.name.trim()) { ui.err = "ご予約名を入力してください。"; return render(); }
-  if (!ui.f.tel.trim() && !ui.f.mail.trim()) { ui.err = "電話番号かメールアドレスのどちらかを入力してください。"; return render(); }
+  { const t = ui.f.tel.replace(/[０-９]/g, d => String.fromCharCode(d.charCodeAt(0) - 0xfee0)).replace(/[^\d+]/g, "");
+    if (!t) { ui.err = "電話番号を入力してください。"; return render(); }
+    if (!/^(\+?81|0)\d{9,10}$/.test(t)) { ui.err = "電話番号をご確認ください（例：09012345678）。"; return render(); } }
   if (ui.visit === "first" && (!ui.q.first || !ui.q.hurt)) { ui.err = "必須のご質問にお答えください。"; return render(); }
   if (!ui.f.agree) { ui.err = "「ご予約の前に」の確認にチェックを入れてください。"; return render(); }
   ui.err = ""; ui.busy = true; render();
