@@ -105,7 +105,7 @@ export async function POST(req: Request) {
       const p = price(c, r.visit as "first" | "repeat", r.pay as "onsite" | "card", ahead);
       const paidCard = r.pay === "card" && !!r.paid_at;
       if (paidCard && p.total > v.total) {
-        return NextResponse.json({ error: `この日時に変更すると、お支払い済みの金額（¥${v.total.toLocaleString()}）より高くなります（¥${p.total.toLocaleString()}）。お手数ですが、メールかInstagram DMでご連絡ください。`, code: "price" }, { status: 409 });
+        return NextResponse.json({ error: `この日時に変更すると、お支払い済みの金額（¥${v.total.toLocaleString()}）より高くなります（¥${p.total.toLocaleString()}）。お手数ですが、一度キャンセルしてから、改めてご予約ください（同じ日のうちに取り直せば、キャンセルの回数には数えません）。`, code: "price" }, { status: 409 });
       }
       if (b.confirm !== true) {
         return NextResponse.json({ ok: true, preview: { when: `${fmtDate(date)} ${hm(start)}〜${hm(start + c.min)}`, total: p.total, before: v.total, refund: paidCard ? v.total - p.total : 0 } });

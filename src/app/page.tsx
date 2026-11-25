@@ -119,7 +119,7 @@ export default function Home() {
               <div style={{ borderTop: "1px solid #ebe9e4", paddingTop: "18px" }}>
                 <h3 style={{ margin: "0 0 6px", fontFamily: "'Shippori Mincho', serif", fontWeight: 600, fontSize: "19px", letterSpacing: "0.06em" }}>枠の中ですべて完結</h3>
                 <p style={{ margin: "0 0 8px", fontWeight: 700, fontSize: "14px" }}>遅れても、終了時間は変わりません。</p>
-                <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>施術・お着替え・お会計まで、ご予約の枠の中で終わります。延長のご案内もしていません。到着は5分前ごろを目安にお越しください。</p>
+                <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>施術・お着替え・お会計まで、ご予約の枠の中で終わります。延長のご案内もしていません。到着は5分前ごろを目安にお越しください。早く着いても、開始を早められるとは限りません。</p>
               </div>
               <div style={{ borderTop: "1px solid #ebe9e4", paddingTop: "18px" }}>
                 <h3 style={{ margin: "0 0 6px", fontFamily: "'Shippori Mincho', serif", fontWeight: 600, fontSize: "19px", letterSpacing: "0.06em" }}>予約のお約束</h3>
@@ -177,7 +177,7 @@ export default function Home() {
           <ul className="scenes">
             <li>立ち仕事や外回りのあと、足をしっかり揉んでほしいとき</li>
             <li>強めの足つぼが好きで、奥まで届く圧を探しているとき</li>
-            <li>足つぼは初めてで、痛すぎないか不安なとき<span>（強さはいつでも調整できます）</span></li>
+            <li>足つぼは初めてで、好みの加減もまだわからないので、調整しながら受けたいとき</li>
             <li>一日の疲れや、溜まった疲れをとって、ぐっすり眠りたいとき</li>
           </ul>
         </div>

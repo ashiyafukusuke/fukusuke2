@@ -239,14 +239,17 @@ export const REBOOKED = (c: string, match: string) => `EXISTS (
   AND (x.created_at AT TIME ZONE 'Asia/Tokyo')::date = (${c}.cancelled_at AT TIME ZONE 'Asia/Tokyo')::date
   AND (x.status = 'confirmed' OR x.cancelled_by IN ('customer','admin')))`;
 
-// 同じお客様（電話番号かメールが一致）が、直近90日に自分でキャンセルした回数（同じ日に取り直した分は数えない）
+// 同じお客様（電話番号かメールが一致）が、直近90日に自分でキャンセルした回数
+// 同じ日に取り直した分と、そのあと来店した（日付が過ぎた確定済みの予約がある）分は数えない
 export async function selfCancelCount(tel: string | null, mail: string | null) {
   if (!tel && !mail) return 0;
   const m = (t: string) => `((($1::text) IS NOT NULL AND ${t}.tel = $1) OR (($2::text) IS NOT NULL AND lower(${t}.mail) = lower($2)))`;
   const r = await sql<{ n: string }>(
     `SELECT count(*) AS n FROM bookings c WHERE c.cancelled_by = 'customer' AND c.cancelled_at > now() - interval '${CANCEL_WINDOW_DAYS} days'
-     AND ${m("c")} AND NOT ${REBOOKED("c", m("x"))}`,
-    [tel || null, mail || null],
+     AND ${m("c")} AND NOT ${REBOOKED("c", m("x"))}
+     AND NOT EXISTS (SELECT 1 FROM bookings v WHERE v.id <> c.id AND ${m("v")} AND v.status = 'confirmed'
+       AND v.date >= to_char(c.cancelled_at AT TIME ZONE 'Asia/Tokyo', 'YYYY-MM-DD') AND v.date < $3)`,
+    [tel || null, mail || null, jstNow().date],
   );
   return Number(r[0]?.n || 0);
 }
