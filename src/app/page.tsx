@@ -131,7 +131,7 @@ export default function Home() {
               施術はベッドで横になるのではなく、リクライニングチェアに座ったまま、膝まわりまで行います。お着替え用のハーフパンツとひざ掛けもご用意しています。
             </p>
             <p style={{ margin: "20px 0 0" }}>
-              <Link className="lnk" href="/first" style={{ color: "#1a1a1a", fontSize: "13px" }}><span>「初めての方へ」ページで詳しく見る</span></Link>
+              <Link className="lnk" href="/first" style={{ color: "#1a1a1a", fontSize: "13px" }}><span>服装・到着時間・ご予約のルールなど、くわしくはこちら</span></Link>
             </p>
           </div>
         </details>
