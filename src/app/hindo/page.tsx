@@ -5,7 +5,7 @@ import { SiteNav, FooterNav } from "@/components/site/SiteNav";
 // お土産カード「どれくらいの頻度で通えばいい？」のQRの飛び先（/qr/hindo から転送）
 const TITLE = "どれくらいの頻度で通えばいい？｜足つぼ専門店 イタキモ";
 const DESCRIPTION = "足つぼに通う頻度の目安は3週間に1回。その理由と、目的別の目安、次の施術までのあいだにできることをまとめました。";
-const STORES = "https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/1983011";
+const STORES = "/yoyaku";
 
 export const metadata: Metadata = {
   title: TITLE,
