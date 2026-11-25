@@ -127,7 +127,7 @@ export default function FirstPage() {
           </div>
           <div style={{ flex: "3 1 640px", minWidth: 0 }}>
             <ol className="rules">
-              <li><div><strong>遅れても、終了時間は変わりません。</strong><span>施術・お着替え・お会計まで、ご予約の枠の中で終わります。延長のご案内もしていません。遅れそうなときも、焦らず安全第一でお越しください。早く着いても大丈夫ですが、開始を早められるとは限りません。あらかじめご了承ください。大幅に早く着いた場合は、ご予約の時間どおりに始めるか、早めに始めることもあります。早めに始めたときは枠の終了時間より早く終わりますが、施術は60分なら60分、90分なら90分です（施術には、最後のクリームの拭き取りまで含みます）。</span></div></li>
+              <li><div><strong>遅れても、終了時間は変わりません。</strong><span>施術・お着替え・お会計まで、ご予約の枠の中で終わります。延長のご案内もしていません。遅れそうなときも、焦らず安全第一でお越しください。早く着いても大丈夫ですが、前のご予約があるときなどは、開始を早められません。あらかじめご了承ください。早めに始められるときは、次のどちらかをお選びいただけます。</span><ul style={{ margin: "6px 0", paddingLeft: "1.2em" }}><li>早めに始めて、そのぶん早めに終わる（施術は60分なら60分、90分なら90分）</li><li>ご予約の時間に始めて、ご予約どおりの時間に終わる</li></ul><span>施術時間には、最後のクリームの拭き取りまで含みます。</span></div></li>
               <li><div><strong>キャンセル料は頂きません。</strong><span>ただし、無断キャンセルの方からは、以降のご予約をお受けしていません。直前のキャンセルが続く場合も、お受けしないことがあります。体調やご家族の事情、足のけがなどでのキャンセルは、ご連絡があれば対象にしません。</span></div></li>
               <li><div><strong>変更・キャンセルの方法</strong><span>どちらも、メール（<a href="mailto:fukusuke@itakimo.net" style={{ color: "#3d3a34" }}>fukusuke@itakimo.net</a>）・Instagram DM・<a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/contact" style={{ color: "#3d3a34" }}>お問い合わせフォーム</a>からご連絡ください。</span></div></li>
             </ol>
