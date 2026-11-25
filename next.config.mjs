@@ -42,6 +42,8 @@ const nextConfig = {
       { source: "/st", destination: "/?utm_source=stores&utm_medium=referral&utm_campaign=profile", permanent: false },
       { source: "/hb", destination: "/?utm_source=hibarido&utm_medium=referral&utm_campaign=profile", permanent: false },
       { source: "/qr", destination: "/?utm_source=card&utm_medium=offline&utm_campaign=shopcard", permanent: false },
+      // お土産カード「どれくらいの頻度で通えばいい？」のQR
+      { source: "/qr/hindo", destination: "/hindo?utm_source=card&utm_medium=offline&utm_campaign=hindo", permanent: false },
     ];
   },
 };
