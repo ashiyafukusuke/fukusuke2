@@ -17,8 +17,23 @@ function check(req: Request): string | null {
 }
 const deny = (msg: string) => NextResponse.json({ error: msg }, { status: 401 });
 
+// パスワードの総当たり対策：同じ接続元から15分に5回まちがえたら、しばらく受け付けない
+async function guard(req: Request): Promise<string | null> {
+  const ip = (req.headers.get("x-forwarded-for") || "").split(",")[0].trim() || "unknown";
+  await sql(`CREATE TABLE IF NOT EXISTS admin_fails (ip text NOT NULL, at timestamptz NOT NULL DEFAULT now())`);
+  const recent = await sql<{ n: string }>(`SELECT count(*) AS n FROM admin_fails WHERE ip = $1 AND at > now() - interval '15 minutes'`, [ip]);
+  if (Number(recent[0]?.n || 0) >= 5) return "パスワードを何度もまちがえたため、15分ほど受け付けを止めています。時間をおいてお試しください。";
+  const bad = check(req);
+  if (bad) {
+    if (bad === "パスワードが違います。") await sql(`INSERT INTO admin_fails (ip) VALUES ($1)`, [ip]);
+    return bad;
+  }
+  await sql(`DELETE FROM admin_fails WHERE ip = $1 OR at < now() - interval '1 day'`, [ip]);
+  return null;
+}
+
 export async function GET(req: Request) {
-  const ng = check(req);
+  const ng = await guard(req);
   if (ng) return deny(ng);
   try {
     await ensureTables();
@@ -58,7 +73,7 @@ export async function GET(req: Request) {
 }
 
 export async function POST(req: Request) {
-  const ng = check(req);
+  const ng = await guard(req);
   if (ng) return deny(ng);
   try {
     await ensureTables();
