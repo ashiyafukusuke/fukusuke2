@@ -91,7 +91,7 @@ function render() {
       ${qa ? `<span></span><span class="m">${esc(qa)}</span>` : ""}
       ${b.memo ? `<span></span><span class="m">メモ：${esc(b.memo)}</span>` : ""}
       ${b.cancels ? `<span></span><span class="m" style="color:var(--brand);font-weight:700;">この方の過去のキャンセル：${b.cancels}回</span>` : ""}
-      <span></span><span style="display:flex;gap:6px;flex-wrap:wrap;"><button class="btn ghost" data-cancel="${esc(b.id)}" data-name="${esc(b.name)}">取り消す</button><button class="btn ghost" data-block="${esc(b.id)}" data-name="${esc(b.name)}">以降お断り</button></span>
+      <span></span><span style="display:flex;gap:6px;flex-wrap:wrap;"><button class="btn ghost" data-cancel="${esc(b.id)}" data-mode="request" data-name="${esc(b.name)}" data-pay="${esc(b.pay || "")}" data-mail="${b.mail ? "1" : ""}">ご依頼でキャンセル</button><button class="btn ghost" data-cancel="${esc(b.id)}" data-mode="noshow" data-name="${esc(b.name)}">来店なしで取り消す</button><button class="btn ghost" data-block="${esc(b.id)}" data-name="${esc(b.name)}">以降お断り</button></span>
     </div>`; }).join("")}</div>`).join("") || `<p class="legend">これからの予約はありません。</p>`;
 
   const times = []; for (let m = 6 * 60; m <= 23 * 60; m += 10) times.push(m);
@@ -174,8 +174,16 @@ function render() {
     load();
   });
   document.querySelectorAll("[data-cancel]").forEach(b => b.onclick = async () => {
-    if (!confirm(`${b.dataset.name} 様の予約を取り消します。よろしいですか？（返金はStripeの画面で行います）`)) return;
-    try { await api("POST", { cancel:b.dataset.cancel }); } catch (e) { alert(e.message); }
+    const req = b.dataset.mode === "request";
+    const msg = req
+      ? `${b.dataset.name} 様のご依頼で、予約をキャンセルします。\n` + (b.dataset.mail ? "・お客様にキャンセルのメールを送ります\n" : "・メールアドレスがないため、お知らせは送られません（DMや電話でお伝えください）\n") + (b.dataset.pay === "card" ? "・事前決済の分は全額返金します\n" : "") + "よろしいですか？"
+      : `${b.dataset.name} 様の予約を「来店なし」として取り消します。\n・お客様への連絡と返金はしません\nよろしいですか？`;
+    if (!confirm(msg)) return;
+    try {
+      const j = await api("POST", { cancel:b.dataset.cancel, mode:b.dataset.mode });
+      if (j && j.refundFailed) alert("返金がうまくいきませんでした。Stripeの画面から返金してください。");
+      else if (j && j.refunded) alert(`¥${Number(j.refunded).toLocaleString("ja-JP")} を返金しました。`);
+    } catch (e) { alert(e.message); }
     load();
   });
 }

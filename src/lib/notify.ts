@@ -189,7 +189,8 @@ export async function sendReminder(id: string, origin: string) {
 }
 
 // お客様が自分で変更・キャンセルしたときの連絡
-export async function notifyChange(id: string, origin: string, kind: "change" | "cancel", before: string, refund: number) {
+// by = "shop" は、お客様からの連絡を受けて店主が管理画面で取り消したとき（店主への連絡は送らない）
+export async function notifyChange(id: string, origin: string, kind: "change" | "cancel", before: string, refund: number, by: "customer" | "shop" = "customer") {
   try {
     const rows = await sql<Row>(`SELECT * FROM bookings WHERE id = $1`, [id]);
     const r = rows[0];
@@ -201,10 +202,11 @@ export async function notifyChange(id: string, origin: string, kind: "change" | 
       const text = (kind === "change"
         ? [`${r.name} 様`, ``, `足つぼ専門店イタキモです。ご予約の日時を変更しました。`, ``, `予約番号：${d.no}`, `変更前：${before}`, `変更後：${d.when}`, `コース：${d.course}`, `お支払い：${d.pay}`, `金額：${d.total}`, refundLine,
            ``, ...PLACE, ``, `到着は5分前ごろを目安にお越しください。`, ``, `変更・キャンセル：${manageUrl(origin, r.token)}`, ``, `足つぼ専門店 イタキモ　福助`]
-        : [`${r.name} 様`, ``, `足つぼ専門店イタキモです。ご予約のキャンセルを承りました。`, ``, `予約番号：${d.no}`, `日時：${before}`, refundLine, ``, `またのご予約をお待ちしています。`, ``, `足つぼ専門店 イタキモ　福助`, `https://www.itakimo.net/`]
+        : [`${r.name} 様`, ``, by === "shop" ? `足つぼ専門店イタキモです。ご連絡いただいたご予約のキャンセルを承りました。` : `足つぼ専門店イタキモです。ご予約のキャンセルを承りました。`, ``, `予約番号：${d.no}`, `日時：${before}`, refundLine, ``, `またのご予約をお待ちしています。`, ``, `足つぼ専門店 イタキモ　福助`, `https://www.itakimo.net/`]
       ).filter((l) => l !== null).join("\n");
       tasks.push(sendMail(r.mail, kind === "change" ? `【イタキモ】ご予約の日時を変更しました（${d.short}）` : `【イタキモ】ご予約のキャンセルを承りました`, text));
     }
+    if (by === "shop") { await withTimeout(Promise.allSettled(tasks)); return; }
     const ownerText = [
       kind === "change" ? `お客様がご予約の日時を変更しました。` : `お客様がご予約をキャンセルしました。`,
       ``,

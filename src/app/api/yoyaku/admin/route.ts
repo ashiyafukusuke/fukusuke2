@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import crypto from "node:crypto";
-import { getSetting, push, setSetting } from "@/lib/notify";
-import { REBOOKED, addDays, defaultKind, ensureTables, HORIZON, jstNow, kindsFor, sql } from "@/lib/yoyaku";
+import { getSetting, notifyChange, push, setSetting } from "@/lib/notify";
+import { REBOOKED, addDays, defaultKind, ensureTables, fmtDate, hm, HORIZON, jstNow, kindsFor, sql, stripe } from "@/lib/yoyaku";
 
 export const dynamic = "force-dynamic";
 
@@ -108,8 +108,30 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: true });
     }
     if (typeof b.cancel === "string" && /^[A-Za-z0-9_-]{6,30}$/.test(b.cancel)) {
-      await sql(`UPDATE bookings SET status = 'cancelled', cancelled_by = 'admin', cancelled_at = now() WHERE id = $1`, [b.cancel]);
-      return NextResponse.json({ ok: true });
+      // mode = "request"：お客様の依頼で取り消す（メールでお知らせ・事前決済は全額返金）
+      // mode = "noshow"：来店なしなどで取り消す（連絡も返金もしない）
+      const request = b.mode === "request";
+      const rows = await sql<Record<string, string | null>>(
+        `UPDATE bookings SET status = 'cancelled', cancelled_by = 'admin', cancelled_at = now() WHERE id = $1 AND status = 'confirmed' RETURNING *`,
+        [b.cancel],
+      );
+      const r = rows[0];
+      if (!r) return NextResponse.json({ error: "この予約はすでに取り消されています。" }, { status: 409 });
+      if (!request) return NextResponse.json({ ok: true });
+      let refunded = 0;
+      let refundFailed = false;
+      if (r.pay === "card" && r.paid_at && r.stripe_session) {
+        try {
+          const s = await stripe("checkout/sessions/" + r.stripe_session, "GET");
+          if (s.payment_intent) {
+            await stripe("refunds", "POST", { payment_intent: String(s.payment_intent), amount: String(r.total), "metadata[booking_id]": String(r.id) });
+            refunded = Number(r.total);
+          } else refundFailed = true;
+        } catch (e) { console.error("admin refund failed", e); refundFailed = true; }
+      }
+      const when = `${fmtDate(r.date!)} ${hm(Number(r.start_min))}〜${hm(Number(r.end_min))}`;
+      await notifyChange(r.id!, new URL(req.url).origin, "cancel", when, refunded, "shop");
+      return NextResponse.json({ ok: true, refunded, refundFailed, mailed: !!r.mail });
     }
     return NextResponse.json({ error: "内容が正しくありません。" }, { status: 400 });
   } catch (e) {
