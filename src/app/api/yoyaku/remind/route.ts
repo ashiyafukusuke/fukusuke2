@@ -31,7 +31,14 @@ export async function GET(req: Request) {
       [yesterday],
     );
     for (const r of visited) await sendThanks(r.id);
-    return NextResponse.json({ ok: true, sent: rows.length, thanked: visited.length });
+    // 2年より前のご予約は、電話番号だけを残して、お名前・メールアドレス・記入内容を消す
+    // （電話番号は、2回目以降のご来店かどうかの確認のために残す）
+    const old = await sql<{ id: string }>(
+      `UPDATE bookings SET name = '（消去済み）', mail = NULL, memo = NULL, answers = NULL
+       WHERE date < $1 AND (name <> '（消去済み）' OR mail IS NOT NULL OR memo IS NOT NULL OR answers IS NOT NULL) RETURNING id`,
+      [addDays(jstNow().date, -730)],
+    );
+    return NextResponse.json({ ok: true, sent: rows.length, thanked: visited.length, erased: old.length });
   } catch (e) {
     console.error(e);
     return NextResponse.json({ error: "failed" }, { status: 500 });
