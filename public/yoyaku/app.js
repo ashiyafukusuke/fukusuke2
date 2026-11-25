@@ -264,7 +264,15 @@ function render() {
 
   const cm = document.getElementById("copyManage");
   if (cm) cm.onclick = async () => { const u = location.origin + (ui.done && ui.done.manage || ""); try { await navigator.clipboard.writeText(u); cm.textContent = "コピーしました"; } catch { prompt("このURLを控えてください", u); } };
-  document.querySelectorAll("[data-v]").forEach(b => b.onclick = () => { ui.visit = b.dataset.v; ui.info = ""; render(); });
+  document.querySelectorAll("[data-v]").forEach(b => b.onclick = () => {
+    ui.visit = b.dataset.v; ui.info = ""; render();
+    // 選んだあと、コースの一覧が見えるところまで少しスクロールする
+    const first = document.querySelector("[data-c]");
+    if (first) {
+      const y = first.getBoundingClientRect().top + scrollY - 140;
+      if (y > scrollY) scrollTo({ top: y, behavior: "smooth" });
+    }
+  });
   document.querySelectorAll("[data-c]").forEach(b => b.onclick = () => { ui.cid = b.dataset.c; ui.date = null; ui.time = null; render(); });
   document.querySelectorAll("input[name=pay]").forEach(r => r.onchange = () => { ui.pay = r.value; render(); });
   const pm = document.getElementById("pm"), nm = document.getElementById("nm");
