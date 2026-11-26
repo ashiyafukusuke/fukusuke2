@@ -32,6 +32,8 @@ async function guard(req: Request): Promise<string | null> {
   return null;
 }
 
+const courseLabel = (c: unknown) => (c === "c90" ? "90分" : c === "c40" ? "40分" : "60分");
+
 // 売上：その月の予約（確定済み）と、記録した会計の集計。csv のときは CSV を返す
 const METHODS = ["現金", "カード", "電子マネー", "QR決済（PayPayなど）", "事前決済", "お代なし（トライアルなど）"];
 async function sales(ym: string, csv: boolean) {
@@ -54,7 +56,7 @@ async function sales(ym: string, csv: boolean) {
     unrecorded: rows.filter((r) => !r.settled_at && String(r.date) < today).length,
     discount: sum(done, (r) => Number(r.discount || 0)),
     byMethod: group((r) => String(r.paid_method || "不明")),
-    byCourse: group((r) => (r.course === "c90" ? "90分" : "60分")),
+    byCourse: group((r) => courseLabel(r.course)),
     byVisit: group((r) => (r.visit === "first" ? "はじめて" : "2回目以降")),
     bySource: group((r) => String(r.source || "記録なし")),
   };
@@ -62,7 +64,7 @@ async function sales(ym: string, csv: boolean) {
   const q = (v: unknown) => `"${String(v ?? "").replace(/"/g, '""')}"`;
   const lines = [["日付", "開始", "予約番号", "コース", "区分", "予約時の支払い", "受け取り方法", "受け取った金額", "早割などの値引き", "経由"].map(q).join(",")];
   for (const r of done) {
-    lines.push([r.date, hm(Number(r.start_min)), String(r.id).slice(0, 6).toUpperCase(), r.course === "c90" ? "90分" : "60分", r.visit === "first" ? "はじめて" : "2回目以降",
+    lines.push([r.date, hm(Number(r.start_min)), String(r.id).slice(0, 6).toUpperCase(), courseLabel(r.course), r.visit === "first" ? "はじめて" : "2回目以降",
       r.pay === "card" ? "事前決済" : "当日払い", r.paid_method, r.paid_amount, r.discount, r.source].map(q).join(","));
   }
   return new NextResponse("\ufeff" + lines.join("\r\n") + "\r\n", {
@@ -125,6 +127,30 @@ export async function POST(req: Request) {
       if (!METHODS.includes(b.method)) return NextResponse.json({ error: "受け取り方法を選んでください。" }, { status: 400 });
       await sql(`UPDATE bookings SET settled_at = now(), paid_amount = $2, paid_method = $3 WHERE id = $1 AND status = 'confirmed'`, [b.settle, amount, b.method]);
       return NextResponse.json({ ok: true });
+    }
+    // STORES 予約からの移行：1行に「日付|開始-終了|コース(c60/c90/c40)|初回か(first/repeat)|予約時の支払い(card/onsite)|金額|受け取り方法」
+    if (typeof b.importStores === "string") {
+      let added = 0;
+      for (const line of b.importStores.split(/\r?\n/)) {
+        const f = line.split("|").map((x: string) => x.trim());
+        if (f.length < 7 || !/^\d{4}-\d{2}-\d{2}$/.test(f[0]) || !/^\d{2}:\d{2}-\d{2}:\d{2}$/.test(f[1])) continue;
+        const toMin = (x: string) => Number(x.slice(0, 2)) * 60 + Number(x.slice(3, 5));
+        const [st, en] = f[1].split("-").map(toMin);
+        const course = ["c60", "c90", "c40"].includes(f[2]) ? f[2] : "c60";
+        const visit = f[3] === "repeat" ? "repeat" : "first";
+        const pay = f[4] === "card" ? "card" : "onsite";
+        const amount = Math.max(0, Math.round(Number(f[5]) || 0));
+        const method = METHODS.includes(f[6]) ? f[6] : "現金";
+        const id = `st${f[0].replace(/-/g, "")}${f[1].slice(0, 5).replace(":", "")}`;
+        const r = await sql(
+          `INSERT INTO bookings (id, date, start_min, end_min, course, visit, pay, base, discount, total, name, status, token, source, settled_at, paid_amount, paid_method, paid_at)
+           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, 0, $8, '（STORESから移行）', 'confirmed', $9, 'STORES（移行前）', now(), $8, $10, CASE WHEN $7 = 'card' THEN now() ELSE NULL END)
+           ON CONFLICT (id) DO NOTHING RETURNING id`,
+          [id, f[0], st, en, course, visit, pay, amount, crypto.randomBytes(18).toString("base64url"), method],
+        );
+        added += r.length;
+      }
+      return NextResponse.json({ ok: true, added });
     }
     if (typeof b.unsettle === "string" && /^[A-Za-z0-9_-]{6,30}$/.test(b.unsettle)) {
       await sql(`UPDATE bookings SET settled_at = NULL, paid_amount = NULL, paid_method = NULL WHERE id = $1`, [b.unsettle]);

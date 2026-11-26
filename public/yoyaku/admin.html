@@ -80,7 +80,7 @@ function salesSection() {
   const s = sales.summary;
   const [y, mo] = sales.ym.split("-").map(Number);
   const rows = sales.rows.map(b => `<div class="bk"><span class="t">${+b.date.slice(8)}日 ${hm(+b.start_min)}</span>
-      <span><b>${esc(b.name)}</b> 様　${b.course === "c90" ? "90分" : "60分"}・${b.visit === "first" ? "はじめて" : "2回目以降"}　予約時 ${yen(b.total)}</span>
+      <span><b>${esc(b.name)}</b> 様　${b.course === "c90" ? "90分" : b.course === "c40" ? "40分" : "60分"}・${b.visit === "first" ? "はじめて" : "2回目以降"}　予約時 ${yen(b.total)}</span>
       <span></span>${settleHtml(b, sales.today) || `<span class="m">これからのご予約</span>`}</div>`).join("") || `<p class="legend">この月の予約はありません。</p>`;
   return `<section><h2>売上</h2>
     <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px;"><button class="btn ghost" data-ym="-1">前の月</button><b>${y}年${mo}月</b><button class="btn ghost" data-ym="1">次の月</button></div>
@@ -132,7 +132,7 @@ function render() {
     const qa = [a.first && `足つぼ専門店は初めて：${a.first}`, a.hurt && `けが・痛み：${a.hurt}`, a.stay && `過ごし方：${a.stay}`].filter(Boolean).join("／");
     return `<div class="bk">
       <span class="t">${hm(+b.start_min)}</span>
-      <span><b>${esc(b.name)}</b> 様　${b.course === "c90" ? "90分" : "60分"}・${b.visit === "first" ? "はじめて" : "2回目以降"}
+      <span><b>${esc(b.name)}</b> 様　${b.course === "c90" ? "90分" : b.course === "c40" ? "40分" : "60分"}・${b.visit === "first" ? "はじめて" : "2回目以降"}
         ${b.status === "pending" ? `<span class="st pend">決済待ち</span>` : b.pay === "card" ? `<span class="st paid">事前決済済み</span>` : `<span class="st">当日払い</span>`}</span>
       <span></span><span class="m">¥${Number(b.total).toLocaleString()}　${esc(b.tel || "")} ${esc(b.mail || "")}</span>
       ${qa ? `<span></span><span class="m">${esc(qa)}</span>` : ""}
@@ -182,6 +182,10 @@ function render() {
       <p class="legend">スマホに「ntfy」アプリを入れ、下の合言葉を登録（Subscribe to topic）すると、予約が入ったときに通知が届きます。通知には日時とコースだけを載せ、お客様の名前や連絡先は載せません。</p>
       <div class="login"><input id="nt" value="${esc(data.ntfy || "")}" placeholder="合言葉（半角英数字）" autocomplete="off"><button class="btn ghost" id="ntgen" type="button">合言葉を作る</button><button class="btn" id="ntsave" type="button">保存</button><button class="btn ghost" id="nttest" type="button">テスト通知</button></div>
     </section>
+    <section><h2>STORESからの取り込み</h2>
+      <p class="legend">STORES 予約で受けていた分の売上を取り込みます。同じ予約は2回入りません。</p>
+      <textarea id="imp" rows="4" style="width:100%;font-size:12px;" placeholder="2026-06-22|21:15-22:15|c60|first|onsite|6500|現金"></textarea>
+      <p><button class="btn ghost" id="impBtn">取り込む</button></p></section>
     <section><h2>お断りしている連絡先</h2>
       ${(data.blocked || []).length ? data.blocked.map(x => `<div class="bk" style="border:1px solid var(--line);border-radius:6px;margin-bottom:6px;"><span class="t" style="font-size:13px;">${esc((x.created_at || "").slice(0,10))}</span><span>${esc(x.name || "")}　${esc(x.tel || "")} ${esc(x.mail || "")}</span><span></span><span><button class="btn ghost" data-unblock="${x.id}">解除</button></span></div>`).join("") : `<p class="legend">ありません。</p>`}
       <p class="legend">ここにある電話番号・メールアドレスでは、新しい予約を受け付けません（お客様には「お問い合わせフォームからご連絡ください」と表示）。</p>
@@ -223,6 +227,12 @@ function render() {
     try { await api("POST", { unblock:Number(b.dataset.unblock) }); } catch (e) { alert(e.message); }
     load();
   });
+  const ib = document.getElementById("impBtn");
+  if (ib) ib.onclick = async () => {
+    const text = document.getElementById("imp").value;
+    try { const j = await api("POST", { importStores:text }); alert(`${j.added}件を取り込みました。`); } catch (e) { alert(e.message); }
+    load();
+  };
   document.querySelectorAll("[data-settle]").forEach(b => b.onclick = async () => {
     const id = b.dataset.settle;
     const method = document.getElementById("sm-" + id).value, amount = Number(document.getElementById("sa-" + id).value);
