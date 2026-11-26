@@ -108,6 +108,16 @@ export async function GET(req: Request) {
     const cmap = Object.fromEntries(stats.map((s) => [s.id, Number(s.cancels)]));
     for (const b of bookings) (b as Record<string, unknown>).cancels = cmap[b.id as string] || 0;
     const blocks = await sql(`SELECT id, date, start_min, end_min, note FROM time_blocks WHERE date >= $1 ORDER BY date, start_min`, [now.date]);
+    // お客様メモと、これまでの来店回数（電話番号が一致する、日付が過ぎた確定済みの予約）
+    const tels = [...new Set(bookings.map((b) => b.tel).filter(Boolean))] as string[];
+    if (tels.length) {
+      const notes = await sql<{ tel: string; note: string }>(`SELECT tel, note FROM customer_notes WHERE tel = ANY($1)`, [tels]);
+      const visits = await sql<{ tel: string; n: string }>(
+        `SELECT tel, count(*) AS n FROM bookings WHERE tel = ANY($1) AND status = 'confirmed' AND date < $2 GROUP BY tel`, [tels, now.date]);
+      const nmap = Object.fromEntries(notes.map((x) => [x.tel, x.note]));
+      const vmap = Object.fromEntries(visits.map((x) => [x.tel, Number(x.n)]));
+      for (const b of bookings as Record<string, unknown>[]) { if (b.tel) { b.note = nmap[b.tel as string] || ""; b.visits = vmap[b.tel as string] || 0; } }
+    }
     return NextResponse.json({ today: now.date, days, bookings, ntfy, published, blocked, blocks });
   } catch (e) {
     console.error(e);
@@ -157,6 +167,28 @@ export async function POST(req: Request) {
         added += r.length;
       }
       return NextResponse.json({ ok: true, added });
+    }
+    // お客様メモ：{ note: { tel, text } }（空なら消す）。{ importNotes: "電話|メモ（改行は\\n）" }
+    if (b.note && typeof b.note.tel === "string") {
+      const tel = b.note.tel.replace(/[^\d+]/g, "");
+      const text = String(b.note.text || "").trim().slice(0, 2000);
+      if (!tel) return NextResponse.json({ error: "電話番号のない予約にはメモを残せません。" }, { status: 400 });
+      if (text) await sql(`INSERT INTO customer_notes (tel, note) VALUES ($1, $2) ON CONFLICT (tel) DO UPDATE SET note = EXCLUDED.note, updated_at = now()`, [tel, text]);
+      else await sql(`DELETE FROM customer_notes WHERE tel = $1`, [tel]);
+      return NextResponse.json({ ok: true });
+    }
+    if (typeof b.importNotes === "string") {
+      let n = 0;
+      for (const line of b.importNotes.split(/\r?\n/)) {
+        const i = line.indexOf("|");
+        if (i < 0) continue;
+        const tel = line.slice(0, i).replace(/[^\d+]/g, "");
+        const text = line.slice(i + 1).replace(/\\n/g, "\n").trim().slice(0, 2000);
+        if (!tel || !text) continue;
+        await sql(`INSERT INTO customer_notes (tel, note) VALUES ($1, $2) ON CONFLICT (tel) DO UPDATE SET note = EXCLUDED.note, updated_at = now()`, [tel, text]);
+        n++;
+      }
+      return NextResponse.json({ ok: true, added: n });
     }
     if (typeof b.unsettle === "string" && /^[A-Za-z0-9_-]{6,30}$/.test(b.unsettle)) {
       await sql(`UPDATE bookings SET settled_at = NULL, paid_amount = NULL, paid_method = NULL WHERE id = $1`, [b.unsettle]);

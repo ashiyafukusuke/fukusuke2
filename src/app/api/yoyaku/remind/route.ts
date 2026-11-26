@@ -38,6 +38,8 @@ export async function GET(req: Request) {
        WHERE date < $1 AND (name <> '（消去済み）' OR mail IS NOT NULL OR memo IS NOT NULL OR answers IS NOT NULL) RETURNING id`,
       [addDays(jstNow().date, -730)],
     );
+    // 2年以上ご来店のないお客様のメモも消す
+    await sql(`DELETE FROM customer_notes n WHERE NOT EXISTS (SELECT 1 FROM bookings b WHERE b.tel = n.tel AND b.date >= $1)`, [addDays(jstNow().date, -730)]);
     return NextResponse.json({ ok: true, sent: rows.length, thanked: visited.length, erased: old.length });
   } catch (e) {
     console.error(e);

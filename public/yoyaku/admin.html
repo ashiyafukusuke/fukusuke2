@@ -137,6 +137,9 @@ function render() {
       <span></span><span class="m">¥${Number(b.total).toLocaleString()}　${esc(b.tel || "")} ${esc(b.mail || "")}</span>
       ${qa ? `<span></span><span class="m">${esc(qa)}</span>` : ""}
       ${b.memo ? `<span></span><span class="m">メモ：${esc(b.memo)}</span>` : ""}
+      ${b.visits ? `<span></span><span class="m" style="color:#2f6b3a;font-weight:700;">この方の過去の来店：${b.visits}回</span>` : ""}
+      ${b.tel ? `<span></span><span class="m">お客様メモ（お客様には見えません）：<span style="white-space:pre-line;">${esc(b.note || "なし")}</span> <button class="btn ghost" data-note="${esc(b.tel)}">編集</button>
+        <span id="ne-${esc(b.id)}" data-tel="${esc(b.tel)}" style="display:none;"><textarea rows="3" style="width:100%;">${esc(b.note || "")}</textarea><button class="btn" data-notesave="${esc(b.id)}">メモを保存</button></span></span>` : ""}
       ${b.source ? `<span></span><span class="m">経由：${esc(b.source)}</span>` : ""}
       ${b.cancels ? `<span></span><span class="m" style="color:var(--brand);font-weight:700;">この方の過去のキャンセル：${b.cancels}回</span>` : ""}
       ${settleHtml(b, data.today) ? `<span></span>${settleHtml(b, data.today)}` : ""}
@@ -225,6 +228,14 @@ function render() {
   });
   document.querySelectorAll("[data-unblock]").forEach(b => b.onclick = async () => {
     try { await api("POST", { unblock:Number(b.dataset.unblock) }); } catch (e) { alert(e.message); }
+    load();
+  });
+  document.querySelectorAll("[data-note]").forEach(b => b.onclick = () => {
+    const box = b.parentElement.querySelector("[id^=ne-]"); if (box) box.style.display = box.style.display === "none" ? "block" : "none";
+  });
+  document.querySelectorAll("[data-notesave]").forEach(b => b.onclick = async () => {
+    const box = document.getElementById("ne-" + b.dataset.notesave);
+    try { await api("POST", { note:{ tel: box.dataset.tel, text: box.querySelector("textarea").value } }); } catch (e) { alert(e.message); }
     load();
   });
   const ib = document.getElementById("impBtn");

@@ -167,6 +167,8 @@ export function ensureTables() {
         end_min int NOT NULL,
         note text
       )`);
+      // 店主がお客様ごとに残すメモ（電話番号ごと）。お客様には見えない
+      await sql(`CREATE TABLE IF NOT EXISTS customer_notes (tel text PRIMARY KEY, note text NOT NULL, updated_at timestamptz NOT NULL DEFAULT now())`);
       await sql(`CREATE TABLE IF NOT EXISTS blocked (
         id serial PRIMARY KEY,
         tel text,
