@@ -59,7 +59,7 @@ select { font:inherit; font-size:15px; padding:8px; border:1px solid var(--line)
 .vc-ev.vbk { background:var(--brand); color:#fff; }
 .vc-ev.vbk.pend { background:#a26b00; }
 .vc-ev.vbk.done { opacity:.55; }
-.vc-ev.blk { background:#5c5c5c; color:#fff; cursor:default; }
+.vc-ev.blk { background:#5c5c5c; color:#fff; }
 .vc-ev.gap { background:repeating-linear-gradient(135deg,#f3eae5 0 4px,#fff 4px 8px); cursor:default; padding:0; }
 .vc-ev b { display:block; font-size:12px; }
 .vc-past { position:absolute; left:0; right:0; top:0; background:rgba(120,120,120,.18); pointer-events:none; z-index:3; }
@@ -67,6 +67,21 @@ select { font:inherit; font-size:15px; padding:8px; border:1px solid var(--line)
 .vc-leg { display:flex; flex-wrap:wrap; gap:4px 12px; font-size:12px; color:var(--muted); margin-top:6px; }
 .vc-leg i { display:inline-block; width:12px; height:12px; border-radius:2px; vertical-align:-2px; margin-right:4px; border:1px solid var(--line); }
 .hl { animation:hl 2s; } @keyframes hl { 0%,40% { background:var(--tint); } }
+.vc-col { cursor:copy; }
+.sheet-bg { position:fixed; inset:0; background:rgba(0,0,0,.35); z-index:50; display:flex; align-items:flex-end; justify-content:center; }
+.sheet { background:#fff; width:100%; max-width:520px; max-height:88vh; overflow:auto; border-radius:12px 12px 0 0; padding:16px 16px calc(16px + env(safe-area-inset-bottom)); display:flex; flex-direction:column; gap:10px; }
+@media (min-width:700px) { .sheet-bg { align-items:center; } .sheet { border-radius:12px; } }
+.sheet h3 { margin:0; font-size:17px; display:flex; justify-content:space-between; align-items:center; }
+.sheet h3 button { border:0; background:none; font-size:22px; cursor:pointer; line-height:1; }
+.sheet label { display:flex; flex-direction:column; gap:2px; font-size:13px; color:var(--muted); }
+.sheet label.ck { flex-direction:row; align-items:center; gap:6px; color:var(--ink); font-size:14px; }
+.sheet input:not([type=checkbox]), .sheet textarea, .sheet select { font:inherit; font-size:16px; padding:8px; border:1px solid var(--line); border-radius:4px; background:#fff; color:var(--ink); width:100%; }
+.sheet .two { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.sheet .tabs { display:flex; gap:6px; }
+.sheet .tabs button { flex:1; padding:8px; border:1px solid var(--line); background:#fff; border-radius:4px; font:inherit; cursor:pointer; }
+.sheet .tabs button.on { background:var(--ink); color:#fff; border-color:var(--ink); }
+.sheet .acts { display:flex; flex-wrap:wrap; gap:6px; }
+.sheet .info { background:var(--soft); border-radius:6px; padding:8px 10px; font-size:14px; }
 </style>
 </head>
 <body>
@@ -132,7 +147,7 @@ async function api(method, body) {
   }
   const r = await fetch("/api/yoyaku/admin", { method, headers:{ "x-admin-pass":pass, "Content-Type":"application/json" }, body: body ? JSON.stringify(body) : undefined, cache:"no-store" });
   const j = await r.json().catch(() => ({}));
-  if (!r.ok) throw new Error(j.error || "エラー");
+  if (!r.ok) { const er = new Error(j.error || "エラー"); er.code = j.code; throw er; }
   return j;
 }
 async function load() {
@@ -153,7 +168,7 @@ function render() {
   }
   const byDate = {};
   for (const b of data.bookings) (byDate[b.date] ||= []).push(b);
-  const list = Object.keys(byDate).sort().map(d => `<div class="day"><h3>${fmt(d)}${d === data.today ? "　今日" : ""}</h3>${byDate[d].map(b => {
+  const dayHtml = d => `<div class="day"><h3>${fmt(d)}${d === data.today ? "　今日" : ""}</h3>${byDate[d].map(b => {
     const a = (() => { try { return JSON.parse(b.answers || "{}"); } catch { return {}; } })();
     const qa = [a.first && `足つぼ専門店は初めて：${a.first}`, a.hurt && `けが・痛み：${a.hurt}`, a.stay && `過ごし方：${a.stay}`].filter(Boolean).join("／");
     return `<div class="bk" id="bk-${esc(b.id)}">
@@ -170,7 +185,11 @@ function render() {
       ${b.cancels ? `<span></span><span class="m" style="color:var(--brand);font-weight:700;">この方の過去のキャンセル：${b.cancels}回</span>` : ""}
       ${settleHtml(b, data.today) ? `<span></span>${settleHtml(b, data.today)}` : ""}
       <span></span><span style="display:flex;gap:6px;flex-wrap:wrap;"><button class="btn ghost" data-cancel="${esc(b.id)}" data-mode="request" data-name="${esc(b.name)}" data-pay="${esc(b.pay || "")}" data-mail="${b.mail ? "1" : ""}">ご依頼でキャンセル</button><button class="btn ghost" data-cancel="${esc(b.id)}" data-mode="noshow" data-name="${esc(b.name)}">来店なしで取り消す</button><button class="btn ghost" data-block="${esc(b.id)}" data-name="${esc(b.name)}">以降お断り</button></span>
-    </div>`; }).join("")}</div>`).join("") || `<p class="legend">これからの予約はありません。</p>`;
+    </div>`; }).join("")}</div>`;
+  const allDates = Object.keys(byDate).sort();
+  const list = allDates.filter(d => d >= data.today).map(dayHtml).join("") || `<p class="legend">これからの予約はありません。</p>`;
+  const pastDates = allDates.filter(d => d < data.today).reverse();
+  const pastList = pastDates.length ? `<details><summary style="cursor:pointer;">過去7日の予約（${pastDates.reduce((n, d) => n + byDate[d].length, 0)}件・会計の記録用）</summary>${pastDates.map(dayHtml).join("")}</details>` : "";
 
   const times = []; for (let m = 6 * 60; m <= 23 * 60; m += 10) times.push(m);
   const first = new Date(data.days[0].date+"T00:00:00Z").getUTCDay();
@@ -193,23 +212,23 @@ function render() {
     for (let m = T0 + 60; m < T1; m += 60) c += `<div class="vc-line" style="top:${y(m)}px"></div>`;
     if (HRS[d.kind]) { const [a, b] = HRS[d.kind]; c += `<div class="vc-open${data.published && d.date > data.published ? " off" : ""}" style="top:${y(a)}px;height:${(b - a) * PX}px"></div>`; }
     for (const x of (data.blocks || []).filter(x => x.date === d.date))
-      c += `<div class="vc-ev blk" style="top:${y(+x.start_min)}px;height:${(+x.end_min - +x.start_min) * PX}px"><b>ブロック</b>${hm(+x.start_min)}〜${hm(+x.end_min)} ${esc(x.note || "")}</div>`;
+      c += `<div class="vc-ev blk" data-vbl="${x.id}" style="top:${y(+x.start_min)}px;height:${(+x.end_min - +x.start_min) * PX}px"><b>ブロック</b>${hm(+x.start_min)}〜${hm(+x.end_min)} ${esc(x.note || "")}</div>`;
     for (const b of (byDate[d.date] || [])) {
       const s = +b.start_min, e = +b.end_min;
       c += `<div class="vc-ev gap" style="top:${y(e)}px;height:${GAPM * PX}px"></div>`;
       c += `<div class="vc-ev vbk${b.status === "pending" ? " pend" : ""}${d.date === data.today && e <= nowM ? " done" : ""}" data-vb="${esc(b.id)}" style="top:${y(s)}px;height:${(e - s) * PX}px"><b>${hm(s)} ${esc(b.name)}</b>${b.course === "c90" ? "90分" : b.course === "c40" ? "40分" : "60分"}・${b.visit === "first" ? "初" : "2回目〜"}${b.status === "pending" ? "・決済待ち" : b.pay === "card" ? "・済" : ""}</div>`;
     }
     if (d.date === data.today && nowM > T0) c += `<div class="vc-past" style="height:${Math.min(H, y(nowM))}px"></div>${nowM < T1 ? `<div class="vc-now" style="top:${y(nowM)}px"></div>` : ""}`;
-    vcols += `<div class="vc-col" style="height:${H}px">${c}</div>`;
+    vcols += `<div class="vc-col" data-vd="${d.date}" style="height:${H}px">${c}</div>`;
   }
   const vcal = `<div class="vc" id="vc"><div class="vc-in" style="grid-template-columns:40px repeat(${data.days.length}, minmax(92px, 31vw));">
     <div class="vc-corner"></div>${vhead}<div class="vc-ax" style="height:${H}px;">${vax}</div>${vcols}</div></div>
     <div class="vc-leg"><span><i style="background:#fff"></i>空き（営業時間）</span><span><i style="background:var(--brand)"></i>予約</span><span><i style="background:#a26b00"></i>決済待ち</span><span><i style="background:#5c5c5c"></i>ブロック</span><span><i style="background:repeating-linear-gradient(135deg,#f3eae5 0 3px,#fff 3px 6px)"></i>施術間の余白</span><span><i style="background:#e8e5df"></i>休み</span><span><i style="background:#fbfaf7"></i>非公開の週</span></div>
-    <p class="legend" style="margin:4px 0 0;">横にスワイプで先の日へ。予約をタップすると、下の詳細に移動します。</p>`;
+    <p class="legend" style="margin:4px 0 0;">横にスワイプで先の日へ。空いているところをタップすると電話予約・ブロックを入れられます。予約・ブロックをタップすると編集できます。</p>`;
 
   app.innerHTML = `<h1>予約の管理</h1>
     <section><h2>予約カレンダー</h2>${vcal}</section>
-    <section><h2>これからの予約</h2>${list}</section>
+    <section><h2>これからの予約</h2>${list}${pastList}</section>
     ${salesSection()}
     <section><h2>予約ブロック（休憩・外出など）</h2>
       <div class="pub">
@@ -251,7 +270,119 @@ function render() {
       <p class="legend">ここにある電話番号・メールアドレスでは、新しい予約を受け付けません（お客様には「お問い合わせフォームからご連絡ください」と表示）。</p>
     </section>
     <p><button class="btn ghost" id="rl">読み込み直す</button></p>`;
-  document.querySelectorAll("[data-vb]").forEach(el => el.onclick = () => { const t = document.getElementById("bk-" + el.dataset.vb); if (t) { t.scrollIntoView({ behavior: "smooth", block: "center" }); t.classList.remove("hl"); void t.offsetWidth; t.classList.add("hl"); } });
+  const goCard = id => { const t = document.getElementById("bk-" + id); if (!t) return; const det = t.closest("details"); if (det) det.open = true; t.scrollIntoView({ behavior: "smooth", block: "center" }); t.classList.remove("hl"); void t.offsetWidth; t.classList.add("hl"); };
+  const TIMES = []; for (let m = 6 * 60; m <= 23 * 60 + 30; m += 10) TIMES.push(m);
+  const tOpts = (sel) => { const r = Math.round(sel / 10) * 10; return TIMES.map(m => `<option value="${m}" ${m === r ? "selected" : ""}>${hm(m)}</option>`).join(""); };
+  const dOpts = (sel) => { const ds = data.days.map(d => d.date); if (sel && !ds.includes(sel)) ds.unshift(sel); return ds.map(d => `<option value="${d}" ${d === sel ? "selected" : ""}>${fmt(d)}${(data.days.find(x => x.date === d) || {}).kind === "closed" ? " 休" : ""}</option>`).join(""); };
+  const closeSheet = () => { const x = document.getElementById("sheet"); if (x) x.remove(); };
+  const openSheet = (html, bind) => {
+    closeSheet();
+    const bg = document.createElement("div"); bg.className = "sheet-bg"; bg.id = "sheet";
+    bg.innerHTML = `<div class="sheet">${html}</div>`;
+    bg.onclick = e => { if (e.target === bg) closeSheet(); };
+    document.body.appendChild(bg);
+    bg.querySelector("[data-x]").onclick = closeSheet;
+    bind(bg.querySelector(".sheet"));
+  };
+  const val = (r, n) => { const el = r.querySelector(`[name="${n}"]`); return el ? (el.type === "checkbox" ? el.checked : el.value) : undefined; };
+  // 重なりがあれば確かめてから、強制で送り直す
+  const send = async (body, key) => {
+    try { return await api("POST", body); }
+    catch (e) {
+      if (e.code === "overlap" && confirm(e.message)) { body[key].force = true; return await api("POST", body); }
+      throw e;
+    }
+  };
+  const openNew = (date, min) => {
+    openSheet(`<h3>${fmt(date)} ${hm(min)} から<button data-x>×</button></h3>
+      <div class="tabs"><button type="button" class="on" data-tab="bk">電話・店頭の予約</button><button type="button" data-tab="bl">ブロック</button></div>
+      <div class="two"><label>日付<select name="date">${dOpts(date)}</select></label><label>開始<select name="start">${tOpts(min)}</select></label></div>
+      <div data-p="bk" style="display:flex;flex-direction:column;gap:10px;">
+        <div class="two"><label>コース<select name="cid"><option value="c60">60分</option><option value="c90">90分</option></select></label>
+          <label>来店<select name="visit"><option value="first">はじめて</option><option value="repeat">2回目以降</option></select></label></div>
+        <label>お名前<input name="name" maxlength="40" autocomplete="off"></label>
+        <div class="two"><label>電話番号<input name="tel" inputmode="tel" autocomplete="off"></label><label>金額（空欄なら自動）<input name="total" inputmode="numeric" placeholder="自動"></label></div>
+        <label>メール（任意）<input name="mail" type="email" autocomplete="off"></label>
+        <label class="ck"><input type="checkbox" name="sendMail" checked>メールがあれば、確認メールを送る</label>
+        <label>メモ（任意）<textarea name="memo" rows="2" maxlength="400"></textarea></label>
+        <p class="legend" style="margin:0;">お支払いは当日払いになります。自動の金額は、お客様がサイトで当日払いを選んだときと同じ計算です（早割を含む）。</p>
+        <button class="btn" type="button" data-save="bk">予約を入れる</button>
+      </div>
+      <div data-p="bl" style="display:none;flex-direction:column;gap:10px;">
+        <label>終了<select name="end">${tOpts(min + 60)}</select></label>
+        <label>メモ（任意）<input name="note" maxlength="40" placeholder="例：休憩"></label>
+        <button class="btn" type="button" data-save="bl">ブロックする</button>
+      </div>`, r => {
+      r.querySelectorAll("[data-tab]").forEach(t => t.onclick = () => {
+        r.querySelectorAll("[data-tab]").forEach(x => x.classList.toggle("on", x === t));
+        r.querySelectorAll("[data-p]").forEach(x => x.style.display = x.dataset.p === t.dataset.tab ? "flex" : "none");
+      });
+      r.querySelector('[data-save="bk"]').onclick = async () => {
+        const t = String(val(r, "total")).replace(/[^\d]/g, "");
+        try {
+          const j = await send({ adminBook: { date: val(r, "date"), start: +val(r, "start"), cid: val(r, "cid"), visit: val(r, "visit"), name: val(r, "name"), tel: val(r, "tel"), mail: val(r, "mail"), memo: val(r, "memo"), sendMail: val(r, "sendMail"), total: t === "" ? null : +t } }, "adminBook");
+          closeSheet(); alert(`予約を入れました（¥${Number(j.total).toLocaleString()}）。`); load();
+        } catch (e) { alert(e.message); }
+      };
+      r.querySelector('[data-save="bl"]').onclick = async () => {
+        try { await api("POST", { addBlock: { date: val(r, "date"), s: +val(r, "start"), e: +val(r, "end"), note: val(r, "note") } }); closeSheet(); load(); }
+        catch (e) { alert(e.message); }
+      };
+    });
+  };
+  const openBooking = id => {
+    const b = data.bookings.find(x => x.id === id); if (!b) return;
+    const card = b.pay === "card";
+    openSheet(`<h3>${esc(b.name)} 様<button data-x>×</button></h3>
+      <div class="info">${fmt(b.date)} ${hm(+b.start_min)}〜${hm(+b.end_min)}・${b.course === "c90" ? "90分" : "60分"}・${b.visit === "first" ? "はじめて" : "2回目以降"}<br>
+        ${b.status === "pending" ? "決済待ち" : card ? "事前決済済み" : "当日払い"}　¥${Number(b.total).toLocaleString()}<br>
+        ${b.tel ? `<a href="tel:${esc(b.tel)}">${esc(b.tel)}</a>` : "電話なし"}　${esc(b.mail || "")}
+        ${b.note ? `<br><span style="white-space:pre-line;color:var(--muted);">メモ：${esc(b.note)}</span>` : ""}</div>
+      <div class="two"><label>日付<select name="date">${dOpts(b.date)}</select></label><label>開始<select name="start">${tOpts(+b.start_min)}</select></label></div>
+      <div class="two"><label>コース<select name="cid" ${card ? "disabled" : ""}><option value="c60" ${b.course !== "c90" ? "selected" : ""}>60分</option><option value="c90" ${b.course === "c90" ? "selected" : ""}>90分</option></select></label>
+        <label>来店<select name="visit" ${card ? "disabled" : ""}><option value="first" ${b.visit === "first" ? "selected" : ""}>はじめて</option><option value="repeat" ${b.visit !== "first" ? "selected" : ""}>2回目以降</option></select></label></div>
+      <label>金額<input name="total" inputmode="numeric" value="${Number(b.total)}" ${card ? "disabled" : ""}></label>
+      ${b.mail ? `<label class="ck"><input type="checkbox" name="sendMail" checked>日時を変えたら、お客様に変更メールを送る</label>` : `<p class="legend" style="margin:0;">メールアドレスがないため、日時を変えたら電話やDMでお伝えください。</p>`}
+      ${card ? `<p class="legend" style="margin:0;">事前決済の予約は、日時だけ変えられます。</p>` : ""}
+      <button class="btn" type="button" data-save>変更を保存</button>
+      <div class="acts"><button class="btn ghost" type="button" data-go>詳細・会計・メモ</button><button class="btn ghost" type="button" data-c="request">ご依頼でキャンセル</button><button class="btn ghost" type="button" data-c="noshow">来店なしで取り消す</button></div>`, r => {
+      r.querySelector("[data-save]").onclick = async () => {
+        const t = String(val(r, "total")).replace(/[^\d]/g, "");
+        try {
+          const j = await send({ adminMove: { id, date: val(r, "date"), start: +val(r, "start"), cid: val(r, "cid"), visit: val(r, "visit"), total: t === "" ? null : +t, sendMail: !!val(r, "sendMail") } }, "adminMove");
+          closeSheet(); alert(j.mailed ? "変更しました。お客様に変更メールを送りました。" : "変更しました。"); load();
+        } catch (e) { alert(e.message); }
+      };
+      r.querySelector("[data-go]").onclick = () => { closeSheet(); goCard(id); };
+      r.querySelectorAll("[data-c]").forEach(x => x.onclick = () => { const btn = document.querySelector(`[data-cancel="${id}"][data-mode="${x.dataset.c}"]`); closeSheet(); if (btn) btn.click(); });
+    });
+  };
+  const openBlock = bid => {
+    const x = (data.blocks || []).find(k => +k.id === bid); if (!x) return;
+    openSheet(`<h3>ブロックの編集<button data-x>×</button></h3>
+      <label>日付<select name="date">${dOpts(x.date)}</select></label>
+      <div class="two"><label>開始<select name="start">${tOpts(+x.start_min)}</select></label><label>終了<select name="end">${tOpts(+x.end_min)}</select></label></div>
+      <label>メモ<input name="note" maxlength="40" value="${esc(x.note || "")}"></label>
+      <button class="btn" type="button" data-save>保存</button>
+      <div class="acts"><button class="btn ghost" type="button" data-del>ブロックを外す</button></div>`, r => {
+      r.querySelector("[data-save]").onclick = async () => {
+        try { await api("POST", { editBlock: { id: bid, date: val(r, "date"), s: +val(r, "start"), e: +val(r, "end"), note: val(r, "note") } }); closeSheet(); load(); }
+        catch (e) { alert(e.message); }
+      };
+      r.querySelector("[data-del]").onclick = async () => {
+        if (!confirm("このブロックを外しますか？")) return;
+        try { await api("POST", { delBlock: bid }); closeSheet(); load(); } catch (e) { alert(e.message); }
+      };
+    });
+  };
+  document.querySelectorAll("[data-vb]").forEach(el => el.onclick = e => { e.stopPropagation(); openBooking(el.dataset.vb); });
+  document.querySelectorAll("[data-vbl]").forEach(el => el.onclick = e => { e.stopPropagation(); openBlock(+el.dataset.vbl); });
+  document.querySelectorAll("[data-vd]").forEach(col => col.onclick = e => {
+    if (e.target.closest(".vc-ev")) return;
+    const rect = col.getBoundingClientRect();
+    const m = Math.floor((T0 + (e.clientY - rect.top) / PX) / 10) * 10;
+    openNew(col.dataset.vd, Math.min(23 * 60, Math.max(6 * 60, m)));
+  });
   { const vc = document.getElementById("vc"); if (vc) { const keep = window.__vcPos; if (keep) { vc.scrollLeft = keep[0]; vc.scrollTop = keep[1]; } else vc.scrollTop = Math.max(0, y(Math.max(9 * 60, nowM - 60)) - 10); vc.onscroll = () => { window.__vcPos = [vc.scrollLeft, vc.scrollTop]; }; } }
   document.getElementById("ntgen").onclick = () => { const a = new Uint8Array(12); crypto.getRandomValues(a); document.getElementById("nt").value = "itakimo-" + [...a].map(x => "abcdefghijkmnpqrstuvwxyz23456789"[x % 32]).join(""); };
   document.getElementById("ntsave").onclick = async () => { try { await api("POST", { ntfy: document.getElementById("nt").value }); alert("保存しました。"); } catch (e) { alert(e.message); } load(); };

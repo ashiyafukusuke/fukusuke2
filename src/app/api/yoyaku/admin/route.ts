@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import crypto from "node:crypto";
-import { getSetting, notifyChange, push, setSetting } from "@/lib/notify";
-import { REBOOKED, addDays, defaultKind, ensureTables, fmtDate, hm, HORIZON, jstNow, kindsFor, sql, stripe } from "@/lib/yoyaku";
+import { getSetting, notifyChange, notifyConfirmed, push, setSetting } from "@/lib/notify";
+import { ACTIVE, COURSES, REBOOKED, addDays, daysBetween, price, defaultKind, ensureTables, fmtDate, hm, HORIZON, jstNow, kindsFor, sql, stripe } from "@/lib/yoyaku";
 
 export const dynamic = "force-dynamic";
 
@@ -199,6 +199,84 @@ export async function POST(req: Request) {
         n++;
       }
       return NextResponse.json({ ok: true, added: n });
+    }
+    // ---- 管理画面のカレンダーから：電話・店頭での予約、予約の日時変更、ブロックの編集 ----
+    const isDate = (v: unknown): v is string => typeof v === "string" && /^\d{4}-\d{2}-\d{2}$/.test(v);
+    const isMin = (v: unknown): v is number => Number.isInteger(v) && (v as number) >= 0 && (v as number) <= 24 * 60;
+    // 重なる予約・ブロックの説明（なければ空）。exceptId の予約は除く
+    const overlap = async (date: string, s: number, e: number, exceptId: string | null, exceptBlock: number | null, withGap: boolean) => {
+      const g = withGap ? 15 : 0;
+      const bk = await sql<{ name: string; start_min: string; end_min: string }>(
+        `SELECT name, start_min, end_min FROM bookings WHERE date = $1 AND ${ACTIVE} AND ($4::text IS NULL OR id <> $4) AND $2::int < end_min + ${g} AND start_min < $3::int + ${g}`,
+        [date, s, e, exceptId]);
+      const bl = await sql<{ note: string | null; start_min: string; end_min: string }>(
+        `SELECT note, start_min, end_min FROM time_blocks WHERE date = $1 AND ($4::int IS NULL OR id <> $4) AND $2::int < end_min AND start_min < $3::int`,
+        [date, s, e, exceptBlock]);
+      return [
+        ...bk.map((x) => `${hm(Number(x.start_min))}〜${hm(Number(x.end_min))} ${x.name} 様の予約`),
+        ...bl.map((x) => `${hm(Number(x.start_min))}〜${hm(Number(x.end_min))} のブロック${x.note ? `（${x.note}）` : ""}`),
+      ].join("、");
+    };
+    if (b.adminBook && typeof b.adminBook === "object") {
+      const x = b.adminBook as Record<string, unknown>;
+      const c = COURSES.find((k) => k.id === x.cid);
+      const visit = x.visit === "repeat" ? "repeat" : "first";
+      const name = typeof x.name === "string" ? x.name.trim().slice(0, 40) : "";
+      const tel = typeof x.tel === "string" ? x.tel.replace(/[０-９]/g, (d) => String.fromCharCode(d.charCodeAt(0) - 0xfee0)).replace(/[^\d+]/g, "") : "";
+      const mail = typeof x.mail === "string" ? x.mail.trim().slice(0, 120) : "";
+      const memo = typeof x.memo === "string" ? x.memo.trim().slice(0, 400) : "";
+      if (!c || !isDate(x.date) || !isMin(x.start)) return NextResponse.json({ error: "日付・時間・コースを確認してください。" }, { status: 400 });
+      if (!name) return NextResponse.json({ error: "お名前を入れてください。" }, { status: 400 });
+      if (tel && !/^(\+?81|0)\d{9,10}$/.test(tel)) return NextResponse.json({ error: "電話番号を確認してください（例：09012345678）。" }, { status: 400 });
+      if (mail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) return NextResponse.json({ error: "メールアドレスの形を確認してください。" }, { status: 400 });
+      const start = x.start as number, end = start + c.min;
+      if (!x.force) {
+        const ov = await overlap(x.date, start, end, null, null, true);
+        if (ov) return NextResponse.json({ error: `${ov}と重なります（施術間の余白15分を含む）。それでも入れますか？`, code: "overlap" }, { status: 409 });
+      }
+      const p = price(c, visit, "onsite", Math.max(0, daysBetween(jstNow().date, x.date)));
+      const total = Number.isInteger(x.total) && (x.total as number) >= 0 ? (x.total as number) : p.total;
+      const id = crypto.randomBytes(9).toString("base64url");
+      await sql(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS notified_at timestamptz`);
+      await sql(
+        `INSERT INTO bookings (id, date, start_min, end_min, course, visit, pay, base, discount, total, name, tel, mail, memo, answers, status, token, source, notified_at)
+         VALUES ($1, $2, $3, $4, $5, $6, 'onsite', $7, $8, $9, $10, $11, $12, $13, '{}', 'confirmed', $14, '電話・店頭（管理画面から）', CASE WHEN $15 = 'true' THEN NULL ELSE now() END)`,
+        [id, x.date, start, end, c.id, visit, p.base, Math.max(0, p.base - total), total, name, tel || null, mail || null, memo || null,
+         crypto.randomBytes(18).toString("base64url"), mail && x.sendMail ? "true" : "false"],
+      );
+      if (mail && x.sendMail) await notifyConfirmed(id, new URL(req.url).origin, { customerOnly: true });
+      return NextResponse.json({ ok: true, id, total });
+    }
+    if (b.adminMove && typeof b.adminMove === "object") {
+      const x = b.adminMove as Record<string, unknown>;
+      if (typeof x.id !== "string" || !isDate(x.date) || !isMin(x.start)) return NextResponse.json({ error: "日付と時間を確認してください。" }, { status: 400 });
+      const r = (await sql(`SELECT * FROM bookings WHERE id = $1 AND status IN ('confirmed','pending')`, [x.id]))[0];
+      if (!r) return NextResponse.json({ error: "予約が見つかりません。" }, { status: 404 });
+      const paidCard = r.pay === "card";
+      const c = COURSES.find((k) => k.id === (x.cid || r.course)) || COURSES[0];
+      if (paidCard && c.id !== r.course) return NextResponse.json({ error: "事前決済の予約はコースを変えられません。いったんキャンセル（返金）してから入れ直してください。" }, { status: 400 });
+      const visit = paidCard ? r.visit : x.visit === "repeat" || x.visit === "first" ? x.visit : r.visit;
+      const start = x.start as number, end = start + c.min;
+      if (!x.force) {
+        const ov = await overlap(x.date, start, end, r.id, null, true);
+        if (ov) return NextResponse.json({ error: `${ov}と重なります（施術間の余白15分を含む）。それでも変更しますか？`, code: "overlap" }, { status: 409 });
+      }
+      const total = paidCard ? Number(r.total) : Number.isInteger(x.total) && (x.total as number) >= 0 ? (x.total as number) : Number(r.total);
+      const before = `${fmtDate(r.date!)} ${hm(Number(r.start_min))}〜${hm(Number(r.end_min))}`;
+      const moved = r.date !== x.date || Number(r.start_min) !== start || Number(r.end_min) !== end;
+      await sql(
+        `UPDATE bookings SET date = $2, start_min = $3, end_min = $4, course = $5, visit = $6, total = $7, discount = GREATEST(0, base - $7),
+           reminded_at = CASE WHEN $8 = 'true' THEN NULL ELSE reminded_at END WHERE id = $1`,
+        [r.id, x.date, start, end, c.id, visit, total, moved ? "true" : "false"]);
+      if (moved && r.mail && x.sendMail) await notifyChange(r.id!, new URL(req.url).origin, "change", before, 0, "shop");
+      return NextResponse.json({ ok: true, mailed: !!(moved && r.mail && x.sendMail) });
+    }
+    if (b.editBlock && typeof b.editBlock === "object") {
+      const x = b.editBlock as Record<string, unknown>;
+      const s = Number(x.s), e = Number(x.e);
+      if (!Number.isInteger(x.id) || !isDate(x.date) || !isMin(s) || !isMin(e) || e <= s) return NextResponse.json({ error: "日付と時間を確認してください（終わりは始まりより後に）。" }, { status: 400 });
+      await sql(`UPDATE time_blocks SET date = $2, start_min = $3, end_min = $4, note = $5 WHERE id = $1`, [x.id, x.date, s, e, typeof x.note === "string" ? x.note.slice(0, 40) : null]);
+      return NextResponse.json({ ok: true });
     }
     if (typeof b.unsettle === "string" && /^[A-Za-z0-9_-]{6,30}$/.test(b.unsettle)) {
       await sql(`UPDATE bookings SET settled_at = NULL, paid_amount = NULL, paid_method = NULL WHERE id = $1`, [b.unsettle]);

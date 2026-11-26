@@ -76,7 +76,7 @@ function details(r: Row) {
 }
 
 // 確定した予約について、まだ連絡していなければ一度だけ連絡する
-export async function notifyConfirmed(id: string, origin: string) {
+export async function notifyConfirmed(id: string, origin: string, opts: { customerOnly?: boolean } = {}) {
   try {
     await sql(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS notified_at timestamptz`);
     const rows = await sql<Row>(
@@ -123,6 +123,7 @@ export async function notifyConfirmed(id: string, origin: string) {
       tasks.push(sendMail(r.mail, `【イタキモ】ご予約を承りました（${d.short}）`, text));
     }
 
+    if (opts.customerOnly) { await withTimeout(Promise.allSettled(tasks)); return; }
     let answers: Record<string, string> = {};
     try { answers = JSON.parse(r.answers || "{}"); } catch {}
     const ownerText = [
