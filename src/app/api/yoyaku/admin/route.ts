@@ -128,7 +128,8 @@ export async function POST(req: Request) {
       await sql(`UPDATE bookings SET settled_at = now(), paid_amount = $2, paid_method = $3 WHERE id = $1 AND status = 'confirmed'`, [b.settle, amount, b.method]);
       return NextResponse.json({ ok: true });
     }
-    // STORES 予約からの移行：1行に「日付|開始-終了|コース(c60/c90/c40)|初回か(first/repeat)|予約時の支払い(card/onsite)|金額|受け取り方法」
+    // STORES 予約からの移行：1行に「日付|開始-終了|コース(c60/c90/c40)|初回か(first/repeat)|予約時の支払い(card/onsite)|金額|受け取り方法|お名前|電話|メール」
+    // （お名前・電話・メールは省略可。すでに取り込んだ予約は、お名前・電話・メールだけ更新する）
     if (typeof b.importStores === "string") {
       let added = 0;
       for (const line of b.importStores.split(/\r?\n/)) {
@@ -142,11 +143,16 @@ export async function POST(req: Request) {
         const amount = Math.max(0, Math.round(Number(f[5]) || 0));
         const method = METHODS.includes(f[6]) ? f[6] : "現金";
         const id = `st${f[0].replace(/-/g, "")}${f[1].slice(0, 5).replace(":", "")}`;
+        const nm = (f[7] || "").slice(0, 40) || "（STORESから移行）";
+        const tl = (f[8] || "").replace(/[^\d+]/g, "") || null;
+        const ml = (f[9] || "").slice(0, 120) || null;
         const r = await sql(
-          `INSERT INTO bookings (id, date, start_min, end_min, course, visit, pay, base, discount, total, name, status, token, source, settled_at, paid_amount, paid_method, paid_at)
-           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, 0, $8, '（STORESから移行）', 'confirmed', $9, 'STORES（移行前）', now(), $8, $10, CASE WHEN $7 = 'card' THEN now() ELSE NULL END)
-           ON CONFLICT (id) DO NOTHING RETURNING id`,
-          [id, f[0], st, en, course, visit, pay, amount, crypto.randomBytes(18).toString("base64url"), method],
+          `INSERT INTO bookings (id, date, start_min, end_min, course, visit, pay, base, discount, total, name, tel, mail, status, token, source, settled_at, paid_amount, paid_method, paid_at)
+           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, 0, $8, $11, $12, $13, 'confirmed', $9, 'STORES（移行前）', now(), $8, $10, CASE WHEN $7 = 'card' THEN now() ELSE NULL END)
+           ON CONFLICT (id) DO UPDATE SET name = EXCLUDED.name, tel = EXCLUDED.tel, mail = EXCLUDED.mail
+             WHERE bookings.source = 'STORES（移行前）'
+           RETURNING id`,
+          [id, f[0], st, en, course, visit, pay, amount, crypto.randomBytes(18).toString("base64url"), method, nm, tl, ml],
         );
         added += r.length;
       }

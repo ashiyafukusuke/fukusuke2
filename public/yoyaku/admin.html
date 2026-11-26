@@ -230,7 +230,7 @@ function render() {
   const ib = document.getElementById("impBtn");
   if (ib) ib.onclick = async () => {
     const text = document.getElementById("imp").value;
-    try { const j = await api("POST", { importStores:text }); alert(`${j.added}件を取り込みました。`); } catch (e) { alert(e.message); }
+    try { const j = await api("POST", { importStores:text }); alert(`${j.added}件を取り込み・更新しました。`); } catch (e) { alert(e.message); }
     load();
   };
   document.querySelectorAll("[data-settle]").forEach(b => b.onclick = async () => {
