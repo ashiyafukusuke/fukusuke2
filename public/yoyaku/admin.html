@@ -41,6 +41,32 @@ select { font:inherit; font-size:15px; padding:8px; border:1px solid var(--line)
 .pub { background:var(--soft); border:1px solid var(--line); border-radius:6px; padding:12px; display:flex; flex-direction:column; gap:8px; margin-bottom:10px; }
 .pub strong { font-size:16px; }
 .pub .row { display:flex; flex-wrap:wrap; gap:8px; }
+.vc { max-height:72vh; overflow:auto; border:1px solid var(--line); border-radius:6px; background:#fff; position:relative; -webkit-overflow-scrolling:touch; }
+.vc-in { display:grid; position:relative; }
+.vc-h { position:sticky; top:0; z-index:3; background:var(--soft); border-bottom:1px solid var(--line); text-align:center; font-size:12px; line-height:1.3; padding:4px 0; }
+.vc-h b { display:block; font-size:14px; }
+.vc-h.today { background:var(--brand); color:#fff; }
+.vc-h.sat { color:#2a5d9f; } .vc-h.sun { color:var(--brand); } .vc-h.today.sat, .vc-h.today.sun { color:#fff; }
+.vc-corner { position:sticky; top:0; left:0; z-index:4; background:var(--soft); border-bottom:1px solid var(--line); }
+.vc-ax { position:sticky; left:0; z-index:2; background:#fff; border-right:1px solid var(--line); font-size:10px; color:var(--muted); }
+.vc-ax span { position:absolute; right:3px; transform:translateY(-50%); }
+.vc-ax span:first-child { transform:none; }
+.vc-col { position:relative; border-left:1px solid var(--line); background:repeating-linear-gradient(135deg,#f1efea 0 6px,#e8e5df 6px 12px); }
+.vc-line { position:absolute; left:0; right:0; border-top:1px dotted #e3e0da; z-index:1; }
+.vc-open { position:absolute; left:0; right:0; background:#fff; }
+.vc-open.off { background:#fbfaf7; }
+.vc-ev { position:absolute; left:2px; right:2px; border-radius:4px; padding:2px 4px; font-size:11px; line-height:1.3; overflow:hidden; cursor:pointer; z-index:2; }
+.vc-ev.bk { background:var(--brand); color:#fff; }
+.vc-ev.bk.pend { background:#a26b00; }
+.vc-ev.bk.done { opacity:.55; }
+.vc-ev.blk { background:#5c5c5c; color:#fff; cursor:default; }
+.vc-ev.gap { background:repeating-linear-gradient(135deg,#f3eae5 0 4px,#fff 4px 8px); cursor:default; padding:0; }
+.vc-ev b { display:block; font-size:12px; }
+.vc-past { position:absolute; left:0; right:0; top:0; background:rgba(120,120,120,.18); pointer-events:none; z-index:3; }
+.vc-now { position:absolute; left:0; right:0; border-top:2px solid var(--brand); z-index:3; pointer-events:none; }
+.vc-leg { display:flex; flex-wrap:wrap; gap:4px 12px; font-size:12px; color:var(--muted); margin-top:6px; }
+.vc-leg i { display:inline-block; width:12px; height:12px; border-radius:2px; vertical-align:-2px; margin-right:4px; border:1px solid var(--line); }
+.hl { animation:hl 2s; } @keyframes hl { 0%,40% { background:var(--tint); } }
 </style>
 </head>
 <body>
@@ -130,7 +156,7 @@ function render() {
   const list = Object.keys(byDate).sort().map(d => `<div class="day"><h3>${fmt(d)}${d === data.today ? "　今日" : ""}</h3>${byDate[d].map(b => {
     const a = (() => { try { return JSON.parse(b.answers || "{}"); } catch { return {}; } })();
     const qa = [a.first && `足つぼ専門店は初めて：${a.first}`, a.hurt && `けが・痛み：${a.hurt}`, a.stay && `過ごし方：${a.stay}`].filter(Boolean).join("／");
-    return `<div class="bk">
+    return `<div class="bk" id="bk-${esc(b.id)}">
       <span class="t">${hm(+b.start_min)}</span>
       <span><b>${esc(b.name)}</b> 様　${b.course === "c90" ? "90分" : b.course === "c40" ? "40分" : "60分"}・${b.visit === "first" ? "はじめて" : "2回目以降"}
         ${b.status === "pending" ? `<span class="st pend">決済待ち</span>` : b.pay === "card" ? `<span class="st paid">事前決済済み</span>` : `<span class="st">当日払い</span>`}</span>
@@ -151,7 +177,38 @@ function render() {
   const cal = WD.map(w => `<div class="wd">${w}</div>`).join("") + "<div></div>".repeat(first) + data.days.map(d =>
     `<button type="button" class="${d.kind}${d.custom ? " custom" : ""}${data.published && d.date > data.published ? " off" : ""}" data-d="${d.date}" data-k="${d.kind}"><b>${+d.date.slice(8)}</b>${KIND[d.kind]}</button>`).join("");
 
+  // 縦型カレンダー（日ごとの列・時間は縦）
+  const PX = 0.9, GAPM = 15;
+  const minS = Math.min(9 * 60, ...data.bookings.map(b => +b.start_min), ...(data.blocks || []).map(x => +x.start_min));
+  const maxE = Math.max(23 * 60, ...data.bookings.map(b => +b.end_min + GAPM), ...(data.blocks || []).map(x => +x.end_min));
+  const T0 = Math.floor(minS / 60) * 60, T1 = Math.ceil(maxE / 60) * 60, H = (T1 - T0) * PX, y = m => (m - T0) * PX;
+  const nowD = new Date(Date.now() + 9 * 3600e3), nowM = nowD.getUTCHours() * 60 + nowD.getUTCMinutes();
+  const HRS = { full: [9 * 60, 22 * 60 + 40], night: [21 * 60 + 10, 22 * 60 + 40] };
+  let vax = "", vcols = "", vhead = "";
+  for (let m = T0; m < T1; m += 60) vax += `<span style="top:${y(m)}px">${m / 60}:00</span>`;
+  for (const d of data.days) {
+    const w = new Date(d.date + "T00:00:00Z").getUTCDay();
+    vhead += `<div class="vc-h${d.date === data.today ? " today" : ""}${w === 6 ? " sat" : w === 0 ? " sun" : ""}"><b>${+d.date.slice(5, 7)}/${+d.date.slice(8)}</b>${WD[w]}・${KIND[d.kind]}</div>`;
+    let c = "";
+    for (let m = T0 + 60; m < T1; m += 60) c += `<div class="vc-line" style="top:${y(m)}px"></div>`;
+    if (HRS[d.kind]) { const [a, b] = HRS[d.kind]; c += `<div class="vc-open${data.published && d.date > data.published ? " off" : ""}" style="top:${y(a)}px;height:${(b - a) * PX}px"></div>`; }
+    for (const x of (data.blocks || []).filter(x => x.date === d.date))
+      c += `<div class="vc-ev blk" style="top:${y(+x.start_min)}px;height:${(+x.end_min - +x.start_min) * PX}px"><b>ブロック</b>${hm(+x.start_min)}〜${hm(+x.end_min)} ${esc(x.note || "")}</div>`;
+    for (const b of (byDate[d.date] || [])) {
+      const s = +b.start_min, e = +b.end_min;
+      c += `<div class="vc-ev gap" style="top:${y(e)}px;height:${GAPM * PX}px"></div>`;
+      c += `<div class="vc-ev bk${b.status === "pending" ? " pend" : ""}${d.date === data.today && e <= nowM ? " done" : ""}" data-vb="${esc(b.id)}" style="top:${y(s)}px;height:${(e - s) * PX}px"><b>${hm(s)} ${esc(b.name)}</b>${b.course === "c90" ? "90分" : b.course === "c40" ? "40分" : "60分"}・${b.visit === "first" ? "初" : "2回目〜"}${b.status === "pending" ? "・決済待ち" : b.pay === "card" ? "・済" : ""}</div>`;
+    }
+    if (d.date === data.today && nowM > T0) c += `<div class="vc-past" style="height:${Math.min(H, y(nowM))}px"></div>${nowM < T1 ? `<div class="vc-now" style="top:${y(nowM)}px"></div>` : ""}`;
+    vcols += `<div class="vc-col" style="height:${H}px">${c}</div>`;
+  }
+  const vcal = `<div class="vc" id="vc"><div class="vc-in" style="grid-template-columns:40px repeat(${data.days.length}, minmax(92px, 31vw));">
+    <div class="vc-corner"></div>${vhead}<div class="vc-ax" style="height:${H}px;">${vax}</div>${vcols}</div></div>
+    <div class="vc-leg"><span><i style="background:#fff"></i>空き（営業時間）</span><span><i style="background:var(--brand)"></i>予約</span><span><i style="background:#a26b00"></i>決済待ち</span><span><i style="background:#5c5c5c"></i>ブロック</span><span><i style="background:repeating-linear-gradient(135deg,#f3eae5 0 3px,#fff 3px 6px)"></i>施術間の余白</span><span><i style="background:#e8e5df"></i>休み</span><span><i style="background:#fbfaf7"></i>非公開の週</span></div>
+    <p class="legend" style="margin:4px 0 0;">横にスワイプで先の日へ。予約をタップすると、下の詳細に移動します。</p>`;
+
   app.innerHTML = `<h1>予約の管理</h1>
+    <section><h2>予約カレンダー</h2>${vcal}</section>
     <section><h2>これからの予約</h2>${list}</section>
     ${salesSection()}
     <section><h2>予約ブロック（休憩・外出など）</h2>
@@ -194,6 +251,8 @@ function render() {
       <p class="legend">ここにある電話番号・メールアドレスでは、新しい予約を受け付けません（お客様には「お問い合わせフォームからご連絡ください」と表示）。</p>
     </section>
     <p><button class="btn ghost" id="rl">読み込み直す</button></p>`;
+  document.querySelectorAll("[data-vb]").forEach(el => el.onclick = () => { const t = document.getElementById("bk-" + el.dataset.vb); if (t) { t.scrollIntoView({ behavior: "smooth", block: "center" }); t.classList.remove("hl"); void t.offsetWidth; t.classList.add("hl"); } });
+  { const vc = document.getElementById("vc"); if (vc) { const keep = window.__vcPos; if (keep) { vc.scrollLeft = keep[0]; vc.scrollTop = keep[1]; } else vc.scrollTop = Math.max(0, y(Math.max(9 * 60, nowM - 60)) - 10); vc.onscroll = () => { window.__vcPos = [vc.scrollLeft, vc.scrollTop]; }; } }
   document.getElementById("ntgen").onclick = () => { const a = new Uint8Array(12); crypto.getRandomValues(a); document.getElementById("nt").value = "itakimo-" + [...a].map(x => "abcdefghijkmnpqrstuvwxyz23456789"[x % 32]).join(""); };
   document.getElementById("ntsave").onclick = async () => { try { await api("POST", { ntfy: document.getElementById("nt").value }); alert("保存しました。"); } catch (e) { alert(e.message); } load(); };
   document.getElementById("nttest").onclick = async () => { try { await api("POST", { testPush: true }); alert("送りました。スマホを確認してください。"); } catch (e) { alert(e.message); } };
