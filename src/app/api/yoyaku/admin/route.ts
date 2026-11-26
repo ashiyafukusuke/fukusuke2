@@ -109,7 +109,7 @@ export async function GET(req: Request) {
     for (const b of bookings) (b as Record<string, unknown>).cancels = cmap[b.id as string] || 0;
     const blocks = await sql(`SELECT id, date, start_min, end_min, note FROM time_blocks WHERE date >= $1 ORDER BY date, start_min`, [now.date]);
     // お客様メモと、これまでの来店回数（電話番号が一致する、日付が過ぎた確定済みの予約）
-    const tels = [...new Set(bookings.map((b) => b.tel).filter(Boolean))] as string[];
+    const tels = Array.from(new Set(bookings.map((b) => b.tel).filter(Boolean))) as string[];
     if (tels.length) {
       const notes = await sql<{ tel: string; note: string }>(`SELECT tel, note FROM customer_notes WHERE tel = ANY($1)`, [tels]);
       const visits = await sql<{ tel: string; n: string }>(
