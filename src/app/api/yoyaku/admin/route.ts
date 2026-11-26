@@ -144,6 +144,16 @@ export async function POST(req: Request) {
       let added = 0;
       for (const line of b.importStores.split(/\r?\n/)) {
         const f = line.split("|").map((x: string) => x.trim());
+        // 「メモ|電話番号|内容（改行は\\n）」の行は、お客様メモとして取り込む
+        if (f[0] === "メモ" && f.length >= 3) {
+          const tel = f[1].replace(/[^\d+]/g, "");
+          const text = f.slice(2).join("|").replace(/\\n/g, "\n").trim().slice(0, 2000);
+          if (tel && text) {
+            await sql(`INSERT INTO customer_notes (tel, note) VALUES ($1, $2) ON CONFLICT (tel) DO UPDATE SET note = EXCLUDED.note, updated_at = now()`, [tel, text]);
+            added++;
+          }
+          continue;
+        }
         if (f.length < 7 || !/^\d{4}-\d{2}-\d{2}$/.test(f[0]) || !/^\d{2}:\d{2}-\d{2}:\d{2}$/.test(f[1])) continue;
         const toMin = (x: string) => Number(x.slice(0, 2)) * 60 + Number(x.slice(3, 5));
         const [st, en] = f[1].split("-").map(toMin);
