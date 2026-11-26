@@ -155,6 +155,10 @@ export function ensureTables() {
       await sql(`CREATE UNIQUE INDEX IF NOT EXISTS bookings_token ON bookings (token)`);
       await sql(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS cancelled_by text`);
       await sql(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS source text`);
+      // 売上の記録（来店して会計したときに店主が記録する）
+      await sql(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS settled_at timestamptz`);
+      await sql(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS paid_amount integer`);
+      await sql(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS paid_method text`);
       await sql(`ALTER TABLE bookings ADD COLUMN IF NOT EXISTS cancelled_at timestamptz`);
       await sql(`CREATE TABLE IF NOT EXISTS time_blocks (
         id serial PRIMARY KEY,

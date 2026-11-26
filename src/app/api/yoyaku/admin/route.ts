@@ -32,11 +32,52 @@ async function guard(req: Request): Promise<string | null> {
   return null;
 }
 
+// 売上：その月の予約（確定済み）と、記録した会計の集計。csv のときは CSV を返す
+const METHODS = ["現金", "カード", "電子マネー", "QR決済（PayPayなど）", "事前決済", "お代なし（トライアルなど）"];
+async function sales(ym: string, csv: boolean) {
+  const rows = await sql<Record<string, string | number | null>>(
+    `SELECT id, date, start_min, end_min, course, visit, pay, base, discount, total, name, status, paid_at, source, settled_at, paid_amount, paid_method
+     FROM bookings WHERE status = 'confirmed' AND date LIKE $1 ORDER BY date, start_min`,
+    [ym + "-%"],
+  );
+  const today = jstNow().date;
+  const done = rows.filter((r) => r.settled_at);
+  const sum = (xs: typeof rows, f: (r: (typeof rows)[number]) => number) => xs.reduce((a, r) => a + f(r), 0);
+  const group = (key: (r: (typeof rows)[number]) => string) => {
+    const m: Record<string, { n: number; yen: number }> = {};
+    for (const r of done) { const k = key(r); (m[k] ||= { n: 0, yen: 0 }); m[k].n++; m[k].yen += Number(r.paid_amount || 0); }
+    return m;
+  };
+  const summary = {
+    total: sum(done, (r) => Number(r.paid_amount || 0)),
+    count: done.length,
+    unrecorded: rows.filter((r) => !r.settled_at && String(r.date) < today).length,
+    discount: sum(done, (r) => Number(r.discount || 0)),
+    byMethod: group((r) => String(r.paid_method || "不明")),
+    byCourse: group((r) => (r.course === "c90" ? "90分" : "60分")),
+    byVisit: group((r) => (r.visit === "first" ? "はじめて" : "2回目以降")),
+    bySource: group((r) => String(r.source || "記録なし")),
+  };
+  if (!csv) return NextResponse.json({ ym, rows, summary, methods: METHODS, today });
+  const q = (v: unknown) => `"${String(v ?? "").replace(/"/g, '""')}"`;
+  const lines = [["日付", "開始", "予約番号", "コース", "区分", "予約時の支払い", "受け取り方法", "受け取った金額", "早割などの値引き", "経由"].map(q).join(",")];
+  for (const r of done) {
+    lines.push([r.date, hm(Number(r.start_min)), String(r.id).slice(0, 6).toUpperCase(), r.course === "c90" ? "90分" : "60分", r.visit === "first" ? "はじめて" : "2回目以降",
+      r.pay === "card" ? "事前決済" : "当日払い", r.paid_method, r.paid_amount, r.discount, r.source].map(q).join(","));
+  }
+  return new NextResponse("\ufeff" + lines.join("\r\n") + "\r\n", {
+    headers: { "Content-Type": "text/csv; charset=utf-8", "Content-Disposition": `attachment; filename="itakimo-sales-${ym}.csv"` },
+  });
+}
+
 export async function GET(req: Request) {
   const ng = await guard(req);
   if (ng) return deny(ng);
   try {
     await ensureTables();
+    const q = new URL(req.url).searchParams;
+    const ym = q.get("sales") || q.get("csv");
+    if (ym && /^\d{4}-\d{2}$/.test(ym)) return sales(ym, q.has("csv"));
     const now = jstNow();
     const to = addDays(now.date, HORIZON);
     const kindOf = await kindsFor(now.date, to);
@@ -47,7 +88,7 @@ export async function GET(req: Request) {
       days.push({ date: d, kind: k, custom: k !== defaultKind(d) });
     }
     const bookings = await sql(
-      `SELECT id, created_at, date, start_min, end_min, course, visit, pay, total, name, tel, mail, memo, answers, status, paid_at, source
+      `SELECT id, created_at, date, start_min, end_min, course, visit, pay, total, name, tel, mail, memo, answers, status, paid_at, source, settled_at, paid_amount, paid_method
        FROM bookings WHERE date >= $1 AND status IN ('confirmed','pending') ORDER BY date, start_min`,
       [addDays(now.date, -7)],
     );
@@ -78,6 +119,17 @@ export async function POST(req: Request) {
   try {
     await ensureTables();
     const b = await req.json();
+    if (typeof b.settle === "string" && /^[A-Za-z0-9_-]{6,30}$/.test(b.settle)) {
+      const amount = Math.round(Number(b.amount));
+      if (!Number.isFinite(amount) || amount < 0 || amount > 100000) return NextResponse.json({ error: "金額をご確認ください。" }, { status: 400 });
+      if (!METHODS.includes(b.method)) return NextResponse.json({ error: "受け取り方法を選んでください。" }, { status: 400 });
+      await sql(`UPDATE bookings SET settled_at = now(), paid_amount = $2, paid_method = $3 WHERE id = $1 AND status = 'confirmed'`, [b.settle, amount, b.method]);
+      return NextResponse.json({ ok: true });
+    }
+    if (typeof b.unsettle === "string" && /^[A-Za-z0-9_-]{6,30}$/.test(b.unsettle)) {
+      await sql(`UPDATE bookings SET settled_at = NULL, paid_amount = NULL, paid_method = NULL WHERE id = $1`, [b.unsettle]);
+      return NextResponse.json({ ok: true });
+    }
     if (typeof b.date === "string" && /^\d{4}-\d{2}-\d{2}$/.test(b.date) && ["full", "night", "closed"].includes(b.kind)) {
       if (b.kind === defaultKind(b.date)) await sql(`DELETE FROM open_days WHERE date = $1`, [b.date]);
       else await sql(`INSERT INTO open_days (date, kind) VALUES ($1, $2) ON CONFLICT (date) DO UPDATE SET kind = EXCLUDED.kind`, [b.date, b.kind]);

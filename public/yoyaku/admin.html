@@ -56,8 +56,54 @@ const KIND = { closed:"休み", full:"通し", night:"夜" };
 const NEXT = { closed:"full", full:"night", night:"closed" };
 let pass = ""; try { pass = localStorage.getItem("itakimo-admin") || ""; } catch {}
 let data = null, err = "";
+// 売上
+const METHODS = ["現金", "カード", "電子マネー", "QR決済（PayPayなど）", "事前決済", "お代なし（トライアルなど）"];
+let salesYm = "", sales = null;
+const yen = n => "¥" + Number(n || 0).toLocaleString("ja-JP");
+function settleHtml(b, today) {
+  if (b.status !== "confirmed") return "";
+  if (b.settled_at) return `<span class="m" style="color:#2f6b3a;font-weight:700;">会計済み ${yen(b.paid_amount)}（${esc(b.paid_method || "")}）</span> <button class="btn ghost" data-unsettle="${esc(b.id)}">記録を取り消す</button>`;
+  if (b.date > today) return "";
+  const def = b.pay === "card" && b.paid_at ? "事前決済" : "現金";
+  return `<span style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
+    <select id="sm-${esc(b.id)}">${METHODS.map(m => `<option${m === def ? " selected" : ""}>${m}</option>`).join("")}</select>
+    <input id="sa-${esc(b.id)}" type="number" inputmode="numeric" min="0" step="100" value="${Number(b.total)}" style="width:96px;">円
+    <button class="btn" data-settle="${esc(b.id)}">来店・会計を記録</button></span>`;
+}
+function sumTable(title, m) {
+  const ks = Object.keys(m || {}).sort((a, b) => m[b].yen - m[a].yen);
+  if (!ks.length) return "";
+  return `<p class="legend" style="margin:10px 0 2px;"><b>${title}</b></p>` + ks.map(k => `<div class="m" style="display:flex;justify-content:space-between;max-width:420px;"><span>${esc(k)}</span><span>${m[k].n}件　${yen(m[k].yen)}</span></div>`).join("");
+}
+function salesSection() {
+  if (!sales) return `<section><h2>売上</h2><p class="legend">読み込み中…</p></section>`;
+  const s = sales.summary;
+  const [y, mo] = sales.ym.split("-").map(Number);
+  const rows = sales.rows.map(b => `<div class="bk"><span class="t">${+b.date.slice(8)}日 ${hm(+b.start_min)}</span>
+      <span><b>${esc(b.name)}</b> 様　${b.course === "c90" ? "90分" : "60分"}・${b.visit === "first" ? "はじめて" : "2回目以降"}　予約時 ${yen(b.total)}</span>
+      <span></span>${settleHtml(b, sales.today) || `<span class="m">これからのご予約</span>`}</div>`).join("") || `<p class="legend">この月の予約はありません。</p>`;
+  return `<section><h2>売上</h2>
+    <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px;"><button class="btn ghost" data-ym="-1">前の月</button><b>${y}年${mo}月</b><button class="btn ghost" data-ym="1">次の月</button></div>
+    <p style="font-size:18px;margin:4px 0;"><b>${yen(s.total)}</b>　<span class="m">${s.count}件${s.count ? `・客単価 ${yen(Math.round(s.total / s.count))}` : ""}</span></p>
+    ${s.unrecorded ? `<p class="m" style="color:var(--brand);font-weight:700;">まだ会計を記録していない、過ぎた予約が ${s.unrecorded}件 あります</p>` : ""}
+    <p class="m">早割などで値引きした合計：${yen(s.discount)}</p>
+    ${sumTable("受け取り方法", s.byMethod)}${sumTable("コース", s.byCourse)}${sumTable("はじめて／2回目以降", s.byVisit)}${sumTable("経由", s.bySource)}
+    <p style="margin:12px 0;"><button class="btn ghost" id="csv">この月のCSVを保存</button> <span class="m">会計を記録した分だけが入ります</span></p>
+    ${rows}</section>`;
+}
+async function loadSales() {
+  if (!salesYm) salesYm = (data && data.today || new Date().toISOString()).slice(0, 7);
+  try { sales = await api("GET_SALES"); } catch (e) { sales = null; }
+  render();
+}
 
 async function api(method, body) {
+  if (method === "GET_SALES") {
+    const r = await fetch("/api/yoyaku/admin?sales=" + salesYm, { headers:{ "x-admin-pass":pass }, cache:"no-store" });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(j.error || "エラー");
+    return j;
+  }
   const r = await fetch("/api/yoyaku/admin", { method, headers:{ "x-admin-pass":pass, "Content-Type":"application/json" }, body: body ? JSON.stringify(body) : undefined, cache:"no-store" });
   const j = await r.json().catch(() => ({}));
   if (!r.ok) throw new Error(j.error || "エラー");
@@ -67,6 +113,7 @@ async function load() {
   try { data = await api("GET"); err = ""; try { localStorage.setItem("itakimo-admin", pass); } catch {} }
   catch (e) { data = null; err = e.message; }
   render();
+  if (data) loadSales();
 }
 
 function render() {
@@ -92,6 +139,7 @@ function render() {
       ${b.memo ? `<span></span><span class="m">メモ：${esc(b.memo)}</span>` : ""}
       ${b.source ? `<span></span><span class="m">経由：${esc(b.source)}</span>` : ""}
       ${b.cancels ? `<span></span><span class="m" style="color:var(--brand);font-weight:700;">この方の過去のキャンセル：${b.cancels}回</span>` : ""}
+      ${settleHtml(b, data.today) ? `<span></span>${settleHtml(b, data.today)}` : ""}
       <span></span><span style="display:flex;gap:6px;flex-wrap:wrap;"><button class="btn ghost" data-cancel="${esc(b.id)}" data-mode="request" data-name="${esc(b.name)}" data-pay="${esc(b.pay || "")}" data-mail="${b.mail ? "1" : ""}">ご依頼でキャンセル</button><button class="btn ghost" data-cancel="${esc(b.id)}" data-mode="noshow" data-name="${esc(b.name)}">来店なしで取り消す</button><button class="btn ghost" data-block="${esc(b.id)}" data-name="${esc(b.name)}">以降お断り</button></span>
     </div>`; }).join("")}</div>`).join("") || `<p class="legend">これからの予約はありません。</p>`;
 
@@ -102,6 +150,7 @@ function render() {
 
   app.innerHTML = `<h1>予約の管理</h1>
     <section><h2>これからの予約</h2>${list}</section>
+    ${salesSection()}
     <section><h2>予約ブロック（休憩・外出など）</h2>
       <div class="pub">
         <div class="row">
@@ -174,6 +223,28 @@ function render() {
     try { await api("POST", { unblock:Number(b.dataset.unblock) }); } catch (e) { alert(e.message); }
     load();
   });
+  document.querySelectorAll("[data-settle]").forEach(b => b.onclick = async () => {
+    const id = b.dataset.settle;
+    const method = document.getElementById("sm-" + id).value, amount = Number(document.getElementById("sa-" + id).value);
+    try { await api("POST", { settle:id, method, amount }); } catch (e) { alert(e.message); }
+    load();
+  });
+  document.querySelectorAll("[data-unsettle]").forEach(b => b.onclick = async () => {
+    if (!confirm("この会計の記録を取り消します。よろしいですか？")) return;
+    try { await api("POST", { unsettle:b.dataset.unsettle }); } catch (e) { alert(e.message); }
+    load();
+  });
+  document.querySelectorAll("[data-ym]").forEach(b => b.onclick = () => {
+    const [y, m] = salesYm.split("-").map(Number); const d = new Date(Date.UTC(y, m - 1 + Number(b.dataset.ym), 1));
+    salesYm = d.toISOString().slice(0, 7); sales = null; render(); loadSales();
+  });
+  const cv = document.getElementById("csv");
+  if (cv) cv.onclick = async () => {
+    const r = await fetch("/api/yoyaku/admin?csv=" + salesYm, { headers:{ "x-admin-pass":pass }, cache:"no-store" });
+    if (!r.ok) { alert("CSVを作れませんでした。"); return; }
+    const url = URL.createObjectURL(await r.blob()); const a = document.createElement("a");
+    a.href = url; a.download = `itakimo-sales-${salesYm}.csv`; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 2000);
+  };
   document.querySelectorAll("[data-cancel]").forEach(b => b.onclick = async () => {
     const req = b.dataset.mode === "request";
     const msg = req
