@@ -56,9 +56,9 @@ select { font:inherit; font-size:15px; padding:8px; border:1px solid var(--line)
 .vc-open { position:absolute; left:0; right:0; background:#fff; }
 .vc-open.off { background:#fbfaf7; }
 .vc-ev { position:absolute; left:2px; right:2px; border-radius:4px; padding:2px 4px; font-size:11px; line-height:1.3; overflow:hidden; cursor:pointer; z-index:2; }
-.vc-ev.bk { background:var(--brand); color:#fff; }
-.vc-ev.bk.pend { background:#a26b00; }
-.vc-ev.bk.done { opacity:.55; }
+.vc-ev.vbk { background:var(--brand); color:#fff; }
+.vc-ev.vbk.pend { background:#a26b00; }
+.vc-ev.vbk.done { opacity:.55; }
 .vc-ev.blk { background:#5c5c5c; color:#fff; cursor:default; }
 .vc-ev.gap { background:repeating-linear-gradient(135deg,#f3eae5 0 4px,#fff 4px 8px); cursor:default; padding:0; }
 .vc-ev b { display:block; font-size:12px; }
@@ -197,7 +197,7 @@ function render() {
     for (const b of (byDate[d.date] || [])) {
       const s = +b.start_min, e = +b.end_min;
       c += `<div class="vc-ev gap" style="top:${y(e)}px;height:${GAPM * PX}px"></div>`;
-      c += `<div class="vc-ev bk${b.status === "pending" ? " pend" : ""}${d.date === data.today && e <= nowM ? " done" : ""}" data-vb="${esc(b.id)}" style="top:${y(s)}px;height:${(e - s) * PX}px"><b>${hm(s)} ${esc(b.name)}</b>${b.course === "c90" ? "90分" : b.course === "c40" ? "40分" : "60分"}・${b.visit === "first" ? "初" : "2回目〜"}${b.status === "pending" ? "・決済待ち" : b.pay === "card" ? "・済" : ""}</div>`;
+      c += `<div class="vc-ev vbk${b.status === "pending" ? " pend" : ""}${d.date === data.today && e <= nowM ? " done" : ""}" data-vb="${esc(b.id)}" style="top:${y(s)}px;height:${(e - s) * PX}px"><b>${hm(s)} ${esc(b.name)}</b>${b.course === "c90" ? "90分" : b.course === "c40" ? "40分" : "60分"}・${b.visit === "first" ? "初" : "2回目〜"}${b.status === "pending" ? "・決済待ち" : b.pay === "card" ? "・済" : ""}</div>`;
     }
     if (d.date === data.today && nowM > T0) c += `<div class="vc-past" style="height:${Math.min(H, y(nowM))}px"></div>${nowM < T1 ? `<div class="vc-now" style="top:${y(nowM)}px"></div>` : ""}`;
     vcols += `<div class="vc-col" style="height:${H}px">${c}</div>`;
