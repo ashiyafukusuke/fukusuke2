@@ -157,7 +157,21 @@ export default function FirstPage() {
               <dd style={{ margin: 0 }}><span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "22px" }}>6:30 – 9:00</span><span style={{ fontSize: "12px", color: "#5c5c5c", marginLeft: "12px" }}>朝の枠</span><br /><span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "22px" }}>21:10 – 22:40</span><span style={{ fontSize: "12px", color: "#5c5c5c", marginLeft: "12px" }}>夜の特別枠（1日1組）</span></dd>
             </dl>
             <p style={{ margin: "-8px 0 14px", fontSize: "12px", color: "#5c5c5c" }}>6:30–9:00の朝の枠は、前日22:00までのご予約です（通しの日も同じです）。22:00を過ぎてから翌朝の枠をご希望の場合は、<a href="mailto:fukusuke@itakimo.net" style={{ color: "#5c5c5c" }}>fukusuke@itakimo.net</a> までご連絡ください。原則としてお受けできませんが、対応できる場合は折り返しご連絡します。</p>
-            <p style={{ margin: "0 0 20px", fontSize: "13px", color: "#3d3a34" }}>仕事帰りに、足を軽くしてそのまま帰れる夜の枠です。日中に営業できる日が限られるぶん、夜も開けています。<br />夜の特別枠の日は、日中、別のお店で施術をしてから電車で向かいます。そのため、電車の運休や大きな遅れで、開始が遅れたり、キャンセルをお願いしたりすることがあります。あらかじめご了承ください。当店の都合でキャンセルをお願いした場合は、次回の施術を無料にします。</p>
+            <div style={{ margin: "0 0 24px", borderBottom: "1px solid #ebe9e4" }}>
+              <div style={{ padding: "14px 0", borderTop: "1px solid #ebe9e4" }}>
+                <p style={{ margin: "0 0 4px", fontSize: "14px", fontWeight: 700 }}>朝の枠　6:30–9:00</p>
+                <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>出勤前や、一日の始まりに。足を軽くしてから一日を始めたい方のための枠です。まだ街が静かな時間なので、落ち着いて受けていただけます。日中は別のお店で施術をしている日も、出かける前の時間を使って開けています。前日22:00までのご予約です。</p>
+              </div>
+              <div style={{ padding: "14px 0", borderTop: "1px solid #ebe9e4" }}>
+                <p style={{ margin: "0 0 4px", fontSize: "14px", fontWeight: 700 }}>通しの日　6:30–22:40</p>
+                <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>朝から夜まで、一日を通して開けている日です（主に水・木）。時間を選びやすく、90分コースもゆったり入れやすい日です。休みの日や平日の昼間に、時間を気にせず受けたい方に。</p>
+              </div>
+              <div style={{ padding: "14px 0", borderTop: "1px solid #ebe9e4" }}>
+                <p style={{ margin: "0 0 4px", fontSize: "14px", fontWeight: 700 }}>夜の特別枠　21:10–22:40（1日1組）</p>
+                <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>仕事帰りに、足を軽くしてそのまま帰れる枠です。1日1組だけなので、その日の最後のお客様として、後ろの時間を気にせず受けていただけます。ぐっすり眠りたい夜に。</p>
+                <p style={{ margin: "6px 0 0", fontSize: "12px", color: "#5c5c5c" }}>夜の特別枠の日は、日中、別のお店で施術をしてから電車で向かいます。電車の運休や大きな遅れで、開始が遅れたり、キャンセルをお願いしたりすることがあります。あらかじめご了承ください。当店の都合でキャンセルをお願いした場合は、次回の施術を無料にします。</p>
+              </div>
+            </div>
             <BusinessCalendar />
             <p data-ga-view="first_view_calendar" style={{ margin: "12px 0 0", fontSize: "13px", color: "#3d3a34" }}>当日のご予約も、空き枠があれば、開始1時間前までWebで承っています（朝の枠を除く）。</p>
             <a href="/yoyaku" style={{ marginTop: "20px", background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "15px 44px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.12em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>空き時間を見て予約する</a>

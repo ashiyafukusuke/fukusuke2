@@ -7,12 +7,13 @@ import { getSetting } from "@/lib/notify";
 
 const WEEK = ["月", "火", "水", "木", "金", "土", "日"];
 type CellType = DayType | "tbd";
-type Month = { year: number; month: number; typeOf: (d: number) => CellType; holidays: number[]; notes: Record<number, string> };
+type Month = { year: number; month: number; typeOf: (d: number) => CellType; isPast?: (d: number) => boolean; holidays: number[]; notes: Record<number, string> };
 
 const CELL_LABEL: Record<CellType, string> = { full: "通し", night: "朝・夜", closed: "休", tbd: "未定" };
 
 function MonthTable({ cal }: { cal: Month }) {
   const { year, month, typeOf, holidays, notes } = cal;
+  const isPast = cal.isPast ?? (() => false);
   const first = new Date(year, month - 1, 1);
   const last = new Date(year, month, 0).getDate();
   const offset = (first.getDay() + 6) % 7; // 月曜始まり
@@ -20,8 +21,8 @@ function MonthTable({ cal }: { cal: Month }) {
   while (cells.length % 7) cells.push(null);
   const wd = (d: number) => WEEK[(new Date(year, month - 1, d).getDay() + 6) % 7];
   const all = Array.from({ length: last }, (_, i) => i + 1);
-  const fullDays = all.filter((d) => typeOf(d) === "full");
-  const closedDays = all.filter((d) => typeOf(d) === "closed");
+  const fullDays = all.filter((d) => !isPast(d) && typeOf(d) === "full");
+  const closedDays = all.filter((d) => !isPast(d) && typeOf(d) === "closed");
   const tbdFrom = all.find((d) => typeOf(d) === "tbd");
   const label = (d: number) => `${d}日（${wd(d)}${holidays.includes(d) ? "・祝" : ""}）`;
 
@@ -39,9 +40,9 @@ function MonthTable({ cal }: { cal: Month }) {
                 if (!d) return <td key={i} className="bcal-empty" />;
                 const t = typeOf(d);
                 return (
-                  <td key={i} className={`bcal-${t}`}>
+                  <td key={i} className={`bcal-${t}${isPast(d) ? " bcal-past" : ""}`}>
                     <span className="bcal-d">{d}{holidays.includes(d) ? <small>祝</small> : null}</span>
-                    <span className="bcal-t">{CELL_LABEL[t]}</span>
+                    <span className="bcal-t">{isPast(d) && t === "night" ? "夜" : CELL_LABEL[t]}</span>
                   </td>
                 );
               })}
@@ -94,6 +95,7 @@ async function fromBooking(): Promise<Month[]> {
         }
         return published && ds > published ? "tbd" : kind(ds);
       },
+      isPast: (d) => `${yy}-${pad(mm)}-${pad(d)}` < today,
       holidays: holidaysOf(yy, mm), notes: notesOf(yy, mm),
     });
     if (m === 12) { y++; m = 1; } else m++;
