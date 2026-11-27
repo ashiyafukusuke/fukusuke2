@@ -156,7 +156,7 @@ export default function FirstPage() {
               <dt style={{ fontWeight: 700 }}>夜の特別枠</dt>
               <dd style={{ margin: 0 }}><span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "22px" }}>21:10 – 22:40</span><span style={{ fontSize: "12px", color: "#5c5c5c", marginLeft: "12px" }}>それ以外の日</span></dd>
               <dt style={{ fontWeight: 700 }}>朝の枠</dt>
-              <dd style={{ margin: 0 }}><span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "22px" }}>6:30 – 9:00</span><span style={{ fontSize: "12px", color: "#5c5c5c", marginLeft: "12px" }}>営業日の朝。前日の23:59までのご予約で</span></dd>
+              <dd style={{ margin: 0 }}><span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "22px" }}>6:30 – 9:00</span><span style={{ fontSize: "12px", color: "#5c5c5c", marginLeft: "12px" }}>営業日の朝。前日の22:00までのご予約で</span></dd>
             </dl>
             <p style={{ margin: "-8px 0 20px", fontSize: "13px", color: "#3d3a34" }}>仕事帰りに、足を軽くしてそのまま帰れる夜の枠です。日中に営業できる日が限られるぶん、夜も開けています。<br />夜の特別枠の日は、日中、別のお店で施術をしてから電車で向かいます。そのため、電車の運休や大きな遅れで、開始が遅れたり、キャンセルをお願いしたりすることがあります。あらかじめご了承ください。当店の都合でキャンセルをお願いした場合は、次回の施術を無料にします。</p>
             <BusinessCalendar />

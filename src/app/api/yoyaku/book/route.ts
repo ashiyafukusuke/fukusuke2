@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { getSetting, notifyConfirmed } from "@/lib/notify";
 import crypto from "node:crypto";
 import {
-  ACTIVE, COURSES, daysBetween, isBlocked, ensureTables, fmtDate, hm, jstNow, kindsFor, price, slotOk, sql, stripe, bookedFor,
+  ACTIVE, COURSES, daysBetween, isBlocked, isMorning, morningClosed, ensureTables, fmtDate, hm, jstNow, kindsFor, price, slotOk, sql, stripe, bookedFor,
 } from "@/lib/yoyaku";
 
 export const dynamic = "force-dynamic";
@@ -53,6 +53,9 @@ export async function POST(req: Request) {
     const kind = pub && date > pub ? "closed" : (await kindsFor(date, date))(date);
     const booked = (await bookedFor(date, date)).map(({ s, e, blk }) => ({ s, e, blk }));
     if (!slotOk(kind, c, start, booked, ahead, now.min)) {
+      if (isMorning(c, start) && morningClosed(ahead, now.min)) {
+        return NextResponse.json({ error: "朝の枠（6:30〜9:00）のご予約は、前日の22:00までです。別の時間をお選びください。", code: "taken" }, { status: 409 });
+      }
       return NextResponse.json({ error: "この時間はご予約いただけなくなりました。別の時間をお選びください。", code: "taken" }, { status: 409 });
     }
 

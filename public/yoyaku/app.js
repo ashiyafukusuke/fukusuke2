@@ -42,7 +42,10 @@ let loadErr = "";
 const today = () => av.today;
 const ahead = s => Math.round((D(s) - D(today())) / 864e5);
 const kindOf = s => (av && av.days[s]) || "closed";
-const MORNING = { s:6*60+30, e:9*60, step:10, last:8*60+30 }; // 朝の枠（前日まで）
+const MORNING = { s:6*60+30, e:9*60, step:10, last:8*60+30 }; // 朝の枠（前日の22:00まで）
+const MORNING_CUTOFF = 22*60;
+// 今の日本時間（分）。開いたまま時間がたっても、朝の枠の締切を正しく判定するため毎回計算する
+const jstMinNow = () => { const d = new Date(Date.now() + 9*3600e3); return d.getUTCHours()*60 + d.getUTCMinutes(); };
 const hoursOf = k => k === "full" ? { s:9*60, e:22*60+40, step:30, last:22*60+40 } : { s:21*60+10, e:22*60+40, step:10, last:21*60+40 };
 
 function price(c, visit, pay, a) {
@@ -65,7 +68,7 @@ function slots(s, c) {
       out.push({ m, morning, taken: res.some(b => m < b.e + GAP && b.s < e) });
     }
   };
-  if (a >= 1) add(MORNING, true); // 朝の枠は前日の23:59まで
+  if (a >= 2 || (a === 1 && jstMinNow() < MORNING_CUTOFF)) add(MORNING, true); // 朝の枠は前日の22:00まで
   if (!(k === "night" && res.some(b => !b.blk && b.s >= h.s))) add(h, false); // 夜の特別枠は1日1組
   return out;
 }
@@ -224,11 +227,11 @@ function render() {
       <div class="cal">
         <div class="cal-head"><button type="button" id="pm" ${ui.mo<=0?"disabled":""}>前の月</button><strong>${y}年${mo+1}月</strong><button type="button" id="nm" ${ui.mo>=maxMo?"disabled":""}>次の月</button></div>
         <div class="grid">${cells}</div>
-        <div class="legend"><span>◎ 空きあり</span><span>▲ 空き少なめ</span><span>残1 残り1枠</span><span><span class="nt">夜</span> 夜の特別枠（1日1組）</span><span>朝 6:30〜9:00の枠は前日まで</span><span><b>−500円</b> 前日まで</span><span><b>−1,000円</b> 7日以上前</span></div>
+        <div class="legend"><span>◎ 空きあり</span><span>▲ 空き少なめ</span><span>残1 残り1枠</span><span><span class="nt">夜</span> 夜の特別枠（1日1組）</span><span>朝 6:30〜9:00の枠は前日22:00まで</span><span><b>−500円</b> 前日まで</span><span><b>−1,000円</b> 7日以上前</span></div>
       </div>`;
     if (ui.date) {
       const sl = slots(ui.date, c);
-      main += `${slots(ui.date, c).some(x => x.morning) ? `<div class="night"><strong>朝の枠</strong>6:30〜9:00のあいだに終わる枠です。前日の23:59までのご予約で承ります（当日のご予約はできません）。</div>` : ""}${kindOf(ui.date) === "night" ? `<div class="night"><strong>夜の特別枠</strong>21:10〜21:40のあいだで、10分単位で開始時間を選べます。1日1組だけの枠です。<br><small>日中は別のお店で施術をしていて、そのあと電車で向かいます。電車の運休や大きな遅れで、開始が遅れたり、キャンセルをお願いしたりすることがあります。当店都合でキャンセルをお願いした場合は、次回の施術を無料にします（くわしくは「ご予約の前に」）。</small></div>` : ""}
+      main += `${slots(ui.date, c).some(x => x.morning) ? `<div class="night"><strong>朝の枠</strong>6:30〜9:00のあいだに終わる枠です。前日の22:00までのご予約で承ります（当日のご予約はできません）。</div>` : ""}${kindOf(ui.date) === "night" ? `<div class="night"><strong>夜の特別枠</strong>21:10〜21:40のあいだで、10分単位で開始時間を選べます。1日1組だけの枠です。<br><small>日中は別のお店で施術をしていて、そのあと電車で向かいます。電車の運休や大きな遅れで、開始が遅れたり、キャンセルをお願いしたりすることがあります。当店都合でキャンセルをお願いした場合は、次回の施術を無料にします（くわしくは「ご予約の前に」）。</small></div>` : ""}
         <h3>${fmt(ui.date)}の開始時間</h3>
         <div class="slots">${sl.map(x => `<button type="button" class="slot" data-t="${x.m}" ${x.taken?"disabled":""} aria-pressed="${ui.time===x.m}">${hm(x.m)}</button>`).join("")}</div>`;
     }

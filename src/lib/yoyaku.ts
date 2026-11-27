@@ -69,8 +69,16 @@ export function hoursOf(kind: DayKind) {
 
 export type Booked = { s: number; e: number; blk?: boolean };
 
-// 朝の枠：6:30〜9:00に終わる枠。受付は前日の23:59まで（当日は不可）。通しの日・夜の特別枠の日に出す
+// 朝の枠：6:30〜9:00に終わる枠。受付は前日の22:00まで（当日は不可）。通しの日・夜の特別枠の日に出す
 export const MORNING = { s: 6 * 60 + 30, e: 9 * 60, step: 10, last: 8 * 60 + 30 };
+export const MORNING_CUTOFF = 22 * 60; // 前日のこの時刻まで
+export function isMorning(c: Course, start: number) {
+  return start >= MORNING.s && start <= MORNING.last && start + c.min <= MORNING.e && (start - MORNING.s) % MORNING.step === 0;
+}
+// 朝の枠の受付が締め切られているか（当日、または前日の22:00を過ぎた）
+export function morningClosed(ahead: number, nowMin: number) {
+  return ahead < 1 || (ahead === 1 && nowMin >= MORNING_CUTOFF);
+}
 
 // 指定の開始時刻が予約できるかどうか
 export function slotOk(kind: DayKind, c: Course, start: number, booked: Booked[], ahead: number, nowMin: number) {
@@ -79,7 +87,7 @@ export function slotOk(kind: DayKind, c: Course, start: number, booked: Booked[]
   const fits = (w: { s: number; e: number; step: number; last: number }) =>
     start >= w.s && start <= w.last && start + c.min <= w.e && (start - w.s) % w.step === 0;
   if (fits(MORNING)) {
-    if (ahead < 1) return false; // 朝の枠は前日まで
+    if (morningClosed(ahead, nowMin)) return false; // 朝の枠は前日の22:00まで
   } else {
     const h = hoursOf(kind);
     if (!fits(h)) return false;
