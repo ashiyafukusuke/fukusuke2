@@ -69,15 +69,23 @@ export function hoursOf(kind: DayKind) {
 
 export type Booked = { s: number; e: number; blk?: boolean };
 
+// 朝の枠：6:30〜9:00に終わる枠。受付は前日の23:59まで（当日は不可）。通しの日・夜の特別枠の日に出す
+export const MORNING = { s: 6 * 60 + 30, e: 9 * 60, step: 10, last: 8 * 60 + 30 };
+
 // 指定の開始時刻が予約できるかどうか
 export function slotOk(kind: DayKind, c: Course, start: number, booked: Booked[], ahead: number, nowMin: number) {
   if (kind === "closed") return false;
   if (ahead < 0 || ahead > HORIZON) return false;
-  const h = hoursOf(kind);
-  if (start < h.s || start > h.last || start + c.min > h.e) return false;
-  if ((start - h.s) % h.step !== 0) return false;
-  if (ahead === 0 && start < nowMin + CUTOFF) return false;
-  if (kind === "night" && booked.some((b) => !b.blk)) return false; // 夜の特別枠は1日1組
+  const fits = (w: { s: number; e: number; step: number; last: number }) =>
+    start >= w.s && start <= w.last && start + c.min <= w.e && (start - w.s) % w.step === 0;
+  if (fits(MORNING)) {
+    if (ahead < 1) return false; // 朝の枠は前日まで
+  } else {
+    const h = hoursOf(kind);
+    if (!fits(h)) return false;
+    if (ahead === 0 && start < nowMin + CUTOFF) return false;
+    if (kind === "night" && booked.some((b) => !b.blk && b.s >= h.s)) return false; // 夜の特別枠は1日1組
+  }
   const e = start + c.min + GAP;
   return !booked.some((b) => start < b.e + GAP && b.s < e);
 }

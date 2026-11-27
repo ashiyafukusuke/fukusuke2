@@ -198,7 +198,7 @@ function render() {
 
   // 縦型カレンダー（日ごとの列・時間は縦）
   const PX = 0.9, GAPM = 15;
-  const minS = Math.min(9 * 60, ...data.bookings.map(b => +b.start_min), ...(data.blocks || []).map(x => +x.start_min));
+  const minS = Math.min(6 * 60 + 30, ...data.bookings.map(b => +b.start_min), ...(data.blocks || []).map(x => +x.start_min));
   const maxE = Math.max(23 * 60, ...data.bookings.map(b => +b.end_min + GAPM), ...(data.blocks || []).map(x => +x.end_min));
   const T0 = Math.floor(minS / 60) * 60, T1 = Math.ceil(maxE / 60) * 60, H = (T1 - T0) * PX, y = m => (m - T0) * PX;
   const nowD = new Date(Date.now() + 9 * 3600e3), nowM = nowD.getUTCHours() * 60 + nowD.getUTCMinutes();
@@ -210,6 +210,7 @@ function render() {
     vhead += `<div class="vc-h${d.date === data.today ? " today" : ""}${w === 6 ? " sat" : w === 0 ? " sun" : ""}"><b>${+d.date.slice(5, 7)}/${+d.date.slice(8)}</b>${WD[w]}・${KIND[d.kind]}</div>`;
     let c = "";
     for (let m = T0 + 60; m < T1; m += 60) c += `<div class="vc-line" style="top:${y(m)}px"></div>`;
+    if (HRS[d.kind]) c += `<div class="vc-open${data.published && d.date > data.published ? " off" : ""}" style="top:${y(6 * 60 + 30)}px;height:${150 * PX}px"></div>`; // 朝の枠
     if (HRS[d.kind]) { const [a, b] = HRS[d.kind]; c += `<div class="vc-open${data.published && d.date > data.published ? " off" : ""}" style="top:${y(a)}px;height:${(b - a) * PX}px"></div>`; }
     for (const x of (data.blocks || []).filter(x => x.date === d.date))
       c += `<div class="vc-ev blk" data-vbl="${x.id}" style="top:${y(+x.start_min)}px;height:${(+x.end_min - +x.start_min) * PX}px"><b>ブロック</b>${hm(+x.start_min)}〜${hm(+x.end_min)} ${esc(x.note || "")}</div>`;
