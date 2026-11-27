@@ -98,14 +98,14 @@ export default function Home() {
 
       {/* お知らせ */}
       <section id="news" style={{ borderBottom: "1px solid #ebe9e4" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "32px 24px", display: "flex", flexWrap: "wrap", gap: "12px 48px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "20px 24px", display: "flex", flexWrap: "wrap", gap: "8px 48px", alignItems: "center" }}>
           <div style={{ flex: "1 1 220px", minWidth: 0 }}>
-            <p style={{ margin: "0 0 6px", fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "17px", color: "#9b321f" }}>News</p>
+            <p style={{ margin: "0 0 2px", fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "15px", color: "#9b321f" }}>News</p>
             <h2 style={{ margin: 0, fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(22px, 2.6vw, 26px)", letterSpacing: "0.1em" }}>お知らせ</h2>
           </div>
           <div style={{ flex: "3 1 640px", minWidth: 0 }}>
             <ul style={{ listStyle: "none", margin: 0, padding: 0, borderTop: "1px solid #ebe9e4" }}>
-              {news.slice(0, 3).map((n) => (
+              {news.slice(0, 1).map((n) => (
                 <li key={n.id} style={{ borderBottom: "1px solid #ebe9e4" }}>
                   <Link href={`/news#${n.id}`} className="news-row">
                     <time dateTime={n.date}>{formatDate(n.date)}</time>
@@ -119,47 +119,6 @@ export default function Home() {
             </p>
           </div>
         </div>
-      </section>
-
-      {/* 初めての方へ（アコーディオン） */}
-      <section id="first" style={{ borderBottom: "1px solid #ebe9e4", background: "#f8f6f1" }}>
-        <details style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
-          <summary style={{ listStyle: "none", cursor: "pointer", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "12px 24px", padding: "20px 0", minHeight: "44px" }}>
-            <span style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: "6px 20px" }}>
-              <span style={{ fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(22px, 2.6vw, 26px)", letterSpacing: "0.1em", color: "#1a1a1a" }}>初めての方へ</span>
-              <span style={{ fontSize: "13px", fontStyle: "normal", fontWeight: 700, color: "#9b321f" }}>※初めての方は必ずご覧ください</span>
-            </span>
-            <span className="tog" style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "13px", color: "#1a1a1a" }}>
-              <span className="tog-o">開く</span><span className="tog-c">閉じる</span>
-              <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 5l4 4 4-4" fill="none" stroke="#1a1a1a" strokeWidth="1.4"></path></svg>
-            </span>
-          </summary>
-          <div style={{ padding: "4px 0 36px" }}>
-            <div style={{ flex: "3 1 640px", minWidth: 0, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))", gap: "28px 36px" }}>
-              <div style={{ borderTop: "1px solid #9b321f", paddingTop: "18px" }}>
-                <h3 style={{ margin: "0 0 6px", fontFamily: "'Shippori Mincho', serif", fontWeight: 600, fontSize: "19px", letterSpacing: "0.06em" }}>左足トライアル</h3>
-                <p style={{ margin: "0 0 8px", fontWeight: 700, fontSize: "14px" }}>合わなければ、お代は頂きません。</p>
-                <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>60分・90分枠が対象です。まず左足から始め、片足が終わった時点で「合わない」と感じたら、そこで終了します。</p>
-              </div>
-              <div style={{ borderTop: "1px solid #ebe9e4", paddingTop: "18px" }}>
-                <h3 style={{ margin: "0 0 6px", fontFamily: "'Shippori Mincho', serif", fontWeight: 600, fontSize: "19px", letterSpacing: "0.06em" }}>枠の中ですべて完結</h3>
-                <p style={{ margin: "0 0 8px", fontWeight: 700, fontSize: "14px" }}>遅れても、終了時間は変わりません。</p>
-                <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>施術・お着替え・お会計まで、ご予約の枠の中で終わります。延長のご案内もしていません。到着は5分前ごろを目安にお越しください。早く着いた場合、早めに始められるときは、早めに始めるか予約どおりの時間に始めるかを選べます。</p>
-              </div>
-              <div style={{ borderTop: "1px solid #ebe9e4", paddingTop: "18px" }}>
-                <h3 style={{ margin: "0 0 6px", fontFamily: "'Shippori Mincho', serif", fontWeight: 600, fontSize: "19px", letterSpacing: "0.06em" }}>予約のお約束</h3>
-                <p style={{ margin: "0 0 8px", fontWeight: 700, fontSize: "14px" }}>当日キャンセルでも、キャンセル料は頂きません。</p>
-                <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>ただし、無断キャンセルの場合と、直前のキャンセルが続く場合は、以降のご予約をお受けしないことがあります。</p>
-              </div>
-            </div>
-            <p style={{ margin: "24px 0 0", fontSize: "13px", color: "#3d3a34", lineHeight: 1.85 }}>
-              施術はベッドで横になるのではなく、リクライニングチェアに座ったまま、膝まわりまで行います。お着替え用のハーフパンツとひざ掛けもご用意しています。
-            </p>
-            <p style={{ margin: "20px 0 0" }}>
-              <Link className="lnk" href="/first" style={{ color: "#1a1a1a", fontSize: "13px" }}><span>服装・到着時間・ご予約のルールなど、くわしくはこちら</span></Link>
-            </p>
-          </div>
-        </details>
       </section>
 
       {/* クチコミ（Voices） */}

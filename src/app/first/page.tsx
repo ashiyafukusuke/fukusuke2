@@ -112,6 +112,13 @@ export default function FirstPage() {
                 <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>妊娠中の方は、安定期に入っていればお受けしています。お子さまのご利用は、事前にご相談ください。</p>
               </div>
             </div>
+            <div className="room" style={{ marginTop: "36px", paddingTop: "32px", borderTop: "1px solid #ebe9e4", display: "flex", flexWrap: "wrap", gap: "20px 32px", alignItems: "flex-start" }}>
+              <img src="/images/room-door.jpg" alt="R-09のドアを開けたところ。正面に黒いカーテン、手前にリクライニングチェアと赤いスツールがある小さな個室" loading="lazy" style={{ flex: "0 1 280px", width: "100%", maxWidth: "280px", height: "auto", display: "block", borderRadius: "2px", background: "#f1efea" }} />
+              <div style={{ flex: "1 1 260px", minWidth: 0 }}>
+                <h3 style={{ margin: "0 0 8px", fontSize: "14px", fontWeight: 700 }}>小さな個室で、ひとりでやっています</h3>
+                <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>R-09のドアを開けると、このお部屋です。3.4㎡ほどの小さな個室で、施術者の福助がひとりで営業しています。リクライニングチェアに座ったまま受けていただき、ご予約の時間中は貸切です。他のお客様と顔を合わせることはありません。</p>
+              </div>
+            </div>
             <p style={{ margin: "32px 0 0", fontSize: "12px", color: "#5c5c5c" }}>足の硬さや左右の違いなど、気づいたことは施術中にお伝えします。痛みやしびれが続く場合は、整形外科（足の外科）の受診をおすすめします。</p>
           </div>
         </div>
