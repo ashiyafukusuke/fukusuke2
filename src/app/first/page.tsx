@@ -148,7 +148,7 @@ export default function FirstPage() {
               <dt style={{ fontWeight: 700 }}>夜の特別枠</dt>
               <dd style={{ margin: 0 }}><span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "22px" }}>21:10 – 22:40</span><span style={{ fontSize: "12px", color: "#5c5c5c", marginLeft: "12px" }}>それ以外の日</span></dd>
             </dl>
-            <p style={{ margin: "-8px 0 20px", fontSize: "13px", color: "#3d3a34" }}>仕事帰りに、足を軽くしてそのまま帰れる夜の枠です。日中に営業できる日が限られるぶん、夜も開けています。</p>
+            <p style={{ margin: "-8px 0 20px", fontSize: "13px", color: "#3d3a34" }}>仕事帰りに、足を軽くしてそのまま帰れる夜の枠です。日中に営業できる日が限られるぶん、夜も開けています。<br />施術者が電車で移動してから始める枠のため、電車の運休や大きな遅れで、開始が遅れたり、キャンセルをお願いしたりすることがあります。あらかじめご了承ください。当店の都合でキャンセル・変更をお願いした場合は、次回の施術を無料にします。</p>
             <BusinessCalendar />
             <p data-ga-view="first_view_calendar" style={{ margin: "12px 0 0", fontSize: "13px", color: "#3d3a34" }}>当日のご予約も、空き枠があれば、開始1時間前までWebで承っています。</p>
             <a href="/yoyaku" style={{ marginTop: "20px", background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "15px 44px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.12em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>空き時間を見て予約する</a>

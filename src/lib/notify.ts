@@ -1,5 +1,5 @@
 // 予約が確定したときの連絡：お客様への確認メール・店主へのメール・店主のスマホ通知（ntfy）
-import { fmtDate, hm, manageUrl, MAX_CHANGES, site, sql } from "@/lib/yoyaku";
+import { fmtDate, hm, kindsFor, manageUrl, MAX_CHANGES, site, sql } from "@/lib/yoyaku";
 
 const OWNER = "fukusuke@itakimo.net";
 // 店主への予約メールの送り先（届かなかったときの控えに Gmail にも送る）
@@ -88,6 +88,7 @@ export async function notifyConfirmed(id: string, origin: string, opts: { custom
     const d = details(r);
     const tasks: Promise<unknown>[] = [];
 
+    const night = (await kindsFor(r.date!, r.date!))(r.date!) === "night";
     if (r.mail) {
       const first = r.visit === "first";
       const text = [
@@ -110,6 +111,7 @@ export async function notifyConfirmed(id: string, origin: string, opts: { custom
         `■ ご予約について`,
         `・遅れても、終了時間は変わりません。`,
         `・キャンセル料は頂きません。無断キャンセルの方からは、以降のご予約をお受けしていません。`,
+        night ? `・夜の特別枠は、施術者が電車で移動してから始める枠です。電車の運休や大きな遅れで、開始が遅れたり、当店からキャンセルや変更をお願いしたりすることがあります。その場合はすぐにご連絡し、当店都合のキャンセル・変更は、事前決済の分を全額お返しのうえ、次回の施術を無料にします。` : null,
         `・前日の23:59までは、下のリンクからご自分で日時の変更（${MAX_CHANGES}回まで）とキャンセルができます。`,
         `　${manageUrl(origin, r.token)}`,
         `・コース（60分・90分）を変えたい場合は、一度キャンセルしてから、改めてご予約ください。同じ日のうちに取り直せば、キャンセルの回数には数えません。`,
