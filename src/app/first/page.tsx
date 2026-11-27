@@ -129,6 +129,7 @@ export default function FirstPage() {
             <ol className="rules">
               <li><div><strong>遅れても、終了時間は変わりません。</strong><span>施術・お着替え・お会計まで、ご予約の枠の中で終わります。延長のご案内もしていません。遅れそうなときも、焦らず安全第一でお越しください。早く着いても大丈夫ですが、前のご予約があるときなどは、開始を早められません。あらかじめご了承ください。早めに始められるときは、次のどちらかをお選びいただけます。</span><ul style={{ margin: "6px 0", paddingLeft: "1.2em" }}><li>早めに始めて、そのぶん早めに終わる（施術は60分なら60分、90分なら90分）</li><li>ご予約の時間に始めて、ご予約どおりの時間に終わる</li></ul><span>施術時間には、最後のクリームの拭き取りまで含みます。</span></div></li>
               <li><div><strong>キャンセル料は頂きません。</strong><span>ただし、無断キャンセルの方からは、以降のご予約をお受けしていません。直前のキャンセルが続く場合も、お受けしないことがあります。体調やご家族の事情、足のけがなどでのキャンセルは、ご連絡があれば対象にしません。</span></div></li>
+              <li><div><strong>当店の都合でキャンセル・変更をお願いする場合</strong><span>施術者の体調不良や、電車の運休・大きな遅れなどで、当店からキャンセルや変更をお願いすることがあります。お客様にだけキャンセルの決まりがあるのは公平ではないので、当店都合のキャンセルは、事前決済の分を全額お返しし、次回の施術を無料にすることを原則とします。日時の変更は、変更の幅などを考えて、その都度ご相談のうえ対応します。</span></div></li>
               <li><div><strong>変更・キャンセルの方法</strong><span>ご予約日の前日までは、確認メールの専用リンクからご自身でできます。それ以外は、メール（<a href="mailto:fukusuke@itakimo.net" style={{ color: "#3d3a34" }}>fukusuke@itakimo.net</a>）・Instagram DM・<a href="https://itakimo-hibarigaoka.stores.jp/reserve/itakimo_hibarigaoka/contact" style={{ color: "#3d3a34" }}>お問い合わせフォーム</a>からご連絡ください。細かい条件は、ご予約の画面でご案内しています。</span></div></li>
             </ol>
             <p style={{ margin: "14px 0 0", fontSize: "12px", color: "#5c5c5c" }}>ルールを決めている理由は、<Link href="/stance" style={{ color: "#9b321f" }}>イタキモの考え方</Link>に書いています。</p>
@@ -148,7 +149,7 @@ export default function FirstPage() {
               <dt style={{ fontWeight: 700 }}>夜の特別枠</dt>
               <dd style={{ margin: 0 }}><span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "22px" }}>21:10 – 22:40</span><span style={{ fontSize: "12px", color: "#5c5c5c", marginLeft: "12px" }}>それ以外の日</span></dd>
             </dl>
-            <p style={{ margin: "-8px 0 20px", fontSize: "13px", color: "#3d3a34" }}>仕事帰りに、足を軽くしてそのまま帰れる夜の枠です。日中に営業できる日が限られるぶん、夜も開けています。<br />夜の特別枠の日は、日中、別のお店で施術をしてから電車で向かいます。そのため、電車の運休や大きな遅れで、開始が遅れたり、キャンセルをお願いしたりすることがあります。あらかじめご了承ください。当店の都合でキャンセル・変更をお願いした場合は、次回の施術を無料にします。</p>
+            <p style={{ margin: "-8px 0 20px", fontSize: "13px", color: "#3d3a34" }}>仕事帰りに、足を軽くしてそのまま帰れる夜の枠です。日中に営業できる日が限られるぶん、夜も開けています。<br />夜の特別枠の日は、日中、別のお店で施術をしてから電車で向かいます。そのため、電車の運休や大きな遅れで、開始が遅れたり、キャンセルをお願いしたりすることがあります。あらかじめご了承ください。当店の都合でキャンセルをお願いした場合の対応は、上の「ご予約のルール」のとおりです。</p>
             <BusinessCalendar />
             <p data-ga-view="first_view_calendar" style={{ margin: "12px 0 0", fontSize: "13px", color: "#3d3a34" }}>当日のご予約も、空き枠があれば、開始1時間前までWebで承っています。</p>
             <a href="/yoyaku" style={{ marginTop: "20px", background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "15px 44px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.12em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>空き時間を見て予約する</a>
