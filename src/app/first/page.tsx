@@ -169,15 +169,23 @@ export default function FirstPage() {
             <div style={{ borderTop: "1px solid #ebe9e4", fontSize: "13px" }}>
               <div style={{ padding: "14px 0", borderBottom: "1px solid #ebe9e4" }}>
                 <p style={{ margin: "0 0 2px", fontWeight: 700 }}>ひばりヶ丘駅（西武池袋線）</p>
-                <p style={{ margin: 0, color: "#3d3a34" }}>徒歩17分、または西武バス「境04」で「交番前」下車 徒歩1分</p>
+                <p style={{ margin: 0, color: "#3d3a34" }}>徒歩17分、または西武バス「境04」「鷹22」「田43」で「交番前」下車 徒歩1分</p>
               </div>
               <div style={{ padding: "14px 0", borderBottom: "1px solid #ebe9e4" }}>
                 <p style={{ margin: "0 0 2px", fontWeight: 700 }}>田無駅（西武新宿線）・武蔵境駅（JR中央線）</p>
-                <p style={{ margin: 0, color: "#3d3a34" }}>西武バス「境04」で「交番前」下車 徒歩1分</p>
+                <p style={{ margin: 0, color: "#3d3a34" }}>西武バス「境04」で「交番前」下車 徒歩1分（田無駅からは「田43」も通ります）</p>
               </div>
               <div style={{ padding: "14px 0", borderBottom: "1px solid #ebe9e4" }}>
                 <p style={{ margin: "0 0 2px", fontWeight: 700 }}>三鷹駅（JR中央線）</p>
-                <p style={{ margin: 0, color: "#3d3a34" }}>西武バス「鷹22」で「交番前」下車 徒歩1分</p>
+                <p style={{ margin: 0, color: "#3d3a34" }}>北口から西武バス「鷹22」で「交番前」下車 徒歩1分。乗り換えなしで来られます</p>
+              </div>
+              <div style={{ padding: "14px 0", borderBottom: "1px solid #ebe9e4" }}>
+                <p style={{ margin: "0 0 2px", fontWeight: 700 }}>吉祥寺駅</p>
+                <p style={{ margin: 0, color: "#3d3a34" }}>JR中央線で三鷹駅へ（1駅）。三鷹駅北口から西武バス「鷹22」で「交番前」下車 徒歩1分</p>
+              </div>
+              <div style={{ padding: "14px 0", borderBottom: "1px solid #ebe9e4" }}>
+                <p style={{ margin: "0 0 2px", fontWeight: 700 }}>東久留米駅（西武池袋線）</p>
+                <p style={{ margin: 0, color: "#3d3a34" }}>西武池袋線でひばりヶ丘駅へ（1駅）。あとは上の「ひばりヶ丘駅」と同じです</p>
               </div>
               <div style={{ padding: "14px 0", borderBottom: "1px solid #ebe9e4" }}>
                 <p style={{ margin: "0 0 2px", fontWeight: 700 }}>お車・自転車</p>
