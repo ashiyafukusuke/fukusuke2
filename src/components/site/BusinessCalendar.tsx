@@ -1,4 +1,4 @@
-import { upcomingMonths, holidaysOf, notesOf, type DayType, type MonthCalendar } from "@/data/calendar";
+import { months as staticMonths, upcomingMonths, holidaysOf, notesOf, type DayType, type MonthCalendar } from "@/data/calendar";
 import { jstNow, kindsFor } from "@/lib/yoyaku";
 import { getSetting } from "@/lib/notify";
 
@@ -87,6 +87,11 @@ async function fromBooking(): Promise<Month[]> {
       year: yy, month: mm,
       typeOf: (d) => {
         const ds = `${yy}-${pad(mm)}-${pad(d)}`;
+        if (ds < today) {
+          // 過ぎた日は、予約システムに登録がない時期もあるため、手書きの予定を使う
+          const st = staticMonths.find((c) => c.year === yy && c.month === mm);
+          if (st) return st.days[d] ?? st.defaultType;
+        }
         return published && ds > published ? "tbd" : kind(ds);
       },
       holidays: holidaysOf(yy, mm), notes: notesOf(yy, mm),
