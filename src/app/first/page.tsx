@@ -156,9 +156,10 @@ export default function FirstPage() {
               <dt style={{ fontWeight: 700 }}>夜の特別枠</dt>
               <dd style={{ margin: 0 }}><span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "22px" }}>21:10 – 22:40</span><span style={{ fontSize: "12px", color: "#5c5c5c", marginLeft: "12px" }}>それ以外の日</span></dd>
               <dt style={{ fontWeight: 700 }}>朝の枠</dt>
-              <dd style={{ margin: 0 }}><span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "22px" }}>6:30 – 9:00</span><span style={{ fontSize: "12px", color: "#5c5c5c", marginLeft: "12px" }}>営業日の朝。前日の22:00までのご予約で</span></dd>
+              <dd style={{ margin: 0 }}><span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "22px" }}>6:30 – 9:00</span><span style={{ fontSize: "12px", color: "#5c5c5c", marginLeft: "12px" }}>前日22:00までのご予約</span></dd>
             </dl>
-            <p style={{ margin: "-8px 0 20px", fontSize: "13px", color: "#3d3a34" }}>仕事帰りに、足を軽くしてそのまま帰れる夜の枠です。日中に営業できる日が限られるぶん、夜も開けています。<br />夜の特別枠の日は、日中、別のお店で施術をしてから電車で向かいます。そのため、電車の運休や大きな遅れで、開始が遅れたり、キャンセルをお願いしたりすることがあります。あらかじめご了承ください。当店の都合でキャンセルをお願いした場合は、次回の施術を無料にします。</p>
+            <p style={{ margin: "-8px 0 14px", fontSize: "12px", color: "#5c5c5c" }}>22:00を過ぎてから翌朝の枠をご希望の場合は、<a href="mailto:fukusuke@itakimo.net" style={{ color: "#5c5c5c" }}>fukusuke@itakimo.net</a> までご連絡ください。原則としてお受けできませんが、対応できる場合は折り返しご連絡します。</p>
+            <p style={{ margin: "0 0 20px", fontSize: "13px", color: "#3d3a34" }}>仕事帰りに、足を軽くしてそのまま帰れる夜の枠です。日中に営業できる日が限られるぶん、夜も開けています。<br />夜の特別枠の日は、日中、別のお店で施術をしてから電車で向かいます。そのため、電車の運休や大きな遅れで、開始が遅れたり、キャンセルをお願いしたりすることがあります。あらかじめご了承ください。当店の都合でキャンセルをお願いした場合は、次回の施術を無料にします。</p>
             <BusinessCalendar />
             <p data-ga-view="first_view_calendar" style={{ margin: "12px 0 0", fontSize: "13px", color: "#3d3a34" }}>当日のご予約も、空き枠があれば、開始1時間前までWebで承っています。</p>
             <a href="/yoyaku" style={{ marginTop: "20px", background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "15px 44px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.12em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>空き時間を見て予約する</a>

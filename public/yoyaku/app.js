@@ -231,7 +231,7 @@ function render() {
       </div>`;
     if (ui.date) {
       const sl = slots(ui.date, c);
-      main += `${slots(ui.date, c).some(x => x.morning) ? `<div class="night"><strong>朝の枠</strong>6:30〜9:00のあいだに終わる枠です。前日の22:00までのご予約で承ります（当日のご予約はできません）。</div>` : ""}${kindOf(ui.date) === "night" ? `<div class="night"><strong>夜の特別枠</strong>21:10〜21:40のあいだで、10分単位で開始時間を選べます。1日1組だけの枠です。<br><small>日中は別のお店で施術をしていて、そのあと電車で向かいます。電車の運休や大きな遅れで、開始が遅れたり、キャンセルをお願いしたりすることがあります。当店都合でキャンセルをお願いした場合は、次回の施術を無料にします（くわしくは「ご予約の前に」）。</small></div>` : ""}
+      main += `${slots(ui.date, c).some(x => x.morning) ? `<div class="night"><strong>朝の枠</strong>6:30〜9:00のあいだに終わる枠です。前日の22:00までのご予約で承ります（当日のご予約はできません）。<br><small>22:00を過ぎてから翌朝の枠をご希望の場合は、<a href="mailto:fukusuke@itakimo.net">fukusuke@itakimo.net</a> までご連絡ください。原則としてお受けできませんが、対応できる場合は折り返しご連絡します。</small></div>` : ""}${kindOf(ui.date) === "night" ? `<div class="night"><strong>夜の特別枠</strong>21:10〜21:40のあいだで、10分単位で開始時間を選べます。1日1組だけの枠です。<br><small>日中は別のお店で施術をしていて、そのあと電車で向かいます。電車の運休や大きな遅れで、開始が遅れたり、キャンセルをお願いしたりすることがあります。当店都合でキャンセルをお願いした場合は、次回の施術を無料にします（くわしくは「ご予約の前に」）。</small></div>` : ""}
         <h3>${fmt(ui.date)}の開始時間</h3>
         <div class="slots">${sl.map(x => `<button type="button" class="slot" data-t="${x.m}" ${x.taken?"disabled":""} aria-pressed="${ui.time===x.m}">${hm(x.m)}</button>`).join("")}</div>`;
     }

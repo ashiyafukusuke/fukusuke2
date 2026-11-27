@@ -281,7 +281,7 @@ export default function Home() {
               <p style={{ margin: "0 0 8px", fontWeight: 700 }}>営業時間</p>
               <p style={{ margin: 0, color: "#3d3a34" }}>通し営業　9:00–22:40（主に水・木）</p>
               <p style={{ margin: "0 0 6px", color: "#3d3a34" }}>夜の特別枠　21:10–22:40（それ以外の日）</p>
-              <p style={{ margin: "0 0 6px", color: "#3d3a34" }}>朝の枠　6:30–9:00（営業日の朝・前日22:00までのご予約）</p>
+              <p style={{ margin: "0 0 6px", color: "#3d3a34" }}>朝の枠　6:30–9:00（前日22:00までのご予約）</p>
               <p style={{ margin: "0 0 10px", fontSize: "12px", color: "#5c5c5c" }}>仕事帰りに、足を軽くしてそのまま帰れる夜の枠です。日中に営業できる日が限られるぶん、夜も開けています。</p>
               <Link className="lnk" href="/first#hours" style={{ color: "#1a1a1a" }}><span>今月の営業カレンダー</span></Link>
             </div>
