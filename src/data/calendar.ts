@@ -78,3 +78,21 @@ export const dayTypeLabel: Record<DayType, { label: string; time: string }> = {
   night: { label: "夜の特別枠", time: "21:10–22:40" },
   closed: { label: "休業", time: "" },
 };
+
+// 祝日と、休業日の理由（営業カレンダーの表示用）。予約システムの営業日と組み合わせて使う
+const HOLIDAYS: Record<string, number[]> = {
+  "2026-11": [3, 23],
+  "2026-12": [],
+  "2027-1": [1, 11],
+  "2027-2": [11, 23],
+  "2027-3": [21, 22],
+};
+const NOTES: Record<string, Record<number, string>> = {
+  "2026-11": { 29: "足ツボグランプリ2026 決勝大会 出場のため休業" },
+};
+export function holidaysOf(year: number, month: number) {
+  return HOLIDAYS[`${year}-${month}`] ?? months.find((c) => c.year === year && c.month === month)?.holidays ?? [];
+}
+export function notesOf(year: number, month: number) {
+  return NOTES[`${year}-${month}`] ?? {};
+}

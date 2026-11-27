@@ -90,7 +90,12 @@ export default function Home() {
             <div className="hero-cta">
               <a href="/yoyaku" style={{ background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "15px 40px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.12em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>予約する</a>
               <a href="#menu" style={{ color: "#1a1a1a", fontSize: "14px", textUnderlineOffset: "6px", minHeight: "44px", display: "inline-flex", alignItems: "center" }}>メニューと料金</a>
-              <p className="hero-note">強さは、いつでも調整できます。<br />初めての方は「左足トライアル」。合わなければ、お代は頂きません。</p>
+              <p className="hero-note">強さは、いつでも調整できます。</p>
+              <div className="hero-first">
+                <p className="hero-first-h">初めての方</p>
+                <p className="hero-first-t">左足トライアル。合わなければ、お代は頂きません（60分・90分枠）。</p>
+                <Link className="lnk" href="/first" style={{ color: "#1a1a1a", fontSize: "13px" }}><span>「初めての方へ」を読む</span></Link>
+              </div>
             </div>
           </div>
         </div>
@@ -279,9 +284,9 @@ export default function Home() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "28px 40px", fontSize: "13px" }}>
             <div style={{ borderTop: "1px solid #1a1a1a", paddingTop: "16px" }}>
               <p style={{ margin: "0 0 8px", fontWeight: 700 }}>営業時間</p>
-              <p style={{ margin: 0, color: "#3d3a34" }}>通し営業　9:00–22:40（主に水・木）</p>
-              <p style={{ margin: "0 0 6px", color: "#3d3a34" }}>夜の特別枠　21:10–22:40（それ以外の日）</p>
-              <p style={{ margin: "0 0 6px", color: "#3d3a34" }}>朝の枠　6:30–9:00（前日22:00までのご予約）</p>
+              <p style={{ margin: 0, color: "#3d3a34" }}>通しの日　6:30–22:40（主に水・木）</p>
+              <p style={{ margin: 0, color: "#3d3a34" }}>それ以外の日　朝 6:30–9:00・夜 21:10–22:40</p>
+              <p style={{ margin: "0 0 6px", fontSize: "12px", color: "#5c5c5c" }}>朝の枠（6:30–9:00）は前日22:00までのご予約です。</p>
               <p style={{ margin: "0 0 10px", fontSize: "12px", color: "#5c5c5c" }}>仕事帰りに、足を軽くしてそのまま帰れる夜の枠です。日中に営業できる日が限られるぶん、夜も開けています。</p>
               <Link className="lnk" href="/first#hours" style={{ color: "#1a1a1a" }}><span>今月の営業カレンダー</span></Link>
             </div>
@@ -290,11 +295,6 @@ export default function Home() {
               <p style={{ margin: 0, color: "#3d3a34" }}>西東京市ひばりが丘 HIBARIDO 2F R-09</p>
               <p style={{ margin: "0 0 10px", color: "#3d3a34" }}>ひばりヶ丘駅・田無駅から西武バス「交番前」下車 徒歩1分</p>
               <Link className="lnk" href="/first#access" style={{ color: "#1a1a1a" }}><span>アクセスを詳しく見る</span></Link>
-            </div>
-            <div style={{ borderTop: "1px solid #1a1a1a", paddingTop: "16px" }}>
-              <p style={{ margin: "0 0 8px", fontWeight: 700 }}>初めての方</p>
-              <p style={{ margin: "0 0 10px", color: "#3d3a34" }}>左足トライアル。合わなければ、お代は頂きません（60分・90分枠）。</p>
-              <Link className="lnk" href="/first" style={{ color: "#1a1a1a" }}><span>「初めての方へ」を読む</span></Link>
             </div>
           </div>
           <p style={{ margin: "28px 0 0", fontSize: "12px", color: "#5c5c5c" }}>

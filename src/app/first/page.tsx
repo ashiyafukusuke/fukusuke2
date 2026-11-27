@@ -151,17 +151,15 @@ export default function FirstPage() {
             <p style={{ margin: "0 0 6px", fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "17px", color: "#9b321f" }}>Hours</p>
             <h2 style={{ margin: "0 0 24px", fontFamily: "'Shippori Mincho', serif", fontWeight: 500, fontSize: "clamp(24px, 3vw, 30px)", letterSpacing: "0.1em" }}>営業日</h2>
             <dl style={{ margin: "0 0 24px", display: "grid", gridTemplateColumns: "auto 1fr", gap: "10px 24px", fontSize: "14px", alignItems: "baseline" }}>
-              <dt style={{ fontWeight: 700 }}>通し営業</dt>
-              <dd style={{ margin: 0 }}><span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "22px" }}>9:00 – 22:40</span><span style={{ fontSize: "12px", color: "#5c5c5c", marginLeft: "12px" }}>日にちはカレンダーでご確認ください</span></dd>
-              <dt style={{ fontWeight: 700 }}>夜の特別枠</dt>
-              <dd style={{ margin: 0 }}><span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "22px" }}>21:10 – 22:40</span><span style={{ fontSize: "12px", color: "#5c5c5c", marginLeft: "12px" }}>それ以外の日</span></dd>
-              <dt style={{ fontWeight: 700 }}>朝の枠</dt>
-              <dd style={{ margin: 0 }}><span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "22px" }}>6:30 – 9:00</span><span style={{ fontSize: "12px", color: "#5c5c5c", marginLeft: "12px" }}>前日22:00までのご予約</span></dd>
+              <dt style={{ fontWeight: 700 }}>通しの日</dt>
+              <dd style={{ margin: 0 }}><span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "22px" }}>6:30 – 22:40</span><span style={{ fontSize: "12px", color: "#5c5c5c", marginLeft: "12px" }}>主に水・木。日にちはカレンダーで</span></dd>
+              <dt style={{ fontWeight: 700 }}>それ以外の日</dt>
+              <dd style={{ margin: 0 }}><span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "22px" }}>6:30 – 9:00</span><span style={{ fontSize: "12px", color: "#5c5c5c", marginLeft: "12px" }}>朝の枠</span><br /><span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "22px" }}>21:10 – 22:40</span><span style={{ fontSize: "12px", color: "#5c5c5c", marginLeft: "12px" }}>夜の特別枠（1日1組）</span></dd>
             </dl>
-            <p style={{ margin: "-8px 0 14px", fontSize: "12px", color: "#5c5c5c" }}>22:00を過ぎてから翌朝の枠をご希望の場合は、<a href="mailto:fukusuke@itakimo.net" style={{ color: "#5c5c5c" }}>fukusuke@itakimo.net</a> までご連絡ください。原則としてお受けできませんが、対応できる場合は折り返しご連絡します。</p>
+            <p style={{ margin: "-8px 0 14px", fontSize: "12px", color: "#5c5c5c" }}>6:30–9:00の朝の枠は、前日22:00までのご予約です（通しの日も同じです）。22:00を過ぎてから翌朝の枠をご希望の場合は、<a href="mailto:fukusuke@itakimo.net" style={{ color: "#5c5c5c" }}>fukusuke@itakimo.net</a> までご連絡ください。原則としてお受けできませんが、対応できる場合は折り返しご連絡します。</p>
             <p style={{ margin: "0 0 20px", fontSize: "13px", color: "#3d3a34" }}>仕事帰りに、足を軽くしてそのまま帰れる夜の枠です。日中に営業できる日が限られるぶん、夜も開けています。<br />夜の特別枠の日は、日中、別のお店で施術をしてから電車で向かいます。そのため、電車の運休や大きな遅れで、開始が遅れたり、キャンセルをお願いしたりすることがあります。あらかじめご了承ください。当店の都合でキャンセルをお願いした場合は、次回の施術を無料にします。</p>
             <BusinessCalendar />
-            <p data-ga-view="first_view_calendar" style={{ margin: "12px 0 0", fontSize: "13px", color: "#3d3a34" }}>当日のご予約も、空き枠があれば、開始1時間前までWebで承っています。</p>
+            <p data-ga-view="first_view_calendar" style={{ margin: "12px 0 0", fontSize: "13px", color: "#3d3a34" }}>当日のご予約も、空き枠があれば、開始1時間前までWebで承っています（朝の枠を除く）。</p>
             <a href="/yoyaku" style={{ marginTop: "20px", background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "15px 44px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.12em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>空き時間を見て予約する</a>
           </div>
           <div id="access" style={{ flex: "1 1 420px", minWidth: 0 }}>
