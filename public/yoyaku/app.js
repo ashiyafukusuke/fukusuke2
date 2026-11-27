@@ -154,6 +154,12 @@ function doneHtml(b) {
     + placeHtml();
 }
 
+// 予約ページのどこまで進んだかをGA4に送る（同じイベントは1回だけ）
+const TRK = new Set();
+function trk(name, params) {
+  if (TRK.has(name)) return; TRK.add(name);
+  try { window.gtag && gtag("event", name, Object.assign({ yoyaku_source: SOURCE }, params || {})); } catch {}
+}
 function render() {
   const app = document.getElementById("app");
   const head = `<header class="top"><img class="logoimg" src="/logo/logo-horizontal-web.svg" alt="足つぼ専門店 イタキモ"><span class="badge">完全予約制</span></header>`;
@@ -275,7 +281,7 @@ function render() {
   const cm = document.getElementById("copyManage");
   if (cm) cm.onclick = async () => { const u = location.origin + (ui.done && ui.done.manage || ""); try { await navigator.clipboard.writeText(u); cm.textContent = "コピーしました"; } catch { prompt("このURLを控えてください", u); } };
   document.querySelectorAll("[data-v]").forEach(b => b.onclick = () => {
-    ui.visit = b.dataset.v; ui.info = ""; render();
+    ui.visit = b.dataset.v; ui.info = ""; trk("yk_1_visit", { visit: ui.visit }); render();
     // 選んだあと、コースの一覧が見えるところまで少しスクロールする
     const first = document.querySelector("[data-c]");
     if (first) {
@@ -283,13 +289,13 @@ function render() {
       if (y > scrollY) scrollTo({ top: y, behavior: "smooth" });
     }
   });
-  document.querySelectorAll("[data-c]").forEach(b => b.onclick = () => { ui.cid = b.dataset.c; ui.date = null; ui.time = null; render(); });
+  document.querySelectorAll("[data-c]").forEach(b => b.onclick = () => { ui.cid = b.dataset.c; trk("yk_2_course", { course: ui.cid }); ui.date = null; ui.time = null; render(); });
   document.querySelectorAll("input[name=pay]").forEach(r => r.onchange = () => { ui.pay = r.value; render(); });
   const pm = document.getElementById("pm"), nm = document.getElementById("nm");
   if (pm) pm.onclick = () => { ui.mo--; render(); };
   if (nm) nm.onclick = () => { ui.mo++; render(); };
-  document.querySelectorAll("[data-d]").forEach(b => b.onclick = () => { ui.date = b.dataset.d; ui.time = null; render(); });
-  document.querySelectorAll("[data-t]").forEach(b => b.onclick = () => { ui.time = Number(b.dataset.t); render(); });
+  document.querySelectorAll("[data-d]").forEach(b => b.onclick = () => { ui.date = b.dataset.d; if (ui.mode !== "manage") trk("yk_4_date"); ui.time = null; render(); });
+  document.querySelectorAll("[data-t]").forEach(b => b.onclick = () => { ui.time = Number(b.dataset.t); if (ui.mode !== "manage") trk("yk_5_time"); render(); });
   if (ui.step === 3) {
     const g = id => document.getElementById(id);
     g("fn").oninput = e => ui.f.name = e.target.value; g("ft").oninput = e => ui.f.tel = e.target.value;
@@ -308,11 +314,15 @@ function render() {
   if (nx) nx.onclick = () => {
     if (ui.step === 3) return submit(c);
     if (ui.step === 4) { location.href = "/"; return; }
-    ui.info = ""; ui.step++; render(); scrollTo(0,0);
+    ui.info = ""; ui.step++;
+    trk(ui.step === 2 ? "yk_3_to_datetime" : "yk_6_to_form", { course: ui.cid, pay: ui.pay });
+    render(); scrollTo(0,0);
   };
+  document.querySelectorAll(".rdet").forEach(d => d.ontoggle = () => { if (d.open) trk("yk_rules_open"); });
+  if (ui.err && ui.step === 3) trk("yk_form_error", { reason: String(ui.err).slice(0, 60) });
 }
 
-async function submit(c) {
+async function submit(c) { trk("yk_7_submit", { pay: ui.pay });
   if (!ui.f.name.trim()) { ui.err = "ご予約名を入力してください。"; return render(); }
   { const t = ui.f.tel.replace(/[０-９]/g, d => String.fromCharCode(d.charCodeAt(0) - 0xfee0)).replace(/[^\d+]/g, "");
     if (!t) { ui.err = "電話番号を入力してください。"; return render(); }
