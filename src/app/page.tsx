@@ -268,7 +268,8 @@ export default function Home() {
                 <p style={{ margin: "0 0 12px", fontSize: "12px", color: "#5c5c5c" }}>朝の枠（6:30〜9:00）だけのコース</p>
                 <div className="menu-prices">
                   <p><span className="mp-l">どなたも</span><span className="mp-v">4,000</span><span className="mp-y">円</span></p>
-                  <p className="mp-min">初めての方も2回目以降も同じ料金です（割引の対象外）。</p>
+                  <p className="mp-min">早割で最安 <strong>3,000円</strong>（7日以上前のご予約）</p>
+                  <p className="mp-min">初めての方も2回目以降も同じ料金です。</p>
                 </div>
               </div>
             </div>
@@ -280,7 +281,7 @@ export default function Home() {
                 <div>
                   <p className="mo-h">早めのご予約で</p>
                   <p className="mo-v">前日まで <strong>−500円</strong>／7日以上前 <strong>−1,000円</strong></p>
-                  <p className="mo-n">初めての方も対象です。</p>
+                  <p className="mo-n">初めての方も、朝の特別プランも対象です。</p>
                 </div>
                 <div>
                   <p className="mo-h">2回目以降は、事前決済で</p>
@@ -289,7 +290,7 @@ export default function Home() {
                 </div>
                 <div>
                   <p className="mo-h">割引の上限</p>
-                  <p className="mo-v">60分 <strong>1,000円</strong>／90分 <strong>1,500円</strong>まで</p>
+                  <p className="mo-v">40分・60分 <strong>1,000円</strong>／90分 <strong>1,500円</strong>まで</p>
                   <p className="mo-n">早割と事前決済の割引は、上限まで組み合わせられます。</p>
                 </div>
               </div>
