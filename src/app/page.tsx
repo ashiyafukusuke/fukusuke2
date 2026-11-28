@@ -270,7 +270,8 @@ export default function Home() {
           </div>
           <div style={{ marginTop: "28px", paddingTop: "22px", borderTop: "1px solid #ebe9e4", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: "20px 40px" }}>
             <div style={{ flex: "1 1 100%", minWidth: 0 }}>
-              <p style={{ margin: "0 0 14px", fontFamily: "'Shippori Mincho', serif", fontSize: "17px" }}>通ってくださる方ほど安くなるのが、正しいと思っています。</p>
+              <p style={{ margin: "0 0 6px", fontFamily: "'Shippori Mincho', serif", fontSize: "17px" }}>通ってくださる方ほど安くなるのが、正しいと思っています。</p>
+              <p style={{ margin: "0 0 14px" }}><Link className="lnk" href="/hindo" style={{ color: "#1a1a1a", fontSize: "13px" }}><span>どれくらいの頻度で通えばいい？</span></Link></p>
               <div className="menu-offs">
                 <div>
                   <p className="mo-h">早めのご予約で</p>
