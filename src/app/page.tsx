@@ -267,9 +267,8 @@ export default function Home() {
                 </p>
                 <p style={{ margin: "0 0 12px", fontSize: "12px", color: "#5c5c5c" }}>朝の枠（6:30〜9:00）だけのコース</p>
                 <div className="menu-prices">
-                  <p><span className="mp-l">どなたも</span><span className="mp-v">4,000</span><span className="mp-y">円</span></p>
+                  <p><span className="mp-l">料金</span><span className="mp-v">4,000</span><span className="mp-y">円</span></p>
                   <p className="mp-min">早割で最安 <strong>3,000円</strong>（7日以上前のご予約）</p>
-                  <p className="mp-min">初めての方も2回目以降も同じ料金です。</p>
                 </div>
               </div>
             </div>
