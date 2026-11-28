@@ -225,7 +225,7 @@ function render() {
       cells += `<button type="button" class="day" data-d="${s}" ${ok?"":"disabled"} aria-pressed="${ui.date === s}" aria-label="${fmt(s)}${ok?"":"、予約できません"}"><span class="n">${n}</span><span class="s">${st}</span><span class="o">${o}</span></button>`;
     }
     main += `<h2>${ui.mstep === "cal" ? "新しい日時を選ぶ" : "日時を選ぶ"}</h2>
-      <p class="lead">当日のご予約は、開始1時間前まで受け付けています（前のご予約に続く時間は、開始10分前まで）。日付の下の数字が早割の金額です。</p>
+      <p class="lead">当日のご予約は、開始1時間前まで受け付けています。ご予約状況によっては、開始10分前まで受付できる場合があります。日付の下の数字が早割の金額です。</p>
       <div class="cal">
         <div class="cal-head"><button type="button" id="pm" ${ui.mo<=0?"disabled":""}>前の月</button><strong>${y}年${mo+1}月</strong><button type="button" id="nm" ${ui.mo>=maxMo?"disabled":""}>次の月</button></div>
         <div class="grid">${cells}</div>
