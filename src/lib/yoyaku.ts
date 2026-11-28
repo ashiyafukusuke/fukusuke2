@@ -92,7 +92,11 @@ export function slotOk(kind: DayKind, c: Course, start: number, booked: Booked[]
   const fits = (w: { s: number; e: number; step: number; last: number }) =>
     start >= w.s && start <= w.last && start + c.min <= w.e && (start - w.s) % w.step === 0;
   if (fits(MORNING)) {
-    if (morningClosed(ahead, nowMin)) return false; // 朝の枠は前日の22:00まで
+    // 朝の枠は前日の22:00まで。ただし、直前に別の朝の予約があり、すでに店にいる時間は当日も開始10分前まで
+    if (morningClosed(ahead, nowMin)) {
+      if (!alreadyOnsite(start, booked)) return false;
+      if (ahead === 0 && start < nowMin + CUTOFF_ONSITE) return false;
+    }
   } else {
     const h = hoursOf(kind);
     if (!fits(h)) return false;
