@@ -272,8 +272,8 @@ function render() {
     </section>
     <p><button class="btn ghost" id="rl">読み込み直す</button></p>`;
   const goCard = id => { const t = document.getElementById("bk-" + id); if (!t) return; const det = t.closest("details"); if (det) det.open = true; t.scrollIntoView({ behavior: "smooth", block: "center" }); t.classList.remove("hl"); void t.offsetWidth; t.classList.add("hl"); };
-  const TIMES = []; for (let m = 6 * 60; m <= 23 * 60 + 30; m += 10) TIMES.push(m);
-  const tOpts = (sel) => { const r = Math.round(sel / 10) * 10; return TIMES.map(m => `<option value="${m}" ${m === r ? "selected" : ""}>${hm(m)}</option>`).join(""); };
+  const TIMES = []; for (let m = 6 * 60; m <= 23 * 60 + 30; m += 5) TIMES.push(m);
+  const tOpts = (sel) => { const r = Math.round(sel / 5) * 5; return TIMES.map(m => `<option value="${m}" ${m === r ? "selected" : ""}>${hm(m)}</option>`).join(""); };
   const dOpts = (sel) => { const ds = data.days.map(d => d.date); if (sel && !ds.includes(sel)) ds.unshift(sel); return ds.map(d => `<option value="${d}" ${d === sel ? "selected" : ""}>${fmt(d)}${(data.days.find(x => x.date === d) || {}).kind === "closed" ? " 休" : ""}</option>`).join(""); };
   const closeSheet = () => { const x = document.getElementById("sheet"); if (x) x.remove(); };
   const openSheet = (html, bind) => {
@@ -381,7 +381,7 @@ function render() {
   document.querySelectorAll("[data-vd]").forEach(col => col.onclick = e => {
     if (e.target.closest(".vc-ev")) return;
     const rect = col.getBoundingClientRect();
-    const m = Math.floor((T0 + (e.clientY - rect.top) / PX) / 10) * 10;
+    const m = Math.floor((T0 + (e.clientY - rect.top) / PX) / 15) * 15;
     openNew(col.dataset.vd, Math.min(23 * 60, Math.max(6 * 60, m)));
   });
   { const vc = document.getElementById("vc"); if (vc) { const keep = window.__vcPos; if (keep) { vc.scrollLeft = keep[0]; vc.scrollTop = keep[1]; } else vc.scrollTop = Math.max(0, y(Math.max(9 * 60, nowM - 60)) - 10); vc.onscroll = () => { window.__vcPos = [vc.scrollLeft, vc.scrollTop]; }; } }
