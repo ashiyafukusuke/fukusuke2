@@ -171,7 +171,7 @@ function render() {
   for (const b of data.bookings) (byDate[b.date] ||= []).push(b);
   const dayHtml = d => `<div class="day"><h3>${fmt(d)}${d === data.today ? "　今日" : ""}</h3>${byDate[d].map(b => {
     const a = (() => { try { return JSON.parse(b.answers || "{}"); } catch { return {}; } })();
-    const qa = [a.first && `足つぼ専門店は初めて：${a.first}`, a.hurt && `けが・痛み：${a.hurt}`, a.stay && `過ごし方：${a.stay}`].filter(Boolean).join("／");
+    const qa = [a.first && `足つぼ専門店は初めて：${a.first}`, a.hurt && `けが・痛み：${a.hurt}`, a.stay && `施術中の会話：${a.stay}`].filter(Boolean).join("／");
     return `<div class="bk" id="bk-${esc(b.id)}">
       <span class="t">${hm(+b.start_min)}</span>
       <span><b>${esc(b.name)}</b> 様　${b.course === "c90" ? "90分" : b.course === "c40" ? "40分" : "60分"}・${b.visit === "first" ? "はじめて" : "2回目以降"}

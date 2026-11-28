@@ -114,11 +114,11 @@ function rulesHtml() {
 const Q = [
   { k:"first", t:"イタキモ以外も含めて、足つぼ専門店は初めてですか？", req:true, o:["はい","いいえ"] },
   { k:"hurt",  t:"足にけが・痛み・腫れはありますか？", req:true, o:["ない","ある（下の欄で教えてください）"] },
-  { k:"stay",  t:"施術中の過ごし方（任意）", o:["静かに受けたい","おまかせ"] }
+  { k:"stay",  t:"施術中の会話（任意）", n:"どれを選んでも、足について気づいたことは施術のあとにお伝えします。途中で眠ってしまっても大丈夫です。", o:["会話は少なめ","話しながら","おまかせ"] }
 ];
 function qHtml() {
   return `<div class="qbox"><p>施術の時間は、できるだけ足を揉むことに使いたいと思っています。お手数ですが、この場をお借りして、施術前のご質問をさせてください。</p>
-    ${Q.map(q => `<div class="q"><span>${q.t}${q.req ? `<em style="font-style:normal;color:var(--brand);font-size:11px;margin-left:6px;">必須</em>` : ""}</span><div class="chips">${q.o.map(o =>
+    ${Q.map(q => `<div class="q"><span>${q.t}${q.req ? `<em style="font-style:normal;color:var(--brand);font-size:11px;margin-left:6px;">必須</em>` : ""}${q.n ? `<small style="display:block;font-weight:normal;color:var(--muted,#777);font-size:12px;margin-top:4px;">${q.n}</small>` : ""}</span><div class="chips">${q.o.map(o =>
       `<button type="button" class="chip" data-qk="${q.k}" data-qo="${esc(o)}" aria-pressed="${ui.q[q.k] === o}">${esc(o)}</button>`).join("")}</div></div>`).join("")}
   </div>`;
 }
@@ -226,7 +226,7 @@ function render() {
     for (let n = 1; n <= days; n++) {
       const s = `${y}-${pad(mo+1)}-${pad(n)}`, ok = slots(s,c).some(x => !x.taken), cap = ok ? capacity(s,c) : 0;
       const p = ok ? price(c, ui.visit, ui.pay, ahead(s)) : null;
-      const st = !ok ? "" : kindOf(s) === "night" ? `<span class="nt">夜</span>` : cap >= 4 ? "◎" : cap >= 2 ? "▲" : "残1";
+      const st = !ok ? "" : kindOf(s) === "night" ? `<span class="nt">朝・夜</span>` : cap >= 4 ? "◎" : cap >= 2 ? "▲" : "残1";
       const o = ok && p.eb ? `−${p.eb.toLocaleString()}円` : ok && ahead(s) === 0 ? "当日" : "";
       cells += `<button type="button" class="day" data-d="${s}" ${ok?"":"disabled"} aria-pressed="${ui.date === s}" aria-label="${fmt(s)}${ok?"":"、予約できません"}"><span class="n">${n}</span><span class="s">${st}</span><span class="o">${o}</span></button>`;
     }
@@ -235,7 +235,7 @@ function render() {
       <div class="cal">
         <div class="cal-head"><button type="button" id="pm" ${ui.mo<=0?"disabled":""}>前の月</button><strong>${y}年${mo+1}月</strong><button type="button" id="nm" ${ui.mo>=maxMo?"disabled":""}>次の月</button></div>
         <div class="grid">${cells}</div>
-        <div class="legend"><span>◎ 空きあり</span><span>▲ 空き少なめ</span><span>残1 残り1枠</span><span><span class="nt">夜</span> 夜の特別枠（1日1組）</span><span>朝 6:30〜9:00の枠は前日22:00まで</span><span><b>−500円</b> 前日まで</span><span><b>−1,000円</b> 7日以上前</span></div>
+        <div class="legend"><span>◎ 空きあり</span><span>▲ 空き少なめ</span><span>残1 残り1枠</span><span><span class="nt">朝・夜</span> 朝の枠と夜の特別枠の日（夜は1日1組）</span><span>朝の枠は前日22:00まで</span><span><b>−500円</b> 前日まで</span><span><b>−1,000円</b> 7日以上前</span></div>
       </div>`;
     if (ui.date) {
       const sl = slots(ui.date, c);

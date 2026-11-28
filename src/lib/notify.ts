@@ -141,7 +141,7 @@ export async function notifyConfirmed(id: string, origin: string, opts: { custom
       `メール：${r.mail || "なし"}`,
       answers.first ? `足つぼ専門店は初めて：${answers.first}` : null,
       answers.hurt ? `けが・痛み・腫れ：${answers.hurt}` : null,
-      answers.stay ? `過ごし方：${answers.stay}` : null,
+      answers.stay ? `施術中の会話：${answers.stay}` : null,
       r.memo ? `気になっていること：${r.memo}` : null,
       r.source ? `経由：${r.source}` : null,
       ``,
