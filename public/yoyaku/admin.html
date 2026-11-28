@@ -249,7 +249,10 @@ function render() {
       ${(data.blocks || []).length ? data.blocks.map(x => `<div class="bk" style="border:1px solid var(--line);border-radius:6px;margin-bottom:6px;background:#fff;"><span class="t" style="font-size:14px;">${fmt(x.date)}</span><span><b>${hm(+x.start_min)}〜${hm(+x.end_min)}</b>　${esc(x.note || "")}</span><span></span><span><button class="btn ghost" data-delblock="${x.id}">ブロックを外す</button></span></div>`).join("") : `<p class="legend">ブロックはありません。</p>`}
     </section>
     <section><h2>これからの予約</h2>${list}${pastList}</section>
-    ${salesSection()}
+    <section><h2>営業日（タップで 休み → 通し → 夜 と切り替わります）</h2>
+      <div class="cal">${cal}</div>
+      <p class="legend">通し＝9:00〜22:40　夜＝21:10〜21:40開始の1日1組。通しの日・夜の日は、朝の枠（6:30〜9:00・前日22:00まで）も出ます。点線の枠は初期設定（水・木が通し）から変えた日です。予約が入っている日を休みにしても、その予約は消えません。</p>
+    </section>
     <section><h2>予約の公開（週ごと）</h2>
       <div class="pub">
         <strong>${data.published ? `お客様が予約できるのは ${fmt(data.published)} まで` : "60日先まですべて公開中"}</strong>
@@ -257,13 +260,15 @@ function render() {
           ${data.published ? `<button class="btn" id="pubplus" type="button">次の1週間を公開</button><button class="btn ghost" id="pubminus" type="button">最後の1週間を閉じる</button>` : `<button class="btn" id="pubstart" type="button">今週の分だけ公開にする</button>`}
           ${data.published ? `<button class="btn ghost" id="puball" type="button">60日先まですべて公開</button>` : ""}
         </div>
-        <p class="legend" style="margin:0;">週は日曜〜土曜で区切ります。閉じた週は、下のカレンダーで薄く「非公開」と表示されます。すでに入っている予約は消えません。</p>
+        <p class="legend" style="margin:0;">週は日曜〜土曜で区切ります。閉じた週は、上の営業日カレンダーで薄く「非公開」と表示されます。すでに入っている予約は消えません。</p>
       </div>
     </section>
-    <section><h2>営業日（タップで 休み → 通し → 夜 と切り替わります）</h2>
-      <div class="cal">${cal}</div>
-      <p class="legend">通し＝9:00〜22:40　夜＝21:10〜21:40開始の1日1組。通しの日・夜の日は、朝の枠（6:30〜9:00・前日22:00まで）も出ます。点線の枠は初期設定（水・木が通し）から変えた日です。予約が入っている日を休みにしても、その予約は消えません。</p>
+    ${salesSection()}
+    <section><h2>お断りしている連絡先</h2>
+      ${(data.blocked || []).length ? data.blocked.map(x => `<div class="bk" style="border:1px solid var(--line);border-radius:6px;margin-bottom:6px;"><span class="t" style="font-size:13px;">${esc((x.created_at || "").slice(0,10))}</span><span>${esc(x.name || "")}　${esc(x.tel || "")} ${esc(x.mail || "")}</span><span></span><span><button class="btn ghost" data-unblock="${x.id}">解除</button></span></div>`).join("") : `<p class="legend">ありません。</p>`}
+      <p class="legend">ここにある電話番号・メールアドレスでは、新しい予約を受け付けません（お客様には「お問い合わせフォームからご連絡ください」と表示）。</p>
     </section>
+    <details class="other"><summary style="cursor:pointer;margin:24px 0 8px;font-weight:700;">その他の設定（スマホ通知・STORESからの取り込み）</summary>
     <section><h2>スマホ通知（ntfy）</h2>
       <p class="legend">スマホに「ntfy」アプリを入れ、下の合言葉を登録（Subscribe to topic）すると、予約が入ったときに通知が届きます。通知には日時とコースだけを載せ、お客様の名前や連絡先は載せません。</p>
       <div class="login"><input id="nt" value="${esc(data.ntfy || "")}" placeholder="合言葉（半角英数字）" autocomplete="off"><button class="btn ghost" id="ntgen" type="button">合言葉を作る</button><button class="btn" id="ntsave" type="button">保存</button><button class="btn ghost" id="nttest" type="button">テスト通知</button></div>
@@ -272,10 +277,7 @@ function render() {
       <p class="legend">STORES 予約で受けていた分の売上を取り込みます。同じ予約は2回入りません。</p>
       <textarea id="imp" rows="4" style="width:100%;font-size:12px;" placeholder="2026-06-22|21:15-22:15|c60|first|onsite|6500|現金"></textarea>
       <p><button class="btn ghost" id="impBtn">取り込む</button></p></section>
-    <section><h2>お断りしている連絡先</h2>
-      ${(data.blocked || []).length ? data.blocked.map(x => `<div class="bk" style="border:1px solid var(--line);border-radius:6px;margin-bottom:6px;"><span class="t" style="font-size:13px;">${esc((x.created_at || "").slice(0,10))}</span><span>${esc(x.name || "")}　${esc(x.tel || "")} ${esc(x.mail || "")}</span><span></span><span><button class="btn ghost" data-unblock="${x.id}">解除</button></span></div>`).join("") : `<p class="legend">ありません。</p>`}
-      <p class="legend">ここにある電話番号・メールアドレスでは、新しい予約を受け付けません（お客様には「お問い合わせフォームからご連絡ください」と表示）。</p>
-    </section>
+    </details>
     <p><button class="btn ghost" id="rl">読み込み直す</button></p>`;
   const goCard = id => { const t = document.getElementById("bk-" + id); if (!t) return; const det = t.closest("details"); if (det) det.open = true; t.scrollIntoView({ behavior: "smooth", block: "center" }); t.classList.remove("hl"); void t.offsetWidth; t.classList.add("hl"); };
   const TIMES = []; for (let m = 6 * 60; m <= 23 * 60 + 30; m += 5) TIMES.push(m);
