@@ -63,7 +63,7 @@ export async function push(topic: string, title: string, message: string, click?
 }
 
 function details(r: Row) {
-  const min = r.course === "c90" ? 90 : 60;
+  const min = r.course === "c90" ? 90 : r.course === "c40" ? 40 : 60;
   return {
     when: `${fmtDate(r.date!)} ${hm(Number(r.start_min))}〜${hm(Number(r.end_min))}`,
     short: `${fmtDate(r.date!)} ${hm(Number(r.start_min))}`,

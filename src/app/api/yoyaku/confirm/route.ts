@@ -20,7 +20,7 @@ export async function GET(req: Request) {
     const rows = await sql(`SELECT * FROM bookings WHERE id = $1 AND stripe_session = $2`, [id, sid]);
     const r = rows[0];
     if (!r) return NextResponse.json({ error: "ご予約が見つかりません。" }, { status: 404 });
-    const min = r.course === "c90" ? 90 : 60;
+    const min = r.course === "c90" ? 90 : r.course === "c40" ? 40 : 60;
     return NextResponse.json({
       ok: r.status === "confirmed",
       status: r.status,

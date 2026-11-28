@@ -33,7 +33,8 @@ const SOURCE = (() => {
 })();
 const COURSES = [
   { id:"c60", min:60, label:"初めての方に", desc:"足裏からふくらはぎ・膝裏まで", trial:true, first:6500, repeat:5500, prepayOff:500, cap:1000 },
-  { id:"c90", min:90, label:"最近1番選ばれています", hot:true, desc:"60分よりゆったりした流れで", trial:true, first:9000, repeat:8000, prepayOff:500, cap:1500 }
+  { id:"c90", min:90, label:"最近1番選ばれています", hot:true, desc:"60分よりゆったりした流れで", trial:true, first:9000, repeat:8000, prepayOff:500, cap:1500 },
+  { id:"c40", min:40, label:"朝の特別プラン", desc:"朝の枠（6:30〜9:00）だけのコース。初めての方も2回目以降も同じ料金です", trial:false, first:4000, repeat:4000, prepayOff:0, cap:0, morningOnly:true }
 ];
 const EB = [ { days:7, off:1000, label:"7日以上前" }, { days:1, off:500, label:"前日まで" } ];
 
@@ -52,7 +53,7 @@ function price(c, visit, pay, a) {
   const base = visit === "first" ? c.first : c.repeat;
   const prepay = (visit === "repeat" && pay === "card") ? c.prepayOff : 0;
   let eb = 0, ebLabel = "";
-  if (a > 0) { const h = EB.find(x => a >= x.days); if (h) { eb = h.off; ebLabel = h.label; } }
+  if (a > 0 && !c.morningOnly) { const h = EB.find(x => a >= x.days); if (h) { eb = h.off; ebLabel = h.label; } }
   const raw = prepay + eb, off = Math.min(raw, c.cap);
   return { base, prepay, eb, ebLabel, capped: raw > off, off, total: base - off };
 }
@@ -75,6 +76,7 @@ function slots(s, c) {
     }
   };
   add(MORNING, true);
+  if (c.morningOnly) return out; // 朝の特別プランは朝の枠だけ
   if (!(k === "night" && res.some(b => !b.blk && b.s >= h.s))) add(h, false); // 夜の特別枠は1日1組
   return out;
 }
@@ -197,7 +199,7 @@ function render() {
         return `<button type="button" role="radio" class="course" data-c="${x.id}" aria-checked="${ui.cid===x.id}">
           <i class="rd" aria-hidden="true"></i><span class="min">${x.min}<small>分</small></span>
           <span class="desc"><strong>${x.min}分コース</strong>${x.label ? `<span class="lbl${x.hot?" hot":""}">${x.label}</span>` : ""}${esc(x.desc)}${ui.visit==="first" && x.trial ? `<br><span class="tag">左足トライアルつき</span>` : ""}</span>
-          <span class="price"><b>${yen(p.base)}</b><small>早割あり</small></span>
+          <span class="price"><b>${yen(p.base)}</b><small>${x.morningOnly ? "朝の枠のみ" : "早割あり"}</small></span>
         </button>`; }).join("")}</div>`;
       if (ui.visit === "first") main += `<div class="box"><h3>左足トライアル</h3><div class="sub">合わなければ、お代は頂きません。</div>片足が終わった時点で合わないと感じたら、そこで終了します。事前にお支払いの場合は、全額お返しします。</div>`;
       main += `<div class="label">お支払い方法</div>

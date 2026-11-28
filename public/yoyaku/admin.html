@@ -307,7 +307,7 @@ function render() {
       <div class="tabs"><button type="button" class="on" data-tab="bk">電話・店頭の予約</button><button type="button" data-tab="bl">ブロック</button></div>
       <div class="two"><label>日付<select name="date">${dOpts(date)}</select></label><label>開始<select name="start">${tOpts(min)}</select></label></div>
       <div data-p="bk" style="display:flex;flex-direction:column;gap:10px;">
-        <div class="two"><label>コース<select name="cid"><option value="c60">60分</option><option value="c90">90分</option></select></label>
+        <div class="two"><label>コース<select name="cid"><option value="c60">60分</option><option value="c90">90分</option><option value="c40">40分（朝の特別プラン）</option></select></label>
           <label>来店<select name="visit"><option value="first">はじめて</option><option value="repeat">2回目以降</option></select></label></div>
         <label>お名前<input name="name" maxlength="40" autocomplete="off"></label>
         <div class="two"><label>電話番号<input name="tel" inputmode="tel" autocomplete="off"></label><label>金額（空欄なら自動）<input name="total" inputmode="numeric" placeholder="自動"></label></div>
@@ -343,12 +343,12 @@ function render() {
     const b = data.bookings.find(x => x.id === id); if (!b) return;
     const card = b.pay === "card";
     openSheet(`<h3>${esc(b.name)} 様<button data-x>×</button></h3>
-      <div class="info">${fmt(b.date)} ${hm(+b.start_min)}〜${hm(+b.end_min)}・${b.course === "c90" ? "90分" : "60分"}・${b.visit === "first" ? "はじめて" : "2回目以降"}<br>
+      <div class="info">${fmt(b.date)} ${hm(+b.start_min)}〜${hm(+b.end_min)}・${b.course === "c90" ? "90分" : b.course === "c40" ? "40分" : "60分"}・${b.visit === "first" ? "はじめて" : "2回目以降"}<br>
         ${b.status === "pending" ? "決済待ち" : card ? "事前決済済み" : "当日払い"}　¥${Number(b.total).toLocaleString()}<br>
         ${b.tel ? `<a href="tel:${esc(b.tel)}">${esc(b.tel)}</a>` : "電話なし"}　${esc(b.mail || "")}
         ${b.note ? `<br><span style="white-space:pre-line;color:var(--muted);">メモ：${esc(b.note)}</span>` : ""}</div>
       <div class="two"><label>日付<select name="date">${dOpts(b.date)}</select></label><label>開始<select name="start">${tOpts(+b.start_min)}</select></label></div>
-      <div class="two"><label>コース<select name="cid" ${card ? "disabled" : ""}><option value="c60" ${b.course !== "c90" ? "selected" : ""}>60分</option><option value="c90" ${b.course === "c90" ? "selected" : ""}>90分</option></select></label>
+      <div class="two"><label>コース<select name="cid" ${card ? "disabled" : ""}><option value="c60" ${b.course === "c60" || !b.course ? "selected" : ""}>60分</option><option value="c90" ${b.course === "c90" ? "selected" : ""}>90分</option><option value="c40" ${b.course === "c40" ? "selected" : ""}>40分（朝の特別プラン）</option></select></label>
         <label>来店<select name="visit" ${card ? "disabled" : ""}><option value="first" ${b.visit === "first" ? "selected" : ""}>はじめて</option><option value="repeat" ${b.visit !== "first" ? "selected" : ""}>2回目以降</option></select></label></div>
       <label>金額<input name="total" inputmode="numeric" value="${Number(b.total)}" ${card ? "disabled" : ""}></label>
       ${b.mail ? `<label class="ck"><input type="checkbox" name="sendMail" checked>日時を変えたら、お客様に変更メールを送る</label>` : `<p class="legend" style="margin:0;">メールアドレスがないため、日時を変えたら電話やDMでお伝えください。</p>`}

@@ -11,17 +11,19 @@ export function alreadyOnsite(start: number, booked: { s: number; e: number; blk
 export const HORIZON = 60; // 何日先まで予約できるか
 
 export type Course = {
-  id: "c60" | "c90";
+  id: "c60" | "c90" | "c40";
   min: number;
   first: number;
   repeat: number;
   prepayOff: number;
   cap: number;
+  morningOnly?: boolean; // 朝の枠だけで選べるコース（割引なし・初回も同じ料金）
 };
 
 export const COURSES: Course[] = [
   { id: "c60", min: 60, first: 6500, repeat: 5500, prepayOff: 500, cap: 1000 },
   { id: "c90", min: 90, first: 9000, repeat: 8000, prepayOff: 500, cap: 1500 },
+  { id: "c40", min: 40, first: 4000, repeat: 4000, prepayOff: 0, cap: 0, morningOnly: true }, // 朝の特別プラン
 ];
 
 const EB = [
@@ -34,7 +36,7 @@ export function price(c: Course, visit: "first" | "repeat", pay: "onsite" | "car
   const prepay = visit === "repeat" && pay === "card" ? c.prepayOff : 0;
   let eb = 0;
   let ebLabel = "";
-  if (ahead > 0) {
+  if (ahead > 0 && !c.morningOnly) {
     const h = EB.find((x) => ahead >= x.days);
     if (h) {
       eb = h.off;
@@ -91,6 +93,7 @@ export function slotOk(kind: DayKind, c: Course, start: number, booked: Booked[]
   if (ahead < 0 || ahead > HORIZON) return false;
   const fits = (w: { s: number; e: number; step: number; last: number }) =>
     start >= w.s && start <= w.last && start + c.min <= w.e && (start - w.s) % w.step === 0;
+  if (c.morningOnly && !fits(MORNING)) return false; // 朝の特別プランは朝の枠だけ
   if (fits(MORNING)) {
     // 朝の枠は前日の22:00まで。ただし、直前に別の朝の予約があり、すでに店にいる時間は当日も開始10分前まで
     if (morningClosed(ahead, nowMin)) {
