@@ -82,8 +82,8 @@ export default function FirstPage() {
           </div>
           <div style={{ flex: "3 1 640px", minWidth: 0 }}>
             <div style={{ paddingBottom: "32px", marginBottom: "32px", borderBottom: "1px solid #ebe9e4" }}>
-              <h3 style={{ margin: "0 0 8px", fontFamily: "'Shippori Mincho', serif", fontWeight: 600, fontSize: "22px", letterSpacing: "0.08em" }}>合わなければ、お代は頂きません。</h3>
-              <p style={{ margin: "0 0 10px", fontSize: "12px", color: "#5c5c5c" }}>左足トライアル（60分・90分枠が対象）</p>
+              <h3 style={{ margin: "0 0 8px", fontFamily: "'Shippori Mincho', serif", fontWeight: 600, fontSize: "22px", letterSpacing: "0.08em" }}>左足が終わったら、続けるかどうか決めてください。</h3>
+              <p style={{ margin: "0 0 10px", fontSize: "12px", color: "#5c5c5c" }}>左足トライアル（初めての方の60分・90分枠が対象）</p>
               <p style={{ margin: 0, fontSize: "14px", color: "#3d3a34" }}>初めての方には、施術の前にこの制度のことを必ずお伝えしています。まず左足から始めて、右足に進む前に「このまま右もやっていいですか？」と、こちらからお聞きします。合わないと感じたら、そこで終わりにして大丈夫です。お代は頂きません。</p>
               <dl data-ga-view="first_view_price" style={{ margin: "20px 0 0", display: "grid", gridTemplateColumns: "auto 1fr", gap: "6px 20px", fontSize: "14px", alignItems: "baseline", maxWidth: "360px" }}>
                 <dt style={{ gridColumn: "1 / -1", fontSize: "13px", fontWeight: 700, marginBottom: "2px" }}>初回の料金</dt>
