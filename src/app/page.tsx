@@ -216,7 +216,7 @@ export default function Home() {
             <p style={{ margin: "0 0 16px", color: "#e7e2d8", lineHeight: 2.05 }}>毎日、足を揉んでいます。それでも飽きるどころか、毎日新しい発見があります。同じ足は一つもないからです。</p>
             <p style={{ margin: "0 0 24px", color: "#e7e2d8", lineHeight: 2.05 }}>足つぼにゴールはないと思っています。次にお会いするときは、今日より上手くなっていたい。そのために学び続けています。</p>
             <dl className="career">
-              <div><dt>現在</dt><dd>都内の台湾式足つぼ専門店でも施術を担当。指名のない店なので、毎回はじめて会うお客様の足を、その場で読み取って揉んでいます。</dd></div>
+              <div><dt>現在</dt><dd>都内の台湾式足つぼ専門店でも施術を担当。毎回はじめて会うお客様の足を、その場で読み取って揉んでいます。</dd></div>
               <div><dt>これまで</dt><dd>THE CLASS（勝どき）、足つぼのソコヂカラ（茅場町）</dd></div>
               <div><dt>2026年</dt><dd>足ツボグランプリ2026（日本足ツボ協会主催）決勝大会 出場</dd></div>
             </dl>
@@ -244,9 +244,9 @@ export default function Home() {
                 <p style={{ margin: "0 0 12px", fontSize: "12px", color: "#5c5c5c" }}>足裏からふくらはぎ・膝裏まで</p>
                 <div className="menu-prices">
                   <p><span className="mp-l">初回</span><span className="mp-v">6,500</span><span className="mp-y">円</span></p>
-                  <p className="mp-min">早割で最安 <strong>5,500円</strong>（7日以上前のご予約）</p>
+                  <p className="mp-min">7日以上前のご予約で <strong>5,500円</strong></p>
                   <p><span className="mp-l">2回目以降</span><span className="mp-v">5,500</span><span className="mp-y">円</span></p>
-                  <p className="mp-min">最安 <strong>4,500円</strong>（7日以上前のご予約＋事前決済）</p>
+                  <p className="mp-min">7日以上前のご予約＋事前決済で <strong>4,500円</strong></p>
                 </div>
               </div>
               <div style={{ padding: "0 28px 28px", borderLeft: "1px solid #ebe9e4" }}>
@@ -256,9 +256,9 @@ export default function Home() {
                 <p style={{ margin: "0 0 12px", fontSize: "12px", color: "#5c5c5c" }}>60分よりゆったりした流れで</p>
                 <div className="menu-prices">
                   <p><span className="mp-l">初回</span><span className="mp-v">9,000</span><span className="mp-y">円</span></p>
-                  <p className="mp-min">早割で最安 <strong>8,000円</strong>（7日以上前のご予約）</p>
+                  <p className="mp-min">7日以上前のご予約で <strong>8,000円</strong></p>
                   <p><span className="mp-l">2回目以降</span><span className="mp-v">8,000</span><span className="mp-y">円</span></p>
-                  <p className="mp-min">最安 <strong>6,500円</strong>（7日以上前のご予約＋事前決済）</p>
+                  <p className="mp-min">7日以上前のご予約＋事前決済で <strong>6,500円</strong></p>
                 </div>
               </div>
               <div style={{ padding: "0 28px 28px", borderLeft: "1px solid #ebe9e4" }}>
@@ -268,7 +268,7 @@ export default function Home() {
                 <p style={{ margin: "0 0 12px", fontSize: "12px", color: "#5c5c5c" }}>朝の枠（6:30〜9:00）だけのコース</p>
                 <div className="menu-prices">
                   <p><span className="mp-l">料金</span><span className="mp-v">4,000</span><span className="mp-y">円</span></p>
-                  <p className="mp-min">早割で最安 <strong>3,000円</strong>（7日以上前のご予約）</p>
+                  <p className="mp-min">7日以上前のご予約で <strong>3,000円</strong></p>
                 </div>
               </div>
             </div>
@@ -310,7 +310,7 @@ export default function Home() {
               <div style={{ fontSize: "13px", color: "#3d3a34", lineHeight: 2 }}>
                 <p style={{ margin: "0 0 10px" }}>「痛すぎず、弱すぎない絶妙な力加減」で、その日の状態に合わせて細やかに調整していきます。<br />施術の途中から「あ、足が軽い」と気づく方が少なくありません。</p>
                 <p style={{ margin: "0 0 10px" }}>お帰りの際、行きと同じ靴が少しゆるく感じられたり、足裏全体で地面をしっかり掴むような感覚があったり、ぐっすり眠れたことに驚かれるお声も届いています。</p>
-                <p style={{ margin: 0 }}>「今日は足が重いな」「少し限界かも」「ぐっすり眠りたい」と思った日が、ちょうどいいタイミングです。<br />まずは、空いている枠をのぞいてみてください。<br />当日でも、空きがあれば開始1時間前まで（ご予約状況によっては10分前まで）Webからそのまま確保できます。</p>
+                <p style={{ margin: 0 }}>「今日は足が重いな」「少し限界かも」と思った日が、ちょうどいいタイミングです。<br />まずは、空いている枠をのぞいてみてください。<br />当日でも、空きがあれば開始1時間前まで（ご予約状況によっては10分前まで）Webからそのまま確保できます。</p>
               </div>
             </div>
             <a href="/yoyaku" style={{ background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "16px 44px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.12em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>空き枠を見る</a>

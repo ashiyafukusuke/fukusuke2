@@ -169,7 +169,7 @@ export default function FirstPage() {
               </div>
               <div style={{ padding: "14px 0", borderTop: "1px solid #ebe9e4" }}>
                 <p style={{ margin: "0 0 4px", fontSize: "14px", fontWeight: 700 }}>夜の特別枠　21:10–22:40（1日1組）</p>
-                <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>仕事帰りに、足を軽くしてそのまま帰れる枠です。1日1組だけなので、その日の最後のお客様として、後ろの時間を気にせず受けていただけます。ぐっすり眠りたい夜に。</p>
+                <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>仕事帰りに、足を軽くしてそのまま帰れる枠です。1日1組だけなので、その日の最後のお客様として、後ろの時間を気にせず受けていただけます。一日の終わりに、足から力を抜いて。</p>
                 <p style={{ margin: "6px 0 0", fontSize: "12px", color: "#5c5c5c" }}>夜の特別枠の日は、日中、別のお店で施術をしてから電車で向かいます。電車の運休や大きな遅れで、開始が遅れたり、キャンセルをお願いしたりすることがあります。あらかじめご了承ください。当店の都合でキャンセルをお願いした場合は、次回の施術を無料にします。</p>
               </div>
             </div>
