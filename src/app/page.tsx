@@ -89,7 +89,7 @@ export default function Home() {
             <p className="hero-loc" style={{ margin: "0 0 32px", fontSize: "12px", color: "#5c5c5c", letterSpacing: "0.12em" }}>西東京市ひばりが丘｜完全予約制の一人店</p>
             <div className="hero-cta">
               <a href="/yoyaku" style={{ background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "15px 40px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.12em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>予約する</a>
-              <a href="#menu" style={{ color: "#1a1a1a", fontSize: "14px", textUnderlineOffset: "6px", minHeight: "44px", display: "inline-flex", alignItems: "center" }}>メニューと料金</a>
+              <a href="#menu" style={{ color: "#1a1a1a", background: "rgba(254, 253, 250, 0.92)", border: "1px solid #1a1a1a", borderRadius: "3px", padding: "0 28px", fontSize: "14px", fontWeight: 500, letterSpacing: "0.08em", textDecoration: "none", minHeight: "48px", display: "inline-flex", alignItems: "center", boxSizing: "border-box" }}>メニューと料金</a>
               <p className="hero-note">強さは、いつでも調整できます。</p>
               <div className="hero-first">
                 <p className="hero-first-h">初めての方</p>
@@ -244,7 +244,9 @@ export default function Home() {
                 <p style={{ margin: "0 0 12px", fontSize: "12px", color: "#5c5c5c" }}>足裏からふくらはぎ・膝裏まで</p>
                 <div className="menu-prices">
                   <p><span className="mp-l">初回</span><span className="mp-v">6,500</span><span className="mp-y">円</span></p>
+                  <p className="mp-min">早割で最安 <strong>5,500円</strong>（7日以上前のご予約）</p>
                   <p><span className="mp-l">2回目以降</span><span className="mp-v">5,500</span><span className="mp-y">円</span></p>
+                  <p className="mp-min">最安 <strong>4,500円</strong>（7日以上前のご予約＋事前決済）</p>
                 </div>
               </div>
               <div style={{ padding: "0 28px 28px", borderLeft: "1px solid #ebe9e4" }}>
@@ -254,7 +256,9 @@ export default function Home() {
                 <p style={{ margin: "0 0 12px", fontSize: "12px", color: "#5c5c5c" }}>60分よりゆったりした流れで</p>
                 <div className="menu-prices">
                   <p><span className="mp-l">初回</span><span className="mp-v">9,000</span><span className="mp-y">円</span></p>
+                  <p className="mp-min">早割で最安 <strong>8,000円</strong>（7日以上前のご予約）</p>
                   <p><span className="mp-l">2回目以降</span><span className="mp-v">8,000</span><span className="mp-y">円</span></p>
+                  <p className="mp-min">最安 <strong>6,500円</strong>（7日以上前のご予約＋事前決済）</p>
                 </div>
               </div>
             </div>

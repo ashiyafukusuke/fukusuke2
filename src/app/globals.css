@@ -493,3 +493,5 @@ details[open] > summary .tog svg { transform: rotate(180deg); }
 .menu-offs .mo-v { font-size: 14px; color: #1a1a1a; }
 .menu-offs .mo-v strong { color: #9b321f; font-weight: 700; }
 .menu-offs .mo-n { font-size: 12px; color: #5c5c5c; margin-top: 4px; }
+.menu-prices .mp-min { display: block; margin: 0 0 8px; padding-left: calc(5.5em + 8px); font-size: 11px; color: #5c5c5c; }
+.menu-prices .mp-min strong { color: #9b321f; font-size: 13px; }
