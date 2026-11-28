@@ -174,7 +174,7 @@ export default function FirstPage() {
               </div>
             </div>
             <BusinessCalendar />
-            <p data-ga-view="first_view_calendar" style={{ margin: "12px 0 0", fontSize: "13px", color: "#3d3a34" }}>当日のご予約も、空き枠があれば、開始1時間前までWebで承っています（朝の枠を除く）。</p>
+            <p data-ga-view="first_view_calendar" style={{ margin: "12px 0 0", fontSize: "13px", color: "#3d3a34" }}>当日のご予約も、空き枠があれば、開始1時間前までWebで承っています（前のご予約に続く時間は開始10分前まで。朝の枠を除く）。</p>
             <a href="/yoyaku" style={{ marginTop: "20px", background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "15px 44px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.12em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>空き時間を見て予約する</a>
           </div>
           <div id="access" style={{ flex: "1 1 420px", minWidth: 0 }}>

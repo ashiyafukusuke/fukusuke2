@@ -3,6 +3,11 @@
 
 export const GAP = 15; // 施術と施術の間の余白（分）
 export const CUTOFF = 60; // 当日予約は開始の何分前まで
+export const CUTOFF_ONSITE = 10; // 直前に別の予約があり、すでに店にいる時間帯は開始の何分前まで
+// その時間の直前（終わってから60分以内）に別の予約があり、施術者がすでに店にいるか
+export function alreadyOnsite(start: number, booked: { s: number; e: number; blk?: boolean }[]) {
+  return booked.some((b) => !b.blk && b.e <= start && start - b.e <= 60);
+}
 export const HORIZON = 60; // 何日先まで予約できるか
 
 export type Course = {
@@ -91,7 +96,7 @@ export function slotOk(kind: DayKind, c: Course, start: number, booked: Booked[]
   } else {
     const h = hoursOf(kind);
     if (!fits(h)) return false;
-    if (ahead === 0 && start < nowMin + CUTOFF) return false;
+    if (ahead === 0 && start < nowMin + (alreadyOnsite(start, booked) ? CUTOFF_ONSITE : CUTOFF)) return false;
     if (kind === "night" && booked.some((b) => !b.blk && b.s >= h.s)) return false; // 夜の特別枠は1日1組
   }
   const e = start + c.min + GAP;

@@ -11,7 +11,7 @@ const addD = (s, n) => ks(new Date(D(s).getTime() + n*864e5));
 const wd = s => D(s).getUTCDay();
 const fmt = s => { const d = D(s); return `${d.getUTCMonth()+1}月${d.getUTCDate()}日（${WD[d.getUTCDay()]}）`; };
 
-const GAP = 15, CUTOFF = 60, HORIZON = 60;
+const GAP = 15, CUTOFF = 60, CUTOFF_ONSITE = 10, HORIZON = 60;
 
 // どこから予約ページに来たか（予約に「経由」として残す）
 const SRC_LABEL = { instagram:"Instagram", threads:"Threads", google:"Googleビジネスプロフィール", ekiten:"エキテン", stores:"STORES", hibarido:"HIBARIDO", card:"ショップカード", line:"LINE" };
@@ -63,7 +63,9 @@ function slots(s, c) {
   const out = [];
   const add = (w, morning) => {
     for (let m = w.s; m + c.min <= w.e && m <= w.last; m += w.step) {
-      if (!morning && a === 0 && m < av.nowMin + CUTOFF) continue;
+      // 当日は開始1時間前まで。直前（終わってから60分以内）に別の予約があり、すでに店にいる時間は開始10分前まで
+      const onsite = res.some(b => !b.blk && b.e <= m && m - b.e <= 60);
+      if (!morning && a === 0 && m < jstMinNow() + (onsite ? CUTOFF_ONSITE : CUTOFF)) continue;
       const e = m + c.min + GAP;
       out.push({ m, morning, taken: res.some(b => m < b.e + GAP && b.s < e) });
     }
@@ -223,7 +225,7 @@ function render() {
       cells += `<button type="button" class="day" data-d="${s}" ${ok?"":"disabled"} aria-pressed="${ui.date === s}" aria-label="${fmt(s)}${ok?"":"、予約できません"}"><span class="n">${n}</span><span class="s">${st}</span><span class="o">${o}</span></button>`;
     }
     main += `<h2>${ui.mstep === "cal" ? "新しい日時を選ぶ" : "日時を選ぶ"}</h2>
-      <p class="lead">当日のご予約は、開始1時間前まで受け付けています。日付の下の数字が早割の金額です。</p>
+      <p class="lead">当日のご予約は、開始1時間前まで受け付けています（前のご予約に続く時間は、開始10分前まで）。日付の下の数字が早割の金額です。</p>
       <div class="cal">
         <div class="cal-head"><button type="button" id="pm" ${ui.mo<=0?"disabled":""}>前の月</button><strong>${y}年${mo+1}月</strong><button type="button" id="nm" ${ui.mo>=maxMo?"disabled":""}>次の月</button></div>
         <div class="grid">${cells}</div>
