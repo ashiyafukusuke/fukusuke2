@@ -244,9 +244,7 @@ export default function Home() {
                 <p style={{ margin: "0 0 12px", fontSize: "12px", color: "#5c5c5c" }}>足裏からふくらはぎ・膝裏まで</p>
                 <div className="menu-prices">
                   <p><span className="mp-l">初回</span><span className="mp-v">6,500</span><span className="mp-y">円</span></p>
-                  <p className="mp-min">7日以上前のご予約で <strong>5,500円</strong></p>
                   <p><span className="mp-l">2回目以降</span><span className="mp-v">5,500</span><span className="mp-y">円</span></p>
-                  <p className="mp-min">7日以上前のご予約＋事前決済で <strong>4,500円</strong></p>
                 </div>
               </div>
               <div style={{ padding: "0 28px 28px", borderLeft: "1px solid #ebe9e4" }}>
@@ -256,9 +254,7 @@ export default function Home() {
                 <p style={{ margin: "0 0 12px", fontSize: "12px", color: "#5c5c5c" }}>60分よりゆったりした流れで</p>
                 <div className="menu-prices">
                   <p><span className="mp-l">初回</span><span className="mp-v">9,000</span><span className="mp-y">円</span></p>
-                  <p className="mp-min">7日以上前のご予約で <strong>8,000円</strong></p>
                   <p><span className="mp-l">2回目以降</span><span className="mp-v">8,000</span><span className="mp-y">円</span></p>
-                  <p className="mp-min">7日以上前のご予約＋事前決済で <strong>6,500円</strong></p>
                 </div>
               </div>
               <div style={{ padding: "0 28px 28px", borderLeft: "1px solid #ebe9e4" }}>
@@ -268,7 +264,6 @@ export default function Home() {
                 <p style={{ margin: "0 0 12px", fontSize: "12px", color: "#5c5c5c" }}>朝の枠（6:30〜9:00）だけのコース</p>
                 <div className="menu-prices">
                   <p><span className="mp-l">料金</span><span className="mp-v">4,000</span><span className="mp-y">円</span></p>
-                  <p className="mp-min">7日以上前のご予約で <strong>3,000円</strong></p>
                 </div>
               </div>
             </div>
@@ -287,12 +282,8 @@ export default function Home() {
                   <p className="mo-v"><strong>−500円</strong></p>
                   <p className="mo-n">施術後のお会計もなく、そのままお帰りいただけます。</p>
                 </div>
-                <div>
-                  <p className="mo-h">割引の上限</p>
-                  <p className="mo-v">40分・60分 <strong>1,000円</strong>／90分 <strong>1,500円</strong>まで</p>
-                  <p className="mo-n">早割と事前決済の割引は、上限まで組み合わせられます。</p>
-                </div>
               </div>
+              <p style={{ margin: "12px 0 0", fontSize: "12px", color: "#5c5c5c" }}>割引には上限があります。実際のお支払い額は、ご予約の画面で自動で計算して表示します。</p>
             </div>
           </div>
         </div>
