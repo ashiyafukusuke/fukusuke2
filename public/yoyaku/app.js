@@ -34,7 +34,7 @@ const SOURCE = (() => {
 const COURSES = [
   { id:"c60", min:60, label:"初めての方に", desc:"足裏からふくらはぎ・膝裏まで", trial:true, first:6500, repeat:5500, prepayOff:500, cap:1000 },
   { id:"c90", min:90, label:"最近1番選ばれています", hot:true, desc:"60分よりゆったりした流れで", trial:true, first:9000, repeat:8000, prepayOff:500, cap:1500 },
-  { id:"c40", min:40, label:"朝の特別プラン", desc:"朝の枠（6:30〜9:00）だけのコース。初めての方も2回目以降も同じ料金です（早割あり）", trial:false, first:4000, repeat:4000, prepayOff:0, cap:1000, morningOnly:true }
+  { id:"c40", min:40, label:"朝の特別プラン", desc:"朝の枠（6:30〜9:00）だけのコース", trial:false, first:4000, repeat:4000, prepayOff:0, cap:1000, morningOnly:true }
 ];
 const EB = [ { days:7, off:1000, label:"7日以上前" }, { days:1, off:500, label:"前日まで" } ];
 
