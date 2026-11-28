@@ -17,13 +17,13 @@ export type Course = {
   repeat: number;
   prepayOff: number;
   cap: number;
-  morningOnly?: boolean; // 朝の枠だけで選べるコース（割引なし・初回も同じ料金）
+  morningOnly?: boolean; // 朝の枠だけで選べるコース（初回も同じ料金・早割のみ）
 };
 
 export const COURSES: Course[] = [
   { id: "c60", min: 60, first: 6500, repeat: 5500, prepayOff: 500, cap: 1000 },
   { id: "c90", min: 90, first: 9000, repeat: 8000, prepayOff: 500, cap: 1500 },
-  { id: "c40", min: 40, first: 4000, repeat: 4000, prepayOff: 0, cap: 0, morningOnly: true }, // 朝の特別プラン
+  { id: "c40", min: 40, first: 4000, repeat: 4000, prepayOff: 0, cap: 1000, morningOnly: true }, // 朝の特別プラン
 ];
 
 const EB = [
@@ -36,7 +36,7 @@ export function price(c: Course, visit: "first" | "repeat", pay: "onsite" | "car
   const prepay = visit === "repeat" && pay === "card" ? c.prepayOff : 0;
   let eb = 0;
   let ebLabel = "";
-  if (ahead > 0 && !c.morningOnly) {
+  if (ahead > 0) {
     const h = EB.find((x) => ahead >= x.days);
     if (h) {
       eb = h.off;
