@@ -160,8 +160,8 @@ export default function FirstPage() {
             <div style={{ margin: "0 0 24px", borderBottom: "1px solid #ebe9e4" }}>
               <div style={{ padding: "14px 0", borderTop: "1px solid #ebe9e4" }}>
                 <p style={{ margin: "0 0 4px", fontSize: "14px", fontWeight: 700 }}>朝の枠　6:30–9:00</p>
-                <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>足を軽くしてから、一日を始める枠です。夜に受けると、軽くなった足はそのまま眠りにつきますが、朝なら、その軽さのまま一日を歩けます。立ち仕事や外回りの日、たくさん歩く予定の日の前にもおすすめです。仕事や家のことが始まる前に、自分のための時間を先に取っておく。まだ街が静かな時間なので、落ち着いて受けていただけます。</p>
-                <p style={{ margin: "6px 0 0", fontSize: "12px", color: "#5c5c5c" }}>日中は別のお店で施術をしている日も、出かける前の時間を使って開けています。前日22:00までのご予約です。</p>
+                <p style={{ margin: 0, fontSize: "13px", color: "#3d3a34" }}>軽くなった足で、一日をはじめる。<br />出勤前や、たくさん歩く日の朝に。まだ静かな時間に、自分のための時間を先に。</p>
+                <p style={{ margin: "6px 0 0", fontSize: "12px", color: "#5c5c5c" }}>前日22:00までのご予約です。</p>
               </div>
               <div style={{ padding: "14px 0", borderTop: "1px solid #ebe9e4" }}>
                 <p style={{ margin: "0 0 4px", fontSize: "14px", fontWeight: 700 }}>通しの日　6:30–22:40</p>
