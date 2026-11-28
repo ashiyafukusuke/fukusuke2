@@ -235,8 +235,6 @@ function render() {
 
   app.innerHTML = `<h1>予約の管理</h1>
     <section><h2>予約カレンダー</h2>${vcal}</section>
-    <section><h2>これからの予約</h2>${list}${pastList}</section>
-    ${salesSection()}
     <section><h2>予約ブロック（休憩・外出など）</h2>
       <div class="pub">
         <div class="row">
@@ -250,6 +248,8 @@ function render() {
       </div>
       ${(data.blocks || []).length ? data.blocks.map(x => `<div class="bk" style="border:1px solid var(--line);border-radius:6px;margin-bottom:6px;background:#fff;"><span class="t" style="font-size:14px;">${fmt(x.date)}</span><span><b>${hm(+x.start_min)}〜${hm(+x.end_min)}</b>　${esc(x.note || "")}</span><span></span><span><button class="btn ghost" data-delblock="${x.id}">ブロックを外す</button></span></div>`).join("") : `<p class="legend">ブロックはありません。</p>`}
     </section>
+    <section><h2>これからの予約</h2>${list}${pastList}</section>
+    ${salesSection()}
     <section><h2>予約の公開（週ごと）</h2>
       <div class="pub">
         <strong>${data.published ? `お客様が予約できるのは ${fmt(data.published)} まで` : "60日先まですべて公開中"}</strong>
