@@ -89,7 +89,7 @@ export default function Home() {
             <p className="hero-loc" style={{ margin: "0 0 32px", fontSize: "12px", color: "#5c5c5c", letterSpacing: "0.12em" }}>西東京市ひばりが丘｜完全予約制の一人店</p>
             <div className="hero-cta">
               <a href="/yoyaku" style={{ background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "15px 40px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.12em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>予約する</a>
-              <a href="#menu" style={{ color: "#1a1a1a", fontSize: "14px", textUnderlineOffset: "6px", minHeight: "44px", display: "inline-flex", alignItems: "center" }}>メニューと料金</a>
+              <a href="#menu" style={{ color: "#1a1a1a", background: "rgba(254, 253, 250, 0.92)", border: "1px solid #1a1a1a", borderRadius: "3px", padding: "0 28px", fontSize: "14px", fontWeight: 500, letterSpacing: "0.08em", textDecoration: "none", minHeight: "48px", display: "inline-flex", alignItems: "center", boxSizing: "border-box" }}>メニューと料金</a>
               <p className="hero-note">強さは、いつでも調整できます。</p>
               <div className="hero-first">
                 <p className="hero-first-h">初めての方</p>
@@ -242,23 +242,57 @@ export default function Home() {
                   60分 <span style={{ marginLeft: "6px", fontSize: "10px", fontWeight: 500, color: "#9b321f", border: "1px solid #9b321f", borderRadius: "2px", padding: "1px 6px" }}>初めての方に</span>
                 </p>
                 <p style={{ margin: "0 0 12px", fontSize: "12px", color: "#5c5c5c" }}>足裏からふくらはぎ・膝裏まで</p>
-                <p style={{ margin: 0, fontSize: "12px", color: "#5c5c5c" }}>初回 <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "30px", color: "#1a1a1a" }}>6,500</span>円</p>
-                <p style={{ margin: 0, fontSize: "12px", color: "#5c5c5c" }}>2回目以降 5,500円</p>
+                <div className="menu-prices">
+                  <p><span className="mp-l">初回</span><span className="mp-v">6,500</span><span className="mp-y">円</span></p>
+                  <p className="mp-min">早割で最安 <strong>5,500円</strong>（7日以上前のご予約）</p>
+                  <p><span className="mp-l">2回目以降</span><span className="mp-v">5,500</span><span className="mp-y">円</span></p>
+                  <p className="mp-min">最安 <strong>4,500円</strong>（7日以上前のご予約＋事前決済）</p>
+                </div>
               </div>
               <div style={{ padding: "0 28px 28px", borderLeft: "1px solid #ebe9e4" }}>
                 <p style={{ margin: "0 0 4px", fontSize: "13px", fontWeight: 700 }}>
                   90分 <span style={{ marginLeft: "6px", fontSize: "10px", fontWeight: 500, color: "#ffffff", background: "#9b321f", border: "1px solid #9b321f", borderRadius: "2px", padding: "1px 6px" }}>最近1番選ばれています</span>
                 </p>
                 <p style={{ margin: "0 0 12px", fontSize: "12px", color: "#5c5c5c" }}>60分よりゆったりした流れで</p>
-                <p style={{ margin: 0, fontSize: "12px", color: "#5c5c5c" }}>初回 <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "30px", color: "#1a1a1a" }}>9,000</span>円</p>
-                <p style={{ margin: 0, fontSize: "12px", color: "#5c5c5c" }}>2回目以降 8,000円</p>
+                <div className="menu-prices">
+                  <p><span className="mp-l">初回</span><span className="mp-v">9,000</span><span className="mp-y">円</span></p>
+                  <p className="mp-min">早割で最安 <strong>8,000円</strong>（7日以上前のご予約）</p>
+                  <p><span className="mp-l">2回目以降</span><span className="mp-v">8,000</span><span className="mp-y">円</span></p>
+                  <p className="mp-min">最安 <strong>6,500円</strong>（7日以上前のご予約＋事前決済）</p>
+                </div>
+              </div>
+              <div style={{ padding: "0 28px 28px", borderLeft: "1px solid #ebe9e4" }}>
+                <p style={{ margin: "0 0 4px", fontSize: "13px", fontWeight: 700 }}>
+                  40分 <span style={{ marginLeft: "6px", fontSize: "10px", fontWeight: 500, color: "#9b321f", border: "1px solid #9b321f", borderRadius: "2px", padding: "1px 6px" }}>朝の特別プラン</span>
+                </p>
+                <p style={{ margin: "0 0 12px", fontSize: "12px", color: "#5c5c5c" }}>朝の枠（6:30〜9:00）だけのコース</p>
+                <div className="menu-prices">
+                  <p><span className="mp-l">料金</span><span className="mp-v">4,000</span><span className="mp-y">円</span></p>
+                  <p className="mp-min">早割で最安 <strong>3,000円</strong>（7日以上前のご予約）</p>
+                </div>
               </div>
             </div>
           </div>
           <div style={{ marginTop: "28px", paddingTop: "22px", borderTop: "1px solid #ebe9e4", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: "20px 40px" }}>
-            <div style={{ flex: "1 1 480px", minWidth: 0 }}>
-              <p style={{ margin: "0 0 6px", fontFamily: "'Shippori Mincho', serif", fontSize: "17px" }}>通ってくださる方ほど安くなるのが、正しいと思っています。</p>
-              <p style={{ margin: 0, fontSize: "12px", color: "#5c5c5c" }}>2回目以降は、間隔が空いてもずっと継続料金です。さらに2回目以降は、予約時にカード決済をされると、500円お安くなります（初回は割引の対象外です）。施術後のお会計もなく、そのままお帰りいただけます。</p>
+            <div style={{ flex: "1 1 100%", minWidth: 0 }}>
+              <p style={{ margin: "0 0 14px", fontFamily: "'Shippori Mincho', serif", fontSize: "17px" }}>通ってくださる方ほど安くなるのが、正しいと思っています。</p>
+              <div className="menu-offs">
+                <div>
+                  <p className="mo-h">早めのご予約で</p>
+                  <p className="mo-v">前日まで <strong>−500円</strong>／7日以上前 <strong>−1,000円</strong></p>
+                  <p className="mo-n">初めての方も、朝の特別プランも対象です。</p>
+                </div>
+                <div>
+                  <p className="mo-h">2回目以降は、事前決済で</p>
+                  <p className="mo-v"><strong>−500円</strong></p>
+                  <p className="mo-n">施術後のお会計もなく、そのままお帰りいただけます。</p>
+                </div>
+                <div>
+                  <p className="mo-h">割引の上限</p>
+                  <p className="mo-v">40分・60分 <strong>1,000円</strong>／90分 <strong>1,500円</strong>まで</p>
+                  <p className="mo-n">早割と事前決済の割引は、上限まで組み合わせられます。</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -276,7 +310,7 @@ export default function Home() {
               <div style={{ fontSize: "13px", color: "#3d3a34", lineHeight: 2 }}>
                 <p style={{ margin: "0 0 10px" }}>「痛すぎず、弱すぎない絶妙な力加減」で、その日の状態に合わせて細やかに調整していきます。<br />施術の途中から「あ、足が軽い」と気づく方が少なくありません。</p>
                 <p style={{ margin: "0 0 10px" }}>お帰りの際、行きと同じ靴が少しゆるく感じられたり、足裏全体で地面をしっかり掴むような感覚があったり、ぐっすり眠れたことに驚かれるお声も届いています。</p>
-                <p style={{ margin: 0 }}>「今日は足が重いな」「少し限界かも」「ぐっすり眠りたい」と思った日が、ちょうどいいタイミングです。<br />まずは、空いている枠をのぞいてみてください。<br />当日でも、空きがあれば開始1時間前までWebからそのまま確保できます。</p>
+                <p style={{ margin: 0 }}>「今日は足が重いな」「少し限界かも」「ぐっすり眠りたい」と思った日が、ちょうどいいタイミングです。<br />まずは、空いている枠をのぞいてみてください。<br />当日でも、空きがあれば開始1時間前まで（ご予約状況によっては10分前まで）Webからそのまま確保できます。</p>
               </div>
             </div>
             <a href="/yoyaku" style={{ background: "#9b321f", color: "#ffffff", textDecoration: "none", padding: "16px 44px", borderRadius: "3px", fontWeight: 500, letterSpacing: "0.12em", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxSizing: "border-box" }}>空き枠を見る</a>

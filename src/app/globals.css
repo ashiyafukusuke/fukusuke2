@@ -253,38 +253,19 @@ summary {
     display: block !important;
   }
   .menu-grid > div {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    column-gap: 16px;
-    align-items: baseline;
-    padding: 16px 0 !important;
+    display: block;
+    padding: 20px 0 !important;
     border-left: 0 !important;
     border-top: 1px solid #ebe9e4;
   }
   .menu-grid > div:last-child {
     border-bottom: 1px solid #ebe9e4;
   }
-  .menu-grid > div > p {
-    margin: 0 !important;
-  }
-  .menu-grid > div > p:nth-child(1) {
-    grid-column: 1;
-    grid-row: 1;
-  }
   .menu-grid > div > p:nth-child(2) {
-    grid-column: 1;
-    grid-row: 2;
+    margin-bottom: 10px !important;
   }
-  .menu-grid > div > p:nth-child(3) {
-    grid-column: 2;
-    grid-row: 1;
-    text-align: right;
-  }
-  .menu-grid > div > p:nth-child(4) {
-    grid-column: 2;
-    grid-row: 2;
-    text-align: right;
-  }
+  .menu-prices .mp-l { width: 5em; }
+  .menu-prices .mp-min { padding-left: calc(5em + 8px); }
   .hdr-in {
     padding: 12px 20px !important;
   }
@@ -479,3 +460,19 @@ details[open] > summary .tog svg { transform: rotate(180deg); }
 .news-month > summary::-webkit-details-marker { display: none; }
 .news-month > summary > span:first-child::after { content: "＋"; margin-left: 12px; font-size: 14px; color: #9b321f; }
 .news-month[open] > summary > span:first-child::after { content: "－"; }
+
+/* メニュー・料金 */
+.menu-prices { display: grid; gap: 2px; }
+.menu-prices p { margin: 0; display: flex; align-items: baseline; gap: 8px; }
+.menu-prices .mp-l { width: 5.5em; font-size: 12px; color: #5c5c5c; }
+.menu-prices .mp-v { font-family: 'Cormorant Garamond', serif; font-size: 30px; color: #1a1a1a; line-height: 1.2; }
+.menu-prices .mp-y { font-size: 12px; color: #5c5c5c; }
+.menu-offs { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.menu-offs > div { background: #f8f6f1; border-radius: 4px; padding: 14px 16px; }
+.menu-offs p { margin: 0; }
+.menu-offs .mo-h { font-size: 12px; color: #5c5c5c; margin-bottom: 4px; }
+.menu-offs .mo-v { font-size: 14px; color: #1a1a1a; }
+.menu-offs .mo-v strong { color: #9b321f; font-weight: 700; }
+.menu-offs .mo-n { font-size: 12px; color: #5c5c5c; margin-top: 4px; }
+.menu-prices .mp-min { display: block; margin: 0 0 8px; padding-left: calc(5.5em + 8px); font-size: 11px; color: #5c5c5c; }
+.menu-prices .mp-min strong { color: #9b321f; font-size: 13px; }
