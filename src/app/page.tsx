@@ -261,6 +261,16 @@ export default function Home() {
                   <p className="mp-min">最安 <strong>6,500円</strong>（7日以上前のご予約＋事前決済）</p>
                 </div>
               </div>
+              <div style={{ padding: "0 28px 28px", borderLeft: "1px solid #ebe9e4" }}>
+                <p style={{ margin: "0 0 4px", fontSize: "13px", fontWeight: 700 }}>
+                  40分 <span style={{ marginLeft: "6px", fontSize: "10px", fontWeight: 500, color: "#9b321f", border: "1px solid #9b321f", borderRadius: "2px", padding: "1px 6px" }}>朝の特別プラン</span>
+                </p>
+                <p style={{ margin: "0 0 12px", fontSize: "12px", color: "#5c5c5c" }}>朝の枠（6:30〜9:00）だけのコース</p>
+                <div className="menu-prices">
+                  <p><span className="mp-l">どなたも</span><span className="mp-v">4,000</span><span className="mp-y">円</span></p>
+                  <p className="mp-min">初めての方も2回目以降も同じ料金です（割引の対象外）。</p>
+                </div>
+              </div>
             </div>
           </div>
           <div style={{ marginTop: "28px", paddingTop: "22px", borderTop: "1px solid #ebe9e4", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: "20px 40px" }}>
