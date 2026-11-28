@@ -68,7 +68,7 @@ export function defaultKind(date: string): DayKind {
 }
 
 export function hoursOf(kind: DayKind) {
-  if (kind === "full") return { s: 9 * 60, e: 22 * 60 + 40, step: 30, last: 22 * 60 + 40 };
+  if (kind === "full") return { s: 9 * 60, e: 22 * 60 + 40, step: 15, last: 22 * 60 + 40 };
   return { s: 21 * 60 + 10, e: 22 * 60 + 40, step: 10, last: 21 * 60 + 40 };
 }
 

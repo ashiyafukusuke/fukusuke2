@@ -46,7 +46,7 @@ const MORNING = { s:6*60+30, e:9*60, step:10, last:8*60+30 }; // 朝の枠（前
 const MORNING_CUTOFF = 22*60;
 // 今の日本時間（分）。開いたまま時間がたっても、朝の枠の締切を正しく判定するため毎回計算する
 const jstMinNow = () => { const d = new Date(Date.now() + 9*3600e3); return d.getUTCHours()*60 + d.getUTCMinutes(); };
-const hoursOf = k => k === "full" ? { s:9*60, e:22*60+40, step:30, last:22*60+40 } : { s:21*60+10, e:22*60+40, step:10, last:21*60+40 };
+const hoursOf = k => k === "full" ? { s:9*60, e:22*60+40, step:15, last:22*60+40 } : { s:21*60+10, e:22*60+40, step:10, last:21*60+40 };
 
 function price(c, visit, pay, a) {
   const base = visit === "first" ? c.first : c.repeat;
